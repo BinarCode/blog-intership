@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <h2 class="text-purple-600">Check tailwind</h2>
+    <h2 class="text-red-500 font-bold">Check tailwind</h2>
     <HelloWorld msg="Blog Project" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import HelloWorld from './components/HelloWorld.vue';
 
 export default {
   name: "App",
