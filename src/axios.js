@@ -1,3 +1,3 @@
 import axios from 'axios';
 
-axios.defaults.baseUrl = ''
+axios.defaults.baseUrl = 'https://api-internship.binarcode.com'
