@@ -46,17 +46,5 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ],
-  "description": "```\r npm install\r ```",
-  "main": "babel.config.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BinarCode/blog-intership.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BinarCode/blog-intership/issues"
-  },
-  "homepage": "https://github.com/BinarCode/blog-intership#readme"
+  ]
 }
