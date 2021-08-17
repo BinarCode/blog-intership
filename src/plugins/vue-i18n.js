@@ -10,6 +10,5 @@ export default new VueI18n({
     },
     locale: 'en',
     fallbackLocale: 'en',
-    silentFallbackWarn: process.env.NODE_ENV === 'test',
-    silentTranslationWarn: process.env.NODE_ENV === 'test',
+    silentFallbackWarn: true,
 });
