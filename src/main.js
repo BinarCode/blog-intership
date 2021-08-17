@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './axios'
+import './api/apiConfig'
+
 
 Vue.config.productionTip = false
 
