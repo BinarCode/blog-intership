@@ -1,5 +1,6 @@
 <template>
   <div>{{ $t('styleguide') }}!</div>
+  <p class="text-red-300 font-bold">styleguide</p>
 </template>
 
 <script>
