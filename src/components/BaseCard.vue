@@ -35,12 +35,6 @@
             </a>
           </p>
           <div class="flex space-x-1 text-sm text-gray-500">
-            <time datetime="2020-03-16">
-              Mar 16, 2020
-            </time>
-            <span aria-hidden="true">
-                &middot;
-              </span>
             <span>
                 {{ post.views }} views
               </span>
@@ -48,7 +42,7 @@
                 &middot;
               </span>
             <span>
-                6 min read
+                x min read
               </span>
           </div>
         </div>
