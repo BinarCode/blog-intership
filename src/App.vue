@@ -7,30 +7,31 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import authService from './api/authService';
+// import authService from './api/authService';
 
 export default {
   name: 'App',
   components: {
     HelloWorld
   },
-    data() {
-    return {
-      model: {
-        first_name: 'register',
-        last_name: 'new last name',
-        email: 'mihai.pascu@binarcode.com',
-        password: 'secret!',
-        password_confirmation: 'secret!',
-      }
-    };
-  },
-  async mounted() {
-     try {
-    const result = await authService.register(this.model);
-    console.log(result);
-     } catch (error)  {console.log(error)}
-  }
+//     data() {
+//     return {
+//       model: {
+//         first_name: 'register',
+//         last_name: 'new last name',
+//         email: 'mihai.andrei@binarcode.com',
+//         password: 'secret!',
+//         password_confirmation: 'secret!',
+//       }
+//     };
+//   },
+//   async mounted() {
+//      try {
+//     const result = await authService.register(this.model);
+//     console.log(result);
+//      } catch (error)  {console.log(error)}
+//   }
+// }
 }
 </script>
 
