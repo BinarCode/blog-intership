@@ -9,7 +9,7 @@
           <a
               v-for="tag in post.tags"
               :key="tag"
-              href="#"
+              :href="post.link"
               class="hover:underline mr-2">{{ tag }}</a>
         </p>
         <a href="#" class="block mt-2">
