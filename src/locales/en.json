@@ -1,4 +1,8 @@
 {
   "styleguide": "Styleguide",
-  "home": "Home page"
+  "home": "Home page",
+
+  "views": "views",
+  "minutes": "minutes",
+  "read": "read"
 }
