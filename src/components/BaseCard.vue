@@ -1,48 +1,43 @@
 <template>
   <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
     <div class="flex-shrink-0">
-      <img class="h-48 w-full object-cover" :src="src">
+      <img class="h-48 w-full object-cover" :src="post.attributes.src || 'https://i.stack.imgur.com/y9DpT.jpg'">
     </div>
     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
       <div class="flex-1">
         <p class="text-sm font-medium text-indigo-600">
           <a
-              v-for="tag in tags"
-              :key="tag"
-              class="hover:underline mr-2">{{ tag }}</a>
+              v-for="(tag, index) in post.attributes.tags"
+              :key="index"
+              class="hover:underline mr-2">{{ tag.name }}</a>
         </p>
-        <a :href="link" class="block mt-2">
+        <a href="#" class="block mt-2">
           <p class="text-xl font-semibold text-gray-900">
-            {{ title }}
+            {{ post.attributes.title }}
           </p>
           <p class="mt-3 text-base text-gray-500">
-            {{ content }}
+            {{ post.attributes.content }}
           </p>
         </a>
       </div>
       <div class="mt-6 flex items-center">
         <div class="flex-shrink-0">
-          <a href="#">
-            <span class="sr-only">{{ author }}</span>
-            <img class="h-10 w-10 rounded-full" :src="avatar">
-          </a>
+            <img class="h-10 w-10 rounded-full" :src="post.relationships.creator.avatar || 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'" alt="Avatar">
         </div>
         <div class="ml-3">
           <p class="text-sm font-medium text-gray-900">
             <a href="#" class="hover:underline">
-              {{ author }}
+              {{ post.relationships.creator.attributes.first_name }}
             </a>
           </p>
           <div class="flex space-x-1 text-sm text-gray-500">
-              <span>
-                  {{ views }} {{ $t('views') }}
-                </span>
-            <span aria-hidden="true">
-                  &middot;
-                </span>
             <span>
-                  x {{ $t('minutes') }} {{ $t('read') }}
-                </span>
+              {{ $tc('views', post.attributes.views) }}<!-- &middot; {{ $t('minutes_read') }}-->
+            </span>
+            <span aria-hidden="true">
+
+            </span>
+
           </div>
         </div>
       </div>
@@ -54,37 +49,9 @@
 export default {
   name: 'BaseCard',
   props: {
-    src: {
-      type: String,
-      default: 'https://i.stack.imgur.com/y9DpT.jpg'
-    },
-    link: {
-      type: String,
-      default: '#'
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    content: {
-      type: String,
-      default: ''
-    },
-    tags: {
-      type: String,
-      default: () => ['']
-    },
-    views: {
-      type: Number,
-      default: 0
-    },
-    author: {
-      type: String,
-      default: ''
-    },
-    avatar: {
-      type: String,
-      default: 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
+    post: {
+      type: Object,
+      default: () => {}
     }
   }
 }
