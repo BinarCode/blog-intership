@@ -2,7 +2,8 @@
   "styleguide": "Styleguide",
   "home": "Home page",
 
-  "views": "views",
+  "views": "0 views|1 view|{n} views",
   "minutes": "minutes",
-  "read": "read"
+  "read": "read",
+  "minutes_read": "0 minutes read|1 minute read|{n} minutes read"
 }
