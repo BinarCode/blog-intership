@@ -8,6 +8,3 @@
     <router-view />
   </div>
 </template>
-
-
-

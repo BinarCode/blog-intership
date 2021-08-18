@@ -6,6 +6,10 @@ import Styleguide from "@/views/Styleguide";
 import registerPage from "@/views/registerPage"
 import inputTest from "@/views/inputTest";
 
+import Styleguide from '@/views/Styleguide';
+import inputTest from '@/views/inputTest';
+
+
 
 Vue.use(VueRouter)
 

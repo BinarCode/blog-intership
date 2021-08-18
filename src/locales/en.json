@@ -8,5 +8,12 @@
   "Password confirmation": "Password confirmation",
   "password": "password",
   "password confirmation": "password confirmation",
+<<<<<<< HEAD
   "": ""
+=======
+  "BaseInput example": "BaseInput component (email)",
+  "emailPH": "john_kennedy@binarcode.com",
+  "emailLabel": "Email: ",
+  "Submit": "Submit"
+>>>>>>> bd6856ea4eb6bd7b0319ce1e5fafee021378b8c5
 }
