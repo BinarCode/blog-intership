@@ -5,7 +5,7 @@
 
     <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none print:grid-cols-2">
       <base-card
-        v-for="post in props"
+        v-for="post in posts"
         :post="post"
         :key="post.id"
       />
@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      props: [
+      posts: [
         {
           "id": "5",
           "type": "blogs",
