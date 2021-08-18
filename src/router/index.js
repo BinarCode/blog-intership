@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 
 import Home from '@/views/Home.vue'
 import Styleguide from '@/views/Styleguide';
-import inputTest from '@/views/inputTest';
-import registerPage from '@/views/registerPage';
+import RegisterPage from '@/views/RegisterPage';
+
 
 Vue.use(VueRouter)
 
@@ -22,13 +22,8 @@ const routes = [
   {
     path: '/register',
     name: 'Register',
-    component: registerPage
-  },
-  {
-    path: '/input-test',
-    name: 'Input Test',
-    component: inputTest
-  },
+    component: RegisterPage
+  }
 ]
 
 const router = new VueRouter({
