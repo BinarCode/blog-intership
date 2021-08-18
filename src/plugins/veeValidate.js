@@ -5,6 +5,7 @@ import {
     email,
     excluded,
     length,
+    digits,
     max,
     max_value,
     min,
@@ -23,6 +24,7 @@ extend('numeric', numeric)
 extend('excluded', excluded)
 extend('alpha', alpha)
 extend('length', length)
+extend('digits', digits)
 
 extend('confirmed', {
     params: ['target'],
