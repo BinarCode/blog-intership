@@ -52,7 +52,7 @@
 
 <script>
 export default {
-  name: "BaseCardBlog",
+  name: 'BaseCard',
   props: {
     src: {
       type: String,
