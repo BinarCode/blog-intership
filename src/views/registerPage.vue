@@ -17,7 +17,7 @@
         class="mx-auto h-12 w-auto"
       />
       <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-        Sign up
+        {{ $t('Sign Up') }}
       </h2>
     </div>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -48,7 +48,7 @@
               :name="$t('Email')"
               :label="$t('Email')"
               rules="required|email"
-              placeholder="you@example.com"
+              :placeholder="$t('emailPH')"
             />
 
             <base-input
@@ -74,32 +74,15 @@
                 href="#"
                 class="font-medium text-indigo-600 hover:text-indigo-500"
               >
-                Forgot your password?
+                {{ $t('forgotPassText') }}
               </a>
             </div>
             <button
               type="submit"
-              class="
-                my-4
-                w-full
-                flex
-                justify-center
-                py-2
-                px-4
-                border border-transparent
-                rounded-md
-                shadow-sm
-                text-sm
-                font-medium
-                text-white
-                bg-indigo-600
-                hover:bg-indigo-700
-                focus:outline-none
-                focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
-              "
+              class=" my-4 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               :disabled="!valid"
             >
-              Submit
+              {{ $t('Submit') }}
             </button>
           </form>
         </ValidationObserver>
@@ -111,7 +94,7 @@
 
 <script>
 export default {
-  name: "inputTest",
+  name: 'inputTest',
   data() {
     return {
       model: {
@@ -131,5 +114,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
