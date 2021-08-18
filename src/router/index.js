@@ -5,7 +5,6 @@ import Home from '@/views/Home.vue'
 import Styleguide from '@/views/Styleguide';
 import RegisterPage from '@/views/RegisterPage';
 
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -24,6 +23,7 @@ const routes = [
     name: 'Register',
     component: RegisterPage
   }
+
 ]
 
 const router = new VueRouter({

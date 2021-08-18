@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import InputTest from '@/views/Styleguide';
+import InputTest from './InputTest.vue';
 
 export default {
   components: { InputTest },
