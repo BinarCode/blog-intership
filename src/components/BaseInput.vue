@@ -20,20 +20,20 @@
         />
         <div
           v-show="errors.length"
-          class="
-            absolute
-            inset-y-0
-            right-0
-            pr-3
-            flex
-            items-center
-            pointer-events-none
-          "
+          class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
         >
-          <ExclamationCircleIcon
-            class="h-5 w-5 text-red-500"
-            aria-hidden="true"
-          />
+          <svg
+            fill="currentColor"
+            class="bi bi-exclamation-circle h-5 w-5 text-red-500"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+            />
+            <path
+              d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+            />
+          </svg>
         </div>
       </div>
       <div class="h-4">
@@ -50,11 +50,8 @@
 </template>
 
 <script>
-import { ExclamationCircleIcon } from "@vue-hero-icons/solid";
-
 export default {
-  name: "BaseInput",
-  components: { ExclamationCircleIcon },
+  name: 'BaseInput',
   inheritAttrs: false,
   props: {
     name: String,
@@ -66,7 +63,7 @@ export default {
     },
     type: {
       type: String,
-      default: "text", // text | email | textarea
+      default: 'text', // text | email | textarea
     },
     rules: [String, Object],
     disable: {
@@ -84,9 +81,8 @@ export default {
   },
   methods: {
     onInput(event) {
-      this.$emit("input", event.target.value);
+      this.$emit('input', event.target.value);
     },
   },
 };
 </script>
-
