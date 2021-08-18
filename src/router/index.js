@@ -3,7 +3,9 @@ import VueRouter from 'vue-router'
 
 import Home from '@/views/Home.vue'
 import Styleguide from "@/views/Styleguide";
+import registerPage from "@/views/registerPage"
 import inputTest from "@/views/inputTest";
+
 
 Vue.use(VueRouter)
 
@@ -17,6 +19,11 @@ const routes = [
     path: '/styleguide',
     name: 'Styleguide',
     component: Styleguide
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: registerPage
   },
   {
     path: '/input-test',

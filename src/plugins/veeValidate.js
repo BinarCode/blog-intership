@@ -29,10 +29,10 @@ extend('digits', digits)
 extend('confirmed', {
     params: ['target'],
     validate(value, { target }) {
-        return value === target
+        return value === target;
     },
-    message: 'Password confirmation does not match',
-})
+    message: 'Password confirmation does not match'
+});
 
 const dictionary = {
     custom: {},
