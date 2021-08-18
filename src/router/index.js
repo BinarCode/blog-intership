@@ -5,6 +5,7 @@ import Home from '@/views/Home.vue'
 import Styleguide from '@/views/Styleguide';
 import inputTest from '@/views/inputTest';
 import registerPage from '@/views/registerPage';
+import resetPassword from '@/views/resetPassword';
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: registerPage
+  },
+  {
+    path: '/reset-password',
+    name: 'Reset Password',
+    component: resetPassword
   },
   {
     path: '/input-test',

@@ -13,5 +13,9 @@
   "emailLabel": "Email: ",
   "Submit": "Submit",
   "forgotPassText": "Forgot your password?",
-  "Sign Up": "Sign up"
+  "Sign up": "Sign up",
+  "Sign in": "Sign in",
+  "Confirm reset password": "Confirm reset Password",
+  "Reset password": "Reset password",
+  "Don't have an account?": "Don't have an account?"
 }

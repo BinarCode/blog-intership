@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link>
       <router-link to="/styleguide">Styleguide</router-link>
       <router-link to="/register">Register</router-link>
+      <router-link to="/reset-password">Reset password</router-link>
     </div>
     <router-view />
   </div>

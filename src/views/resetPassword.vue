@@ -9,7 +9,7 @@
         class="w-auto h-12 mx-auto"
       />
       <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
-        {{ $t('Sign up') }}
+        {{ $t('Reset password') }}
       </h2>
     </div>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -17,37 +17,10 @@
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent="handleSubmit">
             <base-input
-              v-model="model.first_name"
-              type="text"
-              :name="$t('First Name')"
-              :label="$t('First Name')"
-              rules="required"
-              placeholder="John"
-            />
-
-            <base-input
-              v-model="model.last_name"
-              type="text"
-              :name="$t('Last Name')"
-              :label="$t('Last Name')"
-              rules="required"
-              placeholder="Kennedy"
-            />
-
-            <base-input
-              v-model="model.email"
-              type="email"
-              :name="$t('Email')"
-              :label="$t('Email')"
-              rules="required|email"
-              :placeholder="$t('emailPH')"
-            />
-
-            <base-input
               v-model="model.password"
               type="password"
               :name="$t('Password')"
-              :label="$t('Password')"
+              :label="$t('Reset password')"
               rules="required|min:6"
               :placeholder="$t('password')"
             />
@@ -56,26 +29,34 @@
               v-model="model.password_confirmation"
               type="password"
               :name="$t('Password confirmation')"
-              :label="$t('Password confirmation')"
+              :label="$t('Confirm reset password')"
               rules="required|confirmed:@Password"
               :placeholder="$t('password confirmation')"
             />
-
-            <div class="flex items-center justify-between text-sm">
-              <a
-                href="#"
-                class="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                {{ $t('forgotPassText') }}
-              </a>
-            </div>
             <button
               type="submit"
               class="flex justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               :disabled="!valid"
             >
-              {{ $t('Submit') }}
+              {{ $t('Reset password') }}
             </button>
+            <div class="flex justify-between text-sm">
+              <a
+                href="#"
+                class="font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                {{ $t('Sign in') }}
+              </a>
+              <div>
+                {{ $t("Don't have an account?") }}
+                <a
+                  href="/register"
+                  class="font-medium text-indigo-600 hover:text-indigo-500"
+                >
+                  {{ $t('Sign up') }}
+                </a>
+              </div>
+            </div>
           </form>
         </ValidationObserver>
       </div>
@@ -89,9 +70,8 @@ export default {
   data() {
     return {
       model: {
-        first_name: null,
-        last_name: null,
         email: null,
+        token: null,
         password: null,
         password_confirmation: null,
       },
