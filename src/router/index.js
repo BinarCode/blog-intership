@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '@/views/Home.vue'
-import Styleguide from '@/views/Styleguide';
-import Register from '@/views/Register';
+import Styleguide from '@/views/Styleguide.vue';
+import Register from '@/views/Register.vue';
 Vue.use(VueRouter)
 
 const routes = [
