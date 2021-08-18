@@ -40,23 +40,6 @@
             >
               {{ $t('Reset password') }}
             </button>
-            <div class="flex justify-between text-sm">
-              <a
-                href="#"
-                class="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                {{ $t('Sign in') }}
-              </a>
-              <div>
-                {{ $t("Don't have an account?") }}
-                <a
-                  href="/register"
-                  class="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  {{ $t('Sign up') }}
-                </a>
-              </div>
-            </div>
           </form>
         </ValidationObserver>
       </div>
@@ -70,10 +53,10 @@ export default {
   data() {
     return {
       model: {
-        email: null,
-        token: null,
-        password: null,
-        password_confirmation: null,
+        email: '',
+        token: '',
+        password: '',
+        password_confirmation: '',
       },
     };
   },
