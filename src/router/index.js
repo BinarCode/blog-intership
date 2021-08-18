@@ -2,10 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '@/views/Home.vue'
-import Styleguide from '@/views/Styleguide';
-import RegisterPage from '@/views/RegisterPage';
-import ResetPassword from '@/views/ResetPassword';
-
+import ResetPass from '@/views/ResetPass.vue';
+import Styleguide from '@/views/Styleguide.vue';
+import Register from '@/views/Register.vue';
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,12 +21,12 @@ const routes = [
   {
     path: '/register',
     name: 'Register',
-    component: RegisterPage
+    component: Register
   },
   {
     path: '/reset-password',
     name: 'Reset Password',
-    component: ResetPassword
+    component: ResetPass
   },
 ]
 
