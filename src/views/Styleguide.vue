@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import BaseCard from "@/components/BaseCard";
-import BaseCardBlog from "@/components/BaseCardBlog";
-import BlogsContainer from "@/components/BlogsContainer";
+import BaseCard from '@/components/BaseCard';
+import BaseCardBlog from '@/components/BaseCardBlog';
+import BlogsContainer from '@/components/BlogsContainer';
 
 export default {
   name: 'Styleguide',
