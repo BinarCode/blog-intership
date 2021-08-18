@@ -4,7 +4,6 @@ import router from './router';
 import './plugins/globalComponents';
 import i18n from '@/plugins/vue-i18n';
 import './assets/tailwind.css'
-import i18n from '@/plugins/vue-i18n';
 import './api/apiConfig'
 
 Vue.config.productionTip = false;
