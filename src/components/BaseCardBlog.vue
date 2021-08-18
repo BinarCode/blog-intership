@@ -1,41 +1,41 @@
 <template>
   <div>
     <div class="flex-shrink-0">
-      <img class="h-48 w-full object-cover" :src="img.href" alt="Blog post photo">
+      <img class="h-48 w-full object-cover" :src="src" alt="Blog post photo">
     </div>
     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
       <div class="flex-1">
         <p class="text-sm font-medium text-indigo-600">
           <a
-              v-for="tag in post.tags"
+              v-for="tag in tags"
               :key="tag"
               class="hover:underline mr-2">{{ tag }}</a>
         </p>
-        <a :href="post.link" class="block mt-2">
+        <a :href="link" class="block mt-2">
           <p class="text-xl font-semibold text-gray-900">
-            {{ post.title }}
+            {{ title }}
           </p>
           <p class="mt-3 text-base text-gray-500">
-            {{ post.content }}
+            {{ content }}
           </p>
         </a>
       </div>
       <div class="mt-6 flex items-center">
         <div class="flex-shrink-0">
           <a href="#">
-            <span class="sr-only">{{ author.name }}</span>
-            <img class="h-10 w-10 rounded-full" :src="author.avatar" alt="Author avatar">
+            <span class="sr-only">{{ author }}</span>
+            <img class="h-10 w-10 rounded-full" :src="avatar" alt="Author avatar">
           </a>
         </div>
         <div class="ml-3">
           <p class="text-sm font-medium text-gray-900">
             <a href="#" class="hover:underline">
-              {{ author.name }}
+              {{ author }}
             </a>
           </p>
           <div class="flex space-x-1 text-sm text-gray-500">
               <span>
-                  {{ post.views }} views
+                  {{ views }} views
                 </span>
             <span aria-hidden="true">
                   &middot;
@@ -54,19 +54,37 @@
 export default {
   name: "BaseCardBlog",
   props: {
-    img: {
-      href: String
+    src: {
+      type: String,
+      default: 'https://i.stack.imgur.com/y9DpT.jpg'
     },
-    post: {
-      link: String,
-      title: String,
-      content: String,
-      tags: Array,
-      views: Number
+    link: {
+      type: String,
+      default: '#'
+    },
+    title: {
+      type: String,
+      default: ''
+    },
+    content: {
+      type: String,
+      default: ''
+    },
+    tags: {
+      type: String,
+      default: () => ['']
+    },
+    views: {
+      type: Number,
+      default: 0
     },
     author: {
-      name: String,
-      avatar: String
+      type: String,
+      default: ''
+    },
+    avatar: {
+      type: String,
+      default: 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
     }
   }
 }
