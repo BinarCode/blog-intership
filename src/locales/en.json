@@ -1,7 +1,4 @@
 {
-  "styleguide": "Styleguide",
-  "home": "Home page",
-
   "blog.views": "0 views|1 view|{n} views",
   "blog.minutes_read": "0 minutes read|1 minute read|{n} minutes read",
 

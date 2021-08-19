@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/styleguide">Styleguide</router-link>
+    <div id="nav" class="flex justify-around">
+      <router-link to="/">{{ $t('app.routerTitle.home') }}</router-link>
+      <router-link to="/styleguide">
+        {{ $t('app.routerTitle.styleguide') }}
+      </router-link>
+      <router-link to="/register">
+        {{ $t('app.routerTitle.register') }}
+      </router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
-
 </template>
-
-
-
