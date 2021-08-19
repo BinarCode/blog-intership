@@ -34,22 +34,17 @@
               :placeholder="$t('general.placeholder.passwordConfirmation')"
             />
 
-            <button
+            <base-button
               type="submit"
-              :class="
-                loading === valid
-                  ? 'cursor-default bg-indigo-500'
-                  : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-              "
-              class="flex items-center justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm "
               :disabled="loading === valid"
+              class="flex items-center justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm"
             >
               <i
                 v-if="loading"
-                class="text-lg leading-none animate-spin el-icon-loading"
+                class="text-lg leading-none el-icon-loading"
               ></i>
               <span class="mx-2">{{ $t('general.resetPassword.title') }}</span>
-            </button>
+            </base-button>
           </form>
         </ValidationObserver>
       </div>
@@ -77,7 +72,6 @@ export default {
     async onSubmit() {
       this.model.email = this.$route.query.email;
       this.model.token = this.$route.query.token;
-      console.log(this.model);
       try {
         this.loading = true;
         await authServices.resetPassword(this.model);
