@@ -47,8 +47,7 @@ export default {
     async handleSubmit() {
       const valid = await this.$refs.form.validate()
 
-      if (!valid) return;
-      else console.log("Form valid");
+      if (valid) console.log("Form valid");
     },
   },
 };
