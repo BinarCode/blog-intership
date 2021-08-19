@@ -11,6 +11,9 @@
       <router-link to="/reset-password">
         {{ $t('general.resetPassword.title') }}
       </router-link>
+      <router-link to="/forgot-password">
+        {{ $t('general.forgotPassword.title') }}
+      </router-link>
     </div>
     <router-view />
   </div>
