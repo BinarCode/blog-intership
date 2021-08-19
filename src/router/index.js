@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 import Home from '@/views/Home.vue'
 import ResetPassword from '@/views/ResetPassword.vue';
 import Styleguide from '@/views/Styleguide.vue';
 import Register from '@/views/Register.vue';
+
+import Login from '@/views/Login.vue'
+
+
 import ForgotPassword from '@/views/ForgotPassword';
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -25,15 +29,24 @@ const routes = [
     component: Register
   },
   {
+
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+
     path: '/reset-password',
     name: 'Reset Password',
     component: ResetPassword
   },
+
   {
     path: '/forgot-password',
     name: 'Forgot Password',
     component: ForgotPassword
   }
+
 ]
 
 const router = new VueRouter({
