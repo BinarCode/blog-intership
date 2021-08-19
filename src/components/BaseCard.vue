@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+  <div class="flex flex-col rounded-lg shadow-md overflow-hidden">
     <div class="flex-shrink-0">
       <img class="h-48 w-full object-cover" :src="post.attributes.src || 'https://i.stack.imgur.com/y9DpT.jpg'">
     </div>
@@ -7,7 +7,7 @@
       <div class="flex-1">
         <p class="text-sm font-medium text-indigo-600">
           <a
-              v-for="(tag, index) in post.attributes.tags"
+              v-for="(tag, index) in post.attributes.tags || ['']"
               :key="index"
               class="hover:underline mr-2">{{ tag.name }}</a>
         </p>
@@ -30,15 +30,9 @@
               {{ post.relationships.creator.attributes.first_name }}
             </a>
           </p>
-          <div class="flex space-x-1 text-sm text-gray-500">
-            <span>
-              {{ $tc('views', post.attributes.views) }}<!-- &middot; {{ $t('minutes_read') }}-->
-            </span>
-            <span aria-hidden="true">
-
-            </span>
-
-          </div>
+          <span class="flex space-x-1 text-sm text-gray-500">
+            {{ $tc('views', post.attributes.views) }}<!-- &middot; {{ $t('minutes_read') }}-->
+          </span>
         </div>
       </div>
     </div>
