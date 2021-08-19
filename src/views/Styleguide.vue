@@ -1,7 +1,6 @@
 <template>
   <div>
     <div>{{ $t('styleguide') }}!</div>
-    <p class="text-red-300 font-bold">styleguide</p>
 
     <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none print:grid-cols-2">
       <base-card
