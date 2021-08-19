@@ -15,7 +15,7 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <ValidationObserver v-slot="{ valid }">
-          <form @submit.prevent="handleSubmit">
+          <form @submit.prevent="onSubmit">
             <base-input
               v-model="model.first_name"
               :name="$t('register.name.firstName')"
@@ -61,10 +61,19 @@
 
             <button
               type="submit"
-              class="flex justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              :disabled="!valid"
+              :class="
+                loading === valid
+                  ? 'cursor-default bg-indigo-500'
+                  : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+              "
+              class="flex items-center justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm "
+              :disabled="loading === valid"
             >
-              {{ $t('register.button.label.signUp') }}
+              <i
+                v-if="loading"
+                class="p-0 mt-0 text-lg leading-none labi animate-spin el-icon-loading"
+              ></i>
+              <span class="mx-2">{{ $t('register.button.label.signUp') }}</span>
             </button>
           </form>
         </ValidationObserver>
@@ -74,12 +83,13 @@
 </template>
 
 <script>
-import authService from '../api/authService';
+import authServices from '@/api/authService';
 
 export default {
   name: 'Register',
   data() {
     return {
+      loading: false,
       model: {
         first_name: '',
         last_name: '',
@@ -90,11 +100,14 @@ export default {
     };
   },
   methods: {
-    async handleSubmit() {
+    async onSubmit() {
       try {
-        await authService.register(this.model);
+        this.loading = true;
+        await authServices.register(this.model);
       } catch (error) {
         console.log(error);
+      } finally {
+        this.loading = false;
       }
     },
   },
