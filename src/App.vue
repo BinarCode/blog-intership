@@ -14,7 +14,20 @@
       <router-link to="/forgot-password">
         {{ $t('general.forgotPassword.title') }}
       </router-link>
+
+      <nav-dropdown />
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+import NavDropdown from '@/components/NavDropdown';
+
+export default {
+  name: 'App',
+  components: {
+    NavDropdown
+  }
+}
+</script>
