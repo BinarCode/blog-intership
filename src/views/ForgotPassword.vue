@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import authService from '@/api/authService';
+
 export default {
   name: 'ForgotPassword',
   data() {
