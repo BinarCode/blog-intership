@@ -52,7 +52,9 @@
 </template>
 
 <script>
+import BaseButton from '../BaseButton.vue';
 export default {
   name: 'BaseButtonStyles',
+  components: { BaseButton },
 };
 </script>
