@@ -91,10 +91,8 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      console.log(this.model);
       try {
-        const result = await authService.register(this.model);
-        console.log(result);
+        await authService.register(this.model);
       } catch (error) {
         console.log(error);
       }
