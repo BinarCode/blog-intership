@@ -7,7 +7,7 @@ import Register from '@/views/Register.vue';
 
 import Login from '@/views/Login.vue'
 
-=======
+
 import ForgotPassword from '@/views/ForgotPassword';
 
 Vue.use(VueRouter)
