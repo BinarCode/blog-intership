@@ -40,6 +40,7 @@ export default {
   name: 'ForgotPassword',
   data() {
     return {
+      loading: false,
       model: {
         email: ''
       },
@@ -51,10 +52,13 @@ export default {
 
       if (valid) {
         try {
-          const result = await authService.forgotPassword(this.model);
-          console.log(result);
+          this.loading = true;
+          await authService.forgotPassword(this.model);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          this.loading = false;
         }
-        catch (error) { console.log(error) }
       }
     },
   },
