@@ -74,6 +74,8 @@
 </template>
 
 <script>
+import authService from '../api/authService';
+
 export default {
   name: 'Register',
   data() {
@@ -88,8 +90,14 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       console.log(this.model);
+      try {
+        const result = await authService.register(this.model);
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
