@@ -44,20 +44,11 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
-      // I took advantage of the validate() method (on form) provided by Vee-Validate, which
-      // checks the validated state of the inputs.
-      // validate() returns a promise.
-      // https://vee-validate.logaretm.com/v2/guide/components/validation-observer.html
+    async handleSubmit() {
+      const valid = await this.$refs.form.validate()
 
-      this.$refs.form.validate()
-        .then((result) => {
-          if (result)
-            console.log(this.model)
-
-          else
-            console.log("Form has not been validated");
-        });
+      if (!valid) return;
+      else console.log("Form valid");
     },
   },
 };
