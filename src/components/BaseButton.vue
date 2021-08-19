@@ -1,6 +1,6 @@
 <template>
  <button
-    class="inline-flex items-center font-medium rounded-md shadow-sm text-white" type="button"
+    class="inline-flex items-center font-medium rounded-md shadow-sm text-white"
    :class="{
     'cursor-not-allowed': disabled,
     'px-3 py-2 text-sm': size === 'sm',
@@ -15,6 +15,7 @@
     'text-green-600 bg-white border border-green-600': color === 'secondary' && outline,
     'bg-green-600 active:bg-green-800': color === 'secondary' && !disabled && !outline,
     }"
+    :type="type"
     v-bind="$attrs"
     v-on="$listeners" >
     <slot>{{label}}</slot>
@@ -44,6 +45,10 @@ export default {
      outline: {
        type: Boolean,
        default: false
+     },
+     type: {
+       type: String,
+       default: 'button'
      }
     },
     computed: {

@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export default {
     setToken(token) {
         localStorage.setItem('token', token);
@@ -9,5 +10,8 @@ export default {
     },
     async register(data) {
         return await axios.post('/api/register', data);
+    },
+    async login(data) {
+        return await axios.post('/api/login', data);
     },
 }

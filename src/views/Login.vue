@@ -29,13 +29,18 @@
              <router-link class="font-medium text-indigo-600 hover:text-indigo-500 text-sm" to="/forgot-password">
                   {{ $t('forgotPassword.text') }}
               </router-link>
-          <div>
-            <button
+          <div class="w-full flex justify-center">
+            <base-button 
              type="submit"
-             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-             :disabled="!valid">
+             :disabled="loading === valid"
+             size="lg"
+             color="primary" >
+                   <i
+                v-if="loading"
+                class="text-lg leading-none el-icon-loading"
+              ></i>
                {{ $t('register.button.label.signIn') }}
-            </button>
+               </base-button>
           </div>
         </form>
          </ValidationObserver>
@@ -45,15 +50,33 @@
 </template>
 
 <script>
+import BaseButton from '@/components/BaseButton.vue';
+import authService from '@/api/authService';
+
 export default {
+  components: { BaseButton },
   name: 'Login',
   data() {
     return {
+    loading: false,
      model: {
-      email:'',
-      password:''
+     email:'',
+     password:''
      },
     }
-  }
+  },
+  methods: {
+    async handleSubmit() {
+ try {
+      this.loading = true;
+       await authService.login(this.model);
+      } catch (error) {
+        console.log(error)
+      } finally {
+        this.loading = false;
+      }
+      this.$router.push('/');
+    }
+  },
 }
 </script>
