@@ -2,8 +2,28 @@
   "styleguide": "Styleguide",
   "home": "Home page",
 
-  "views": "0 views|1 view|{n} views",
-  "minutes": "minutes",
-  "read": "read",
-  "minutes_read": "0 minutes read|1 minute read|{n} minutes read"
+  "blog.views": "0 views|1 view|{n} views",
+  "blog.minutes_read": "0 minutes read|1 minute read|{n} minutes read",
+
+  "general.homePage.title": "Home page",
+  "general.styleguide.title": "Styleguide",
+  "general.styleguide.section.baseInput": "BaseInput component (email)",
+  "general.name.email": "Email address",
+  "general.name.password": "Password",
+  "general.placeholder.email": "john_kennedy@binarcode.com",
+  "general.placeholder.password": "Must have at least 6 characters",
+  "general.placeholder.passwordConfirmation": "Confirm password",
+  "general.submit": "Submit",
+
+  "register.name.firstName": "First Name",
+  "register.name.lastName": "Last Name",
+
+  "general.name.passwordConfirmation": "Password confirmation",
+  "register.button.label.signUp": "Sign up",
+
+  "forgotPassword.text": "Forgot your password?",
+
+  "app.routerTitle.home": "Home",
+  "app.routerTitle.styleguide": "Styleguide",
+  "app.routerTitle.register": "Register"
 }

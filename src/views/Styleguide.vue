@@ -9,16 +9,23 @@
         :key="post.id"
       />
     </div>
+
+    <div>{{ $t('general.styleguide.title') }}!</div>
+    <p class="font-bold text-red-300">{{ $t('general.styleguide.title') }}</p>
+
+    <input-comp />
   </div>
 </template>
 
 <script>
 import BaseCard from '@/components/BaseCard';
+import InputComp from '@/views/InputComp.vue';
 
 export default {
   name: 'Styleguide',
   components: {
-    BaseCard
+    BaseCard,
+    InputComp
   },
   data() {
     return {
