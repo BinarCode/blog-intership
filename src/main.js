@@ -7,6 +7,7 @@ import i18n from '@/plugins/vue-i18n';
 import './api/apiConfig';
 import './assets/tailwind.css';
 
+
 Vue.use(veeValidate);
 Vue.use(globalComponents);
 
@@ -15,3 +16,4 @@ new Vue({
   i18n,
   render: h => h(App)
 }).$mount('#app')
+

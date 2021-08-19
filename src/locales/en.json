@@ -15,6 +15,8 @@
   "register.name.firstName": "First Name",
   "register.name.lastName": "Last Name",
 
+  "general.forgotPassword.title": "Forgot password",
+
   "general.name.passwordConfirmation": "Password confirmation",
   "register.button.label.signUp": "Sign up",
 
