@@ -38,5 +38,9 @@
 
   "general.resetPassword.title": "Reset password",
 
-  "resetPassword.name.newPassword": "New password"
+  "resetPassword.name.newPassword": "New password",
+
+  "navbarHome.name": "Home",
+  "navbarEditBlog.name": "Edit blog",
+  "navbarCreateBlog.name": "Create new blog"
 }
