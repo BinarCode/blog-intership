@@ -11,7 +11,7 @@
               :key="index"
               class="hover:underline mr-2">{{ tag.name }}</span>
         </p>
-        <router-link :to="'blogs/' + post.attributes.slug" class="block mt-2">
+        <router-link :to="`blogs/${post.attributes.slug}`" class="block mt-2">
           <p class="text-xl font-semibold text-gray-900">
             {{ post.attributes.title }}
           </p>
