@@ -1,10 +1,17 @@
 <template>
-  <div>{{ $t('styleguide') }}!</div>
-  <p class="text-red-300 font-bold">styleguide</p>
+  <div>
+    <div>{{ $t('styleguide') }}!</div>
+    <p class="font-bold text-red-300">styleguide</p>
+
+    <input-comp />
+  </div>
 </template>
 
 <script>
+import InputComp from '@/views/InputComp.vue';
+
 export default {
-  name: 'Styleguide'
-}
+  components: { InputComp },
+  name: 'Styleguide',
+};
 </script>

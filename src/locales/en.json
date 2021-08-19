@@ -1,4 +1,15 @@
 {
   "styleguide": "Styleguide",
-  "home": "Home page"
+  "home": "Home page",
+  "First Name": "First Name",
+  "Last Name": "Last Name",
+  "Email": "Email",
+  "Password": "Password",
+  "Password confirmation": "Password confirmation",
+  "password": "password",
+  "password confirmation": "password confirmation",
+  "BaseInput example": "BaseInput component (email)",
+  "emailPH": "john_kennedy@binarcode.com",
+  "emailLabel": "Email: ",
+  "Submit": "Submit"
 }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '@/views/Home.vue'
-import Styleguide from "@/views/Styleguide";
+import Styleguide from '@/views/Styleguide.vue';
 
 Vue.use(VueRouter)
 
@@ -16,7 +16,7 @@ const routes = [
     path: '/styleguide',
     name: 'Styleguide',
     component: Styleguide
-  }
+  },
 ]
 
 const router = new VueRouter({
