@@ -18,7 +18,6 @@
           <form @submit.prevent="handleSubmit">
             <base-input
               v-model="model.first_name"
-              type="text"
               :name="$t('register.name.firstName')"
               :label="$t('register.name.firstName')"
               rules="required"
@@ -27,7 +26,6 @@
 
             <base-input
               v-model="model.last_name"
-              type="text"
               :name="$t('register.name.lastName')"
               :label="$t('register.name.lastName')"
               rules="required"

@@ -11,13 +11,13 @@
         <base-input
           v-model="email"
           type="email"
-          :name="$t('Email')"
-          :label="$t('emailLabel')"
+          :name="$t('general.name.email')"
+          :label="$t('general.name.email')"
           rules="email|required"
-          :placeholder="$t('emailPH')"
+          :placeholder="$t('general.placeholder.email')"
           @input="onInput"
         >
-          <!-- {{ $t('emailLabel') }} -->
+          <!-- {{ $t('general.name.email') }} -->
           <!-- also we can send the label as slot -->
         </base-input>
         <button
