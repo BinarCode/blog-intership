@@ -9,7 +9,7 @@
         class="w-auto h-12 mx-auto"
       />
       <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
-        {{ $t('Reset password') }}
+        {{ $t('general.resetPassword.title') }}
       </h2>
     </div>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -19,26 +19,26 @@
             <base-input
               v-model="model.password"
               type="password"
-              :name="$t('Password')"
-              :label="$t('Reset password')"
+              :name="$t('resetPassword.name.newPassword')"
+              :label="$t('resetPassword.name.newPassword')"
               rules="required|min:6"
-              :placeholder="$t('password')"
+              :placeholder="$t('general.placeholder.password')"
             />
 
             <base-input
               v-model="model.password_confirmation"
               type="password"
-              :name="$t('Password confirmation')"
-              :label="$t('Confirm reset password')"
+              :name="$t('general.name.passwordConfirmation')"
+              :label="$t('general.name.passwordConfirmation')"
               rules="required|confirmed:@Password"
-              :placeholder="$t('password confirmation')"
+              :placeholder="$t('general.placeholder.passwordConfirmation')"
             />
             <button
               type="submit"
               class="flex justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               :disabled="!valid"
             >
-              {{ $t('Reset password') }}
+              {{ $t('general.resetPassword.title') }}
             </button>
           </form>
         </ValidationObserver>

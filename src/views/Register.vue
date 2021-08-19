@@ -18,18 +18,16 @@
           <form @submit.prevent="handleSubmit">
             <base-input
               v-model="model.first_name"
-              type="text"
-              :name="$t('First Name')"
-              :label="$t('First Name')"
+              :name="$t('register.name.firstName')"
+              :label="$t('register.name.firstName')"
               rules="required"
               placeholder="John"
             />
 
             <base-input
               v-model="model.last_name"
-              type="text"
-              :name="$t('Last Name')"
-              :label="$t('Last Name')"
+              :name="$t('register.name.lastName')"
+              :label="$t('register.name.lastName')"
               rules="required"
               placeholder="Kennedy"
             />
@@ -37,28 +35,28 @@
             <base-input
               v-model="model.email"
               type="email"
-              :name="$t('Email')"
-              :label="$t('Email')"
+              :name="$t('general.name.email')"
+              :label="$t('general.name.email')"
               rules="required|email"
-              :placeholder="$t('emailPH')"
+              :placeholder="$t('general.placeholder.email')"
             />
 
             <base-input
               v-model="model.password"
               type="password"
-              :name="$t('Password')"
-              :label="$t('Password')"
+              :name="$t('general.name.password')"
+              :label="$t('general.name.password')"
               rules="required|min:6"
-              :placeholder="$t('password')"
+              :placeholder="$t('general.placeholder.password')"
             />
 
             <base-input
               v-model="model.password_confirmation"
               type="password"
-              :name="$t('Password confirmation')"
-              :label="$t('Password confirmation')"
+              :name="$t('general.name.passwordConfirmation')"
+              :label="$t('general.name.passwordConfirmation')"
               rules="required|confirmed:@Password"
-              :placeholder="$t('password confirmation')"
+              :placeholder="$t('general.placeholder.passwordConfirmation')"
             />
 
             <button
@@ -66,7 +64,7 @@
               class="flex justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               :disabled="!valid"
             >
-              {{ $t('Submit') }}
+              {{ $t('general.submit') }}
             </button>
           </form>
         </ValidationObserver>
@@ -77,7 +75,7 @@
 
 <script>
 export default {
-  name: 'inputTest',
+  name: 'Register',
   data() {
     return {
       model: {
