@@ -6,19 +6,19 @@
     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
       <div class="flex-1">
         <p class="text-sm font-medium text-indigo-600">
-          <a
-              v-for="(tag, index) in post.attributes.tags || ['']"
+          <span
+              v-for="(tag, index) in post.attributes.tags || []"
               :key="index"
-              class="hover:underline mr-2">{{ tag.name }}</a>
+              class="hover:underline mr-2">{{ tag.name }}</span>
         </p>
-        <a href="#" class="block mt-2">
+        <router-link :to="'blogs/' + post.attributes.slug" class="block mt-2">
           <p class="text-xl font-semibold text-gray-900">
             {{ post.attributes.title }}
           </p>
           <p class="mt-3 text-base text-gray-500">
             {{ post.attributes.content }}
           </p>
-        </a>
+        </router-link>
       </div>
       <div class="mt-6 flex items-center">
         <div class="flex-shrink-0">
