@@ -49,7 +49,13 @@ export default {
     async handleSubmit() {
       const valid = await this.$refs.form.validate()
 
-      if (valid) console.log("Form valid");
+      if (valid) {
+        try {
+          const result = await authService.forgotPassword(this.model);
+          console.log(result);
+        }
+        catch (error) { console.log(error) }
+      }
     },
   },
 };
