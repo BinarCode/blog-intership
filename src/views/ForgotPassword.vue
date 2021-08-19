@@ -49,9 +49,15 @@ export default {
       // checks the validated state of the inputs.
       // validate() returns a promise.
       // https://vee-validate.logaretm.com/v2/guide/components/validation-observer.html
+
       this.$refs.form.validate()
-        .then(console.log(this.model))
-        .catch(console.log("Form has not been validated"));
+        .then((result) => {
+          if (result)
+            console.log(this.model)
+
+          else
+            console.log("Form has not been validated");
+        });
     },
   },
 };
