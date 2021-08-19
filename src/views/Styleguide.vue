@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div>{{ $t('styleguide') }}!</div>
-    <p class="font-bold text-red-300">styleguide</p>
+    <div>{{ $t('general.styleguide.title') }}!</div>
+    <p class="font-bold text-red-300">{{ $t('general.styleguide.title') }}</p>
 
     <input-comp />
   </div>

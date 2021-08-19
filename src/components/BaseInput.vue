@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-2">
     <label class="block text-sm font-medium text-gray-700">
       <slot>{{ label }}</slot>
     </label>
@@ -8,6 +8,7 @@
         <input
           :value="value"
           :type="type"
+          :name="name"
           :placeholder="placeholder"
           v-on="listeners"
           class="w-full block sm:text-sm rounded-md"

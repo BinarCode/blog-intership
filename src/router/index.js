@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from '@/views/Home.vue'
 import Styleguide from '@/views/Styleguide.vue';
-
+import Register from '@/views/Register.vue';
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,6 +17,12 @@ const routes = [
     name: 'Styleguide',
     component: Styleguide
   },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  }
+
 ]
 
 const router = new VueRouter({
