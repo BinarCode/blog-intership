@@ -12,10 +12,7 @@
         <router-link to="/login">
         {{ $t('app.routerTitle.login') }}
       </router-link>
-      <router-link to="/reset-password">
-        {{ $t('general.resetPassword.title') }}
-      </router-link>
-
+      
       <router-link to="/reset-password">
         {{ $t('general.resetPassword.title') }}
       </router-link>
@@ -27,4 +24,3 @@
     <router-view />
   </div>
 </template>
-

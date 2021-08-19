@@ -9,10 +9,7 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
            <ValidationObserver v-slot="{ valid }">
-        <form class="space-y-6" action="#" method="POST" @submit.prevent="handleSubmit">
-          <div>
-            <div class="mt-1">
-
+        <form class="space-y-6"  @submit.prevent="handleSubmit">
               <base-input
               v-model="model.email"
               type="email"
@@ -20,13 +17,8 @@
               :label="$t('general.name.email')"
               rules="required|email"
               :placeholder="$t('general.placeholder.email')"
-            />
-            </div>
-          </div>
-          <div>
-            <div class="mt-1">
-
-             <base-input
+            />                     
+             <base-input 
               v-model="model.password"
               type="password"
               :name="$t('general.name.password')"
@@ -34,15 +26,9 @@
               rules="required|min:6"
               :placeholder="$t('password')"
             />
-            </div>
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="text-sm">
-              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
-                {{ $t('forgotPassword.text')}}
-              </a>
-            </div>
-          </div>
+             <router-link class="font-medium text-indigo-600 hover:text-indigo-500 text-sm" to="/forgot-password">
+                  {{ $t('forgotPassword.text') }}
+              </router-link>
           <div>
             <button
              type="submit"
