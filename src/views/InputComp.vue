@@ -1,7 +1,10 @@
+// InputComp => Input Component, is an demo to see how we can use the BaseInput
+// component in a form with a button and vee-validator
+
 <template>
   <div class="w-1/3 px-10 py-5">
-    <h1 class="text-xl font-bold my-5">
-      {{ $t('BaseInput example') }}
+    <h1 class="my-5 text-xl font-bold">
+      {{ $t('general.styleguide.section.baseInput') }}
     </h1>
     <ValidationObserver v-slot="{ valid }">
       <form @submit.prevent="handleSubmit">
@@ -9,18 +12,20 @@
           v-model="email"
           type="email"
           :name="$t('Email')"
+          :label="$t('emailLabel')"
           rules="email|required"
           :placeholder="$t('emailPH')"
           @input="onInput"
         >
-          {{ $t('emailLabel') }}
+          <!-- {{ $t('emailLabel') }} -->
+          <!-- also we can send the label as slot -->
         </base-input>
         <button
           type="submit"
-          class="mt-3 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          class="flex justify-center w-full px-4 py-2 mt-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           :disabled="!valid"
         >
-          {{ $t('Submit') }}
+          {{ $t('general.submit') }}
         </button>
       </form>
     </ValidationObserver>
@@ -29,7 +34,7 @@
 
 <script>
 export default {
-  name: 'inputTest',
+  name: 'inputComp',
   data() {
     return {
       email: '',
