@@ -15,7 +15,7 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <ValidationObserver v-slot="{ valid }">
-          <form @submit.prevent="handleSubmit">
+          <form @submit.prevent="onSubmit">
             <base-input
               v-model="model.password"
               type="password"
@@ -33,12 +33,22 @@
               rules="required|confirmed:@password"
               :placeholder="$t('general.placeholder.passwordConfirmation')"
             />
+
             <button
               type="submit"
-              class="flex justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              :disabled="!valid"
+              :class="
+                loading === valid
+                  ? 'cursor-default bg-indigo-500'
+                  : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+              "
+              class="flex items-center justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm "
+              :disabled="loading === valid"
             >
-              {{ $t('general.resetPassword.title') }}
+              <i
+                v-if="loading"
+                class="text-lg leading-none animate-spin el-icon-loading"
+              ></i>
+              <span class="mx-2">{{ $t('general.resetPassword.title') }}</span>
             </button>
           </form>
         </ValidationObserver>
@@ -48,10 +58,13 @@
 </template>
 
 <script>
+import authServices from '@/api/authService';
+
 export default {
   name: 'inputTest',
   data() {
     return {
+      loading: false,
       model: {
         email: '',
         token: '',
@@ -61,8 +74,18 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
+    async onSubmit() {
+      this.model.email = this.$route.query.email;
+      this.model.token = this.$route.query.token;
       console.log(this.model);
+      try {
+        this.loading = true;
+        await authServices.resetPassword(this.model);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.loading = false;
+      }
     },
   },
 };
