@@ -22,5 +22,8 @@
 
   "app.routerTitle.home": "Home",
   "app.routerTitle.styleguide": "Styleguide",
-  "app.routerTitle.register": "Register"
+  "app.routerTitle.register": "Register",
+  "general.resetPassword.title": "Reset password",
+
+  "resetPassword.name.newPassword": "New password"
 }

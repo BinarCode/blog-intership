@@ -9,7 +9,7 @@
         class="w-auto h-12 mx-auto"
       />
       <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
-        {{ $t('register.button.label.signUp') }}
+        {{ $t('general.resetPassword.title') }}
       </h2>
     </div>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -17,35 +17,10 @@
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent="handleSubmit">
             <base-input
-              v-model="model.first_name"
-              :name="$t('register.name.firstName')"
-              :label="$t('register.name.firstName')"
-              rules="required"
-              placeholder="John"
-            />
-
-            <base-input
-              v-model="model.last_name"
-              :name="$t('register.name.lastName')"
-              :label="$t('register.name.lastName')"
-              rules="required"
-              placeholder="Kennedy"
-            />
-
-            <base-input
-              v-model="model.email"
-              type="email"
-              :name="$t('general.name.email')"
-              :label="$t('general.name.email')"
-              rules="required|email"
-              :placeholder="$t('general.placeholder.email')"
-            />
-
-            <base-input
               v-model="model.password"
               type="password"
               name="password"
-              :label="$t('general.name.password')"
+              :label="$t('resetPassword.name.newPassword')"
               rules="required|min:6"
               :placeholder="$t('general.placeholder.password')"
             />
@@ -58,13 +33,12 @@
               rules="required|confirmed:@password"
               :placeholder="$t('general.placeholder.passwordConfirmation')"
             />
-
             <button
               type="submit"
               class="flex justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               :disabled="!valid"
             >
-              {{ $t('register.button.label.signUp') }}
+              {{ $t('general.resetPassword.title') }}
             </button>
           </form>
         </ValidationObserver>
@@ -75,13 +49,12 @@
 
 <script>
 export default {
-  name: 'Register',
+  name: 'inputTest',
   data() {
     return {
       model: {
-        first_name: '',
-        last_name: '',
         email: '',
+        token: '',
         password: '',
         password_confirmation: '',
       },

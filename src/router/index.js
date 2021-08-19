@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '@/views/Home.vue'
+import ResetPassword from '@/views/ResetPassword.vue';
 import Styleguide from '@/views/Styleguide.vue';
 import Register from '@/views/Register.vue';
 Vue.use(VueRouter)
@@ -21,8 +22,12 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
-  }
-
+  },
+  {
+    path: '/reset-password',
+    name: 'Reset Password',
+    component: ResetPassword
+  },
 ]
 
 const router = new VueRouter({

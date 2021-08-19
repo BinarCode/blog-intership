@@ -8,6 +8,9 @@
       <router-link to="/register">
         {{ $t('app.routerTitle.register') }}
       </router-link>
+      <router-link to="/reset-password">
+        {{ $t('general.resetPassword.title') }}
+      </router-link>
     </div>
     <router-view />
   </div>
