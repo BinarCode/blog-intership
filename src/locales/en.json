@@ -1,4 +1,7 @@
 {
+  "blog.views": "0 views|1 view|{n} views",
+  "blog.minutes_read": "0 minutes read|1 minute read|{n} minutes read",
+
   "general.homePage.title": "Home page",
   "general.styleguide.title": "Styleguide",
   "general.styleguide.section.baseInput": "BaseInput component (email)",
