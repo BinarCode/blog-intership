@@ -13,7 +13,7 @@
             <base-input
                 v-model="model.email"
                 type="email"
-                name="email"
+                :name="$t('general.name.email')"
                 :label="$t('general.name.email')"
                 rules="email|required"
                 :placeholder="$t('general.placeholder.email')"
