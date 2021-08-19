@@ -1,12 +1,15 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import './plugins/globalComponents';
+import veeValidate from "@/plugins/veeValidate";
+import globalComponents from './plugins/globalComponents';
 import i18n from '@/plugins/vue-i18n';
-import './assets/tailwind.css'
-import './api/apiConfig'
+import './api/apiConfig';
+import './assets/tailwind.css';
 
-Vue.config.productionTip = false;
+
+Vue.use(veeValidate);
+Vue.use(globalComponents);
 
 new Vue({
   router,
