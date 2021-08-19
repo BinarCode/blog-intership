@@ -9,7 +9,7 @@
         class="w-auto h-12 mx-auto"
       />
       <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
-        {{ $t('Sign up') }}
+        {{ $t('register.button.label.signUp') }}
       </h2>
     </div>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -44,7 +44,7 @@
             <base-input
               v-model="model.password"
               type="password"
-              :name="$t('general.name.password')"
+              name="password"
               :label="$t('general.name.password')"
               rules="required|min:6"
               :placeholder="$t('general.placeholder.password')"
@@ -55,7 +55,7 @@
               type="password"
               :name="$t('general.name.passwordConfirmation')"
               :label="$t('general.name.passwordConfirmation')"
-              rules="required|confirmed:@Password"
+              rules="required|confirmed:@password"
               :placeholder="$t('general.placeholder.passwordConfirmation')"
             />
 
@@ -64,7 +64,7 @@
               class="flex justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               :disabled="!valid"
             >
-              {{ $t('general.submit') }}
+              {{ $t('register.button.label.signUp') }}
             </button>
           </form>
         </ValidationObserver>

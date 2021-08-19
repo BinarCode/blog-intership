@@ -19,7 +19,7 @@
             <base-input
               v-model="model.password"
               type="password"
-              :name="$t('resetPassword.name.newPassword')"
+              name="password"
               :label="$t('resetPassword.name.newPassword')"
               rules="required|min:6"
               :placeholder="$t('general.placeholder.password')"
@@ -30,7 +30,7 @@
               type="password"
               :name="$t('general.name.passwordConfirmation')"
               :label="$t('general.name.passwordConfirmation')"
-              rules="required|confirmed:@Password"
+              rules="required|confirmed:@password"
               :placeholder="$t('general.placeholder.passwordConfirmation')"
             />
             <button
