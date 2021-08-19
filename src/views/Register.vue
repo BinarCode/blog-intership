@@ -71,7 +71,7 @@
             >
               <i
                 v-if="loading"
-                class="p-0 mt-0 text-lg leading-none labi animate-spin el-icon-loading"
+                class="text-lg leading-none animate-spin el-icon-loading"
               ></i>
               <span class="mx-2">{{ $t('register.button.label.signUp') }}</span>
             </button>
