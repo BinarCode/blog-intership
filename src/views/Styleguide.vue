@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <div>{{ $t('styleguide') }}!</div>
+<div class="p-20">
+  <div class="buttonstyle">
+  <h1 class="text-5xl font-bold my-4">BaseButtonStyles</h1>
+  <base-button-styles></base-button-styles>
+  </div>
 
+    <h1 class="text-5xl font-bold my-4">BaseCard Styles</h1>
     <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none print:grid-cols-2">
       <base-card
         v-for="post in posts"
@@ -10,14 +14,14 @@
       />
     </div>
 
-    <div>{{ $t('general.styleguide.title') }}!</div>
-    <p class="font-bold text-red-300">{{ $t('general.styleguide.title') }}</p>
-
+  
+<h1 class="text-5xl font-bold my-7">BaseInput Styles</h1>
     <input-comp />
   </div>
 </template>
 
 <script>
+import BaseButtonStyles from '@/components/styles/BaseButtonStyles.vue'
 import BaseCard from '@/components/BaseCard';
 import InputComp from '@/views/InputComp.vue';
 
@@ -25,7 +29,8 @@ export default {
   name: 'Styleguide',
   components: {
     BaseCard,
-    InputComp
+    InputComp,
+    BaseButtonStyles
   },
   data() {
     return {
