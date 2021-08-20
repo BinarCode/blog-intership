@@ -62,13 +62,10 @@
             <base-button
               type="submit"
               :disabled="loading === valid"
+              :loading="loading"
               class="flex items-center justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm"
             >
-              <i
-                v-if="loading"
-                class="text-lg leading-none el-icon-loading"
-              ></i>
-              <span class="mx-2">{{ $t('register.button.label.signUp') }}</span>
+              {{ $t('register.button.label.signUp') }}
             </base-button>
           </form>
         </ValidationObserver>
