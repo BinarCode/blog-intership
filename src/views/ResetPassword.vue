@@ -37,13 +37,10 @@
             <base-button
               type="submit"
               :disabled="loading === valid"
+              :loading="loading"
               class="flex items-center justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm"
             >
-              <i
-                v-if="loading"
-                class="text-lg leading-none el-icon-loading"
-              ></i>
-              <span class="mx-2">{{ $t('general.resetPassword.title') }}</span>
+              {{ $t('general.resetPassword.title') }}
             </base-button>
           </form>
         </ValidationObserver>
@@ -54,6 +51,7 @@
 
 <script>
 import authServices from '@/api/authService';
+import get from 'lodash/get';
 
 export default {
   name: 'inputTest',
@@ -70,8 +68,6 @@ export default {
   },
   methods: {
     async onSubmit() {
-      this.model.email = this.$route.query.email;
-      this.model.token = this.$route.query.token;
       try {
         this.loading = true;
         await authServices.resetPassword(this.model);
@@ -81,6 +77,10 @@ export default {
         this.loading = false;
       }
     },
+  },
+  mounted() {
+    this.model.email = get(this.$route, 'query.email', '');
+    this.model.token = get(this.$route, 'query.token', '');
   },
 };
 </script>

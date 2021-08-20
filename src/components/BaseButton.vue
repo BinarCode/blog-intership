@@ -24,7 +24,10 @@
     v-on="$listeners"
     :disabled="disabled"
   >
-    <slot>{{ label }}</slot>
+    <i v-if="loading" class="text-lg leading-none el-icon-loading" />
+    <div class="mx-2">
+      <slot>{{ label }}</slot>
+    </div>
   </button>
 </template>
 
@@ -49,6 +52,10 @@ export default {
       default: false,
     },
     outline: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
       type: Boolean,
       default: false,
     },
