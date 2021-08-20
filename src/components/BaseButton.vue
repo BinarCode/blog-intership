@@ -30,7 +30,7 @@ export default {
         type: String,
         default: 'md' //sm|md|lg
      },
-     color: {
+     color: { 
        type: String,
        default: 'primary' //primary|secondary
      },

@@ -52,6 +52,7 @@
 <script>
 import BaseButton from '@/components/BaseButton.vue';
 import authService from '@/api/authService';
+import { get } from 'lodash';
 
 export default {
   components: { BaseButton },
@@ -69,7 +70,9 @@ export default {
     async handleSubmit() {
  try {
       this.loading = true;
-       await authService.login(this.model);
+        let {data} =  await authService.login(this.model)
+        const token = get(data, 'token', '')
+        authService.setToken(token)
       } catch (error) {
         console.log(error)
       } finally {
