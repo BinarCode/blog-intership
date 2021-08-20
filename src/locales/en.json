@@ -15,6 +15,9 @@
   "register.name.firstName": "First Name",
   "register.name.lastName": "Last Name",
 
+  "general.profile.title": "Profile",
+  "general.profile.myArticles": "My articles",
+  "general.profile.logout": "Logout",
 
   "general.name.passwordConfirmation": "Password confirmation",
   "register.button.label.signUp": "Sign up",
