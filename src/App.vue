@@ -20,7 +20,7 @@
         {{ $t('general.forgotPassword.title') }}
       </router-link>
 
-      <nav-dropdown />
+      <nav-dropdown username="someusername" avatar=""/>
     </div>
     <router-view />
   </div>

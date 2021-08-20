@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="click" class="p-2">
       <span class="el-dropdown-link flex items-center">
-        <img class="h-5 rounded-full bg-black mr-1" src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg" alt="Avatar">My User Name<i class="el-icon-arrow-down el-icon--right"></i>
+        <img class="h-5 rounded-full bg-black mr-1" :src="avatar || 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'" alt="Avatar">@{{ username }}<i class="el-icon-arrow-down el-icon--right"></i>
       </span>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item @click.native="profile">{{ $t('general.profile.title') }}</el-dropdown-item>
@@ -14,6 +14,10 @@
 <script>
 export default {
   name: "BaseNavDropdown",
+  props: {
+    username: String,
+    avatar: String
+  },
   methods: {
     profile() {
       this.$router.push('/profile');
