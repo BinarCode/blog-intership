@@ -10,4 +10,7 @@ export default {
     async register(data) {
         return await axios.post('/api/register', data);
     },
+    async forgotPassword(data) {
+        return await axios.post('/api/forgotPassword', data);
+    }
 }
