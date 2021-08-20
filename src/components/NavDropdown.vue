@@ -23,7 +23,7 @@ export default {
   methods: {
     profile() {
       if (this.$route.name != "Profile")
-        this.$router.push('/profile');
+        this.$router.push({ name: "Profile"});
     }
   }
 }
