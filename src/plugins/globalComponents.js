@@ -10,7 +10,7 @@ export default {
         Vue.component('el-dropdown', Dropdown);
         Vue.component('el-select', Select);
         Vue.component('base-input', BaseInput);
-        Vue.component('base-button', BaseButton)
+        Vue.component('base-button', BaseButton);
     },
 }
 
