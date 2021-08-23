@@ -49,7 +49,7 @@
 
 <script>
 export default {
-  name: 'inputTest',
+  name: 'ResetPassword',
   data() {
     return {
       model: {
