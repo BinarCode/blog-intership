@@ -15,7 +15,7 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <ValidationObserver v-slot="{ valid }">
-          <form @submit.prevent="handleSubmit">
+          <form @submit.prevent="onSubmit">
             <base-input
               v-model="model.password"
               type="password"
@@ -33,13 +33,15 @@
               rules="required|confirmed:@password"
               :placeholder="$t('general.placeholder.passwordConfirmation')"
             />
-            <button
+
+            <base-button
               type="submit"
-              class="flex justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              :disabled="!valid"
+              :disabled="loading === valid"
+              :loading="loading"
+              class="flex items-center justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm"
             >
               {{ $t('general.resetPassword.title') }}
-            </button>
+            </base-button>
           </form>
         </ValidationObserver>
       </div>
@@ -48,10 +50,14 @@
 </template>
 
 <script>
+import authServices from '@/api/authService';
+import get from 'lodash/get';
+
 export default {
   name: 'ResetPassword',
   data() {
     return {
+      loading: false,
       model: {
         email: '',
         token: '',
@@ -61,9 +67,20 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
-      console.log(this.model);
+    async onSubmit() {
+      try {
+        this.loading = true;
+        await authServices.resetPassword(this.model);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.loading = false;
+      }
     },
+  },
+  mounted() {
+    this.model.email = get(this.$route, 'query.email', '');
+    this.model.token = get(this.$route, 'query.token', '');
   },
 };
 </script>

@@ -19,18 +19,23 @@
                 :placeholder="$t('general.placeholder.email')"
             />
 
-            <button
+            <router-link class="font-medium text-indigo-600 hover:text-indigo-500 text-sm" to="/login">
+              {{ $t('app.routerTitle.login') }}
+            </router-link>
+
+            <base-button
                 type="submit"
                 class="flex justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                :disabled="!valid"
+                :disabled="loading === valid"
+                :loading="loading"
             >
-              {{ $t('general.resetPassword.title') }}
-            </button>
+              {{ $t('general.submit') }}
+            </base-button>
           </form>
         </ValidationObserver>
       </div>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 import 'element-ui/lib/theme-chalk/index.css';
 import { Button, Dropdown, Select, DropdownItem, DropdownMenu } from 'element-ui';
 import BaseInput from '@/components/BaseInput.vue';
-
+import BaseButton from '@/components/BaseButton.vue';
 
 export default {
     install(Vue) {
@@ -11,6 +11,7 @@ export default {
         Vue.component('el-dropdown-menu', DropdownMenu);
         Vue.component('el-select', Select);
         Vue.component('base-input', BaseInput);
+        Vue.component('base-button', BaseButton);
     },
 }
 
