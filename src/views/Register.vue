@@ -15,7 +15,7 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <ValidationObserver v-slot="{ valid }">
-          <form @submit.prevent="handleSubmit">
+          <form @submit.prevent="onSubmit">
             <base-input
               v-model="model.first_name"
               :name="$t('register.name.firstName')"
@@ -59,13 +59,14 @@
               :placeholder="$t('general.placeholder.passwordConfirmation')"
             />
 
-            <button
+            <base-button
               type="submit"
-              class="flex justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              :disabled="!valid"
+              :disabled="loading === valid"
+              :loading="loading"
+              class="flex items-center justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm"
             >
               {{ $t('register.button.label.signUp') }}
-            </button>
+            </base-button>
           </form>
         </ValidationObserver>
       </div>
@@ -74,10 +75,13 @@
 </template>
 
 <script>
+import authServices from '@/api/authService';
+
 export default {
   name: 'Register',
   data() {
     return {
+      loading: false,
       model: {
         first_name: '',
         last_name: '',
@@ -88,8 +92,15 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
-      console.log(this.model);
+    async onSubmit() {
+      try {
+        this.loading = true;
+        await authServices.register(this.model);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.loading = false;
+      }
     },
   },
 };
