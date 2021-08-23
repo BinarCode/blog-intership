@@ -1,7 +1,6 @@
 <template>
   <button
     class="inline-flex items-center font-medium text-white rounded-md shadow-sm"
-    type="button"
     :class="{
       'cursor-not-allowed': disabled,
       'px-3 py-2 text-sm': size === 'sm',
@@ -20,6 +19,7 @@
       'bg-green-600 active:bg-green-800':
         color === 'secondary' && !disabled && !outline,
     }"
+    :type="type"
     v-bind="$attrs"
     v-on="$listeners"
     :disabled="disabled"
