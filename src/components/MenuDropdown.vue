@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'NavDropdown',
+  name: 'MenuDropdown',
   props: {
     username: String,
     avatar: String
