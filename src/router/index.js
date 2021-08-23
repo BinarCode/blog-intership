@@ -4,15 +4,15 @@ import Home from '@/views/Home.vue'
 import ResetPassword from '@/views/ResetPassword.vue';
 import Styleguide from '@/views/Styleguide.vue';
 import Register from '@/views/Register.vue';
-import Login from '@/views/Login.vue'
-import Dashboard from '@/views/Dashboard.vue'
+import Login from '@/views/Login.vue';
+import Dashboard from '@/views/Dashboard.vue';
+import ForgotPassword from '@/views/ForgotPassword';
 
 import store from '@/store/store'
-import guest from '@/router/middleware/guest'
-import auth from '@/router/middleware/auth'
 import middlewarePipeline from '@/router/middlewarePipeline';
 
-import ForgotPassword from '@/views/ForgotPassword';
+import ifLoggedInDashboardElseNext from './middleware/ifLoggedInDashboardElseNext';
+// import ifLoggedInNextElseLogin from './middleware/ifLoggedInNextElseLogin';
 
 Vue.use(VueRouter)
 
@@ -22,55 +22,61 @@ const routes = [
     name: 'Home',
     component: Home
   },
+
   {
     path: '/styleguide',
     name: 'Styleguide',
-    component: Styleguide
+    component: Styleguide,
+    meta: {
+      requiresAuth: true,
+      // middleware: []
+    },
   },
+
   {
     path: '/register',
     name: 'Register',
-    component: Register
+    component: Register,
+    meta: {
+      middleware: [ifLoggedInDashboardElseNext]
+    }
   },
+
   {
     path: '/login',
     name: 'Login',
     component: Login,
     meta: {
-      middleware: [
-        guest
-      ]
+      middleware: [ifLoggedInDashboardElseNext]
     }
   },
+
   {
     path: '/reset-password',
     name: 'Reset Password',
-    component: ResetPassword
+    component: ResetPassword,
+    meta: {
+      middleware: [ifLoggedInDashboardElseNext]
+    }
   },
+
   {
     path: '/forgot-password',
     name: 'Forgot Password',
-    component: ForgotPassword
+    component: ForgotPassword,
+    meta: {
+      middleware: [ifLoggedInDashboardElseNext]
+    }
   },
+
   {
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
     meta: {
-      middleware: [
-        auth
-      ]
+      requiresAuth: true,
+      // middleware: []
     },
-    // children: [{
-    //   path: '/dashboard/movies',
-    //   name: 'dashboard.movies',
-    //   component: Movies,
-    //   meta: {
-    //     middleware: [
-    //       auth
-    //     ]
-    //   },
-    // }],
   }
 
 
@@ -83,9 +89,17 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if (requiresAuth) {
+    if (!store.getters.userState.loggedIn)
+      return next({ name: 'Login' });
+  }
+
   if (!to.meta.middleware) {
     return next()
   }
+
   const middleware = to.meta.middleware
 
   const context = {
@@ -94,6 +108,7 @@ router.beforeEach((to, from, next) => {
     next,
     store
   }
+
   return middleware[0]({
     ...context,
     next: middlewarePipeline(context, middleware, 1)

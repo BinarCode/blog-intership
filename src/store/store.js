@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 // import authServices from '@/api/authService';
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
@@ -9,21 +10,21 @@ export default new Vuex.Store({
     state: {
         user: {
             loggedIn: false,
+            token: '',
         }
     },
 
     getters: {
-        auth(state) {
-            return state.user
+        userState(state) {
+            return state.user;
         }
     },
 
     mutations: {
-        setLoggedInTrue(state) {
-            state.user.loggedIn = true;
+        setUserState(state, token = '') {
+            state.user.loggedIn = !!token;
+            state.user.token = token || '';
         },
-        setLoggedInFalse(state) {
-            state.user.loggedIn = false;
-        },
-    }
+    },
+    plugins: [createPersistedState()],
 })
