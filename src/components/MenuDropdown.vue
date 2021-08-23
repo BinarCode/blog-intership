@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     handleCommand(command) {
-      if (command === "Profile" && this.$route.name != "Profile") {
+      if (command === "Profile" && this.$route.name !== "Profile") {
         this.$router.push({name: "Profile"});
       }
     }
