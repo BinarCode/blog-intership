@@ -50,12 +50,12 @@
 </template>
 
 <script>
-import BaseButton from '@/components/BaseButton.vue';
+
 import authService from '@/api/authService';
-import { get } from 'lodash';
+import get from 'lodash/get'
 
 export default {
-  components: { BaseButton },
+  components: { },
   name: 'Login',
   data() {
     return {
@@ -68,8 +68,8 @@ export default {
   },
   methods: {
     async handleSubmit() {
- try {
-      this.loading = true;
+    try {
+        this.loading = true;
         let {data} =  await authService.login(this.model)
         const token = get(data, 'token', '')
         authService.setToken(token)
