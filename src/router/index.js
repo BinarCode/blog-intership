@@ -11,9 +11,6 @@ import ForgotPassword from '@/views/ForgotPassword';
 import store from '@/store/store'
 import middlewarePipeline from '@/router/middlewarePipeline';
 
-import ifLoggedInDashboardElseNext from './middleware/ifLoggedInDashboardElseNext';
-// import ifLoggedInNextElseLogin from './middleware/ifLoggedInNextElseLogin';
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -29,7 +26,6 @@ const routes = [
     component: Styleguide,
     meta: {
       requiresAuth: true,
-      // middleware: []
     },
   },
 
@@ -38,7 +34,7 @@ const routes = [
     name: 'Register',
     component: Register,
     meta: {
-      middleware: [ifLoggedInDashboardElseNext]
+      requiresNonLogged: true
     }
   },
 
@@ -47,7 +43,7 @@ const routes = [
     name: 'Login',
     component: Login,
     meta: {
-      middleware: [ifLoggedInDashboardElseNext]
+      requiresNonLogged: true
     }
   },
 
@@ -56,7 +52,7 @@ const routes = [
     name: 'Reset Password',
     component: ResetPassword,
     meta: {
-      middleware: [ifLoggedInDashboardElseNext]
+      requiresNonLogged: true
     }
   },
 
@@ -65,7 +61,7 @@ const routes = [
     name: 'Forgot Password',
     component: ForgotPassword,
     meta: {
-      middleware: [ifLoggedInDashboardElseNext]
+      requiresNonLogged: true
     }
   },
 
@@ -90,24 +86,23 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  let requiresNonLogged = to.matched.some(record => record.meta.requiresNonLogged);
 
-  if (requiresAuth) {
-    if (!store.getters.userState.loggedIn)
-      return next({ name: 'Login' });
+  if (requiresAuth && !store.getters.userState.loggedIn) {
+    return next({ name: 'Login' });
+  }
+
+  if (requiresNonLogged && store.getters.userState.loggedIn) {
+    return next({ name: 'Dashboard' });
   }
 
   if (!to.meta.middleware) {
     return next()
   }
 
-  const middleware = to.meta.middleware
+  const middleware = to.meta.middleware;
 
-  const context = {
-    to,
-    from,
-    next,
-    store
-  }
+  const context = { to, from, next, store }
 
   return middleware[0]({
     ...context,

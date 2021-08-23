@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     logOut() {
-      // this.$store.commit('setUserState');
+      this.$store.commit('setUserState');
       localStorage.removeItem('vuex');
       this.$router.push('/');
     },
