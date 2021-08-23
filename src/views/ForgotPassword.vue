@@ -44,13 +44,9 @@
 
 <script>
 import authService from '@/api/authService';
-import BaseButton from '@/components/BaseButton';
 
 export default {
   name: 'ForgotPassword',
-  components: {
-    BaseButton
-  },
   data() {
     return {
       loading: false,
