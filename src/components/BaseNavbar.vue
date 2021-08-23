@@ -9,7 +9,7 @@
           <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow">
         </div>
         <div class="hidden md:ml-6 md:flex md:space-x-8">
-            <router-link class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" to="/">
+            <router-link class="active-router-link" to="/">
                      {{ $t('navbarHome.name') }}
             </router-link>
             <router-link class="router-link" to="/">
