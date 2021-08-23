@@ -73,12 +73,12 @@ export default {
         let {data} =  await authService.login(this.model)
         const token = get(data, 'token', '')
         authService.setToken(token)
+        this.$router.push('/');
       } catch (error) {
         console.log(error)
       } finally {
         this.loading = false;
       }
-      this.$router.push('/');
     }
   },
 }
