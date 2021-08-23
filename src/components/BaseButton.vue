@@ -22,7 +22,7 @@
     :type="type"
     v-bind="$attrs"
     v-on="$listeners"
-    :disabled="disabled"
+    :disabled="disabled || loading"
   >
     <i v-if="loading" class="text-lg leading-none el-icon-loading" />
     <div class="mx-2">

@@ -1,28 +1,29 @@
 <template>
-  <div id="app">
-    <div id="nav" class="flex justify-around">
-      <router-link to="/">{{ $t('app.routerTitle.home') }}</router-link>
-      <router-link to="/styleguide">
-        {{ $t('app.routerTitle.styleguide') }}
-      </router-link>
-      <router-link to="/register">
-        {{ $t('app.routerTitle.register') }}
-      </router-link>
-
-        <router-link to="/login">
-        {{ $t('app.routerTitle.login') }}
-      </router-link>
-      
-      <router-link to="/reset-password">
-        {{ $t('general.resetPassword.title') }}
-      </router-link>
-      <router-link to="/forgot-password">
-        {{ $t('general.forgotPassword.title') }}
-      </router-link>
-
+  <div id="app" class="w-full">
+    <div id="nav" class="flex justify-around w-full">
+      <BaseNavbar/>
+    
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+import BaseNavbar from '@/components/BaseNavbar.vue'
+
+export default ({
+  components: {BaseNavbar} 
+    
+ 
+})
+</script>
+
+
+<style scoped>
+
+#app {
+  height: calc(100vh - 64px);
+}
+</style>
 
    
