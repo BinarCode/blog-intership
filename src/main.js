@@ -6,9 +6,7 @@ import globalComponents from './plugins/globalComponents';
 import i18n from '@/plugins/vue-i18n';
 import './api/apiConfig';
 import './assets/tailwind.css';
-import ElementUI from 'element-ui'
 
-Vue.use(ElementUI);
 Vue.use(veeValidate);
 Vue.use(globalComponents);
 
