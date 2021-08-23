@@ -34,10 +34,13 @@
 </template>
 
 <script>
+import authService from '@/api/authService';
+
 export default {
   name: 'ForgotPassword',
   data() {
     return {
+      loading: false,
       model: {
         email: ''
       },
@@ -47,7 +50,16 @@ export default {
     async handleSubmit() {
       const valid = await this.$refs.form.validate()
 
-      if (valid) console.log("Form valid");
+      if (valid) {
+        try {
+          this.loading = true;
+          await authService.forgotPassword(this.model);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          this.loading = false;
+        }
+      }
     },
   },
 };
