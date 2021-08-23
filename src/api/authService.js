@@ -13,4 +13,7 @@ export default {
     async resetPassword(data) {
         return await axios.post('/api/resetPassword', data);
     },
+    async forgotPassword(data) {
+        return await axios.post('/api/forgotPassword', data);
+    }
 }
