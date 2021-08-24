@@ -11,7 +11,7 @@
               :key="index"
               class="hover:underline mr-2">{{ tag.name }}</span>
         </p>
-        <router-link :to="`blogs/${getSlug}`" class="block mt-2">
+        <router-link :to="getSlug" class="block mt-2">
           <p class="text-xl font-semibold text-gray-900">
             {{ get(post, 'attributes.title', '') }}
           </p>
@@ -52,18 +52,18 @@ export default {
   },
   computed: {
     tagList() {
-      return get(this.$props.post, 'attributes.tags', []);
+      return get(this.post, 'attributes.tags', []);
     },
     getImage() {
-      return get(this.$props.post, 'attributes.src', 'https://i.stack.imgur.com/y9DpT.jpg');
+      return get(this.post, 'attributes.src', 'https://i.stack.imgur.com/y9DpT.jpg');
     },
     getAvatar() {
-      return get(this.$props.post,
+      return get(this.post,
                 'relationships.creator.avatar',
                 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg');
     },
     getSlug() {
-      return get(this.$props.post, 'attributes.slug', 'not-found');
+      return `blogs/${ get(this.post, 'attributes.slug', 'not-found') }`;
     }
   },
   methods: {
