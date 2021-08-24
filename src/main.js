@@ -7,6 +7,7 @@ import i18n from '@/plugins/vue-i18n';
 import store from '@/store/store';
 import './api/apiConfig';
 import './assets/tailwind.css';
+import  '@/assets/base/common.css'
 
 import authMiddleware from "@/router/middleware/authMiddleware"
 authMiddleware(router, store);
