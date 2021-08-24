@@ -1,7 +1,12 @@
 <template>
-  <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
+  <div
+    class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8"
+  >
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <img src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" class="w-auto h-12 mx-auto">
+      <img
+        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+        class="w-auto h-12 mx-auto"
+      />
       <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
         {{ $t('general.forgotPassword.title') }}
       </h2>
@@ -11,31 +16,34 @@
         <ValidationObserver v-slot="{ valid }" ref="form">
           <form @submit.prevent="handleSubmit">
             <base-input
-                v-model="model.email"
-                type="email"
-                :name="$t('general.name.email')"
-                :label="$t('general.name.email')"
-                rules="email|required"
-                :placeholder="$t('general.placeholder.email')"
+              v-model="model.email"
+              type="email"
+              :name="$t('general.name.email')"
+              :label="$t('general.name.email')"
+              rules="email|required"
+              :placeholder="$t('general.placeholder.email')"
             />
 
-            <router-link class="font-medium text-indigo-600 hover:text-indigo-500 text-sm" to="/login">
+            <router-link
+              class="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+              to="/login"
+            >
               {{ $t('app.routerTitle.login') }}
             </router-link>
 
             <base-button
-                type="submit"
-                class="flex justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                :disabled="!valid && loading"
-                :loading="loading"
+              type="submit"
+              :disabled="!valid"
+              :loading="loading"
+              class="w-full"
             >
               {{ $t('general.submit') }}
             </base-button>
           </form>
         </ValidationObserver>
       </div>
-      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -47,13 +55,13 @@ export default {
     return {
       loading: false,
       model: {
-        email: ''
+        email: '',
       },
     };
   },
   methods: {
     async handleSubmit() {
-      const valid = await this.$refs.form.validate()
+      const valid = await this.$refs.form.validate();
 
       if (valid) {
         try {
@@ -70,6 +78,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

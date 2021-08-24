@@ -5,23 +5,19 @@
       <router-link to="/styleguide">
         {{ $t('app.routerTitle.styleguide') }}
       </router-link>
-      <router-link to="/register">
-        {{ $t('app.routerTitle.register') }}
+
+      <router-link to="/dashboard">
+        {{ $t('app.routerTitle.dashboard') }}
       </router-link>
 
       <router-link to="/login">
         {{ $t('app.routerTitle.login') }}
       </router-link>
 
-      <router-link to="/reset-password">
-        {{ $t('general.resetPassword.title') }}
+      <router-link to="/register">
+        {{ $t('app.routerTitle.register') }}
       </router-link>
-      <router-link to="/forgot-password">
-        {{ $t('general.forgotPassword.title') }}
-      </router-link>
-      <router-link to="/dashboard">
-        Dashboard
-      </router-link>
+
       <menu-dropdown
         v-if="userState.loggedIn"
         username="someusername"

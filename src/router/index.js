@@ -22,9 +22,6 @@ const routes = [
     path: '/styleguide',
     name: 'Styleguide',
     component: Styleguide,
-    meta: {
-      requiresAuth: true,
-    },
   },
 
   {

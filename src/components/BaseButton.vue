@@ -1,6 +1,6 @@
 <template>
   <button
-    class="inline-flex items-center font-medium text-white rounded-md shadow-sm"
+    class="flex items-center justify-center mt-1 font-medium text-white rounded-md shadow-sm"
     :class="{
       'cursor-not-allowed': disabledOrloading,
       'px-3 py-2 text-sm': size === 'sm',

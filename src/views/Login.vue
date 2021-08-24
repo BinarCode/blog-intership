@@ -9,13 +9,13 @@
         alt="Workflow"
       />
       <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-800">
-        {{ $t('register.button.label.signIn') }}
+        {{ $t('signIn.Title') }}
       </h2>
     </div>
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="m-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <ValidationObserver v-slot="{ valid }">
-          <form class="space-y-6" @submit.prevent="handleSubmit">
+          <form @submit.prevent="handleSubmit">
             <base-input
               v-model="model.email"
               type="email"
@@ -30,25 +30,23 @@
               :name="$t('general.name.password')"
               :label="$t('general.name.password')"
               rules="required|min:6"
-              :placeholder="$t('password')"
+              :placeholder="$t('general.name.password')"
             />
             <router-link
               class="text-sm font-medium text-indigo-600 hover:text-indigo-500"
               to="/forgot-password"
             >
-              {{ $t('forgotPassword.text') }}
+              {{ $t('general.forgotPassword.text') }}
             </router-link>
-            <div class="flex justify-center w-full">
-              <base-button
-                type="submit"
-                :disabled="loading === valid"
-                size="lg"
-                color="primary"
-                :loading="loading"
-              >
-                {{ $t('register.button.label.signIn') }}
-              </base-button>
-            </div>
+
+            <base-button
+              type="submit"
+              :disabled="!valid"
+              :loading="loading"
+              class="w-full"
+            >
+              {{ $t('signIn.button.label') }}
+            </base-button>
           </form>
         </ValidationObserver>
       </div>

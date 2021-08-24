@@ -1,17 +1,17 @@
 <template>
-  <div class="my-2">
+  <div class="mt-1">
     <label class="block text-sm font-medium text-gray-700">
       <slot>{{ label }}</slot>
     </label>
     <validation-provider v-slot="{ errors }" :name="name" :rules="rules">
-      <div class="mt-1 relative rounded-md shadow-sm">
+      <div class="relative mt-1 rounded-md shadow-sm">
         <input
           :value="value"
           :type="type"
           :name="name"
           :placeholder="placeholder"
           v-on="listeners"
-          class="w-full block sm:text-sm rounded-md"
+          class="block w-full rounded-md sm:text-sm"
           :class="
             errors.length
               ? 'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
@@ -21,11 +21,11 @@
         />
         <div
           v-show="errors.length"
-          class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
+          class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
         >
           <svg
             fill="currentColor"
-            class="bi bi-exclamation-circle h-5 w-5 text-red-500"
+            class="w-5 h-5 text-red-500 bi bi-exclamation-circle"
             viewBox="0 0 16 16"
           >
             <path

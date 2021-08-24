@@ -11,30 +11,26 @@
   "general.placeholder.password": "Must have at least 6 characters",
   "general.placeholder.passwordConfirmation": "Confirm password",
   "general.submit": "Submit",
-
-  "register.name.firstName": "First Name",
-  "register.name.lastName": "Last Name",
-
   "general.profile.title": "Profile",
   "general.profile.myArticles": "My articles",
   "general.profile.logout": "Logout",
-
   "general.name.passwordConfirmation": "Password confirmation",
+  "general.views.text": "views",
+  "general.forgotPassword.text": "Forgot your password?",
+  "general.resetPassword.title": "Reset password",
+
+  "register.name.firstName": "First Name",
+  "register.name.lastName": "Last Name",
   "register.button.label.signUp": "Sign up",
-  "register.button.label.signIn": "Sign in to your account",
 
-  "general.forgotPassword.title": "Forgot password",
-
-  "forgotPassword.text": "Forgot your password?",
+  "signIn.Title": "Sign in to your account",
+  "signIn.button.label": "Sign in to your account",
 
   "app.routerTitle.home": "Home",
   "app.routerTitle.styleguide": "Styleguide",
   "app.routerTitle.register": "Register",
-
+  "app.routerTitle.dashboard": "Dashboard",
   "app.routerTitle.login": "Login",
-
-
-  "general.resetPassword.title": "Reset password",
 
   "resetPassword.name.newPassword": "New password"
 }
