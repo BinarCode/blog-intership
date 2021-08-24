@@ -10,11 +10,11 @@
         {{ $t('app.routerTitle.dashboard') }}
       </router-link>
 
-      <router-link to="/login">
+      <router-link v-if="!userState.loggedIn" to="/login">
         {{ $t('app.routerTitle.login') }}
       </router-link>
 
-      <router-link to="/register">
+      <router-link v-if="!userState.loggedIn" to="/register">
         {{ $t('app.routerTitle.register') }}
       </router-link>
 
