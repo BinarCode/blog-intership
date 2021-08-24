@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col rounded-lg shadow-md overflow-hidden">
     <div class="flex-shrink-0">
-      <img class="h-48 w-full object-cover" :src="getBlogImage">
+      <img class="h-48 w-full object-cover" :src="getImage">
     </div>
     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
       <div class="flex-1">
@@ -54,7 +54,7 @@ export default {
     tagList() {
       return get(this.$props.post, 'attributes.tags', []);
     },
-    getBlogImage() {
+    getImage() {
       return get(this.$props.post, 'attributes.src', 'https://i.stack.imgur.com/y9DpT.jpg');
     },
     getAvatar() {
