@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="w-full">
     <div id="nav" class="flex justify-around w-full fixed top-0 left-0">
-      <BaseNavbar/>
+      <base-navbar/>
     </div>
     <router-view />
   </div>
@@ -14,7 +14,6 @@ export default ({
   components: {BaseNavbar} 
 })
 </script>
-
 
 <style scoped>
 #app {

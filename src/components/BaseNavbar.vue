@@ -1,6 +1,6 @@
 <template>
 <nav class="bg-white shadow w-full">
-    <div class="flex justify-between h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex">
         <router-link to="/" class="flex-shrink-0 flex items-center mr-10">
           <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
@@ -18,7 +18,7 @@
             </router-link>
         </div>
       </div>
-      <div class="flex-1 flex items-center justify-center">
+      <div class="flex items-center justify-center">
         <div class="max-w-lg w-full lg:max-w-xs ml-10">
           <label for="search" class="sr-only">Search</label>
           <div class="relative">
