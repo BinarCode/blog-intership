@@ -63,15 +63,17 @@ export default {
     async handleSubmit() {
       const valid = await this.$refs.form.validate();
 
-      if (valid) {
-        try {
-          this.loading = true;
-          await authService.forgotPassword(this.model);
-        } catch (error) {
-          console.log(error);
-        } finally {
-          this.loading = false;
-        }
+      if (!valid) {
+        return;
+      }
+
+      try {
+        this.loading = true;
+        await authService.forgotPassword(this.model);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.loading = false;
       }
     },
   },
