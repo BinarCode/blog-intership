@@ -15,6 +15,7 @@ import Underline from '@tiptap/extension-underline';
 import Link from '@tiptap/extension-link';
 import Image from '@tiptap/extension-image';
 import TextAlign from '@tiptap/extension-text-align';
+import Blockquote from '@tiptap/extension-blockquote';
 
 import TiptapMenuBar from '@/components/TipTap/TiptapMenuBar';
 
@@ -49,7 +50,8 @@ export default {
           Image,
           TextAlign.configure({
             types: ['heading', 'paragraph'],
-          })
+          }),
+          Blockquote.configure({HTMLAttributes: { class: 'ml-2 pl-1 py-3 border-l-2 border-gray-300' }})
       ],
       onUpdate: () => {
         this.$emit('input', this.editor.getHTML())
@@ -63,7 +65,16 @@ export default {
 </script>
 
 <style scoped>
-code {
-  @apply bg-gray-300;
+.ProseMirror h1 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+h2 {
+  @apply text-2xl;
+}
+
+h3 {
+  @apply text-xl;
 }
 </style>
