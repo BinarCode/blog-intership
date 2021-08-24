@@ -5,18 +5,20 @@
   <base-button-styles></base-button-styles>
   </div>
 
-    <h1 class="text-5xl font-bold my-4">BaseCard Styles</h1>
-    <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none print:grid-cols-2">
-      <base-card
-        v-for="post in posts"
-        :post="post"
-        :key="post.id"
-      />
-    </div>
-
+  <h1 class="text-5xl font-bold my-4">BaseCard Styles</h1>
+  <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none print:grid-cols-2">
+    <base-card
+      v-for="post in posts"
+      :post="post"
+      :key="post.id"
+    />
+  </div>
   
-<h1 class="text-5xl font-bold my-7">BaseInput Styles</h1>
-    <input-comp />
+  <h1 class="text-5xl font-bold my-7">BaseInput Styles</h1>
+  <input-comp />
+
+  <h1 class="text-5xl font-bold my-7">Tiptap Editor Preview</h1>
+  <tiptap-editor :value="tiptapContent" v-model="tiptapContent" @input="onInput"/>
   </div>
 </template>
 
@@ -24,16 +26,19 @@
 import BaseButtonStyles from '@/components/styles/BaseButtonStyles.vue'
 import BaseCard from '@/components/BaseCard';
 import InputComp from '@/views/InputComp.vue';
+import TiptapEditor from '@/components/TiptapEditor';
 
 export default {
   name: 'Styleguide',
   components: {
     BaseCard,
     InputComp,
-    BaseButtonStyles
+    BaseButtonStyles,
+    TiptapEditor
   },
   data() {
     return {
+      tiptapContent: 'Some initial content here',
       posts: [
         {
           "id": "5",
@@ -277,6 +282,11 @@ export default {
           }
         }
       ]
+    }
+  },
+  methods: {
+    onInput() {
+      console.log(this.tiptapContent);
     }
   }
 }
