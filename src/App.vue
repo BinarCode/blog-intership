@@ -3,7 +3,7 @@
     <div id="nav" class="flex justify-around w-full fixed top-0 left-0">
       <base-navbar/>
     </div>
-    <router-view />
+    <router-view class="page-content" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default ({
 </script>
 
 <style scoped>
-#app {
+.page-content {
   height: calc(100vh - 4rem);
 }
 </style>
