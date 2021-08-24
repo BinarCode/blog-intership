@@ -7,11 +7,11 @@
       <div class="flex-1">
         <p class="text-sm font-medium text-indigo-600">
           <span
-              v-for="(tag, index) in get(post, 'attributes.tags', [])"
+              v-for="(tag, index) in tagList"
               :key="index"
               class="hover:underline mr-2">{{ tag.name }}</span>
         </p>
-        <router-link :to="`blogs/${get(post, 'attributes.slug', 'not-found')}`" class="block mt-2">
+        <router-link :to="`blogs/${getSlug}`" class="block mt-2">
           <p class="text-xl font-semibold text-gray-900">
             {{ get(post, 'attributes.title', '') }}
           </p>
@@ -22,7 +22,7 @@
       </div>
       <div class="mt-6 flex items-center">
         <div class="flex-shrink-0">
-            <img class="h-10 w-10 rounded-full" :src="get(post, 'relationships.creator.avatar', 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg')" alt="Avatar">
+            <img class="h-10 w-10 rounded-full" :src="getAvatar" alt="Avatar">
         </div>
         <div class="ml-3">
           <p class="text-sm font-medium text-gray-900">
@@ -48,6 +48,19 @@ export default {
     post: {
       type: Object,
       default: () => {}
+    }
+  },
+  computed: {
+    tagList() {
+      return get(this.$props.post, 'attributes.tags', []);
+    },
+    getAvatar() {
+      return get(this.$props.post,
+                'relationships.creator.avatar',
+                'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg');
+    },
+    getSlug() {
+      return get(this.$props.post, 'attributes.slug', 'not-found');
     }
   },
   methods: {
