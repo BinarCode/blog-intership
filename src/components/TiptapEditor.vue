@@ -49,7 +49,7 @@ export default {
           Image,
           TextAlign.configure({
             types: ['heading', 'paragraph'],
-          }),
+          })
       ],
       onUpdate: () => {
         this.$emit('input', this.editor.getHTML())
