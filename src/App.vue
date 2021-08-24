@@ -9,10 +9,19 @@
 
 <script>
 import BaseNavbar from '@/components/BaseNavbar.vue'
+import { mapGetters } from 'vuex';
 
-export default ({
-  components: {BaseNavbar} 
-})
+
+
+export default {
+  name: 'App',
+  components: {
+    BaseNavbar,
+  },
+  computed: {
+    ...mapGetters(['userState']),
+  },
+};
 </script>
 
 <style scoped>
