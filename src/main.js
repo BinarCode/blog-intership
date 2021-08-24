@@ -7,7 +7,6 @@ import i18n from '@/plugins/vue-i18n';
 import './api/apiConfig';
 import './assets/tailwind.css';
 
-
 Vue.use(veeValidate);
 Vue.use(globalComponents);
 

@@ -54,7 +54,7 @@ import authServices from '@/api/authService';
 import get from 'lodash/get';
 
 export default {
-  name: 'inputTest',
+  name: 'ResetPassword',
   data() {
     return {
       loading: false,

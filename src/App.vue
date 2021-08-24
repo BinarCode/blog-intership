@@ -20,7 +20,19 @@
         {{ $t('general.forgotPassword.title') }}
       </router-link>
 
+      <menu-dropdown username="someusername" avatar=""/>
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+import MenuDropdown from '@/components/MenuDropdown';
+
+export default {
+  name: 'App',
+  components: {
+    MenuDropdown
+  }
+}
+</script>
