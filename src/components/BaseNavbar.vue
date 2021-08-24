@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="flex-1 flex items-center justify-center">
-        <div class="max-w-lg w-full lg:max-w-xs items-center">
+        <div class="max-w-lg w-full lg:max-w-xs ml-10">
           <label for="search" class="sr-only">Search</label>
           <div class="relative">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -37,6 +37,7 @@
          <router-link class="router-link" to="/register">
                       {{ $t('app.routerTitle.register') }}
              </router-link>
+             <menu-dropdown username="someusername" avatar=""/>
          </div>
       </div>
       </div>
@@ -44,8 +45,10 @@
 </template>
 
 <script>
+import MenuDropdown from '@/components/MenuDropdown.vue'
 export default {
   name: 'BaseNavbar',
+  components: {MenuDropdown} 
 };
 </script>
 

@@ -4,8 +4,8 @@ import Home from '@/views/Home.vue'
 import ResetPassword from '@/views/ResetPassword.vue';
 import Styleguide from '@/views/Styleguide.vue';
 import Register from '@/views/Register.vue';
-
 import Login from '@/views/Login.vue'
+import Profile from '@/views/Profile';
 
 
 import ForgotPassword from '@/views/ForgotPassword';
@@ -29,24 +29,25 @@ const routes = [
     component: Register
   },
   {
-
     path: '/login',
     name: 'Login',
     component: Login
   },
   {
-
     path: '/reset-password',
     name: 'Reset Password',
     component: ResetPassword
   },
-
   {
     path: '/forgot-password',
     name: 'Forgot Password',
     component: ForgotPassword
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   }
-
 ]
 
 const router = new VueRouter({

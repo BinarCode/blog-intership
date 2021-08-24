@@ -8,7 +8,6 @@ import './api/apiConfig';
 import './assets/tailwind.css';
 import  '@/assets/base/common.css'
 
-
 Vue.use(veeValidate);
 Vue.use(globalComponents);
 
