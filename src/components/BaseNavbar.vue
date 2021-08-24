@@ -2,10 +2,10 @@
 <nav class="bg-white shadow w-full">
     <div class="flex justify-between h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex">
-        <div class="flex-shrink-0 flex items-center mr-10">
+        <router-link to="/" class="flex-shrink-0 flex items-center mr-10">
           <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
           <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow">
-        </div>
+        </router-link>
         <div class="hidden md:ml-6 md:flex md:space-x-8">
             <router-link class="active-router-link" to="/">
                      {{ $t('navbarHome.name') }}
@@ -45,7 +45,7 @@
 
 <script>
 export default {
-  name: 'Nav',
+  name: 'BaseNavbar',
 };
 </script>
 

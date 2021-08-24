@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="w-full">
-    <div id="nav" class="flex justify-around w-full">
+    <div id="nav" class="flex justify-around w-full fixed top-0 left-0">
       <BaseNavbar/>
     
     </div>
@@ -22,7 +22,7 @@ export default ({
 <style scoped>
 
 #app {
-  height: calc(100vh - 64px);
+  height: calc(100vh - 4rem);
 }
 </style>
 

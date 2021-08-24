@@ -6,6 +6,7 @@ import globalComponents from './plugins/globalComponents';
 import i18n from '@/plugins/vue-i18n';
 import './api/apiConfig';
 import './assets/tailwind.css';
+import  '@/assets/base/common.css'
 
 
 Vue.use(veeValidate);
