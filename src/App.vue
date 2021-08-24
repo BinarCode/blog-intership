@@ -22,25 +22,25 @@
       <router-link to="/dashboard">
         Dashboard
       </router-link>
-      <button @click="logOut">Log out</button>
+      <button v-if="userState.loggedIn" @click="logOut">Log out</button>
     </div>
     <router-view />
   </div>
 </template>
 
 <script>
-// import store from '@/store/store';
+import authService from '@/api/authService';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   computed: {
-    getLoggedInState: function() {
-      return this.$store.getters.userState.loggedIn;
-    },
+    ...mapGetters(['userState']),
   },
   methods: {
-    logOut() {
-      this.$store.commit('setUserState');
-      localStorage.removeItem('vuex');
+    ...mapActions(['setUserState']),
+    async logOut() {
+      await this.setUserState();
+      authService.removeToken();
       this.$router.push('/');
     },
   },

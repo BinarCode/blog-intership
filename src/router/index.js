@@ -8,9 +8,6 @@ import Login from '@/views/Login.vue';
 import Dashboard from '@/views/Dashboard.vue';
 import ForgotPassword from '@/views/ForgotPassword';
 
-import store from '@/store/store'
-import middlewarePipeline from '@/router/middlewarePipeline';
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -82,32 +79,6 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
-
-router.beforeEach((to, from, next) => {
-  let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  let requiresNonLogged = to.matched.some(record => record.meta.requiresNonLogged);
-
-  if (requiresAuth && !store.getters.userState.loggedIn) {
-    return next({ name: 'Login' });
-  }
-
-  if (requiresNonLogged && store.getters.userState.loggedIn) {
-    return next({ name: 'Dashboard' });
-  }
-
-  if (!to.meta.middleware) {
-    return next()
-  }
-
-  const middleware = to.meta.middleware;
-
-  const context = { to, from, next, store }
-
-  return middleware[0]({
-    ...context,
-    next: middlewarePipeline(context, middleware, 1)
-  })
 })
 
 export default router

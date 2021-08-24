@@ -59,6 +59,7 @@
 <script>
 import authService from '@/api/authService';
 import get from 'lodash/get';
+import { mapActions } from 'vuex';
 
 export default {
   components: {},
@@ -73,13 +74,14 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['setUserState']),
     async handleSubmit() {
       try {
         this.loading = true;
         let { data } = await authService.login(this.model);
         const token = get(data, 'token.plainTextToken', '');
         authService.setToken(token);
-        this.$store.commit('setUserState', token);
+        await this.setUserState(token);
         this.$router.push('/');
       } catch (error) {
         console.log(error);

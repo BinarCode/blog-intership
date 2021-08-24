@@ -26,5 +26,10 @@ export default new Vuex.Store({
             state.user.token = token || '';
         },
     },
+    actions: {
+        setUserState(context, data) {
+            context.commit('setUserState', data);
+        }
+    },
     plugins: [createPersistedState()],
 })
