@@ -9,18 +9,24 @@
         {{ $t('app.routerTitle.register') }}
       </router-link>
 
-        <router-link to="/login">
+      <router-link to="/login">
         {{ $t('app.routerTitle.login') }}
       </router-link>
-      
+
       <router-link to="/reset-password">
         {{ $t('general.resetPassword.title') }}
       </router-link>
       <router-link to="/forgot-password">
         {{ $t('general.forgotPassword.title') }}
       </router-link>
-
-      <menu-dropdown username="someusername" avatar=""/>
+      <router-link to="/dashboard">
+        Dashboard
+      </router-link>
+      <menu-dropdown
+        v-if="userState.loggedIn"
+        username="someusername"
+        avatar=""
+      />
     </div>
     <router-view />
   </div>
@@ -28,11 +34,15 @@
 
 <script>
 import MenuDropdown from '@/components/MenuDropdown';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
   components: {
-    MenuDropdown
-  }
-}
+    MenuDropdown,
+  },
+  computed: {
+    ...mapGetters(['userState']),
+  },
+};
 </script>
