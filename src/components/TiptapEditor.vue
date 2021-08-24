@@ -16,6 +16,7 @@ import Link from '@tiptap/extension-link';
 import Image from '@tiptap/extension-image';
 import TextAlign from '@tiptap/extension-text-align';
 import Blockquote from '@tiptap/extension-blockquote';
+import Heading from '@tiptap/extension-heading';
 
 import TiptapMenuBar from '@/components/TipTap/TiptapMenuBar';
 
@@ -39,6 +40,7 @@ export default {
     }
   },
   beforeMount() {
+    console.log(Heading);
     this.editor = new Editor({
       content: this.value,
       extensions: [
@@ -51,7 +53,8 @@ export default {
           TextAlign.configure({
             types: ['heading', 'paragraph'],
           }),
-          Blockquote.configure({HTMLAttributes: { class: 'ml-2 pl-1 py-3 border-l-2 border-gray-300' }})
+          Blockquote.configure({HTMLAttributes: { class: 'ml-2 pl-1 py-3 border-l-2 border-gray-300' }}),
+          Heading.configure({HTMLAttributes: { class: 'font-light text-3xl' }})
       ],
       onUpdate: () => {
         this.$emit('input', this.editor.getHTML())
@@ -65,16 +68,4 @@ export default {
 </script>
 
 <style scoped>
-.ProseMirror h1 {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
-h2 {
-  @apply text-2xl;
-}
-
-h3 {
-  @apply text-xl;
-}
 </style>
