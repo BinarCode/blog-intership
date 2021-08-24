@@ -6,6 +6,7 @@ import Styleguide from '@/views/Styleguide.vue';
 import Register from '@/views/Register.vue';
 import Login from '@/views/Login.vue';
 import Dashboard from '@/views/Dashboard.vue';
+import Profile from '@/views/Profile';
 import ForgotPassword from '@/views/ForgotPassword';
 
 Vue.use(VueRouter)
@@ -68,11 +69,17 @@ const routes = [
     component: Dashboard,
     meta: {
       requiresAuth: true,
-      // middleware: []
+    },
+  },
+
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
+    meta: {
+      requiresAuth: true,
     },
   }
-
-
 ]
 
 const router = new VueRouter({

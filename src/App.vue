@@ -22,27 +22,27 @@
       <router-link to="/dashboard">
         Dashboard
       </router-link>
-      <button v-if="userState.loggedIn" @click="logOut">Log out</button>
+      <menu-dropdown
+        v-if="userState.loggedIn"
+        username="someusername"
+        avatar=""
+      />
     </div>
     <router-view />
   </div>
 </template>
 
 <script>
-import authService from '@/api/authService';
-import { mapGetters, mapActions } from 'vuex';
+import MenuDropdown from '@/components/MenuDropdown';
+import { mapGetters } from 'vuex';
 
 export default {
+  name: 'App',
+  components: {
+    MenuDropdown,
+  },
   computed: {
     ...mapGetters(['userState']),
-  },
-  methods: {
-    ...mapActions(['setUserState']),
-    async logOut() {
-      await this.setUserState();
-      authService.removeToken();
-      this.$router.push('/');
-    },
   },
 };
 </script>
