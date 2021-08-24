@@ -1,13 +1,13 @@
 <template>
   <el-dropdown trigger="click" class="p-2" @command="handleCommand">
       <span class="cursor-pointer flex items-center">
-        <img class="h-5 rounded-full bg-black mr-1" :src="avatar || 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'" alt="Avatar">
+        <img class="h-5 rounded-full bg-black mr-1" :src="getAvatar" alt="Avatar">
         @{{ username }}
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item :command="commands.profile">{{ $t('general.profile.title') }}</el-dropdown-item>
-      <el-dropdown-item divided>{{ $t('general.profile.logout') }}</el-dropdown-item>
+      <el-dropdown-item :command="commands.logout" divided>{{ $t('general.profile.logout') }}</el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
 </template>
@@ -22,14 +22,27 @@ export default {
   data() {
     return {
       commands: {
-        profile: "Profile"
+        profile: "Profile",
+        logout: "Logout"
       }
+    }
+  },
+  computed: {
+    getAvatar() {
+      if (!this.$props.avatar)
+        return 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
+
+      return this.$props.avatar;
     }
   },
   methods: {
     handleCommand(command) {
       if (command === "Profile" && this.$route.name !== "Profile") {
         this.$router.push({name: "Profile"});
+      }
+
+      else if (command === "Logout" && this.$route.name !== "Logout") {
+        this.$router.push({name: "Logout"});
       }
     }
   }
