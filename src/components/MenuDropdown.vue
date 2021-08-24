@@ -1,14 +1,12 @@
 <template>
   <el-dropdown trigger="click" class="p-2" @command="handleCommand">
-    <span class="flex items-center cursor-pointer">
-      <img
-        class="h-5 mr-1 bg-black rounded-full"
-        :src="getAvatar"
-        alt="Avatar"
-      />
-      @{{ username }}
-      <i class="el-icon-arrow-down el-icon--right"></i>
-    </span>
+      <span class="cursor-pointer flex items-center font-medium">
+        <img class="h-5 rounded-full bg-black mr-1" 
+        :src="getAvatar" 
+        alt="Avatar">
+        @{{ username }}
+        <i class="el-icon-arrow-down el-icon--right"></i>
+      </span>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item :command="commands.profile">
         {{ $t('general.profile.title') }}

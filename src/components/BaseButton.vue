@@ -23,6 +23,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     :disabled="disabledOrloading"
+
   >
     <i v-if="loading" class="text-lg leading-none el-icon-loading" />
     <div class="mx-2">

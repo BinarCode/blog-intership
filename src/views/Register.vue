@@ -61,7 +61,7 @@
 
             <base-button
               type="submit"
-              :disabled="loading === valid"
+              :disabled="!valid"
               :loading="loading"
               class="flex items-center justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm"
             >

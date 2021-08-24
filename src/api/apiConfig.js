@@ -2,6 +2,8 @@ import axios from 'axios';
 import config from './config';
 import authService from './authService'
 
+
+
 axios.defaults.baseURL = config.API_HOST;
 export const statusCodesToHandle = [400, 401, 403, 404, 500];
 
