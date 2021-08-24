@@ -2,7 +2,7 @@
   "blog.views": "0 views|1 view|{n} views",
   "blog.minutes_read": "0 minutes read|1 minute read|{n} minutes read",
 
-  "general.homePage.title": "Home page",
+  "general.Blogs.title": "Blogs",
   "general.styleguide.title": "Styleguide",
   "general.styleguide.section.baseInput": "BaseInput component (email)",
   "general.name.email": "Email address",
@@ -24,7 +24,7 @@
   "register.button.label.signUp": "Sign up",
 
   "signIn.Title": "Sign in to your account",
-  "signIn.button.label": "Sign in to your account",
+  "signIn.button.label": "Sign in",
 
   "app.routerTitle.home": "Home",
   "app.routerTitle.styleguide": "Styleguide",

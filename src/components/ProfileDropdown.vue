@@ -1,15 +1,21 @@
 <template>
   <el-dropdown trigger="click" class="p-2" @command="handleCommand">
-      <span class="cursor-pointer flex items-center font-medium">
-        <img class="h-5 rounded-full bg-black mr-1" 
-        :src="getAvatar" 
-        alt="Avatar">
-        @{{ username }}
-        <i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
+    <span class="cursor-pointer flex items-center font-medium">
+      <img
+        class="h-5 rounded-full bg-black mr-1"
+        :src="getAvatar"
+        alt="Avatar"
+      />
+      @{{ username }}
+      <i class="el-icon-arrow-down el-icon--right"></i>
+    </span>
+
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item :command="commands.profile">
         {{ $t('general.profile.title') }}
+      </el-dropdown-item>
+      <el-dropdown-item class=" md:hidden" :command="commands.blogs">
+        {{ $t('general.Blogs.title') }}
       </el-dropdown-item>
       <el-dropdown-item :command="commands.logout" divided>
         {{ $t('general.profile.logout') }}
@@ -22,7 +28,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'MenuDropdown',
+  name: 'ProfileDropdown',
   props: {
     username: String,
     avatar: String,
@@ -31,6 +37,7 @@ export default {
     return {
       commands: {
         profile: 'Profile',
+        blogs: 'Blogs',
         logout: 'Logout',
       },
     };

@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '@/views/Home.vue'
+import Blogs from '@/views/Blogs.vue'
 import ResetPassword from '@/views/ResetPassword.vue';
 import Styleguide from '@/views/Styleguide.vue';
 import Register from '@/views/Register.vue';
 import Login from '@/views/Login.vue';
-import Dashboard from '@/views/Dashboard.vue';
 import Profile from '@/views/Profile';
 import ForgotPassword from '@/views/ForgotPassword';
 
@@ -13,9 +12,9 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/blogs',
+    name: 'Blogs',
+    component: Blogs
   },
 
   {
@@ -58,15 +57,6 @@ const routes = [
     meta: {
       requiresNonLogged: true
     }
-  },
-
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard,
-    meta: {
-      requiresAuth: true,
-    },
   },
 
   {
