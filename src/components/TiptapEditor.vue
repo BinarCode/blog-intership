@@ -48,7 +48,7 @@ export default {
           CharacterCount, /* .configure({ limit: this.limit }) */
           Underline,
           Link.configure({HTMLAttributes: { class: 'text-blue-400 cursor-pointer hover:underline' }}),
-          Image,
+          Image.configure({HTMLAttributes: { class: 'z-0' }}),
           TextAlign.configure({
             types: ['heading', 'paragraph'],
           }),
