@@ -34,7 +34,8 @@
             </a>
           </p>
           <span class="flex space-x-1 text-sm text-gray-500">
-            {{ $tc('general.views.text', get(post, 'attributes.views', 0)) }}
+            {{ post.attributes.views || '0' }}
+            {{ $t('general.views.text') }}
             <!-- &middot; {{ $t('minutes_read') }}-->
           </span>
         </div>

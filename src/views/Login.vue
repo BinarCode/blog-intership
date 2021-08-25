@@ -63,7 +63,6 @@ import get from 'lodash/get';
 import { mapActions } from 'vuex';
 
 export default {
-  components: {},
   name: 'Login',
   data() {
     return {
