@@ -24,7 +24,6 @@
   Press the button multiple times to show the notification again
     <div v-if="showNotifications">
       <base-notification
-          :key="index"
           :title="notification.title"
           :message="notification.message"
           :type="notification.type"

@@ -27,8 +27,8 @@ export default {
       default: 'top-right'
     }
   },
-  mounted() {
-    Notification({
+  render() {
+    return Notification({
       title: this.$props.title,
       message: this.$props.message,
       type: this.$props.type,
