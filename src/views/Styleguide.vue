@@ -29,6 +29,7 @@
           :message="notification.message"
           :type="notification.type"
           :autoClose="notification.autoClose"
+          position="bottom-right"
           />
     </div>
   </div>

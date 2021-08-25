@@ -21,6 +21,10 @@ export default {
     autoClose: {
       type: Boolean,
       default: true
+    },
+    position: {
+      type: String, // top-right | top-left | bottom-right | bottom-left
+      default: 'top-right'
     }
   },
   mounted() {
@@ -28,6 +32,7 @@ export default {
       title: this.$props.title,
       message: this.$props.message,
       type: this.$props.type,
+      position: this.$props.position,
       duration: this.$props.autoClose ? undefined : 0
     });
   }
