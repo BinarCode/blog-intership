@@ -16,6 +16,9 @@
             <router-link class="router-link" to="/">
                       {{ $t('navbarCreateBlog.name') }}
             </router-link>
+            <router-link class="router-link" to="/styleguide">
+                      {{ $t('general.styleguide.title') }}
+            </router-link>
         </div>
       </div>
       <div class="flex items-center justify-center">
