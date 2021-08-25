@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiptap-menu-bar :editor="editor" class="sticky top-16 border z-10" />
+    <tiptap-menu-bar :editor="editor" class="sticky top-16 border bg-white z-10" />
     <editor-content :editor="editor" class="border-2 border-black"/>
     <span class="float-right">Character count: {{ editor.getCharacterCount() }}</span>
   </div>
