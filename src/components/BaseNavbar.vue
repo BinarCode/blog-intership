@@ -27,7 +27,25 @@
                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
               </svg>
             </div>
-            <input id="search" name="search" class="block pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search" type="search">
+            <vue-simple-suggest class="block pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search"
+                 v-model="search"
+                 display-attribute="attributes.title"
+                 value-attribute="id"
+                 @suggestion-click="goToBlog"
+                 :list="getSearchResult"
+                 :max-suggestions="5"
+                 :debounce="500"
+                 :controls="{
+                 selectionUp: [38, 33],
+                 selectionDown: [40, 34],
+                 select: [13, 36],
+                 showList: [40],
+                 hideList: [27, 35],
+                 autocomplete: [32, 13],}"
+                 :filter-by-query="true">
+                 <div slot="suggestion-item" slot-scope="{ suggestion }">
+                 <div>{{ suggestion.attributes.title }}</div></div>
+            </vue-simple-suggest>
           </div>
         </div>
          <div class="hidden md:ml-6 md:flex md:space-x-8">
@@ -45,11 +63,61 @@
 </template>
 
 <script>
+
+import blogService from '@/api/blogService'
+import authService from '@/api/authService'
 import MenuDropdown from '@/components/MenuDropdown.vue'
+import VueSimpleSuggest from 'vue-simple-suggest'
+
 export default {
   name: 'BaseNavbar',
-  components: {MenuDropdown} 
+  components: {
+    MenuDropdown,
+    VueSimpleSuggest
+  },
+ data() {
+    return {
+      search: ''
+    }
+  },
+    methods: {
+    getSearchResult: async function() {
+        try  {
+          let token = authService.getToken()
+          let data = await blogService.blogSearchResults(this.search, token)
+          return data.data
+        } catch (err) {
+          console.log(err)
+       } 
+    },
+    goToBlog: function(e) {
+      this.$router.push(`/blogs/${e.id}`);
+    }
+  },
 };
 </script>
 
-
+<style lang="css">
+  .suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 0 0;
+  background: #fff;
+  width: 100%;
+  border: .5px solid rgba(0,0,0, .2);
+  }
+  .suggestions li {
+    padding: 5px 10px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .7);
+    cursor: pointer;
+  }
+  .suggestions li:hover {
+    background: rgba(99, 102, 241, var(--tw-border-opacity));
+    color: rgba(255, 255, 255, .8);
+  }
+  .input-wrapper .default-input:focus-visible {
+    outline: none;
+  }
+</style>
