@@ -40,7 +40,6 @@ export default {
     }
   },
   beforeMount() {
-    console.log(Heading);
     this.editor = new Editor({
       content: this.value,
       extensions: [
