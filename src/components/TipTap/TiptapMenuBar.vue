@@ -139,7 +139,7 @@ export default {
       this.editor
           .chain()
           .focus()
-          //.extendMarkRange('link')
+          .extendMarkRange('link')
           .setLink({ href: url })
           .run()
     },
