@@ -10,16 +10,12 @@
           />
         </router-link>
         <div v-if="userState.loggedIn" class="hidden md:flex md:space-x-8">
-          <router-link class="router-link" to="/blogs">
-            {{ $t('general.Blogs.title') }}
-          </router-link>
-        </div>
-        <div v-if="!userState.loggedIn" class="hidden sm:flex sm:space-x-8">
-          <router-link class="router-link" to="/login">
-            {{ $t('app.routerTitle.login') }}
-          </router-link>
-          <router-link class="router-link" to="/register">
-            {{ $t('app.routerTitle.register') }}
+          <router-link
+            class="router-link"
+            :class="{ 'active-router-link': routeName === 'Blogs' }"
+            to="/blogs"
+          >
+            {{ $t('general.blogs.title') }}
           </router-link>
         </div>
       </div>
@@ -51,7 +47,25 @@
           </div>
           <profile-dropdown username="someusername" avatar="" />
         </div>
-        <guest-dropdown class="sm:hidden" v-if="!userState.loggedIn" />
+        <div v-if="!userState.loggedIn">
+          <guest-dropdown class="sm:hidden" />
+          <div class="hidden sm:flex sm:space-x-8 h-16">
+            <router-link
+              class="router-link"
+              :class="{ 'active-router-link': routeName === 'Login' }"
+              to="/login"
+            >
+              {{ $t('app.routerTitle.login') }}
+            </router-link>
+            <router-link
+              class="router-link"
+              :class="{ 'active-router-link': routeName === 'Register' }"
+              to="/register"
+            >
+              {{ $t('app.routerTitle.register') }}
+            </router-link>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -60,13 +74,16 @@
 <script>
 import { mapGetters } from 'vuex';
 import ProfileDropdown from '@/components/ProfileDropdown.vue';
-import GuestDropdown from './GuestDropdown.vue';
+import GuestDropdown from '@/components/GuestDropdown.vue';
 
 export default {
   name: 'BaseNavbar',
   components: { ProfileDropdown, GuestDropdown },
   computed: {
     ...mapGetters(['userState']),
+    routeName() {
+      return this.$route.name;
+    },
   },
 };
 </script>

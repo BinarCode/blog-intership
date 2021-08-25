@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Blogs from '@/views/Blogs.vue'
-import ResetPassword from '@/views/ResetPassword.vue';
-import Styleguide from '@/views/Styleguide.vue';
-import Register from '@/views/Register.vue';
-import Login from '@/views/Login.vue';
+import Blogs from '@/views/Blogs'
+import ResetPassword from '@/views/ResetPassword';
+import Styleguide from '@/views/Styleguide';
+import Register from '@/views/Register';
+import Login from '@/views/Login';
 import Profile from '@/views/Profile';
 import ForgotPassword from '@/views/ForgotPassword';
 

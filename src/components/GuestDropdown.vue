@@ -1,16 +1,23 @@
 <template>
   <el-dropdown trigger="click" class="p-2" @command="handleCommand">
     <span class="cursor-pointer flex items-center font-medium">
-      Menu
-      <i class="el-icon-arrow-down el-icon--right"></i>
+      {{ $t('general.menu.label') }}
+      <i class="el-icon-arrow-down el-icon--right pt-1"></i>
     </span>
 
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item :command="commands.logIn">
+      <el-dropdown-item
+        :command="commands.logIn"
+        :class="{ 'active-dropdown': routeName === 'Login' }"
+      >
         {{ $t('app.routerTitle.login') }}
       </el-dropdown-item>
-      <el-dropdown-item :command="commands.signUp" divided>
-        {{ $t('app.routerTitle.register') }}
+      <el-dropdown-item
+        :command="commands.signUp"
+        :class="{ 'active-dropdown': routeName === 'Register' }"
+        divided
+      >
+        {{ $t('register.button.label.signUp') }}
       </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
@@ -27,11 +34,16 @@ export default {
       },
     };
   },
+  computed: {
+    routeName() {
+      return this.$route.name;
+    },
+  },
   methods: {
     handleCommand(command) {
-      if (command === 'Login' && this.$route.name !== 'Login') {
+      if (command === 'Login' && this.routeName !== 'Login') {
         this.$router.push({ name: 'Login' });
-      } else if (command === 'Register' && this.$route.name !== 'Register') {
+      } else if (command === 'Register' && this.routeName !== 'Register') {
         this.$router.push({ name: 'Register' });
       }
     },

@@ -1,19 +1,17 @@
 <template>
-  <div
-    class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8"
-  >
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+  <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-100">
+    <div class="mx-8 text-center sm:mx-auto">
       <img
-        class="w-auto h-12 mx-auto"
+        class="h-12 mx-auto"
         src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
         alt="Workflow"
       />
-      <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-800">
-        {{ $t('signIn.Title') }}
+      <h2 class="mt-6 text-3xl font-extrabold text-gray-800">
+        {{ $t('register.button.label.signIn') }}
       </h2>
     </div>
     <div class="m-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
+      <div class="px-4 py-8 bg-white shadow rounded-lg sm:px-10">
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent="handleSubmit">
             <base-input
@@ -47,6 +45,11 @@
             >
               {{ $t('signIn.button.label') }}
             </base-button>
+            <div>
+              <p class="text-sm text-red-600">
+                {{ error }}
+              </p>
+            </div>
           </form>
         </ValidationObserver>
       </div>
@@ -69,12 +72,14 @@ export default {
         email: '',
         password: '',
       },
+      error: '',
     };
   },
   methods: {
     ...mapActions(['setUserState']),
     async handleSubmit() {
       try {
+        this.error = '';
         this.loading = true;
         let { data } = await authService.login(this.model);
         const token = get(data, 'token.plainTextToken', '');
@@ -83,6 +88,7 @@ export default {
         this.$router.push('/');
       } catch (error) {
         console.log(error);
+        this.error = error.errors || 'Invalid credentials.';
       } finally {
         this.loading = false;
       }

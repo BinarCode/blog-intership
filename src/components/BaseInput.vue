@@ -1,13 +1,23 @@
 <template>
   <div class="mt-1">
-    <label class="block text-sm font-medium text-gray-700">
+    <label class="text-sm font-medium text-gray-700 flex justify-between">
       <slot>{{ label }}</slot>
+      <label
+        v-if="type === 'password'"
+        @click="switchType"
+        @mouseover="switchType"
+        @mouseleave="switchType"
+        class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-xs text-gray-600 font-mono cursor-pointer"
+        for="toggle"
+      >
+        {{ typePassword === 'password' ? 'show' : 'hide' }}
+      </label>
     </label>
     <validation-provider v-slot="{ errors }" :name="name" :rules="rules">
       <div class="relative mt-1 rounded-md shadow-sm">
         <input
           :value="value"
-          :type="type"
+          :type="type === 'password' ? typePassword : type"
           :name="name"
           :placeholder="placeholder"
           v-on="listeners"
@@ -19,11 +29,9 @@
           "
           v-bind="$attrs"
         />
-        <div
-          v-show="errors.length"
-          class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
-        >
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
           <svg
+            v-show="errors.length"
             fill="currentColor"
             class="w-5 h-5 text-red-500 bi bi-exclamation-circle"
             viewBox="0 0 16 16"
@@ -54,6 +62,12 @@
 export default {
   name: 'BaseInput',
   inheritAttrs: false,
+  data() {
+    return {
+      typeCopy: this.type,
+      typePassword: this.type,
+    };
+  },
   props: {
     name: String,
     label: String,
@@ -81,6 +95,10 @@ export default {
     },
   },
   methods: {
+    switchType() {
+      this.typePassword =
+        this.typePassword === 'password' ? 'text' : 'password';
+    },
     onInput(event) {
       this.$emit('input', event.target.value);
     },

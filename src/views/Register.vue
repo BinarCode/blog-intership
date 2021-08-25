@@ -1,19 +1,17 @@
 <template>
-  <div
-    class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8"
-  >
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+  <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-100">
+    <div class="mx-8 text-center sm:mx-auto">
       <img
         src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
         alt="Workflow"
-        class="w-auto h-12 mx-auto"
+        class="h-12 mx-auto"
       />
-      <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
+      <h2 class="mt-6 text-3xl font-extrabold text-gray-800">
         {{ $t('register.button.label.signUp') }}
       </h2>
     </div>
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
+    <div class="m-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="px-4 py-8 bg-white shadow rounded-lg sm:px-10">
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent="onSubmit">
             <base-input
@@ -63,10 +61,17 @@
               type="submit"
               :disabled="!valid"
               :loading="loading"
-              class="w-full"
+              class="w-full mt-3"
             >
               {{ $t('register.button.label.signUp') }}
             </base-button>
+            <p
+              v-for="(err, index) in errorsArr"
+              :key="index"
+              class="text-sm text-red-600"
+            >
+              {{ err }}
+            </p>
           </form>
         </ValidationObserver>
       </div>
@@ -76,6 +81,7 @@
 
 <script>
 import authServices from '@/api/authService';
+import get from 'lodash/get';
 
 export default {
   name: 'Register',
@@ -89,15 +95,25 @@ export default {
         password: '',
         password_confirmation: '',
       },
+      errorsArr: [],
     };
   },
   methods: {
+    getErrorsArr(err) {
+      const errors = Object.values(get(err, 'response.data.errors', ''));
+      if (!errors.length) return;
+      errors.forEach((el) => {
+        el.forEach((item) => this.errorsArr.push(item));
+      });
+    },
     async onSubmit() {
       try {
+        this.errorsArr.length = 0;
         this.loading = true;
         await authServices.register(this.model);
       } catch (error) {
         console.log(error);
+        this.getErrorsArr(error);
       } finally {
         this.loading = false;
       }

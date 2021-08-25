@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div>{{ $t('general.Blogs.title') }}!</div>
-    <div>{{ $t('general.Blogs.title') }}!</div>
-    <div>{{ $t('general.Blogs.title') }}!</div>
-    <div>{{ $t('general.Blogs.title') }}!</div>
-    <div>{{ $t('general.Blogs.title') }}!</div>
+    <div>{{ $t('general.blogs.title') }}!</div>
+    <div>{{ $t('general.blogs.title') }}!</div>
+    <div>{{ $t('general.blogs.title') }}!</div>
+    <div>{{ $t('general.blogs.title') }}!</div>
+    <div>{{ $t('general.blogs.title') }}!</div>
   </div>
 </template>
 
