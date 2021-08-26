@@ -283,12 +283,6 @@ export default {
             authorizedToStore: true,
             authorizedToUpdate: false,
             authorizedToDelete: false,
-          },
-          "meta": {
-            "authorizedToShow": true,
-            "authorizedToStore": true,
-            "authorizedToUpdate": false,
-            "authorizedToDelete": false
           }
         }
       ]
