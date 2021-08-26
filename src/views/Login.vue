@@ -87,7 +87,7 @@ export default {
         this.$router.push('/');
       } catch (error) {
         console.log(error);
-        this.error = error.errors || 'Invalid credentials.';
+        this.error = error.errors || $t('signIn.invalidCredentials.text');
       } finally {
         this.loading = false;
       }
