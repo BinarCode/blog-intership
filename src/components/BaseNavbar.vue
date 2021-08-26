@@ -68,6 +68,7 @@ import blogService from '@/api/blogService'
 import authService from '@/api/authService'
 import MenuDropdown from '@/components/MenuDropdown.vue'
 import VueSimpleSuggest from 'vue-simple-suggest'
+import eventBus from '@/api/eventBus'
 
 export default {
   name: 'BaseNavbar',
@@ -83,6 +84,7 @@ export default {
     methods: {
     getSearchResult: async function() {
         try  {
+         if(this.$route.path == '/') {eventBus.$emit('update:searchTerm', this.search)}
           let token = authService.getToken()
           let data = await blogService.blogSearchResults(this.search, token)
           return data.data
@@ -91,7 +93,9 @@ export default {
        } 
     },
     goToBlog: function(e) {
-      this.$router.push(`/blogs/${e.id}`);
+      if (this.$route.path != `/blogs/${e.id}/${e.attributes.slug}`) {
+      this.$router.push(`/blogs/${e.id}/${e.attributes.slug}`);
+      }
     }
   },
 };

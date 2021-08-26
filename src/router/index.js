@@ -9,6 +9,7 @@ import Dashboard from '@/views/Dashboard.vue';
 import Profile from '@/views/Profile';
 import ForgotPassword from '@/views/ForgotPassword';
 
+
 Vue.use(VueRouter)
 
 const routes = [
