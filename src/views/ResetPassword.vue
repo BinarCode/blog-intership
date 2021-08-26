@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8"
+    class="flex flex-col justify-center min-h-screen py-12 bg-gray-100 sm:px-6 lg:px-8"
   >
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img
@@ -13,7 +13,7 @@
       </h2>
     </div>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
+      <div class="px-4 py-8 bg-white shadow rounded-lg sm:px-10">
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent="onSubmit">
             <base-input
@@ -38,7 +38,7 @@
               type="submit"
               :disabled="!valid"
               :loading="loading"
-              class="flex items-center justify-center w-full px-4 py-2 my-4 text-sm font-medium text-white border border-transparent rounded-md shadow-sm"
+              class="w-full"
             >
               {{ $t('general.resetPassword.title') }}
             </base-button>

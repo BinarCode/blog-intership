@@ -1,15 +1,18 @@
 <template>
-  <div class="flex flex-col rounded-lg shadow-md overflow-hidden">
+  <div class="flex flex-col overflow-hidden rounded-lg shadow-md">
     <div class="flex-shrink-0">
-      <img class="h-48 w-full object-cover" :src="getImage">
+      <img class="object-cover w-full h-48" :src="getImage" />
     </div>
-    <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+    <div class="flex flex-col justify-between flex-1 p-6 bg-white">
       <div class="flex-1">
         <p class="text-sm font-medium text-indigo-600">
           <span
-              v-for="(tag, index) in tagList"
-              :key="index"
-              class="hover:underline mr-2">{{ tag.name }}</span>
+            v-for="(tag, index) in tagList"
+            :key="index"
+            class="mr-2 hover:underline"
+          >
+            {{ tag.name }}
+          </span>
         </p>
         <router-link :to="getSlug" class="block mt-2">
           <p class="text-xl font-semibold text-gray-900">
@@ -20,9 +23,9 @@
           </p>
         </router-link>
       </div>
-      <div class="mt-6 flex items-center">
+      <div class="flex items-center mt-6">
         <div class="flex-shrink-0">
-            <img class="h-10 w-10 rounded-full" :src="getAvatar" alt="Avatar">
+          <img class="w-10 h-10 rounded-full" :src="getAvatar" alt="Avatar" />
         </div>
         <div class="ml-3">
           <p class="text-sm font-medium text-gray-900">
@@ -31,7 +34,8 @@
             </a>
           </p>
           <span class="flex space-x-1 text-sm text-gray-500">
-            {{ $tc('views', get(post, 'attributes.views', 0)) }}<!-- &middot; {{ $t('minutes_read') }}-->
+            {{ $tc('general.views.text', get(post, 'attributes.views', 0)) }}
+            <!-- &middot; {{ $t('minutes_read') }}-->
           </span>
         </div>
       </div>
@@ -40,38 +44,42 @@
 </template>
 
 <script>
-import get from 'lodash/get'
+import get from 'lodash/get';
 
 export default {
   name: 'BaseCard',
   props: {
     post: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   computed: {
     tagList() {
       return get(this.post, 'attributes.tags', []);
     },
     getImage() {
-      return get(this.post, 'attributes.src', 'https://i.stack.imgur.com/y9DpT.jpg');
+      return get(
+        this.post,
+        'attributes.src',
+        'https://i.stack.imgur.com/y9DpT.jpg'
+      );
     },
     getAvatar() {
-      return get(this.post,
-                'relationships.creator.avatar',
-                'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg');
+      return get(
+        this.post,
+        'relationships.creator.avatar',
+        'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
+      );
     },
     getSlug() {
-      return `blogs/${ get(this.post, 'attributes.slug', 'not-found') }`;
-    }
+      return `blogs/${get(this.post, 'attributes.slug', 'not-found')}`;
+    },
   },
   methods: {
-    get
-  }
-}
+    get,
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

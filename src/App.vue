@@ -8,26 +8,19 @@
 </template>
 
 <script>
-import BaseNavbar from '@/components/BaseNavbar.vue'
-import { mapGetters } from 'vuex';
-
-
+import BaseNavbar from '@/components/BaseNavbar.vue';
 
 export default {
   name: 'App',
   components: {
     BaseNavbar,
   },
-  computed: {
-    ...mapGetters(['userState']),
-  },
 };
 </script>
 
 <style scoped>
 .page-content {
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 64px);
+  margin-top: 64px;
 }
 </style>
-
-  
