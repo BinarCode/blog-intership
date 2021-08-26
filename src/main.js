@@ -5,12 +5,12 @@ import veeValidate from "@/plugins/veeValidate";
 import globalComponents from '@/plugins/globalComponents';
 import i18n from '@/plugins/vue-i18n';
 import store from '@/store/store';
-import './api/apiConfig';
-import './assets/tailwind.css';
+import '@/api/apiConfig';
+import '@/assets/tailwind.css';
 import  '@/assets/base/common.css';
 import notifications from '@/plugins/notifications.js';
 
-import authMiddleware from "@/router/middleware/authMiddleware"
+import authMiddleware from "@/middleware/authMiddleware"
 authMiddleware(router, store);
 
 Vue.use(veeValidate);
