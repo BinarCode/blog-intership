@@ -20,17 +20,22 @@
 
 
   <h1 class="text-5xl font-bold my-7">Notifications</h1>
-  <base-button @click="showNotifications = !showNotifications">Show notifications</base-button>
-  Press the button multiple times to show the notification again
-    <div v-if="showNotifications">
-      <base-notification
-          :title="notification.title"
-          :message="notification.message"
-          :type="notification.type"
-          :autoClose="notification.autoClose"
-          position="bottom-right"
-          />
-    </div>
+
+  <base-button @click="showSuccessNotification">
+    Success
+  </base-button>
+
+  <base-button @click="showInfoNotification">
+    Info
+  </base-button>
+
+  <base-button @click="showWarningNotification">
+    Warning
+  </base-button>
+
+  <base-button @click="showErrorNotification">
+    Error
+  </base-button>
   </div>
 </template>
 
@@ -48,13 +53,6 @@ export default {
   },
   data() {
     return {
-      showNotifications: false, // for testing
-      notification: { // for testing
-        title: 'Info',
-        message: 'This is some informative text',
-        type: 'info',
-        autoClose: false
-      },
       posts: [
         {
           "id": "5",
