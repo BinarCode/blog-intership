@@ -9,6 +9,13 @@
             alt="Workflow"
           />
         </router-link>
+        <router-link
+          class="router-link"
+          :class="{ 'active-router-link': routeName === 'Styleguide' }"
+          to="/styleguide"
+        >
+        {{ $t('general.styleguide.title') }}
+        </router-link>
         <div v-if="userState.loggedIn" class="hidden md:flex md:space-x-8">
           <router-link
             class="router-link"
