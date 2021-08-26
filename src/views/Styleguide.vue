@@ -15,28 +15,27 @@
     <h1 class="text-5xl font-bold my-7">BaseInput Styles</h1>
     <input-comp />
 
+    <h1 class="text-5xl font-bold my-7">Notifications</h1>
 
-  <h1 class="text-5xl font-bold my-7">Notifications</h1>
+    <base-button @click="showSuccessNotification">
+      Success
+    </base-button>
 
-  <base-button @click="showSuccessNotification">
-    Success
-  </base-button>
+    <base-button @click="showCustomSuccessNotification">
+      Custom Success
+    </base-button>
 
-  <base-button @click="showCustomSuccessNotification">
-    Custom Success
-  </base-button>
+    <base-button @click="showInfoNotification">
+      Info
+    </base-button>
 
-  <base-button @click="showInfoNotification">
-    Info
-  </base-button>
+    <base-button @click="showWarningNotification">
+      Warning
+    </base-button>
 
-  <base-button @click="showWarningNotification">
-    Warning
-  </base-button>
-
-  <base-button @click="showErrorNotification">
-    Error
-  </base-button>
+    <base-button @click="showErrorNotification">
+      Error
+    </base-button>
   </div>
 </template>
 
