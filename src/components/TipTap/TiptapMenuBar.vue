@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     addImage() {
-      const url = window.prompt('Please insert a valid URL for your image')
+      const url = window.prompt(this.$t('tiptap.addImage'));
 
       if (url) {
         this.editor
@@ -134,7 +134,7 @@ export default {
       }
     },
     setLink() {
-      const url = window.prompt('Please insert a valid URL')
+      const url = window.prompt(this.$t('tiptap.setLink'));
 
       this.editor
           .chain()
