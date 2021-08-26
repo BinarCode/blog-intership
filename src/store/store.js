@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import authServices from '@/api/authService';
 import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)

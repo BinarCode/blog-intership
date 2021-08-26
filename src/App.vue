@@ -1,33 +1,26 @@
 <template>
   <div id="app" class="w-full">
     <div id="nav" class="flex justify-around w-full fixed top-0 left-0">
-      <base-navbar/>
+      <base-navbar />
     </div>
     <router-view class="page-content" />
   </div>
 </template>
 
 <script>
-import BaseNavbar from '@/components/BaseNavbar.vue'
-import { mapGetters } from 'vuex';
-
-
+import BaseNavbar from '@/components/BaseNavbar.vue';
 
 export default {
   name: 'App',
   components: {
     BaseNavbar,
   },
-  computed: {
-    ...mapGetters(['userState']),
-  },
 };
 </script>
 
 <style scoped>
 .page-content {
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 64px);
+  margin-top: 64px;
 }
 </style>
-
-  
