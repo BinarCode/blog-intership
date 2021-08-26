@@ -28,6 +28,7 @@
 
   "register.button.label.signIn": "Sign in to your account",
   "signIn.button.label": "Sign in",
+  "signIn.invalidCredentials.text": "Invalid credentials.",
 
   "app.routerTitle.home": "Home",
   "app.routerTitle.styleguide": "Styleguide",
