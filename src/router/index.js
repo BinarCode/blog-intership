@@ -7,6 +7,7 @@ import Register from '@/views/Register';
 import Login from '@/views/Login';
 import Profile from '@/views/Profile';
 import ForgotPassword from '@/views/ForgotPassword';
+import Blog from '@/views/Blog'
 
 Vue.use(VueRouter)
 
@@ -66,6 +67,11 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
+  },
+  {
+    path: '/blogs/:id/:slug',
+    name: 'SingleBlog',
+    component: Blog,
   }
 ]
 
