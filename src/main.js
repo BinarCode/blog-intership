@@ -7,13 +7,15 @@ import i18n from '@/plugins/vue-i18n';
 import store from '@/store/store';
 import './api/apiConfig';
 import './assets/tailwind.css';
-import  '@/assets/base/common.css'
+import  '@/assets/base/common.css';
+import notifications from '@/plugins/notifications.js';
 
 import authMiddleware from "@/router/middleware/authMiddleware"
 authMiddleware(router, store);
 
 Vue.use(veeValidate);
 Vue.use(globalComponents);
+Vue.use(notifications);
 
 new Vue({
   router,
