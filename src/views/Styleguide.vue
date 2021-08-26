@@ -25,6 +25,10 @@
     Success
   </base-button>
 
+  <base-button @click="showCustomSuccessNotification">
+    Custom Success
+  </base-button>
+
   <base-button @click="showInfoNotification">
     Info
   </base-button>

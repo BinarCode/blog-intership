@@ -1,6 +1,15 @@
 import {Notification} from "element-ui";
 
 export default {
+    /*
+      Notification(
+        title: String
+        message: String
+        type: 'succes' | 'warning' | 'info' | 'error'
+        duration: 0 (not closing automatically) | undefined (closing automatically)
+      )
+    */
+
     install(Vue) {
         Vue.prototype.showSuccessNotification = () => {
             Notification({
@@ -9,6 +18,16 @@ export default {
                 type: 'success',
                 position: 'top-right',
                 duration: 0
+            });
+        }
+
+        Vue.prototype.showCustomSuccessNotification = () => {
+            Notification({
+                title: 'Success',
+                message: 'This is a custom success notification',
+                type: 'success',
+                position: 'bottom-right',
+                duration: undefined
             });
         }
 
