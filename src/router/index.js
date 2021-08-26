@@ -12,9 +12,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/blogs',
+    path: '/',
     name: 'Blogs',
-    component: Blogs
+    component: Blogs,
+    meta: {
+      requiresAuth: true,
+    },
   },
 
   {

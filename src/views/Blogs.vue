@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import BaseCard from '@/components/BaseCard';
-import axios from 'axios';
 import InfiniteLoading from 'vue-infinite-loading';
+import BaseCard from '@/components/BaseCard';
+import { getBlogs } from '@/api/blogService.js';
 
 export default {
   components: { BaseCard, InfiniteLoading },
@@ -21,32 +21,23 @@ export default {
       page: 1,
       list: [],
       perPage: 9,
-      token: localStorage.getItem('token'),
     };
   },
   methods: {
-    infiniteHandler($state) {
-      axios
-        .get('/api/restify/blogs', {
-          headers: {
-            Authorization: `Bearer ${this.token}`,
-            Accept: 'application/json',
-          },
-          params: {
-            page: this.page,
-            perPage: this.perPage,
-            sort: '-views',
-          },
-        })
-        .then(({ data }) => {
-          if (data.length) {
-            this.page += 1;
-            this.list.push(...data);
-            $state.loaded();
-          } else {
-            $state.complete();
-          }
-        });
+    async infiniteHandler($state) {
+      let { data } = await getBlogs({
+        page: this.page,
+        perPage: this.perPage,
+        sort: '-views',
+      });
+
+      if (data.length) {
+        this.page += 1;
+        this.list.push(...data);
+        $state.loaded();
+      } else {
+        $state.complete();
+      }
     },
   },
 };

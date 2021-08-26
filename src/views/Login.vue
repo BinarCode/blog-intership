@@ -78,7 +78,6 @@ export default {
     ...mapActions(['setUserState']),
     async handleSubmit() {
       try {
-        this.error = '';
         this.loading = true;
         let { data } = await authService.login(this.model);
         const token = get(data, 'token.plainTextToken', '');
@@ -86,8 +85,7 @@ export default {
         await this.setUserState(token);
         this.$router.push('/');
       } catch (error) {
-        console.log(error);
-        this.error = error.errors || this.$t('signIn.invalidCredentials.text');
+        this.error = error.message;
       } finally {
         this.loading = false;
       }

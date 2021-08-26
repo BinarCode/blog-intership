@@ -2,7 +2,7 @@
   <nav class="bg-white shadow w-full">
     <div class="flex justify-between h-16 px-6">
       <div class="flex">
-        <router-link to="/blogs" class="flex-shrink-0 mr-8 flex items-center">
+        <router-link to="/" class="flex-shrink-0 mr-8 flex items-center">
           <img
             class="h-8 w-auto"
             src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"

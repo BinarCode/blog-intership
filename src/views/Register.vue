@@ -80,8 +80,9 @@
 </template>
 
 <script>
-import authServices from '@/api/authService';
+import authService from '@/api/authService';
 import get from 'lodash/get';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Register',
@@ -99,21 +100,25 @@ export default {
     };
   },
   methods: {
-    getErrorsArr(err) {
-      const errors = Object.values(get(err, 'response.data.errors', ''));
-      if (!errors.length) return;
-      errors.forEach((el) => {
-        el.forEach((item) => this.errorsArr.push(item));
-      });
+    ...mapActions(['setUserState']),
+
+    async logIn(model) {
+      let { data } = await authService.login(model);
+      const token = get(data, 'token.plainTextToken', '');
+      authService.setToken(token);
+      await this.setUserState(token);
     },
     async onSubmit() {
       try {
-        this.errorsArr.length = 0;
         this.loading = true;
-        await authServices.register(this.model);
+        await authService.register(this.model);
+        await this.logIn({
+          email: this.model.email,
+          password: this.model.password_confirmation,
+        });
+        this.$router.push('/');
       } catch (error) {
-        console.log(error);
-        this.getErrorsArr(error);
+        this.errorsArr = error.errorsArr;
       } finally {
         this.loading = false;
       }
