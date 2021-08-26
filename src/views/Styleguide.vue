@@ -21,10 +21,6 @@
       Success
     </base-button>
 
-    <base-button @click="showCustomSuccessNotification">
-      Custom Success
-    </base-button>
-
     <base-button @click="showInfoNotification">
       Info
     </base-button>
@@ -304,5 +300,35 @@ export default {
       ],
     };
   },
+  methods: {
+    showSuccessNotification() {
+      this.$notify(
+          'Success',
+          'Message',
+          'success'
+      )
+    },
+    showInfoNotification() {
+      this.$notify(
+          'Info',
+          'Message',
+          'info'
+      )
+    },
+    showWarningNotification() {
+      this.$notify(
+          'Warning',
+          'Message',
+          'warning'
+      )
+    },
+    showErrorNotification() {
+      this.$notify(
+          'Error',
+          'Message',
+          'error'
+      )
+    }
+  }
 };
 </script>
