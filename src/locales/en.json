@@ -42,6 +42,5 @@
   "navbarEditBlog.name": "Edit blog",
   "navbarCreateBlog.name": "Create new blog",
 
-  "tiptap.setLink": "Please insert a valid URL for your image",
-  "tiptap.addImage": "Please insert a valid URL for your image"
+  "tiptap.setLink": "Please insert a valid URL"
 }

@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     addImage() {
-      const url = window.prompt(this.$t('tiptap.addImage'));
+      const url = window.prompt(this.$t('tiptap.setLink'));
 
       if (url) {
         this.editor
