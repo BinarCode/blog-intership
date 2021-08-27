@@ -14,6 +14,24 @@
 
     <h1 class="text-5xl font-bold my-7">BaseInput Styles</h1>
     <input-comp />
+
+    <h1 class="text-5xl font-bold my-7">Notifications</h1>
+
+    <base-button @click="showSuccessNotification">
+      Success
+    </base-button>
+
+    <base-button @click="showInfoNotification">
+      Info
+    </base-button>
+
+    <base-button @click="showWarningNotification">
+      Warning
+    </base-button>
+
+    <base-button @click="showErrorNotification">
+      Error
+    </base-button>
   </div>
 </template>
 
@@ -282,5 +300,43 @@ export default {
       ],
     };
   },
+  methods: {
+    showSuccessNotification() {
+      let notification = {
+        title: 'Success',
+        message: 'Message',
+        type: 'success'
+      }
+
+      this.$notify(notification);
+    },
+    showInfoNotification() {
+      let notification = {
+        title: 'Info',
+        message: 'Message',
+        type: 'info'
+      }
+
+      this.$notify(notification);
+    },
+    showWarningNotification() {
+      let notification = {
+        title: 'Warning',
+        message: 'Message',
+        type: 'warning'
+      }
+
+      this.$notify(notification);
+    },
+    showErrorNotification() {
+      let notification = {
+        title: 'Error',
+        message: 'Message',
+        type: 'error'
+      }
+
+      this.$notify(notification);
+    }
+  }
 };
 </script>
