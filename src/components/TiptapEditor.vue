@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import TiptapMenuBar from '@/components/TipTap/TiptapMenuBar';
 import { Editor, EditorContent } from '@tiptap/vue-2';
 import StarterKit from '@tiptap/starter-kit'
 import Code from '@tiptap/extension-code'
@@ -18,27 +19,28 @@ import TextAlign from '@tiptap/extension-text-align';
 import Blockquote from '@tiptap/extension-blockquote';
 import Heading from '@tiptap/extension-heading';
 
-import TiptapMenuBar from '@/components/TipTap/TiptapMenuBar';
-
-
 export default {
   name: "TiptapEditor",
+
   components: {
     EditorContent,
     TiptapMenuBar
   },
+
   props: {
     value: {
       type: String,
       default: ''
     }
   },
+
   data() {
     return {
       editor: null
       // limit: 100000
     }
   },
+
   beforeMount() {
     this.editor = new Editor({
       content: this.value,
@@ -60,6 +62,7 @@ export default {
       },
     })
   },
+
   beforeDestroy() {
     this.editor.destroy();
   }
@@ -78,5 +81,4 @@ export default {
 .ProseMirror h3 {
   @apply text-3xl
 }
-
 </style>
