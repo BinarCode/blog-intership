@@ -40,5 +40,7 @@
 
   "navbarHome.name": "Home",
   "navbarEditBlog.name": "Edit blog",
-  "navbarCreateBlog.name": "Create new blog"
+  "navbarCreateBlog.name": "Create new blog",
+
+  "tiptap.setLink": "Please insert a valid URL"
 }

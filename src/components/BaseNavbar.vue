@@ -10,9 +10,9 @@
           />
         </router-link>
         <router-link
-            class="router-link"
-            :class="{ 'active-router-link': routeName === 'Styleguide' }"
-            to="/styleguide"
+          class="router-link"
+          :class="{ 'active-router-link': routeName === 'Styleguide' }"
+          to="/styleguide"
         >
           {{ $t('general.styleguide.title') }}
         </router-link>
