@@ -18,9 +18,11 @@
           <p class="text-xl font-semibold text-gray-900">
             {{ get(post, 'attributes.title', '') }}
           </p>
-          <p class="mt-3 text-base text-gray-500">
-            {{ get(post, 'attributes.content', '') }}
-          </p>
+          <p
+            id="content"
+            class="mt-3 text-base text-gray-500"
+            v-html="get(post, 'attributes.content', '')"
+          ></p>
         </router-link>
       </div>
       <div class="flex items-center mt-6">
@@ -83,4 +85,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#content {
+  overflow: hidden;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+}
+</style>
