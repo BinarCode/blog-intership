@@ -16,6 +16,20 @@ const state = {
     token: ''
 }
 
+const getters = {
+    userState: (state) => {
+        return state.user;
+    },
+
+    is_loggedinState: (state) => {
+        return state.is_loggedin;
+    },
+
+    tokenState: (state) => {
+        return state.token;
+    }
+}
+
 const mutations = {
     [types.SET_USER]: (state, user) => {
         state.user = user;
@@ -47,19 +61,7 @@ const actions = {
 export default new Vuex.Store({
     state: state,
 
-    getters: {
-        userState(state) {
-            return state.user;
-        },
-
-        is_loggedinState(state) {
-            return state.is_loggedin;
-        },
-
-        tokenState(state) {
-            return state.token;
-        }
-    },
+    getters: getters,
 
     mutations: mutations,
 
