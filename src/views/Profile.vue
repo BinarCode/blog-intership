@@ -229,12 +229,6 @@ export default {
     }
   },
 
-  watch: {
-    edit() {
-      console.log(this.user);
-    }
-  },
-
   computed: {
     ...mapGetters({
       user: 'userState'
@@ -243,6 +237,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
