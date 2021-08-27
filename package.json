@@ -23,6 +23,7 @@
     "core-js": "^3.6.5",
     "element-ui": "^2.15.5",
     "lodash": "^4.17.21",
+    "tiptap-extensions": "^1.35.2",
     "vee-validate": "^3.4.11",
     "vue": "^2.6.11",
     "vue-i18n": "^8.25.0",
