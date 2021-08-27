@@ -4,16 +4,18 @@ import get from 'lodash/get';
 export default {
     methods: {
         async logIn(model) {
-            let { data } = await authService.login(model);
-            const token = get(data, 'token.plainTextToken', '');
-            this.$notify({
-                title: 'Success',
-                message: this.$t('notifyMessage.succes.logIn'),
-                type: 'success',
-            });
-            authService.setToken(token);
-            await this.setUserState(token);
-            this.$router.push('/');
+            try {
+                let { data } = await authService.login(model);
+                const token = get(data, 'token.plainTextToken', '');
+                this.$notify({
+                    title: 'Success',
+                    message: this.$t('notifyMessage.succes.logIn'),
+                    type: 'success',
+                });
+                authService.setToken(token);
+                await this.setUserState(token);
+                this.$router.push('/');
+            } catch (error) { this.notifyErrors(error) }
         },
         notifyErrors(error) {
             if (error.errorsArr)

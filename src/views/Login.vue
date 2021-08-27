@@ -72,8 +72,6 @@ export default {
       try {
         this.loading = true;
         this.logIn(this.model);
-      } catch (error) {
-        this.notifyErrors(error);
       } finally {
         this.loading = false;
       }
