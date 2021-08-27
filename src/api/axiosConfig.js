@@ -10,7 +10,7 @@ const instance = axios.create({
 function getErrorsArr(err) {
     let errorsArr = [];
     const errors = Object.values(get(err, 'response.data.errors', ''));
-    if (!errors.length) return;
+    if (!errors.length) return '';
     errors.forEach((el) => {
         el.forEach((item) => errorsArr.push(item));
     });

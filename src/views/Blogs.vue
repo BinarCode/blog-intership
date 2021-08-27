@@ -1,5 +1,5 @@
 <template>
-  <div class="max-h-full py-5">
+  <div class="max-h-full py-10">
     <div class="w-5/6 mx-auto grid gap-5 lg:grid-cols-3  print:grid-cols-2">
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
@@ -18,16 +18,15 @@ export default {
   name: 'Blogs',
   data() {
     return {
-      page: 1,
       list: [],
-      perPage: 9,
+      page: 1,
     };
   },
   methods: {
     async infiniteHandler($state) {
-      let { data } = await getBlogs({
+      let data = await getBlogs({
         page: this.page,
-        perPage: this.perPage,
+        perPage: 9,
         sort: '-views',
       });
 

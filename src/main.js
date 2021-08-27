@@ -7,16 +7,19 @@ import i18n from '@/plugins/vue-i18n';
 import store from '@/store/store';
 import axios from '@/api/axiosConfig';
 import '@/assets/tailwind.css';
-import  '@/assets/base/common.css';
+import '@/assets/base/common.css';
 import notifications from '@/plugins/notifications.js';
+import mixins from './plugins/mixins';
 
 import authMiddleware from "@/middleware/authMiddleware"
+
 authMiddleware(router, store);
 
 Vue.use(axios);
 Vue.use(veeValidate);
 Vue.use(globalComponents);
 Vue.use(notifications);
+Vue.mixin(mixins);
 
 new Vue({
   router,
