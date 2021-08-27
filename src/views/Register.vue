@@ -65,13 +65,6 @@
             >
               {{ $t('register.button.label.signUp') }}
             </base-button>
-            <p
-              v-for="(err, index) in errorsArr"
-              :key="index"
-              class="text-sm text-red-600"
-            >
-              {{ err }}
-            </p>
           </form>
         </ValidationObserver>
       </div>
@@ -81,7 +74,6 @@
 
 <script>
 import authService from '@/api/authService';
-import get from 'lodash/get';
 import { mapActions } from 'vuex';
 
 export default {
@@ -96,29 +88,25 @@ export default {
         password: '',
         password_confirmation: '',
       },
-      errorsArr: [],
     };
   },
   methods: {
     ...mapActions(['setUserState']),
-
-    async logIn(model) {
-      let { data } = await authService.login(model);
-      const token = get(data, 'token.plainTextToken', '');
-      authService.setToken(token);
-      await this.setUserState(token);
-    },
     async onSubmit() {
       try {
         this.loading = true;
         await authService.register(this.model);
+        this.$notify({
+          title: this.$t('notifyTitle.succes.register'),
+          message: this.$t('notifyMessage.succes.register'),
+          type: 'success',
+        });
         await this.logIn({
           email: this.model.email,
           password: this.model.password_confirmation,
         });
-        this.$router.push('/');
       } catch (error) {
-        this.errorsArr = error.errorsArr;
+        this.notifyErrors(error);
       } finally {
         this.loading = false;
       }

@@ -40,5 +40,9 @@
 
   "navbarHome.name": "Home",
   "navbarEditBlog.name": "Edit blog",
-  "navbarCreateBlog.name": "Create new blog"
+  "navbarCreateBlog.name": "Create new blog",
+
+  "notifyMessage.succes.logIn": "You have successfully logged in",
+  "notifyMessage.succes.register": "You have successfully registered",
+  "notifyTitle.succes.register": "Congratulations!"
 }

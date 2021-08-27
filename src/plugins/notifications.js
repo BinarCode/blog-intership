@@ -1,4 +1,4 @@
-import {Notification} from "element-ui";
+import { Notification } from "element-ui";
 
 export default {
     install(Vue) {
@@ -8,7 +8,8 @@ export default {
                 message: notifications.message,
                 type: notifications.type, // 'success' | 'error' | 'warning' | 'info'
                 position: notifications.position || 'top-right', // 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left'
-                duration: notifications.duration || 4500 // number of milliseconds | 0 (closing manually)
+                duration: notifications.duration || 4500, // number of milliseconds | 0 (closing manually)
+                offset: notifications.offset || 64, // number of pixels from top of page (64 is height of navbar)
             });
         }
     }

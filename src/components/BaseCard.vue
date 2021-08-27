@@ -11,18 +11,13 @@
             :key="index"
             class="mr-2 hover:underline"
           >
-            {{ tag.name }}
+            {{ tag.value }}
           </span>
         </p>
         <router-link :to="getSlug" class="block mt-2">
           <p class="text-xl font-semibold text-gray-900">
             {{ get(post, 'attributes.title', '') }}
           </p>
-          <p
-            id="content"
-            class="mt-3 text-base text-gray-500"
-            v-html="get(post, 'attributes.content', '')"
-          ></p>
         </router-link>
       </div>
       <div class="flex items-center mt-6">
