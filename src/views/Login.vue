@@ -45,11 +45,6 @@
             >
               {{ $t('signIn.button.label') }}
             </base-button>
-            <div>
-              <p class="text-sm text-red-600">
-                {{ error }}
-              </p>
-            </div>
           </form>
         </ValidationObserver>
       </div>
@@ -58,12 +53,9 @@
 </template>
 
 <script>
-import authService from '@/api/authService';
-import get from 'lodash/get';
 import { mapActions } from 'vuex';
 
 export default {
-  components: {},
   name: 'Login',
   data() {
     return {
@@ -72,29 +64,15 @@ export default {
         email: '',
         password: '',
       },
-      error: '',
     };
   },
   methods: {
     ...mapActions(['setUserState', 'setTokenState', 'setLoggedInState']),
     async handleSubmit() {
       try {
-        this.error = '';
         this.loading = true;
 
-        let { data } = await authService.login(this.model);
-        const token = get(data, 'token.plainTextToken', '');
-        const user = get(data, 'user', {});
-
-        authService.setToken(token);
-        await this.setUserState(user);
-        await this.setTokenState(token);
-        await this.setLoggedInState(true);
-
-        this.$router.push('/');
-      } catch (error) {
-        console.log(error);
-        this.error = error.errors || this.$t('signIn.invalidCredentials.text');
+        this.logIn(this.model);
       } finally {
         this.loading = false;
       }
