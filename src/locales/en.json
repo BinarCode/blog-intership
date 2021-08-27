@@ -44,5 +44,7 @@
 
   "notifyMessage.succes.logIn": "You have successfully logged in",
   "notifyMessage.succes.register": "You have successfully registered",
-  "notifyTitle.succes.register": "Congratulations!"
+  "notifyTitle.succes.register": "Congratulations!",
+
+  "tiptap.setLink": "Please insert a valid URL"
 }
