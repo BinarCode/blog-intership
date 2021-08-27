@@ -9,7 +9,3 @@
 .active-dropdown {
   @apply text-indigo-800 font-medium;
 }
-
-.h-content {
-  height: fit-content;
-}
