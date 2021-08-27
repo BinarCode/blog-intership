@@ -15,7 +15,7 @@
             :class="{ 'active-router-link': routeName === 'Blogs' }"
             to="/blogs"
           >
-            {{ $t('general.blogs.title') }}
+            {{ $t("general.blogs.title") }}
           </router-link>
         </div>
       </div>
@@ -55,14 +55,14 @@
               :class="{ 'active-router-link': routeName === 'Login' }"
               to="/login"
             >
-              {{ $t('app.routerTitle.login') }}
+              {{ $t("app.routerTitle.login") }}
             </router-link>
             <router-link
               class="router-link"
               :class="{ 'active-router-link': routeName === 'Register' }"
               to="/register"
             >
-              {{ $t('app.routerTitle.register') }}
+              {{ $t("app.routerTitle.register") }}
             </router-link>
           </div>
         </div>
@@ -72,15 +72,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import ProfileDropdown from '@/components/ProfileDropdown.vue';
-import GuestDropdown from '@/components/GuestDropdown.vue';
-
+import { mapGetters } from "vuex";
+import ProfileDropdown from "@/components/ProfileDropdown.vue";
+import GuestDropdown from "@/components/GuestDropdown.vue";
 export default {
-  name: 'BaseNavbar',
+  name: "BaseNavbar",
   components: { ProfileDropdown, GuestDropdown },
   computed: {
-    ...mapGetters(['userState']),
+    ...mapGetters(["userState"]),
     routeName() {
       return this.$route.name;
     },

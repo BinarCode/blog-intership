@@ -69,7 +69,7 @@ const routes = [
     },
   },
   {
-    path: '/blogs/:id/:slug',
+    path: '/blogs/:id',
     name: 'SingleBlog',
     component: Blog,
   }
