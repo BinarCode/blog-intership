@@ -51,6 +51,7 @@ import authService from '@/api/authService';
 
 export default {
   name: 'ForgotPassword',
+
   data() {
     return {
       loading: false,
@@ -59,6 +60,7 @@ export default {
       },
     };
   },
+
   methods: {
     async handleSubmit() {
       const valid = await this.$refs.form.validate();
@@ -77,7 +79,7 @@ export default {
       }
     },
   },
-};
+}
 </script>
 
 <style scoped></style>

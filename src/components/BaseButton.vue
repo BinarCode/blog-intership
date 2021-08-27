@@ -34,6 +34,7 @@
 <script>
 export default {
   name: 'BaseButton',
+
   props: {
     size: {
       type: String,
@@ -64,6 +65,7 @@ export default {
       default: 'button',
     },
   },
+
   computed: {
     listeners() {
       return {
@@ -71,10 +73,12 @@ export default {
         click: this.onClick,
       };
     },
+
     isDisabled() {
       return this.disabled || this.loading;
     },
   },
+
   methods: {
     onClick(event) {
       this.$emit('clicked', event);

@@ -44,6 +44,7 @@ export default {
   beforeMount() {
     this.editor = new Editor({
       content: this.value,
+
       extensions: [
           StarterKit,
           Code.configure({HTMLAttributes: { class: 'rounded px-1 text-gray-900 bg-gray-300' }}),
@@ -57,6 +58,7 @@ export default {
           Blockquote.configure({HTMLAttributes: { class: 'ml-2 pl-1 py-3 border-l-2 border-gray-300' }}),
           Heading.configure({ HTMLAttributes: { class: 'font-extralight'} })
       ],
+
       onUpdate: () => {
         this.$emit('input', this.editor.getHTML())
       },

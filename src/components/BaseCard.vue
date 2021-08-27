@@ -48,16 +48,19 @@ import get from 'lodash/get';
 
 export default {
   name: 'BaseCard',
+
   props: {
     post: {
       type: Object,
       default: () => {},
     },
   },
+
   computed: {
     tagList() {
       return get(this.post, 'attributes.tags', []);
     },
+
     getImage() {
       return get(
         this.post,
@@ -65,6 +68,7 @@ export default {
         'https://i.stack.imgur.com/y9DpT.jpg'
       );
     },
+
     getAvatar() {
       return get(
         this.post,
@@ -72,10 +76,12 @@ export default {
         'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
       );
     },
+
     getSlug() {
       return `blogs/${get(this.post, 'attributes.slug', 'not-found')}`;
     },
   },
+
   methods: {
     get,
   },

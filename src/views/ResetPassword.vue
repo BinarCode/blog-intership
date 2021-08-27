@@ -55,6 +55,7 @@ import get from 'lodash/get';
 
 export default {
   name: 'ResetPassword',
+
   data() {
     return {
       loading: false,
@@ -66,6 +67,7 @@ export default {
       },
     };
   },
+
   methods: {
     async onSubmit() {
       try {
@@ -78,11 +80,12 @@ export default {
       }
     },
   },
+
   mounted() {
     this.model.email = get(this.$route, 'query.email', '');
     this.model.token = get(this.$route, 'query.token', '');
   },
-};
+}
 </script>
 
 <style scoped></style>

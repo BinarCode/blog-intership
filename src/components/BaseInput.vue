@@ -59,13 +59,16 @@
 <script>
 export default {
   name: 'BaseInput',
+
   inheritAttrs: false,
+
   data() {
     return {
       typeCopy: this.type,
       typePassword: this.type,
     };
   },
+
   props: {
     name: String,
     label: String,
@@ -84,6 +87,7 @@ export default {
       default: false,
     },
   },
+
   computed: {
     listeners() {
       return {
@@ -92,14 +96,16 @@ export default {
       };
     },
   },
+
   methods: {
     switchType() {
       this.typePassword =
         this.typePassword === 'password' ? 'text' : 'password';
     },
+
     onInput(event) {
       this.$emit('input', event.target.value);
     },
   },
-};
+}
 </script>

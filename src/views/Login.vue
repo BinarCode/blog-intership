@@ -2,9 +2,9 @@
   <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-100">
     <div class="mx-8 text-center sm:mx-auto">
       <img
-        class="h-12 mx-auto"
-        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-        alt="Workflow"
+          class="h-12 mx-auto"
+          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+          alt="Workflow"
       />
       <h2 class="mt-6 text-3xl font-extrabold text-gray-800">
         {{ $t('register.button.label.signIn') }}
@@ -15,33 +15,33 @@
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent="handleSubmit">
             <base-input
-              v-model="model.email"
-              type="email"
-              :name="$t('general.name.email')"
-              :label="$t('general.name.email')"
-              rules="required|email"
-              :placeholder="$t('general.placeholder.email')"
+                v-model="model.email"
+                type="email"
+                :name="$t('general.name.email')"
+                :label="$t('general.name.email')"
+                rules="required|email"
+                :placeholder="$t('general.placeholder.email')"
             />
             <base-input
-              v-model="model.password"
-              type="password"
-              :name="$t('general.name.password')"
-              :label="$t('general.name.password')"
-              rules="required|min:6"
-              :placeholder="$t('general.name.password')"
+                v-model="model.password"
+                type="password"
+                :name="$t('general.name.password')"
+                :label="$t('general.name.password')"
+                rules="required|min:6"
+                :placeholder="$t('general.name.password')"
             />
             <router-link
-              class="text-sm font-medium text-indigo-600 hover:text-indigo-500"
-              to="/forgot-password"
+                class="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                to="/forgot-password"
             >
               {{ $t('general.forgotPassword.text') }}
             </router-link>
 
             <base-button
-              type="submit"
-              :disabled="!valid"
-              :loading="loading"
-              class="w-full"
+                type="submit"
+                :disabled="!valid"
+                :loading="loading"
+                class="w-full"
             >
               {{ $t('signIn.button.label') }}
             </base-button>
@@ -76,15 +76,21 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['setUserState']),
+    ...mapActions(['setUserState', 'setTokenState', 'setLoggedInState']),
     async handleSubmit() {
       try {
         this.error = '';
         this.loading = true;
+
         let { data } = await authService.login(this.model);
         const token = get(data, 'token.plainTextToken', '');
+        const user = get(data, 'user', {});
+
         authService.setToken(token);
-        await this.setUserState(token);
+        await this.setUserState(user);
+        await this.setTokenState(token);
+        await this.setLoggedInState(true);
+
         this.$router.push('/');
       } catch (error) {
         console.log(error);
@@ -96,3 +102,4 @@ export default {
   },
 };
 </script>
+

@@ -26,6 +26,7 @@
 <script>
 export default {
   name: 'GuestDropdown',
+
   data() {
     return {
       commands: {
@@ -34,21 +35,23 @@ export default {
       },
     };
   },
+
   computed: {
     routeName() {
       return this.$route.name;
     },
   },
+
   methods: {
     handleCommand(command) {
-      if (command === 'Login' && this.routeName !== 'Login') {
+      if (command === 'Login' && this.routeName !== 'Login')
         this.$router.push({ name: 'Login' });
-      } else if (command === 'Register' && this.routeName !== 'Register') {
+
+      else if (command === 'Register' && this.routeName !== 'Register')
         this.$router.push({ name: 'Register' });
-      }
     },
   },
-};
+}
 </script>
 
 <style scoped></style>

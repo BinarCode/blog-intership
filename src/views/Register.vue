@@ -85,6 +85,7 @@ import get from 'lodash/get';
 
 export default {
   name: 'Register',
+
   data() {
     return {
       loading: false,
@@ -98,6 +99,7 @@ export default {
       errorsArr: [],
     };
   },
+
   methods: {
     getErrorsArr(err) {
       const errors = Object.values(get(err, 'response.data.errors', ''));
@@ -106,6 +108,7 @@ export default {
         el.forEach((item) => this.errorsArr.push(item));
       });
     },
+
     async onSubmit() {
       try {
         this.errorsArr.length = 0;
@@ -119,7 +122,7 @@ export default {
       }
     },
   },
-};
+}
 </script>
 
 <style scoped></style>

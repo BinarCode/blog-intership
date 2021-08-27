@@ -47,12 +47,14 @@ import InputComp from '@/components/styles/InputComp.vue';
 
 export default {
   name: 'Styleguide',
+
   components: {
     BaseCard,
     InputComp,
     BaseButtonStyles,
     TiptapEditor
   },
+
   data() {
     return {
       tiptapContent: '<p>Some initial content here. <strong>This is bold</strong>. <em>This is italic</em>. <s>This is strike</s>. <u>This is underline</u>. <code class="rounded px-1 text-gray-900 bg-gray-300">This is code</code>. <strong><em><s><u>This is a combination of the first 4</u></s></em></strong>.&nbsp;<a target="_blank" rel="noopener noreferrer nofollow" class="text-blue-400 cursor-pointer hover:underline" href="http://www.google.com/">This is a link to google.com</a>. The next one is an image:</p><p></p><p></p><img src="https://thumbs.dreamstime.com/b/trees-foliage-colors-autumn-fence-rural-peisage-hills-120859715.jpg"><p></p><p>Align left (default)</p><p style="text-align: center">Align center</p><p style="text-align: right">Align right</p><p></p><p style="text-align: justify"><strong>This is some justified text: </strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis scelerisque, eros et finibus aliquet, felis tellus malesuada nisl, at vulputate urna enim blandit magna. Fusce id molestie lectus, vitae venenatis tortor. Duis ornare maximus quam, a venenatis tellus euismod et. Phasellus dictum accumsan risus ut egestas. Donec ac ipsum sagittis, cursus nunc sed, pharetra erat. Suspendisse nec neque a mi tempor consequat. Curabitur ullamcorper, ligula dignissim tempus hendrerit, nisl velit tristique diam, ut tempus mi risus et urna. Quisque vitae leo a ligula sodales ornare. Ut vitae mi fermentum, mollis dolor nec, fringilla elit. Nullam interdum vulputate enim sed auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent sed purus sed felis pulvinar venenatis. Nulla non pretium enim, vel dictum sem. Pellentesque metus magna, ultricies id semper et, dictum ac sapien.</p><p style="text-align: justify">Aliquam ac massa non odio elementum sodales at vel ipsum. Duis ac elit ultrices, venenatis neque sed, pharetra odio. Proin sodales diam eget risus maximus ullamcorper. Maecenas consectetur pretium nisi eget vehicula. Phasellus porttitor ligula nisi, vitae sollicitudin ex pulvinar ut. Curabitur id fringilla dui. Maecenas vel semper enim. Morbi feugiat, lacus venenatis vulputate aliquam, elit magna suscipit magna, non cursus dolor mauris a lectus.</p><p style="text-align: justify"></p><h1 class="font-light text-3xl">This is a h1</h1><p></p><h2 class="font-light text-3xl">This is a h2</h2><p></p><h3 class="font-light text-3xl">This is a h3</h3><p></p><blockquote class="ml-2 pl-1 py-3 border-l-2 border-gray-300"><p>"This is some blockquote" - Some Guy</p></blockquote>', // for testing
@@ -307,10 +309,12 @@ export default {
       ]
     }
   },
+
   methods: {
     onInput() { // for testing
       console.log(this.tiptapContent);
     },
+
     showSuccessNotification() {
       let notification = {
         title: 'Success',
@@ -320,6 +324,7 @@ export default {
 
       this.$notify(notification);
     },
+
     showInfoNotification() {
       let notification = {
         title: 'Info',
@@ -329,6 +334,7 @@ export default {
 
       this.$notify(notification);
     },
+
     showWarningNotification() {
       let notification = {
         title: 'Warning',
@@ -338,6 +344,7 @@ export default {
 
       this.$notify(notification);
     },
+
     showErrorNotification() {
       let notification = {
         title: 'Error',

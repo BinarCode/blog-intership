@@ -19,7 +19,7 @@ export default function authMiddleware(router, store) {
     router.beforeEach((to, from, next) => {
         let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
         let requiresNonLogged = to.matched.some(record => record.meta.requiresNonLogged);
-        let loggedIn = store.getters.userState.loggedIn;
+        let loggedIn = store.getters.is_loggedinState;
 
         if (requiresAuth && !loggedIn) {
             return next({ name: 'Login' });
@@ -43,4 +43,5 @@ export default function authMiddleware(router, store) {
         })
     })
 }
+
 
