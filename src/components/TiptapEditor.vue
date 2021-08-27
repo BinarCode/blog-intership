@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      editor: null,
+      editor: null
       // limit: 100000
     }
   },
@@ -53,7 +53,7 @@ export default {
             types: ['heading', 'paragraph'],
           }),
           Blockquote.configure({HTMLAttributes: { class: 'ml-2 pl-1 py-3 border-l-2 border-gray-300' }}),
-          Heading.configure({HTMLAttributes: { class: 'font-light text-3xl' }})
+          Heading.configure({ HTMLAttributes: { class: 'font-extralight'} })
       ],
       onUpdate: () => {
         this.$emit('input', this.editor.getHTML())
@@ -66,5 +66,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.ProseMirror h1 {
+  @apply text-5xl
+}
+
+.ProseMirror h2 {
+  @apply text-4xl
+}
+
+.ProseMirror h3 {
+  @apply text-3xl
+}
+
 </style>
