@@ -38,24 +38,29 @@
                 />
               </svg>
             </div>
-            <vue-simple-suggest class="block pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search"
-                 v-model="search"
-                 display-attribute="attributes.title"
-                 value-attribute="id"
-                 @suggestion-click="goToBlog"
-                 :list="getSearchResult"
-                 :max-suggestions="5"
-                 :debounce="500"
-                 :controls="{
-                 selectionUp: [38, 33],
-                 selectionDown: [40, 34],
-                 select: [13, 36],
-                 showList: [40],
-                 hideList: [27, 35],
-                 autocomplete: [32, 13],}"
-                 :filter-by-query="true">
-                 <div slot="suggestion-item" slot-scope="{ suggestion }">
-                 <div>{{ suggestion.attributes.title }}</div></div>
+            <vue-simple-suggest
+              class="block pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Search"
+              v-model="search"
+              display-attribute="attributes.title"
+              value-attribute="id"
+              @suggestion-click="goToBlog"
+              :list="getSearchResult"
+              :max-suggestions="5"
+              :debounce="500"
+              :controls="{
+                selectionUp: [38, 33],
+                selectionDown: [40, 34],
+                select: [13, 36],
+                showList: [40],
+                hideList: [27, 35],
+                autocomplete: [32, 13],
+              }"
+              :filter-by-query="true"
+            >
+              <div slot="suggestion-item" slot-scope="{ suggestion }">
+                <div>{{ suggestion.attributes.title }}</div>
+              </div>
             </vue-simple-suggest>
           </div>
           <profile-dropdown username="someusername" avatar="" />
@@ -85,44 +90,47 @@
 </template>
 
 <script>
-
-
-import blogService from '@/api/blogService'
-import authService from '@/api/authService'
+import { getBlogSearchResults } from '@/api/blogService';
+import authService from '@/api/authService';
 import ProfileDropdown from '@/components/ProfileDropdown.vue';
 import { mapGetters } from 'vuex';
 import GuestDropdown from '@/components/GuestDropdown.vue';
-import VueSimpleSuggest from 'vue-simple-suggest'
-import eventBus from '@/api/eventBus'
+import VueSimpleSuggest from 'vue-simple-suggest';
+import eventBus from '@/api/eventBus';
 
 export default {
   name: 'BaseNavbar',
   components: {
-     ProfileDropdown,
+    ProfileDropdown,
     GuestDropdown,
-    VueSimpleSuggest
+    VueSimpleSuggest,
   },
- data() {
+  data() {
     return {
-      search: ''
-    }
+      search: '',
+    };
   },
-    methods: {
+  methods: {
     getSearchResult: async function() {
-        try  {
-         if(this.$route.path == '/') {eventBus.$emit('update:searchTerm', this.search)}
-          let token = authService.getToken()
-          let data = await blogService.blogSearchResults(this.search, token)
-          return data.data
-        } catch (err) {
-          console.log(err)
-       } 
-    },
-    goToBlog: function(e) {
-      if (this.$route.path != `/blogs/${e.id}/${e.attributes.slug}`) {
-      this.$router.push(`/blogs/${e.id}/${e.attributes.slug}`);
+      try {
+        if (this.$route.path == '/') {
+          eventBus.$emit('update:searchTerm', this.search);
+        }
+        let token = authService.getToken();
+        let blogs = await getBlogSearchResults(this.search, token);
+
+        return blogs.data;
+      } catch (err) {
+        console.log(err);
       }
-    }
+    },
+    goToBlog: function(currentSuggestion) {
+      //when clicking a suggestion this function is called; see line 45
+      const path = `/blogs/${currentSuggestion.id}/${currentSuggestion.attributes.slug}`;
+      if (this.$route.path != path) {
+        this.$router.push(path);
+      }
+    },
   },
   computed: {
     ...mapGetters(['userState']),
@@ -134,27 +142,28 @@ export default {
 </script>
 
 <style lang="css">
-  .suggestions {
+/*suggestion list modification - start */
+.suggestions {
   position: absolute;
   top: 100%;
   left: 0;
   padding: 0 0;
   background: #fff;
   width: 100%;
-  border: .5px solid rgba(0,0,0, .2);
-  }
-  .suggestions li {
-    padding: 5px 10px;
-    font-weight: 500;
-    color: rgba(0, 0, 0, .7);
-    cursor: pointer;
-  }
-  .suggestions li:hover {
-    background: rgba(99, 102, 241, var(--tw-border-opacity));
-    color: rgba(255, 255, 255, .8);
-  }
-  .input-wrapper .default-input:focus-visible {
-    outline: none;
-  }
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+.suggestions li {
+  padding: 5px 10px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+.suggestions li:hover {
+  background: rgba(99, 102, 241, var(--tw-border-opacity));
+  color: rgba(255, 255, 255, 0.8);
+}
+.input-wrapper .default-input:focus-visible {
+  outline: none;
+}
+/*suggestion list modification - end */
 </style>
-
