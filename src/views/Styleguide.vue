@@ -302,32 +302,40 @@ export default {
   },
   methods: {
     showSuccessNotification() {
-      this.$notify(
-          'Success',
-          'Message',
-          'success'
-      )
+      let notification = {
+        title: 'Success',
+        message: 'Message',
+        type: 'success'
+      }
+
+      this.$notify(notification);
     },
     showInfoNotification() {
-      this.$notify(
-          'Info',
-          'Message',
-          'info'
-      )
+      let notification = {
+        title: 'Info',
+        message: 'Message',
+        type: 'info'
+      }
+
+      this.$notify(notification);
     },
     showWarningNotification() {
-      this.$notify(
-          'Warning',
-          'Message',
-          'warning'
-      )
+      let notification = {
+        title: 'Warning',
+        message: 'Message',
+        type: 'warning'
+      }
+
+      this.$notify(notification);
     },
     showErrorNotification() {
-      this.$notify(
-          'Error',
-          'Message',
-          'error'
-      )
+      let notification = {
+        title: 'Error',
+        message: 'Message',
+        type: 'error'
+      }
+
+      this.$notify(notification);
     }
   }
 };
