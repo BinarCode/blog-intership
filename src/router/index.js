@@ -7,6 +7,8 @@ import Register from '@/views/Register';
 import Login from '@/views/Login';
 import Profile from '@/views/Profile';
 import ForgotPassword from '@/views/ForgotPassword';
+import EditBlog from '@/views/EditBlog';
+import CreateBlog from '@/views/CreateBlog';
 
 Vue.use(VueRouter)
 
@@ -15,6 +17,24 @@ const routes = [
     path: '/',
     name: 'Blogs',
     component: Blogs,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: '/edit-blog/:blogId',
+    name: 'EditBlog',
+    component: EditBlog,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: '/create-blog',
+    name: 'CreateBlog',
+    component: CreateBlog,
     meta: {
       requiresAuth: true,
     },

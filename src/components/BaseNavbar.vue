@@ -13,7 +13,7 @@
           <router-link
             class="router-link"
             :class="{ 'active-router-link': routeName === 'Blogs' }"
-            to="/blogs"
+            to="/"
           >
             {{ $t('general.blogs.title') }}
           </router-link>

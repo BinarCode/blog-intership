@@ -1,10 +1,7 @@
 <template>
   <div>
-    <tiptap-menu-bar
-      :editor="editor"
-      class="sticky top-16 border bg-white z-10"
-    />
-    <editor-content :editor="editor" class="border-2 border-black" />
+    <tiptap-menu-bar :editor="editor" class="sticky top-16 z-10" />
+    <editor-content :editor="editor" :class="classes" />
     <span class="float-right">
       Character count: {{ editor.getCharacterCount() }}
     </span>
@@ -33,6 +30,10 @@ export default {
   },
 
   props: {
+    classes: {
+      type: String,
+      default: '',
+    },
     value: {
       type: String,
       default: '',
