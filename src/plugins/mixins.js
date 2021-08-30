@@ -10,7 +10,7 @@ export default {
                 const user = get(data, 'user', {});
 
                 this.$notify({
-                    title: 'Success',
+                    title: this.$t('notifyMessage.success.title'),
                     message: this.$t('notifyMessage.succes.logIn'),
                     type: 'success',
                 });
