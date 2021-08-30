@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-20 transition-height" :class="[edit ? 'h-1/2' : 'h-1/3']">
+    <div class="mt-20 transition-height" :class="[edit ? 'h-1/2' : 'h-1/4 sm:h-1/3']">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-auto">
         <div class="flex justify-between">
           <div class="flex flex-col justify-center">
@@ -286,6 +286,7 @@ export default {
   },
 
   created() {
+    console.log(this.$route.params);
     this.profile.first_name = this.user.first_name;
     this.profile.last_name = this.user.last_name;
     this.avatar = this.user.avatar || 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
