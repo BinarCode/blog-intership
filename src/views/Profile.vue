@@ -4,11 +4,11 @@
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-auto">
         <div class="flex justify-between">
           <div class="flex flex-col justify-center">
-            <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
+            <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" :src="avatar" alt="">
             <transition name="fade-in-left">
               <span v-if="edit">
-                <a href="#" class="text-blue-500 hover:underline sm:ml-4">upload</a>&nbsp;
-                <a href="#" class="text-red-500 hover:underline">clear</a>
+                <a href="#" class="text-blue-500 hover:underline sm:ml-4">Upload</a>&nbsp;
+                <a href="#" class="text-red-500 hover:underline" @click="onClear">Clear</a>
               </span>
             </transition>
           </div>
@@ -262,13 +262,31 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+
+    async onClear() {
+      this.loading = true;
+
+      try {
+        await userService.clearAvatar();
+
+        this.$notify({
+          title: this.$t('notifyMessage.success.title'),
+          message: this.$t('notifyMessage.success.clearAvatar'),
+          type: 'success',
+        });
+      } catch (error) {
+        this.notifyErrors(error);
+      } finally {
+        this.loading = false;
+      }
     }
   },
 
   created() {
     this.profile.first_name = this.user.first_name;
     this.profile.last_name = this.user.last_name;
-    this.avatar = this.user.avatar;
+    this.avatar = this.user.avatar || 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
   }
 }
 </script>
