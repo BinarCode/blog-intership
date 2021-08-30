@@ -8,7 +8,7 @@ export default {
                 let { data } = await authService.login(model);
                 const token = get(data, 'token.plainTextToken', '');
                 this.$notify({
-                    title: 'Success',
+                    title: this.$t('general.notify.succesTitle'),
                     message: this.$t('notifyMessage.succes.logIn'),
                     type: 'success',
                 });
@@ -21,14 +21,14 @@ export default {
             if (error.errorsArr)
                 error.errorsArr.forEach((el) =>
                     this.$notify({
-                        title: 'Error',
+                        title: this.$t('general.notify.errorTitle'),
                         message: el,
                         type: 'error',
                     })
                 );
             else if (error.message)
                 this.$notify({
-                    title: 'Error',
+                    title: this.$t('general.notify.errorTitle'),
                     message: error.message,
                     type: 'error',
                 });

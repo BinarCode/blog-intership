@@ -8,37 +8,45 @@
               <div class="md:col-span-2">
                 <base-input
                   v-model="blogData.title"
-                  name="Title"
-                  label="Title"
+                  :name="$t('createBlog.name.title')"
+                  :label="$t('createBlog.name.title')"
                   rules="required"
                   placeholder="What is Lorem Ipsum?"
                 />
 
                 <base-input
                   v-model="blogData.tags"
-                  name="Tags"
-                  label="Tags"
+                  :name="$t('createBlog.name.tags')"
+                  :label="$t('createBlog.name.tags')"
                   rules="required"
                   placeholder="earthship, biotecture, sustainable"
                 />
               </div>
               <div class="sm:w-11/12 sm:ml-auto">
                 <label class="text-sm font-medium text-gray-700">
-                  Cover Image
+                  {{ $t('createBlog.name.coverImage') }}
                 </label>
                 <img :src="previewImage" class="rounded" />
                 <input
-                  class="mt-2"
+                  id="uploadImg"
+                  hidden
                   type="file"
                   accept="image/*"
-                  @change="uploadImage"
+                  @change="showImage($event)"
                 />
+                <label
+                  class=" cursor-pointer flex items-center justify-center mt-2 font-medium text-white rounded-md shadow-sm w-full px-4 py-2 text-sm bg-indigo-600"
+                  for="uploadImg"
+                >
+                  {{ $t('general.button.chooseFile') }}
+                  <span v-if="blogData.image">({{ blogData.image.name }})</span>
+                </label>
               </div>
             </div>
 
             <div id="tiptap">
               <label class="text-sm font-medium text-gray-700">
-                Content
+                {{ $t('createBlog.name.content') }}
               </label>
               <tiptap-editor
                 classes="h-40 overflow-y-auto"
@@ -53,7 +61,7 @@
               :loading="loading"
               class="w-full mt-3"
             >
-              Publish
+              {{ $t('createBlog.button.publish') }}
             </base-button>
           </form>
         </ValidationObserver>
@@ -83,37 +91,33 @@ export default {
     };
   },
   methods: {
-    uploadImage(e) {
-      const image = e.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(image);
-      reader.onload = (e) => {
-        this.previewImage = e.target.result;
-      };
-    },
     createTagsArray() {
       let tags = this.blogData.tags.split(',');
-      return tags.map((el, index) => {
-        let value = el.trim();
+      tags = tags.map((el, index) => {
+        let tagValue = el.trim();
         return {
           name: index,
           type: 'text',
-          value: value,
+          value: tagValue,
         };
       });
+      return JSON.stringify(tags);
+    },
+    showImage(event) {
+      this.blogData.image = event.target.files[0];
+      this.previewImage = URL.createObjectURL(this.blogData.image);
     },
     async onSubmit() {
       try {
         this.loading = true;
         let tags = this.createTagsArray();
-        let submitData = { ...this.blogData, tags };
+        const submitData = { ...this.blogData, tags };
         let res = await createBlog(submitData);
-        console.log(res);
         if (has(res, 'message')) this.notifyErrors(res);
         else {
           this.$notify({
-            title: 'Success',
-            message: 'The blog was successfully created.', // need to add translate
+            title: this.$t('general.notify.succesTitle'),
+            message: this.$t('createBlog.notify.succesMessage'),
             type: 'success',
           });
         }

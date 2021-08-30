@@ -7,11 +7,10 @@
       'px-4 py-2 text-base': size === 'md',
       'px-6 py-3 text-base': size === 'lg',
 
-      'bg-indigo-600 bg-opacity-70': color === 'primary' && isDisabled,
+      'bg-indigo-600 bg-opacity-80': color === 'primary' && isDisabled,
       'text-indigo-600 bg-white border border-indigo-600':
         color === 'primary' && outline,
-      'bg-indigo-600 active:bg-indigo-800':
-        color === 'primary' && !disabled && !outline,
+      'bg-indigo-600': color === 'primary' && !disabled && !outline,
 
       'bg-green-600 bg-opacity-70': color === 'secondary' && isDisabled,
       'text-green-600 bg-white border border-green-600':

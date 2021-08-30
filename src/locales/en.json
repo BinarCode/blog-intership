@@ -46,5 +46,16 @@
   "notifyMessage.succes.register": "You have successfully registered",
   "notifyTitle.succes.register": "Congratulations!",
 
-  "tiptap.setLink": "Please insert a valid URL"
+  "tiptap.setLink": "Please insert a valid URL",
+
+  "createBlog.name.title": "Title",
+  "createBlog.name.tags": "Tags",
+  "createBlog.name.content": "Content",
+  "createBlog.name.coverImage": "Cover Image",
+  "general.button.chooseFile": "Choose file ",
+  "createBlog.button.publish": "Publish",
+  "createBlog.notify.succesMessage": "The blog was successfully created.",
+  "editBlog.notify.succesMessage": "The blog was successfully created.",
+  "general.notify.succesTitle": "Succes",
+  "general.notify.errorTitle": "Error"
 }

@@ -7,8 +7,8 @@
             <div class="grid grid-cols-1 sm:grid-cols-2">
               <base-input
                 v-model="blogData.title"
-                name="Title"
-                label="Title"
+                :name="$t('createBlog.name.title')"
+                :label="$t('createBlog.name.title')"
                 rules="required"
                 placeholder="What is Lorem Ipsum?"
                 class="sm:mr-3"
@@ -16,8 +16,8 @@
 
               <base-input
                 v-model="blogData.tags"
-                name="Tags"
-                label="Tags"
+                :name="$t('createBlog.name.tags')"
+                :label="$t('createBlog.name.tags')"
                 rules="required"
                 placeholder="earthship, biotecture, sustainable"
                 class="sm:ml-3"
@@ -26,7 +26,7 @@
 
             <div id="tiptap">
               <label class="text-sm font-medium text-gray-700">
-                Content
+                {{ $t('createBlog.name.content') }}
               </label>
               <tiptap-editor
                 classes="h-40 overflow-y-auto"
@@ -41,7 +41,7 @@
               :loading="loading"
               class="w-full mt-3"
             >
-              Publish
+              {{ $t('createBlog.button.publish') }}
             </base-button>
           </form>
         </ValidationObserver>
@@ -69,14 +69,15 @@ export default {
   methods: {
     createTagsArray() {
       let tags = this.blogData.tags.split(',');
-      return tags.map((el, index) => {
-        let value = el.trim();
+      tags = tags.map((el, index) => {
+        let tagValue = el.trim();
         return {
           name: index,
           type: 'text',
-          value: value,
+          value: tagValue,
         };
       });
+      return JSON.stringify(tags);
     },
     async onSubmit() {
       try {
@@ -88,8 +89,8 @@ export default {
           this.notifyErrors(res);
         } else {
           this.$notify({
-            title: 'Success',
-            message: 'The blog was successfully edited.', // need to add translate
+            title: this.$t('general.notify.succesTitle'),
+            message: this.$t('editBlog.notify.succesMessage'),
             type: 'success',
           });
         }

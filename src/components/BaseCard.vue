@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-col overflow-hidden rounded-lg shadow-md">
     <div class="flex-shrink-0">
-      <img class="object-cover w-full h-48" :src="getImage" />
+      <img
+        class="object-cover w-full h-48"
+        :src="post.attributes.image || 'https://i.stack.imgur.com/y9DpT.jpg'"
+      />
     </div>
     <div class="flex flex-col justify-between flex-1 p-6 bg-white">
       <div class="flex-1">
@@ -54,14 +57,8 @@ export default {
   },
   computed: {
     tagList() {
-      return get(this.post, 'attributes.tags', []);
-    },
-    getImage() {
-      return get(
-        this.post,
-        'attributes.src',
-        'https://i.stack.imgur.com/y9DpT.jpg'
-      );
+      const tags = get(this.post, 'attributes.tags', []);
+      return typeof tags === 'string' ? JSON.parse(tags) : tags;
     },
     getAvatar() {
       return get(
