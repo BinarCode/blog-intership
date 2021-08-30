@@ -19,7 +19,7 @@
                 </base-button>
             </div>
             <div v-if="edit" class="sm:min-w-0 flex flex-col self-center" :key="edit">
-                <base-button size="sm">
+                <base-button size="sm" @click="onSave">
                   Save
                 </base-button>
                 <base-button size="sm" @click="edit = !edit">
@@ -30,8 +30,8 @@
         </div>
         <transition name="fade-in-top" mode="out-in">
           <div v-if="edit" class="sm:block mt-6 min-w-0" :key="edit">
-            <base-input type="text" :label="$t('register.name.firstName')" :value="user.first_name" v-model="model.first_name" />
-            <base-input type="text" :label="$t('register.name.firstName')" :value="user.last_name" v-model="model.last_name" />
+            <base-input type="text" :label="$t('register.name.firstName')" v-model="profile.first_name" />
+            <base-input type="text" :label="$t('register.name.firstName')" v-model="profile.last_name" />
           </div>
           <div v-else class="text-2xl sm:block mt-6 min-w-0" :key="edit">
             <span>{{ user.first_name }} {{ user.last_name }}</span>
@@ -215,32 +215,60 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from 'vuex';
+import userService from '@/api/userService';
 
 export default {
   name: "Profile",
 
   data() {
     return {
+      loading: false,
       edit: false,
-      model: {
-        first_name: String,
-        last_name: String,
-        avatar: String
-      }
+      profile: {
+        first_name: '',
+        last_name: ''
+      },
+      avatar: String
     }
   },
 
   computed: {
     ...mapGetters({
       user: 'userState'
-    })
+    }),
   },
 
   methods: {
-    save() {
+    ...mapActions(['setUserState']),
 
+    async onSave() {
+      this.loading = true;
+
+      try {
+        await userService.updateProfile(this.profile);
+
+        this.user.first_name = this.profile.first_name;
+        this.user.last_name = this.profile.last_name;
+        await this.setUserState(this.user);
+
+        this.$notify({
+          title: this.$t('notifyMessage.success.title'),
+          message: this.$t('notifyMessage.success.updateProfile'),
+          type: 'success',
+        });
+      } catch (error) {
+        this.notifyErrors(error);
+      } finally {
+        this.loading = false;
+      }
     }
+  },
+
+  created() {
+    this.profile.first_name = this.user.first_name;
+    this.profile.last_name = this.user.last_name;
+    this.avatar = this.user.avatar;
   }
 }
 </script>
