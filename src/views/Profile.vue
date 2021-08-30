@@ -30,8 +30,8 @@
         </div>
         <transition name="fade-in-top" mode="out-in">
           <div v-if="edit" class="sm:block mt-6 min-w-0" :key="edit">
-            <base-input type="text" :label="$t('register.name.firstName')" :value="user.first_name" />
-            <base-input type="text" :label="$t('register.name.firstName')" :value="user.last_name" />
+            <base-input type="text" :label="$t('register.name.firstName')" :value="user.first_name" v-model="model.first_name" />
+            <base-input type="text" :label="$t('register.name.firstName')" :value="user.last_name" v-model="model.last_name" />
           </div>
           <div v-else class="text-2xl sm:block mt-6 min-w-0" :key="edit">
             <span>{{ user.first_name }} {{ user.last_name }}</span>
@@ -40,8 +40,9 @@
       </div>
     </div>
     <hr class="mt-2"/>
+
     <!-- Description list -->
-    <div class="mt-6 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mt-4 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
         <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-gray-500">
@@ -60,21 +61,11 @@
             {{ user.updated_at }}
           </dd>
         </div>
-
-        <div class="sm:col-span-1">
-          <dt class="text-sm font-medium text-gray-500">
-            About
-          </dt>
-          <dd class="mt-1 max-w-prose text-sm text-gray-900 space-y-5">
-            <p>Tincidunt quam neque in cursus viverra orci, dapibus nec tristique. Nullam ut sit dolor consectetur urna, dui cras nec sed. Cursus risus congue arcu aenean posuere aliquam.</p>
-            <p>Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris amet. Urna, sem pretium sit pretium urna, senectus vitae. Scelerisque fermentum, cursus felis dui suspendisse velit pharetra. Augue et duis cursus maecenas eget quam lectus. Accumsan vitae nascetur pharetra rhoncus praesent dictum risus suspendisse.</p>
-          </dd>
-        </div>
       </dl>
     </div>
 
     <!-- Latest comments -->
-    <div class="mt-8 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
+    <div class="mt-4 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
       <h2 class="text-sm font-medium text-gray-500">Latest comments</h2>
       <div class="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500">
@@ -148,7 +139,7 @@
     </div>
 
     <!-- Latest blogs -->
-    <div class="mt-8 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
+    <div class="mt-4 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
       <h2 class="text-sm font-medium text-gray-500">Latest blogs</h2>
       <div class="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500">
