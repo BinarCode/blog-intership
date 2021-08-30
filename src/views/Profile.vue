@@ -2,33 +2,41 @@
   <div>
     <div class="mt-20">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex sm:items-end sm:justify-between sm:space-x-5">
-          <div class="flex">
+        <div class="flex justify-between ">
+          <div class="flex flex-col justify-center">
             <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
-            <span v-if="edit" class="absolute mt-24 sm:mt-32">
-              <a href="#" class="text-blue-500 hover:underline sm:ml-4">upload</a>&nbsp;
-              <a href="#" class="text-red-500 hover:underline">clear</a>
-            </span>
+            <transition name="fade-in-left">
+              <span v-if="edit">
+                <a href="#" class="text-blue-500 hover:underline sm:ml-4">upload</a>&nbsp;
+                <a href="#" class="text-red-500 hover:underline">clear</a>
+              </span>
+            </transition>
           </div>
-          <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-self-end">
-              <base-button v-if="!edit" size="sm" @click="edit = !edit">
-                Edit profile
-              </base-button>
-              <base-button v-if="edit" size="sm">
-                Save
-              </base-button>
-              <base-button v-if="edit" size="sm" @click="edit = !edit">
-                Cancel
-              </base-button>
+          <transition name="fade-in-right" mode="out-in">
+            <div v-if="!edit" class="sm:min-w-0 flex flex-col self-center" :key="edit">
+                <base-button size="sm" @click="edit = !edit">
+                  Edit profile
+                </base-button>
             </div>
+            <div v-if="edit" class="sm:min-w-0 flex flex-col self-center" :key="edit">
+                <base-button size="sm">
+                  Save
+                </base-button>
+                <base-button size="sm" @click="edit = !edit">
+                  Cancel
+                </base-button>
+            </div>
+          </transition>
         </div>
-        <div v-if="edit">
-          <base-input :label="$t('register.name.firstName')" :value="user.first_name"></base-input>
-          <base-input :label="$t('register.name.firstName')" :value="user.last_name"></base-input>
-        </div>
-        <div class="text-2xl sm:block mt-6 min-w-0 flex-1">
-          <span v-if="!edit">{{ user.first_name }} {{ user.last_name }}</span>
-        </div>
+        <transition name="fade-in-left" mode="out-in">
+          <div v-if="edit" :key="edit">
+            <base-input type="text" :label="$t('register.name.firstName')" :value="user.first_name" class="sm:w-2/4 inline" />
+            <base-input type="text" :label="$t('register.name.firstName')" :value="user.last_name" class="sm:w-2/4 inline" />
+          </div>
+          <div v-else class="text-2xl sm:block mt-6 min-w-0 flex-1" :key="edit">
+            <span>{{ user.first_name }} {{ user.last_name }}</span>
+          </div>
+        </transition>
       </div>
     </div>
     <hr class="mt-2"/>
@@ -53,7 +61,7 @@
           </dd>
         </div>
 
-        <div class="sm:col-span-2">
+        <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-gray-500">
             About
           </dt>
@@ -235,4 +243,42 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.fade-in-left-enter-active {
+  animation: fadeinleft 0.2s;
+}
+
+.fade-in-left-leave-active {
+  animation: fadeinleft 0.2s reverse;
+}
+
+@keyframes fadeinleft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0%;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 100%;
+  }
+}
+
+.fade-in-right-enter-active {
+  animation: fadeinright 0.2s;
+}
+
+.fade-in-right-leave-active {
+  animation: fadeinright 0.2s reverse;
+}
+
+@keyframes fadeinright {
+  from {
+    transform: translateX(20px);
+    opacity: 0%;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 100%;
+  }
+}
+</style>
