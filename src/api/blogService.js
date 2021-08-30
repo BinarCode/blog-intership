@@ -1,11 +1,20 @@
-import axios from 'axios';
+import axios from '@/api/axiosConfig'
 
-export default {
-    async getBlog(blogId, token) {
-        return await axios.get(`/api/restify/blogs/${blogId}`, { headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: 'application/json'
-             }
-          } )
+export async function getBlogs({ page, perPage, sort }) {
+    let params = {
+        page: page,
+        perPage: perPage,
+        sort: sort
+    };
+    try {
+        let { data } = await axios.get('/api/restify/blogs', { params });
+        return data;
+    } catch (error) {
+        return error;
     }
 }
+
+export async function getBlog(blogId) {
+    return await axios.get(`/api/restify/blogs/${blogId}`)
+}
+

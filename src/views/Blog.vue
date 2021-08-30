@@ -22,9 +22,8 @@
 </template>
 
 <script>
-import authService from '@/api/authService';
-import blogService from '@/api/blogService';
 import get from 'lodash/get';
+import { getBlog } from '@/api/blogService.js';
 
 export default {
   data() {
@@ -33,10 +32,8 @@ export default {
     };
   },
   async mounted() {
-    this.token = authService.getToken();
-
     try {
-      this.blog = await blogService.getBlog(this.$route.params.id, this.token);
+      this.blog = await getBlog(this.$route.params.id);
     } catch (error) {
       console.log(error);
     }
