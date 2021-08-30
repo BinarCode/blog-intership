@@ -257,6 +257,8 @@ export default {
           message: this.$t('notifyMessage.success.updateProfile'),
           type: 'success',
         });
+
+        this.edit = false;
       } catch (error) {
         this.notifyErrors(error);
       } finally {
