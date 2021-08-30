@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div>
+    <div class="mt-20">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="sm:flex sm:items-end sm:space-x-5">
+        <div class="flex sm:items-end sm:justify-between sm:space-x-5">
           <div class="flex">
             <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
             <span v-if="edit" class="absolute mt-24 sm:mt-32">
@@ -10,8 +10,7 @@
               <a href="#" class="text-red-500 hover:underline">clear</a>
             </span>
           </div>
-          <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
-            <div class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
+          <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-self-end">
               <base-button v-if="!edit" size="sm" @click="edit = !edit">
                 Edit profile
               </base-button>
@@ -22,14 +21,13 @@
                 Cancel
               </base-button>
             </div>
-          </div>
+        </div>
+        <div v-if="edit">
+          <base-input :label="$t('register.name.firstName')" :value="user.first_name"></base-input>
+          <base-input :label="$t('register.name.firstName')" :value="user.last_name"></base-input>
         </div>
         <div class="text-2xl sm:block mt-6 min-w-0 flex-1">
           <span v-if="!edit">{{ user.first_name }} {{ user.last_name }}</span>
-          <div v-else>
-            <base-input :label="$t('register.name.firstName')" :value="user.first_name"></base-input>
-            <base-input :label="$t('register.name.firstName')" :value="user.last_name"></base-input>
-          </div>
         </div>
       </div>
     </div>
