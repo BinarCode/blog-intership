@@ -11,5 +11,10 @@ export default {
 
     async clearAvatar() {
         return await axios.post('/api/restify/profile', { avatar: null });
+    },
+
+    // to move in blogService
+    async getBlog(id) {
+        return await axios.get(`/api/restify/blogs/${id}`);
     }
 }
