@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="mt-20">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between ">
+    <div class="mt-20 transition-height" :class="[edit ? 'h-1/2' : 'h-1/3']">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-auto">
+        <div class="flex justify-between">
           <div class="flex flex-col justify-center">
             <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
             <transition name="fade-in-left">
@@ -28,12 +28,12 @@
             </div>
           </transition>
         </div>
-        <transition name="fade-in-left" mode="out-in">
-          <div v-if="edit" :key="edit">
-            <base-input type="text" :label="$t('register.name.firstName')" :value="user.first_name" class="sm:w-2/4 inline" />
-            <base-input type="text" :label="$t('register.name.firstName')" :value="user.last_name" class="sm:w-2/4 inline" />
+        <transition name="fade-in-top" mode="out-in">
+          <div v-if="edit" class="sm:block mt-6 min-w-0" :key="edit">
+            <base-input type="text" :label="$t('register.name.firstName')" :value="user.first_name" />
+            <base-input type="text" :label="$t('register.name.firstName')" :value="user.last_name" />
           </div>
-          <div v-else class="text-2xl sm:block mt-6 min-w-0 flex-1" :key="edit">
+          <div v-else class="text-2xl sm:block mt-6 min-w-0" :key="edit">
             <span>{{ user.first_name }} {{ user.last_name }}</span>
           </div>
         </transition>
@@ -231,7 +231,12 @@ export default {
 
   data() {
     return {
-      edit: false
+      edit: false,
+      model: {
+        first_name: String,
+        last_name: String,
+        avatar: String
+      }
     }
   },
 
@@ -239,11 +244,41 @@ export default {
     ...mapGetters({
       user: 'userState'
     })
+  },
+
+  methods: {
+    save() {
+
+    }
   }
 }
 </script>
 
 <style scoped>
+.transition-height {
+  transition: height 0.45s;
+}
+
+.fade-in-top-enter-active {
+  animation: fadeintop 0.2s;
+}
+
+.fade-in-top-leave-active {
+  animation: fadeintop 0.2s reverse;
+}
+
+@keyframes fadeintop {
+  from {
+    transform: translateY(-20px);
+    opacity: 0%;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 100%;
+  }
+}
+
+
 .fade-in-left-enter-active {
   animation: fadeinleft 0.2s;
 }
