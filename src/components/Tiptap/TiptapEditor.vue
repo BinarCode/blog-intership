@@ -6,13 +6,13 @@
     />
     <editor-content :editor="editor" class="border-2 border-black" />
     <span class="float-right">
-      Character count: {{ editor.getCharacterCount() }}
+      {{ $t('tiptap.characterCount') }}: {{ editor.getCharacterCount() }}
     </span>
   </div>
 </template>
 
 <script>
-import TiptapMenuBar from '@/components/TipTap/TiptapMenuBar';
+import TiptapMenuBar from '@/components/Tiptap/TiptapMenuBar';
 import { Editor, EditorContent } from '@tiptap/vue-2';
 import StarterKit from '@tiptap/starter-kit';
 import Code from '@tiptap/extension-code';

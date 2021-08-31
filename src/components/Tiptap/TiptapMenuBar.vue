@@ -108,7 +108,7 @@
 </template>
 
 <script>
-import TiptapMenuItem from './TiptapMenuItem';
+import TiptapMenuItem from '@/components/Tiptap/TiptapMenuItem';
 
 export default {
   name: "TiptapMenuBar",
