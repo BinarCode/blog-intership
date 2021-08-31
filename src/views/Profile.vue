@@ -126,19 +126,13 @@ export default {
 
     get,
 
-    async getUserRelated() {
+    async getUserProfile() {
       try {
         const userProfile = await userService.getProfile();
 
         this.blogs = get(userProfile, 'data.relationships.blogs', []);
         this.comments = get(userProfile, 'data.relationships.comments', []);
         this.media = get(userProfile, 'data.relationships.media', []);
-
-        let blog = {};
-        for (let i = 0; i < this.comments.length; i++) {
-          blog = await userService.getBlog(this.comments[i].attributes.blog_id);
-          this.comments[i].attributes.blog_name = blog.data.attributes.title;
-        }
 
         console.log(this.comments);
       } catch (error) {
@@ -190,8 +184,7 @@ export default {
   },
 
   created() {
-    this.getUserRelated();
-
+    this.getUserProfile();
     this.profile.first_name = this.user.first_name;
     this.profile.last_name = this.user.last_name;
     this.avatar = this.user.avatar || 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
