@@ -71,8 +71,17 @@ export default {
       try {
         this.loading = true;
         await authServices.resetPassword(this.model);
+        this.$notify({
+          title: this.$t('general.notify.succesTitle'),
+          message: this.$t('notifyMessage.succes.resetPassword'),
+          type: 'success',
+        });
+        await this.logIn({
+          email: this.model.email,
+          password: this.model.password_confirmation,
+        });
       } catch (error) {
-        console.log(error);
+        this.notifyErrors(error);
       } finally {
         this.loading = false;
       }

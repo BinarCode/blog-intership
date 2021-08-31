@@ -109,7 +109,7 @@ export default {
           });
         }
       } catch (error) {
-        console.log(error);
+        this.notifyErrors(error);
       } finally {
         this.loading = false;
       }
