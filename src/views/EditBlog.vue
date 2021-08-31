@@ -78,6 +78,7 @@ export default {
         if (has(res, 'errorArr')) {
           this.notifyErrors(res);
         } else {
+          this.$router.push(`/blogs/${res.data.id}`);
           this.$notify({
             title: this.$t('general.notify.succesTitle'),
             message: this.$t('editBlog.notify.succesMessage'),
