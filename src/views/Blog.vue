@@ -35,7 +35,7 @@ export default {
     try {
       this.blog = await getBlog(this.$route.params.id);
     } catch (error) {
-      console.log(error);
+      this.notifyErrors(error);
     }
   },
   methods: {
