@@ -14,3 +14,7 @@ export async function getBlogs({ page, perPage, sort }) {
     }
 }
 
+export async function getBlog(blogId) {
+    return await axios.get(`/api/restify/blogs/${blogId}`)
+}
+

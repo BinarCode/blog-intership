@@ -82,7 +82,6 @@
 import { mapGetters } from 'vuex';
 import ProfileDropdown from '@/components/ProfileDropdown.vue';
 import GuestDropdown from '@/components/GuestDropdown.vue';
-
 export default {
   name: 'BaseNavbar',
 

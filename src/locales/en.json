@@ -50,5 +50,6 @@
   "notifyMessage.succes.register": "You have successfully registered",
   "notifyTitle.succes.register": "Congratulations!",
 
-  "tiptap.setLink": "Please insert a valid URL"
+  "tiptap.setLink": "Please insert a valid URL",
+  "tiptap.characterCount": "Character count"
 }
