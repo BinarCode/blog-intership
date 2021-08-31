@@ -27,10 +27,11 @@ export async function getBlogs({ page, perPage, sort }) {
     let params = {
         page: page,
         perPage: perPage,
-        sort: sort
+        sort: sort,
+        related: 'creator'
     };
     try {
-        let { data } = await axios.get('/api/restify/blogs?related=creator', { params });
+        let { data } = await axios.get('/api/restify/blogs', { params });
         return data;
     } catch (error) {
         return error;

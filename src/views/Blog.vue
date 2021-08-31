@@ -21,7 +21,7 @@
         {{ get(blog, 'attributes.title', '') }}
       </div>
 
-      <div class="mb-20" v-html="get(blog, 'attributes.content', '')"></div>
+      <div class="mb-20" v-html="get(blog, 'attributes.content', '')" />
     </div>
   </div>
 </template>

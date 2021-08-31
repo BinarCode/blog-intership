@@ -25,13 +25,13 @@
             <img class="w-10 h-10 rounded-full" :src="getAvatar" alt="Avatar" />
           </div>
           <div class="ml-3">
-            <p class="text-sm font-medium text-gray-900">
+            <span class="text-sm font-medium text-gray-900">
               <a href="#" class="hover:underline">
                 {{
                   get(post, 'relationships.creator.attributes.first_name', '')
                 }}
               </a>
-            </p>
+            </span>
             <span class="flex space-x-1 text-sm text-gray-500">
               {{ post.attributes.views || '0' }}
               {{ $t('general.views.text') }}
@@ -43,7 +43,7 @@
           v-if="+get(post, 'relationships.creator.id', null) === +userState.id"
           :to="getEditBlogLink"
         >
-          <base-button size="sm" :outline="true" class="self-center">
+          <base-button size="sm" class="self-center" outline>
             {{ $t('general.editBlog.title') }}
           </base-button>
         </router-link>
@@ -54,7 +54,6 @@
 
 <script>
 import get from 'lodash/get';
-import { mapGetters } from 'vuex';
 
 export default {
   name: 'BaseCard',
@@ -65,7 +64,6 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['userState']),
     tagList() {
       const tags = get(this.post, 'attributes.tags', []);
       return typeof tags === 'string' ? JSON.parse(tags) : tags;

@@ -1,5 +1,7 @@
 import authService from '@/api/authService';
 import get from 'lodash/get';
+import { mapGetters } from 'vuex';
+
 
 export default {
     methods: {
@@ -8,8 +10,6 @@ export default {
                 let { data } = await authService.login(model);
                 const token = get(data, 'token.plainTextToken', '');
                 const user = get(data, 'user', {});
-                console.log(data);
-                // console.log(userId);
                 this.$notify({
                     title: this.$t('general.notify.succesTitle'),
                     message: this.$t('notifyMessage.succes.logIn'),
@@ -37,4 +37,7 @@ export default {
                 });
         }
     },
+    computed: {
+        ...mapGetters(['userState']),
+    }
 }

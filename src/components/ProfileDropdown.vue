@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'ProfileDropdown',
@@ -46,7 +46,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['userState']),
     getAvatar() {
       if (!this.userState.avatar)
         return 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
