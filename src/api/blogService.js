@@ -3,13 +3,19 @@ import get from 'lodash/get';
 
 function createTagsArray(tags) {
     tags = tags.split(',');
-    return tags.map((el, index) => {
+    let tagsArr = [];
+    for (let index in tags) {
+        if (!tags[index].trim().length)
+            continue;
+        tagsArr.push(tags[index].trim());
+    }
+    return tagsArr.map((el, index) => {
         let tagValue = el.trim();
-        return tagValue.length ? {
+        return {
             name: index,
             type: 'text',
             value: tagValue,
-        } : false;
+        };
     });
 }
 
@@ -81,5 +87,12 @@ export async function uploadImage(image) {
 }
 
 export async function getBlog(blogId) {
-    return await axios.get(`/api/restify/blogs/${blogId}`)
+    try {
+        let { data } = await axios.get(`/api/restify/blogs/${blogId}?realated=creator`);
+        data.attributes.tags = getTagsArray(get(data, 'attributes.tags', []));
+        return data;
+    }
+    catch (error) {
+        return error;
+    }
 }

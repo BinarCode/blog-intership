@@ -1,6 +1,14 @@
 <template>
-  <div class="max-h-full py-10">
-    <div class="w-5/6 mx-auto grid gap-5 lg:grid-cols-3  print:grid-cols-2">
+  <div class="w-5/6 mx-auto max-h-full py-5">
+    <div class="flex justify-between">
+      <h2 class="text-6xl">Blogs</h2>
+      <router-link to="/create-blog">
+        <base-button size="md" :outline="true" class=" self-end">
+          Create Blog
+        </base-button>
+      </router-link>
+    </div>
+    <div class="my-7 grid gap-5 lg:grid-cols-3  print:grid-cols-2">
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
 

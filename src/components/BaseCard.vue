@@ -9,36 +9,44 @@
     <div class="flex flex-col justify-between flex-1 p-6 bg-white">
       <div class="flex-1">
         <p class="text-sm font-medium text-indigo-600">
-          <span
-            v-for="(tag, index) in tagList"
-            :key="index"
-            class="mr-2 hover:underline"
-          >
+          <span v-for="(tag, index) in tagList" :key="index" class="mr-2 ">
             {{ tag.value }}
           </span>
         </p>
         <router-link :to="getId" class="block mt-2">
-          <p class="text-xl font-semibold text-gray-900">
+          <p class="text-xl font-semibold hover:underline text-gray-900">
             {{ get(post, 'attributes.title', '') }}
           </p>
         </router-link>
       </div>
-      <div class="flex items-center mt-6">
-        <div class="flex-shrink-0">
-          <img class="w-10 h-10 rounded-full" :src="getAvatar" alt="Avatar" />
+      <div class="flex items-center justify-between mt-6">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <img class="w-10 h-10 rounded-full" :src="getAvatar" alt="Avatar" />
+          </div>
+          <div class="ml-3">
+            <p class="text-sm font-medium text-gray-900">
+              <a href="#" class="hover:underline">
+                {{
+                  get(post, 'relationships.creator.attributes.first_name', '')
+                }}
+              </a>
+            </p>
+            <span class="flex space-x-1 text-sm text-gray-500">
+              {{ post.attributes.views || '0' }}
+              {{ $t('general.views.text') }}
+              <!-- &middot; {{ $t('minutes_read') }}-->
+            </span>
+          </div>
         </div>
-        <div class="ml-3">
-          <p class="text-sm font-medium text-gray-900">
-            <a href="#" class="hover:underline">
-              {{ get(post, 'relationships.creator.attributes.first_name', '') }}
-            </a>
-          </p>
-          <span class="flex space-x-1 text-sm text-gray-500">
-            {{ post.attributes.views || '0' }}
-            {{ $t('general.views.text') }}
-            <!-- &middot; {{ $t('minutes_read') }}-->
-          </span>
-        </div>
+        <router-link
+          v-if="+get(post, 'relationships.creator.id', null) === +userState.id"
+          :to="getEditBlogLink"
+        >
+          <base-button size="sm" :outline="true" class="self-center">
+            Edit Blog
+          </base-button>
+        </router-link>
       </div>
     </div>
   </div>
@@ -46,6 +54,7 @@
 
 <script>
 import get from 'lodash/get';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'BaseCard',
@@ -56,19 +65,23 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(['userState']),
     tagList() {
       const tags = get(this.post, 'attributes.tags', []);
       return typeof tags === 'string' ? JSON.parse(tags) : tags;
     },
     getAvatar() {
-      return get(
-        this.post,
-        'relationships.creator.avatar',
-        'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
+      if (!this.userState.avatar)
+        return 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
+      return (
+        'https://api-internship.binarcode.com/storage/' + this.userState.avatar
       );
     },
     getId() {
-      return `blogs/${get(this.post, 'id', 'not-found')}`;
+      return `/blogs/${get(this.post, 'id', 'not-found')}`;
+    },
+    getEditBlogLink() {
+      return `/edit-blog/${get(this.post, 'id', 'not-found')}`;
     },
   },
   methods: {

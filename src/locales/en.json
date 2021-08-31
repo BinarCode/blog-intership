@@ -3,6 +3,8 @@
   "blog.minutes_read": "0 minutes read|1 minute read|{n} minutes read",
 
   "general.blogs.title": "Blogs",
+  "general.createBlog.title": "Create Blog",
+  "general.editBlog.title": "Edit Blog",
   "general.menu.label": "Menu",
   "general.styleguide.title": "Styleguide",
   "general.styleguide.section.baseInput": "BaseInput component (email)",

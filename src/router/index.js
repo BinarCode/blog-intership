@@ -92,8 +92,8 @@ const routes = [
     },
   },
   {
-    path: '/blogs/:id',
-    name: 'SingleBlog',
+    path: '/blogs/:blogId',
+    name: 'Blog',
     component: Blog,
   }
 ]

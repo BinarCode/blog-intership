@@ -8,7 +8,7 @@
       'px-6 py-3 text-base': size === 'lg',
 
       'bg-indigo-600 bg-opacity-80': color === 'primary' && isDisabled,
-      'text-indigo-600 bg-white border border-indigo-600':
+      'text-indigo-600 bg-white border border-indigo-600 bg-transparent hover:bg-indigo-600 font-semibold hover:text-white py-2 px-4 hover:border-transparent rounded':
         color === 'primary' && outline,
       'bg-indigo-600': color === 'primary' && !disabled && !outline,
 
