@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-20 transition-height" :class="[edit ? 'h-1/2' : 'h-1/4 sm:h-1/3']">
+    <div class="mt-20">
       <div class="max-w-5xl mx-auto px-4 px-8 h-auto">
         <div class="flex justify-between">
           <div class="flex flex-col justify-center">
@@ -13,12 +13,12 @@
             </transition>
           </div>
           <transition name="fade-in-right" mode="out-in">
-            <div v-if="!edit" class="sm:min-w-0 flex flex-col self-center" :key="edit">
+            <div v-if="!edit" class="sm:min-w-0 self-center" :key="edit">
                 <base-button size="sm" @click="edit = !edit">
                   Edit profile
                 </base-button>
             </div>
-            <div v-if="edit" class="sm:min-w-0 flex flex-col self-center" :key="edit">
+            <div v-else class="sm:min-w-0 self-center" :key="edit">
                 <base-button size="sm" @click="onSave">
                   Save
                 </base-button>
@@ -33,99 +33,20 @@
             <base-input type="text" :label="$t('register.name.firstName')" v-model="profile.first_name" />
             <base-input type="text" :label="$t('register.name.firstName')" v-model="profile.last_name" />
           </div>
-          <div v-else class="text-2xl sm:block mt-6 min-w-0" :key="edit">
+          <div v-else class="text-2xl mt-6 min-w-0" :key="edit">
             <span>{{ user.first_name }} {{ user.last_name }}</span>
           </div>
         </transition>
       </div>
     </div>
-    <hr class="mt-0 md:mt-2"/>
 
-    <!-- Description list -->
-    <div class="mt-4 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-        <div class="sm:col-span-1">
-          <dt class="text-sm font-medium text-gray-500">
-            Email
-          </dt>
-          <dd class="mt-1 text-sm text-gray-900">
-            {{ user.email }}
-          </dd>
-        </div>
-
-        <div class="sm:col-span-1">
-          <dt class="text-sm font-medium text-gray-500">
-            Last updated at
-          </dt>
-          <dd class="mt-1 text-sm text-gray-900">
-            {{ user.updated_at }}
-          </dd>
-        </div>
-      </dl>
-    </div>
-
-    <!-- Latest comments -->
-    <div class="mt-4 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
-      <h2 class="text-sm font-medium text-gray-500">Latest comments</h2>
-
-      <div
-          v-for="(comment, index) in comments"
-          :key="index"
-          :comment="comment"
-          class="mt-1"
-      >
-        <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-pink-500">
-          <div class="flex-1 min-w-0">
-            <a href="#" class="focus:outline-none">
-              <span class="absolute inset-0" aria-hidden="true"></span>
-              <p class="text-sm font-medium text-gray-900">
-                Commented in <span class="font-bold">blog_name</span>
-              </p>
-              <p class="text-sm text-gray-500 truncate">
-                {{ comment.attributes.body }}
-              </p>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-
-    <!-- Modal -->
-    <!-- This example requires Tailwind CSS v2.0+ -->
     <transition name="fade">
+      <!-- Modal -->
       <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" v-if="showModal">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <!--
-            Background overlay, show/hide based on modal state.
-
-            Entering: "ease-out duration-300"
-              From: "opacity-0"
-              To: "opacity-100"
-            Leaving: "ease-in duration-200"
-              From: "opacity-100"
-              To: "opacity-0"
-          -->
-          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-
-          <!-- This element is to trick the browser into centering the modal contents. -->
+          <div class="fixed inset-0 bg-gray-500 bg-opacity-75" aria-hidden="true" @click="showModal = false"></div>
           <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-          <!--
-            Modal panel, show/hide based on modal state.
-
-            Entering: "ease-out duration-300"
-              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              To: "opacity-100 translate-y-0 sm:scale-100"
-            Leaving: "ease-in duration-200"
-              From: "opacity-100 translate-y-0 sm:scale-100"
-              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          -->
-          <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+          <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
             <div class="sm:flex sm:items-start">
               <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -151,11 +72,11 @@
                 </div>
               </div>
             </div>
-            <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-              <base-button class="ml-2" @click="uploadAvatar">
+            <div class="mt-5 flex flex-row-reverse">
+              <base-button size="sm" class="ml-2" @click="uploadAvatar">
                 Save
               </base-button>
-              <base-button @click = "showModal = false">
+              <base-button size="sm" outline @click = "showModal = false">
                 Cancel
               </base-button>
             </div>
@@ -163,9 +84,6 @@
         </div>
       </div>
     </transition>
-
-
-
 
   </div>
 </template>
@@ -180,13 +98,11 @@ export default {
 
   data() {
     return {
-      loading: false,
       edit: false,
       profile: {
         first_name: '',
         last_name: ''
       },
-      avatar: String,
       blogs: [],
       comments: [],
       showModal: false
@@ -217,16 +133,12 @@ export default {
         this.blogs = get(userProfile, 'data.relationships.blogs', []);
         this.comments = get(userProfile, 'data.relationships.comments', []);
         this.media = get(userProfile, 'data.relationships.media', []);
-
-        console.log(this.comments);
       } catch (error) {
         this.notifyErrors(error);
       }
     },
 
     async onSave() {
-      this.loading = true;
-
       try {
         await userService.updateProfile(this.profile);
 
@@ -243,14 +155,10 @@ export default {
         this.edit = false;
       } catch (error) {
         this.notifyErrors(error);
-      } finally {
-        this.loading = false;
       }
     },
 
     async onClear() {
-      this.loading = true;
-
       try {
         await userService.clearAvatar();
 
@@ -264,8 +172,6 @@ export default {
         });
       } catch (error) {
         this.notifyErrors(error);
-      } finally {
-        this.loading = false;
       }
     },
 
@@ -305,25 +211,20 @@ export default {
   },
 
   created() {
-    this.getUserProfile();
+    //this.getUserProfile(); this will be used if we will add users' blogs, comments or media on this page
     this.profile.first_name = this.user.first_name;
     this.profile.last_name = this.user.last_name;
-    this.avatar = this.user.avatar || 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
   }
 }
 </script>
 
 <style scoped>
-.transition-height {
-  transition: height 0.45s;
-}
-
 .fade-in-top-enter-active {
-  animation: fadeintop 0.2s;
+  animation: fadeintop 0.3s;
 }
 
 .fade-in-top-leave-active {
-  animation: fadeintop 0.2s reverse;
+  animation: fadeintop 0.3s reverse;
 }
 
 @keyframes fadeintop {
@@ -356,6 +257,7 @@ export default {
     opacity: 100%;
   }
 }
+
 
 .fade-in-right-enter-active {
   animation: fadeinright 0.2s;
