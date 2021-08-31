@@ -41,6 +41,7 @@
   "navbarHome.name": "Home",
   "navbarEditBlog.name": "Edit blog",
   "navbarCreateBlog.name": "Create new blog",
+  "navbarSearch.placeholder.name":"Search",
 
   "notifyMessage.succes.logIn": "You have successfully logged in",
   "notifyMessage.succes.register": "You have successfully registered",
