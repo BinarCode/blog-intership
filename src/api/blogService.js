@@ -18,3 +18,10 @@ export async function getBlog(blogId) {
     return await axios.get(`/api/restify/blogs/${blogId}`)
 }
 
+export async function getSearchedBlogs(searchTerm) {
+    const params = {
+        search: searchTerm,
+    }
+
+    return await axios.get('/api/blogs/advance-search', { params })
+}

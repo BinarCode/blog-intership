@@ -49,7 +49,10 @@
               type="search"
               name="search"
               placeholder="Search"
-              class="block pl-10 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+              class="block pl-10 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500
+                focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+              v-model="search"
+              @keyup.enter="goToSearch"
             />
           </div>
           <profile-dropdown username="someusername" avatar="" />
@@ -85,10 +88,24 @@ import GuestDropdown from '@/components/GuestDropdown.vue';
 export default {
   name: 'BaseNavbar',
   components: { ProfileDropdown, GuestDropdown },
+  data() {
+    return {
+        search: '',
+    };
+  },
   computed: {
     ...mapGetters(['userState']),
     routeName() {
       return this.$route.name;
+    },
+  },
+  methods: {
+    goToSearch() {
+      this.$router.push({
+        query: {
+          search_text: this.search
+        }
+      });
     },
   },
 };

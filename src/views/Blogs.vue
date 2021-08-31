@@ -11,7 +11,7 @@
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
 import BaseCard from '@/components/BaseCard';
-import { getBlogs } from '@/api/blogService.js';
+import { getBlogs, getSearchedBlogs } from '@/api/blogService.js';
 
 export default {
   components: { BaseCard, InfiniteLoading },
@@ -21,6 +21,16 @@ export default {
       list: [],
       page: 1,
     };
+  },
+  watch: {
+    '$route.query.search_text': {
+      handler: async function (search) {
+        const data = await getSearchedBlogs(search);
+        console.log(data)
+      },
+      deep: true,
+      immediate: true
+    }
   },
   methods: {
     async infiniteHandler($state) {
