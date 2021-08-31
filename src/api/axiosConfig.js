@@ -36,9 +36,6 @@ instance.interceptors.request.use((config) => {
             Accept: 'application/json',
         }
     }
-    // if (!config.headers['Content-Type']) {
-    //     config.headers['Content-Type'] = 'multipart/form-data';
-    // }
     return config;
 },
     (error) => {

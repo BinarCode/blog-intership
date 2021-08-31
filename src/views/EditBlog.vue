@@ -67,25 +67,15 @@ export default {
     };
   },
   methods: {
-    createTagsArray() {
-      let tags = this.blogData.tags.split(',');
-      tags = tags.map((el, index) => {
-        let tagValue = el.trim();
-        return {
-          name: index,
-          type: 'text',
-          value: tagValue,
-        };
-      });
-      return JSON.stringify(tags);
-    },
     async onSubmit() {
       try {
         this.loading = true;
-        let tags = this.createTagsArray();
-        let submitData = { ...this.blogData, tags };
-        let res = await updateBlog({ blogId: this.blogId, data: submitData });
-        if (has(res, 'message')) {
+        const submitData = {
+          blogId: this.blogId,
+          data: this.blogData,
+        };
+        let res = await updateBlog(submitData);
+        if (has(res, 'errorArr')) {
           this.notifyErrors(res);
         } else {
           this.$notify({
@@ -94,10 +84,10 @@ export default {
             type: 'success',
           });
         }
-        await this.getBlogData(this.blogId);
       } catch (error) {
         console.log(error);
       } finally {
+        await this.getBlogData(this.blogId);
         this.loading = false;
       }
     },

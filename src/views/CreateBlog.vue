@@ -91,18 +91,6 @@ export default {
     };
   },
   methods: {
-    createTagsArray() {
-      let tags = this.blogData.tags.split(',');
-      tags = tags.map((el, index) => {
-        let tagValue = el.trim();
-        return {
-          name: index,
-          type: 'text',
-          value: tagValue,
-        };
-      });
-      return JSON.stringify(tags);
-    },
     showImage(event) {
       this.blogData.image = event.target.files[0];
       this.previewImage = URL.createObjectURL(this.blogData.image);
@@ -110,10 +98,9 @@ export default {
     async onSubmit() {
       try {
         this.loading = true;
-        let tags = this.createTagsArray();
-        const submitData = { ...this.blogData, tags };
+        const submitData = { ...this.blogData };
         let res = await createBlog(submitData);
-        if (has(res, 'message')) this.notifyErrors(res);
+        if (has(res, 'errorArr')) this.notifyErrors(res);
         else {
           this.$notify({
             title: this.$t('general.notify.succesTitle'),
