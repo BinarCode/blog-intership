@@ -3,7 +3,7 @@
     class="flex items-center justify-center mt-1 font-medium text-white rounded-md shadow-sm"
     :class="{
       'cursor-not-allowed': isDisabled,
-      'px-3 py-2 text-sm': size === 'sm',
+      'px-2 py-1 text-sm': size === 'sm',
       'px-4 py-2 text-base': size === 'md',
       'px-6 py-3 text-base': size === 'lg',
 

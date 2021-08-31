@@ -1,10 +1,10 @@
 <template>
   <div class="w-5/6 mx-auto max-h-full py-5">
     <div class="flex justify-between">
-      <h2 class="text-6xl">Blogs</h2>
-      <router-link to="/create-blog">
-        <base-button size="md" :outline="true" class=" self-end">
-          Create Blog
+      <div class="text-6xl">{{ $t('general.blogs.title') }}</div>
+      <router-link to="/create-blog" class="self-end">
+        <base-button size="md" :outline="true">
+          {{ $t('general.createBlog.title') }}
         </base-button>
       </router-link>
     </div>

@@ -44,7 +44,7 @@
           :to="getEditBlogLink"
         >
           <base-button size="sm" :outline="true" class="self-center">
-            Edit Blog
+            {{ $t('general.editBlog.title') }}
           </base-button>
         </router-link>
       </div>
