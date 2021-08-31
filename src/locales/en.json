@@ -45,6 +45,7 @@
   "notifyMessage.success.title": "Success",
   "notifyMessage.success.updateProfile": "Your profile has successfully been updated!",
   "notifyMessage.success.clearAvatar": "Your avatar has successfully been cleared!",
+  "notifyMessage.success.updateAvatar": "Your avatar has successfully been updated!",
   "notifyMessage.succes.logIn": "You have successfully logged in",
   "notifyMessage.succes.register": "You have successfully registered",
   "notifyTitle.succes.register": "Congratulations!",
