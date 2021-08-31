@@ -17,7 +17,7 @@
             {{ tag.value }}
           </span>
         </p>
-        <router-link :to="getSlug" class="block mt-2">
+        <router-link :to="getId" class="block mt-2">
           <p class="text-xl font-semibold text-gray-900">
             {{ get(post, 'attributes.title', '') }}
           </p>
@@ -67,8 +67,8 @@ export default {
         'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
       );
     },
-    getSlug() {
-      return `blogs/${get(this.post, 'attributes.slug', 'not-found')}`;
+    getId() {
+      return `blogs/${get(this.post, 'id', 'not-found')}`;
     },
   },
   methods: {

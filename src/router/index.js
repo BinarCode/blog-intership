@@ -9,6 +9,7 @@ import Profile from '@/views/Profile';
 import ForgotPassword from '@/views/ForgotPassword';
 import EditBlog from '@/views/EditBlog';
 import CreateBlog from '@/views/CreateBlog';
+import Blog from '@/views/Blog'
 
 Vue.use(VueRouter)
 
@@ -89,6 +90,11 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
+  },
+  {
+    path: '/blogs/:id',
+    name: 'SingleBlog',
+    component: Blog,
   }
 ]
 

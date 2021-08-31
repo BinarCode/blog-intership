@@ -79,3 +79,7 @@ export async function uploadImage(image) {
         return error;
     }
 }
+
+export async function getBlog(blogId) {
+    return await axios.get(`/api/restify/blogs/${blogId}`)
+}
