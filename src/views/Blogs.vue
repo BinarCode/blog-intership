@@ -5,6 +5,7 @@
     </div>
 
     <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+    <p class="w-full text-center">{{ searchTermError }}</p>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ export default {
       list: [],
       page: 1,
       searchTerm: '',
+      searchTermError: '',
     };
   },
   methods: {
@@ -47,7 +49,11 @@ export default {
         perPage: 9,
         sort: '-views',
       });
-      if (data.length) {
+      if (data.length == 0) {
+        this.list = [];
+        this.searchTermError = `There were 0 search results for "${this.searchTerm}"`;
+      } else {
+        this.searchTermError = '';
         this.page += 1;
         this.list = data;
       }

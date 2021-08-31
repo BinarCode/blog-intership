@@ -103,6 +103,7 @@ import { mapGetters } from 'vuex';
 import GuestDropdown from '@/components/GuestDropdown.vue';
 import VueSimpleSuggest from 'vue-simple-suggest';
 import eventBus from '@/api/eventBus';
+
 export default {
   name: 'BaseNavbar',
   components: {

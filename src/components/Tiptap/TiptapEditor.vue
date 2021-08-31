@@ -6,7 +6,7 @@
     />
     <editor-content :editor="editor" class="border-2 border-black" />
     <span class="float-right">
-      Character count: {{ editor.getCharacterCount() }}
+      {{ $t('tiptap.characterCount') }}: {{ editor.getCharacterCount() }}
     </span>
   </div>
 </template>
