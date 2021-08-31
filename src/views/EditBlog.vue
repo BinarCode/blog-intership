@@ -70,11 +70,10 @@ export default {
     async onSubmit() {
       try {
         this.loading = true;
-        const submitData = {
+        let res = await updateBlog({
           blogId: this.blogId,
-          data: this.blogData,
-        };
-        let res = await updateBlog(submitData);
+          data: { ...this.blogData },
+        });
         if (has(res, 'errorArr')) {
           this.notifyErrors(res);
         } else {
@@ -88,18 +87,14 @@ export default {
       } catch (error) {
         console.log(error);
       } finally {
-        await this.getBlogData(this.blogId);
         this.loading = false;
       }
-    },
-    async getBlogData(blogId) {
-      this.blogData = await getEditBlog(blogId);
     },
   },
   async mounted() {
     this.blogId = get(this.$route, 'params.blogId', '');
     try {
-      await this.getBlogData(this.blogId);
+      this.blogData = await getEditBlog(this.blogId);
     } finally {
       this.fetched = true;
     }

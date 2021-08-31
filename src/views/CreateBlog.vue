@@ -98,8 +98,7 @@ export default {
     async onSubmit() {
       try {
         this.loading = true;
-        const submitData = { ...this.blogData };
-        let res = await createBlog(submitData);
+        let res = await createBlog({ ...this.blogData });
         if (has(res, 'errorArr')) this.notifyErrors(res);
         else {
           this.$router.push(`/blogs/${res.data.id}`);
