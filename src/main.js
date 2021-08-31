@@ -9,7 +9,7 @@ import axios from '@/api/axiosConfig';
 import '@/assets/tailwind.css';
 import '@/assets/base/common.css';
 import notifications from '@/plugins/notifications.js';
-import mixins from './plugins/mixins';
+import mixins from '@/utility/mixins';
 
 import authMiddleware from "@/middleware/authMiddleware"
 

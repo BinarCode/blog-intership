@@ -1,25 +1,39 @@
 <template>
-  <div class="w-5/6 mx-auto max-h-full py-10">
+  <div style="height:fit-content" class="w-5/6 mx-auto max-h-full py-10">
+    <div class="flex justify-between">
+      <div class="text-6xl">
+        {{ $t('editBlog.page.title') + ` #${blogId}` }}
+      </div>
+      <base-button
+        size="md"
+        color="danger"
+        class="self-end"
+        @click="deleteBlog"
+        outline
+      >
+        {{ $t('general.button.deleteBlog') }}
+      </base-button>
+    </div>
     <div class="sm:mx-auto sm:w-full">
-      <div class="px-4 py-8 bg-white shadow rounded-lg  sm:px-10">
+      <div class="p-4 my-10 bg-white shadow rounded-lg  sm:px-10">
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent>
             <div class="grid grid-cols-1 sm:grid-cols-2">
               <base-input
-                v-model="blogData.title"
+                v-model="blog.title"
                 :name="$t('createBlog.name.title')"
                 :label="$t('createBlog.name.title')"
                 rules="required"
-                placeholder="What is Lorem Ipsum?"
+                :placeholder="$t('createBlog.placeholder.title')"
                 class="sm:mr-3"
               />
 
               <base-input
-                v-model="blogData.tags"
+                v-model="blog.tags"
                 :name="$t('createBlog.name.tags')"
                 :label="$t('createBlog.name.tags')"
                 rules="required"
-                placeholder="earthship, biotecture, sustainable"
+                :placeholder="$t('createBlog.placeholder.tags')"
                 class="sm:ml-3"
               />
             </div>
@@ -29,9 +43,8 @@
                 {{ $t('createBlog.name.content') }}
               </label>
               <tiptap-editor
-                classes="h-40 overflow-y-auto"
                 v-if="fetched"
-                v-model="blogData.content"
+                v-model="blog.content"
               />
             </div>
             <base-button
@@ -52,7 +65,8 @@
 
 <script>
 import TiptapEditor from '@/components/TiptapEditor';
-import { getEditBlog, updateBlog } from '@/api/blogService.js';
+import { getBlog, updateBlog, deleteBlog } from '@/api/blogService.js';
+import { getTagsArray, tagsArrToString } from '@/utility/tags';
 import get from 'lodash/get';
 import has from 'lodash/has';
 
@@ -63,16 +77,30 @@ export default {
     return {
       fetched: false,
       loading: false,
-      blogData: {},
+      blogId: null,
+      blog: {},
     };
   },
   methods: {
+    async deleteBlog() {
+      try {
+        await deleteBlog(this.blogId);
+        this.$notify({
+          title: this.$t('general.notify.succesTitle'),
+          message: this.$t('deleteBlog.notify.succesMessage'),
+          type: 'info',
+        });
+        this.$router.push(`/`);
+      } catch (error) {
+        this.notifyErrors(error);
+      }
+    },
     async onSubmit() {
       try {
         this.loading = true;
         let res = await updateBlog({
           blogId: this.blogId,
-          data: { ...this.blogData },
+          data: { ...this.blog },
         });
         if (has(res, 'errorArr')) {
           this.notifyErrors(res);
@@ -85,7 +113,7 @@ export default {
           });
         }
       } catch (error) {
-        console.log(error);
+        this.notifyErrors(error);
       } finally {
         this.loading = false;
       }
@@ -94,7 +122,15 @@ export default {
   async mounted() {
     this.blogId = get(this.$route, 'params.blogId', '');
     try {
-      this.blogData = await getEditBlog(this.blogId);
+      let data = await getBlog(this.blogId);
+      data.attributes.tags = tagsArrToString(
+        getTagsArray(get(data, 'attributes.tags', ''))
+      );
+      this.blog = {
+        title: get(data, 'attributes.title', ''),
+        tags: get(data, 'attributes.tags', []),
+        content: get(data, 'attributes.content', ''),
+      };
     } finally {
       this.fetched = true;
     }

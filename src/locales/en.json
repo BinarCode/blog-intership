@@ -4,6 +4,7 @@
 
   "general.blogs.title": "Blogs",
   "general.createBlog.title": "Create Blog",
+
   "general.editBlog.title": "Edit",
   "general.menu.label": "Menu",
   "general.styleguide.title": "Styleguide",
@@ -50,14 +51,20 @@
 
   "tiptap.setLink": "Please insert a valid URL",
 
+  "editBlog.page.title": "Edit blog",
   "createBlog.name.title": "Title",
-  "createBlog.name.tags": "Tags",
+  "createBlog.name.tags": "Tags (separated by comma)",
   "createBlog.name.content": "Content",
   "createBlog.name.coverImage": "Cover Image",
-  "general.button.chooseFile": "Choose file ",
+  "createBlog.placeholder.title": "What is Lorem Ipsum?",
+  "createBlog.placeholder.tags": "earthship, biotecture, sustainable",
   "createBlog.button.publish": "Publish",
-  "createBlog.notify.succesMessage": "The blog was successfully created.",
+  "createBlog.notify.succesMessage": "The blog was successfully created. You can access it by ",
+  "createBlog.notify.clickHere": " clicking here",
   "editBlog.notify.succesMessage": "The blog was successfully created.",
+  "deleteBlog.notify.succesMessage": "The blog has been deleted.",
+  "general.button.chooseFile": "Choose file ",
+  "general.button.deleteBlog": "Delete Blog",
   "general.notify.succesTitle": "Succes",
   "general.notify.errorTitle": "Error"
 }

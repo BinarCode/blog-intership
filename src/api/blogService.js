@@ -1,26 +1,13 @@
 import axios from '@/api/axiosConfig';
-import get from 'lodash/get';
+import { createTagsArr } from '@/utility/tags';
 
-function createTagsArray(tags) {
-    tags = tags.split(',');
-    let tagsArr = [];
-    for (let index in tags) {
-        if (!tags[index].trim().length)
-            continue;
-        tagsArr.push(tags[index].trim());
-    }
-    return tagsArr.map((el, index) => {
-        let tagValue = el.trim();
-        return {
-            name: index,
-            type: 'text',
-            value: tagValue,
-        };
-    });
-}
-
-function getTagsArray(tags) {
-    return typeof (tags) === 'string' ? JSON.parse(tags) : tags;
+function createFormData(data) {
+    const formData = new FormData();
+    formData.append('title', data.title);
+    formData.append('tags', data.tags);
+    formData.append('content', data.content);
+    formData.append('image', data.image);
+    return formData;
 }
 
 export async function getBlogs({ page, perPage, sort }) {
@@ -38,22 +25,38 @@ export async function getBlogs({ page, perPage, sort }) {
     }
 }
 
-export async function getEditBlog(blogId) {
+export async function getBlog(blogId) {
     try {
-        let { data } = await axios.get(`/api/restify/blogs/${blogId}`);
-        let tags = getTagsArray(get(data, 'attributes.tags', []));
-        return await {
-            title: get(data, 'attributes.title', ''),
-            tags: tags.map(el => el.value).join(', ') || '',
-            content: get(data, 'attributes.content', ''),
-        };
+        let { data } = await axios.get(`/api/restify/blogs/${blogId}?realated=creator`);
+        return data;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
+export async function deleteBlog(blogId) {
+    try {
+        let { data } = await axios.delete(`/api/restify/blogs/${blogId}`);
+        return data;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
+export async function createBlog(data) {
+    data.tags = JSON.stringify(createTagsArr(data.tags));
+    data = createFormData(data);
+    try {
+        return await axios.post(`/api/restify/blogs/`, data);
     } catch (error) {
         return error;
     }
 }
 
 export async function updateBlog({ blogId, data }) {
-    data.tags = JSON.stringify(createTagsArray(data.tags));
+    data.tags = JSON.stringify(createTagsArr(data.tags));
     try {
         return await axios.put(`/api/restify/blogs/${blogId}`, data);
     } catch (error) {
@@ -61,19 +64,6 @@ export async function updateBlog({ blogId, data }) {
     }
 }
 
-export async function createBlog(data) {
-    const formData = new FormData();
-    data.tags = JSON.stringify(createTagsArray(data.tags));
-    formData.append('title', data.title);
-    formData.append('tags', data.tags);
-    formData.append('content', data.content);
-    formData.append('image', data.image);
-    try {
-        return await axios.post(`/api/restify/blogs/`, formData);
-    } catch (error) {
-        return error;
-    }
-}
 
 export async function uploadImage(image) {
     const formData = new FormData();
@@ -87,13 +77,4 @@ export async function uploadImage(image) {
     }
 }
 
-export async function getBlog(blogId) {
-    try {
-        let { data } = await axios.get(`/api/restify/blogs/${blogId}?realated=creator`);
-        data.attributes.tags = getTagsArray(get(data, 'attributes.tags', []));
-        return data;
-    }
-    catch (error) {
-        return error;
-    }
-}
+

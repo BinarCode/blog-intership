@@ -3,7 +3,10 @@
     <div class="flex-shrink-0">
       <img
         class="object-cover w-full h-48"
-        :src="post.attributes.image || 'https://i.stack.imgur.com/y9DpT.jpg'"
+        :src="
+          get(post, 'attributes.image', false) ||
+            'https://i.stack.imgur.com/y9DpT.jpg'
+        "
       />
     </div>
     <div class="flex flex-col justify-between flex-1 p-6 bg-white">

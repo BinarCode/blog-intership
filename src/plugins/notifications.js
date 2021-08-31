@@ -13,7 +13,8 @@ export default {
                     notification.position === 'top-right'
                     || notification.position === 'top-left'
                     || !notification.position
-                ) ? 64 : 0
+                ) ? 64 : 0,
+                dangerouslyUseHTMLString: notification.dangerouslyUseHTMLString || false,
             });
         }
     }
