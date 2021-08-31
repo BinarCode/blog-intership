@@ -1,3 +1,4 @@
+
 import axios from '@/api/axiosConfig'
 
 export async function getBlogs(searchTerm, { page, perPage, sort }) {
@@ -35,5 +36,3 @@ export async function getBlogSearchResults(searchTerm) {
 //              }
 //           } )
 //     }
-
-

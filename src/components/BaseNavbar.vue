@@ -103,7 +103,6 @@ import { mapGetters } from 'vuex';
 import GuestDropdown from '@/components/GuestDropdown.vue';
 import VueSimpleSuggest from 'vue-simple-suggest';
 import eventBus from '@/api/eventBus';
-
 export default {
   name: 'BaseNavbar',
   components: {
@@ -119,11 +118,7 @@ export default {
   methods: {
     getSearchResult: async function() {
       try {
-        if (this.$route.path == '/') {
-          eventBus.$emit('update:searchTerm', this.search);
-        }
         let blogs = await getBlogSearchResults(this.search);
-
         return blogs.data;
       } catch (err) {
         console.log(err);
@@ -141,6 +136,13 @@ export default {
     ...mapGetters(['userState']),
     routeName() {
       return this.$route.name;
+    },
+  },
+  watch: {
+    search: function() {
+      if (this.$route.path == '/') {
+        eventBus.$emit('update:searchTerm', this.search);
+      }
     },
   },
 };
