@@ -42,10 +42,7 @@
               <label class="text-sm font-medium text-gray-700">
                 {{ $t('createBlog.name.content') }}
               </label>
-              <tiptap-editor
-                v-if="fetched"
-                v-model="blog.content"
-              />
+              <tiptap-editor v-if="fetched" v-model="blog.content" />
             </div>
             <base-button
               @click="onSubmit"
@@ -64,7 +61,7 @@
 </template>
 
 <script>
-import TiptapEditor from '@/components/TiptapEditor';
+import TiptapEditor from '@/components/TipTap/TiptapEditor';
 import { getBlog, updateBlog, deleteBlog } from '@/api/blogService.js';
 import { getTagsArray, tagsArrToString } from '@/utility/tags';
 import get from 'lodash/get';

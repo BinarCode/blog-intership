@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import TiptapEditor from '@/components/TiptapEditor';
+import TiptapEditor from '@/components/TipTap/TiptapEditor';
 import { createBlog } from '@/api/blogService.js';
 import has from 'lodash/has';
 

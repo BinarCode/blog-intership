@@ -50,6 +50,7 @@
   "notifyTitle.succes.register": "Congratulations!",
 
   "tiptap.setLink": "Please insert a valid URL",
+  "tiptap.characterCount": "Character count",
 
   "editBlog.page.title": "Edit blog",
   "createBlog.name.title": "Title",
