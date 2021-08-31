@@ -1,4 +1,5 @@
 import authService from '@/api/authService';
+//import userService from '@/api/userService';
 import get from 'lodash/get';
 
 export default {
@@ -8,6 +9,7 @@ export default {
                 let { data } = await authService.login(model);
                 const token = get(data, 'token.plainTextToken', '');
                 const user = get(data, 'user', {});
+                user.avatar = `https://api-internship.binarcode.com/storage/${user.avatar}`;
 
                 this.$notify({
                     title: this.$t('notifyMessage.success.title'),
