@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="mt-20 transition-height" :class="[edit ? 'h-1/2' : 'h-1/2 sm:h-1/3']">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-auto">
+    <div class="mt-20 transition-height" :class="[edit ? 'h-1/2' : 'h-1/4 sm:h-1/3']">
+      <div class="max-w-5xl mx-auto px-4 px-8 h-auto">
         <div class="flex justify-between">
           <div class="flex flex-col justify-center">
-            <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 flex-shrink-0" :src="avatar" alt="">
+            <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 flex-shrink-0" :src="getAvatar" alt="Avatar">
             <transition name="fade-in-left">
               <span v-if="edit">
-                <a href="#" class="text-blue-500 hover:underline sm:ml-4">Upload</a>&nbsp;
-                <a href="#" class="text-red-500 hover:underline" @click="onClear">Clear</a>
+                <a href="#" class="text-blue-500 hover:underline sm:ml-4" @click="showModal = true">Upload</a>
+                <a href="#" class="text-red-500 hover:underline ml-1" @click="onClear">Clear</a>
               </span>
             </transition>
           </div>
@@ -39,7 +39,7 @@
         </transition>
       </div>
     </div>
-    <hr class="mt-2"/>
+    <hr class="mt-0 md:mt-2"/>
 
     <!-- Description list -->
     <div class="mt-4 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,7 +79,7 @@
             <a href="#" class="focus:outline-none">
               <span class="absolute inset-0" aria-hidden="true"></span>
               <p class="text-sm font-medium text-gray-900">
-                Commented in <span class="font-bold">{{ comment.attributes.blog_name }}</span>
+                Commented in <span class="font-bold">blog_name</span>
               </p>
               <p class="text-sm text-gray-500 truncate">
                 {{ comment.attributes.body }}
@@ -88,8 +88,85 @@
           </div>
         </div>
       </div>
-
     </div>
+
+
+
+
+
+
+    <!-- Modal -->
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <transition name="fade">
+      <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" v-if="showModal">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <!--
+            Background overlay, show/hide based on modal state.
+
+            Entering: "ease-out duration-300"
+              From: "opacity-0"
+              To: "opacity-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100"
+              To: "opacity-0"
+          -->
+          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+          <!-- This element is to trick the browser into centering the modal contents. -->
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+          <!--
+            Modal panel, show/hide based on modal state.
+
+            Entering: "ease-out duration-300"
+              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              To: "opacity-100 translate-y-0 sm:scale-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100 translate-y-0 sm:scale-100"
+              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          -->
+          <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div class="sm:flex sm:items-start">
+              <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+              </div>
+              <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                  Upload avatar
+                </h3>
+                <div class="mt-2">
+                  <span class="text-sm text-gray-500">
+                    Please select an image from your computer:
+                  </span>
+                  <form ref="uploadAvatar">
+                    <input
+                        type="file"
+                        @change="checkImage($event)"
+                        accept="image/gif, image/png, image/jpg, image/jpeg"
+                    >
+                  </form>
+                  <div class="mt-6 flex justify-center hidden" ref="preview">
+                    <img src="#" class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 flex-shrink-0" alt="Avatar preview" ref="avatarPreview">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+              <base-button class="ml-2" @click="uploadAvatar">
+                Save
+              </base-button>
+              <base-button @click = "showModal = false">
+                Cancel
+              </base-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+
+
+
   </div>
 </template>
 
@@ -111,7 +188,8 @@ export default {
       },
       avatar: String,
       blogs: [],
-      comments: []
+      comments: [],
+      showModal: false
     }
   },
 
@@ -119,6 +197,12 @@ export default {
     ...mapGetters({
       user: 'userState'
     }),
+
+    getAvatar() {
+      if (!this.user.avatar)
+        return 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
+      return this.user.avatar;
+    },
   },
 
   methods: {
@@ -170,6 +254,9 @@ export default {
       try {
         await userService.clearAvatar();
 
+        this.user.avatar = null;
+        await this.setUserState(this.user);
+
         this.$notify({
           title: this.$t('notifyMessage.success.title'),
           message: this.$t('notifyMessage.success.clearAvatar'),
@@ -180,6 +267,40 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+
+    checkImage(image) {
+      const mimeTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
+
+      try {
+        if(!mimeTypes.includes(image.target.files[0].type)) {
+          this.$refs.uploadAvatar.reset();
+          throw new Error('Only JPG, JPEG, PNG or GIF files are permitted. Please try again');
+        }
+
+        this.$refs.preview.classList.toggle("hidden");
+        this.$refs.avatarPreview.src = URL.createObjectURL(image.target.files[0]);
+      } catch (error) {
+        this.notifyErrors(error);
+      }
+    },
+
+    async uploadAvatar() {
+      const formData = new FormData();
+      formData.append('avatar', this.$refs.uploadAvatar[0].files[0]);
+
+      const {data} = await userService.updateAvatar(formData);
+
+      this.user.avatar = get(data, 'attributes.avatar', '');
+      await this.setUserState(this.user);
+
+      this.showModal = false;
+
+      this.$notify({
+        title: this.$t('notifyMessage.success.title'),
+        message: 'Your avatar has successfully been updated!',
+        type: 'success',
+      });
     }
   },
 
@@ -253,5 +374,13 @@ export default {
     transform: translateX(0px);
     opacity: 100%;
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
