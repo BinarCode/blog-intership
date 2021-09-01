@@ -33,28 +33,36 @@
 <script>
 import { getTagsArray } from '@/utility/tags';
 import get from 'lodash/get';
-import { getBlog, addViewOnBlog } from '@/api/blogService';
+import { getBlog } from '@/api/blogService';
 
 export default {
   name: 'Blog',
   data() {
     return {
-      blogId: this.$route.params.blogId,
       blog: null,
     };
   },
   async mounted() {
-    try {
-      let data = await getBlog(this.blogId);
-      data.attributes.tags = getTagsArray(get(data, 'attributes.tags', ''));
-      await addViewOnBlog(this.blogId);
-      this.blog = data;
-    } catch (error) {
-      this.notifyErrors(error);
-    }
+    this.parseBlogData();
+    // await addViewOnBlog(this.$route.params.blogId);
   },
   methods: {
     get,
+    async parseBlogData() {
+      try {
+        this.blog = await getBlog(this.$route.params.blogId);
+        this.blog.attributes.tags = getTagsArray(
+          get(this.blog, 'attributes.tags', '')
+        );
+      } catch (error) {
+        this.notifyErrors(error);
+      }
+    },
+  },
+  watch: {
+    async $route() {
+      this.parseBlogData();
+    },
   },
 };
 </script>

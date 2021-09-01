@@ -17,7 +17,7 @@ export async function getBlogs({ search, page, perPage, sort }) {
 }
 
 export async function getBlogSearchResults(searchTerm) {
-  return await axios.get(`/api/restify/blogs?sort=-views&search=${searchTerm}`);
+  return await axios.get(`/api/blogs/advance-search?search=${searchTerm}`);
 }
 
 function createFormData(data) {
