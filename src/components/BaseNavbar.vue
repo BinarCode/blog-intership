@@ -13,7 +13,7 @@
           <router-link
             class="router-link"
             :class="{ 'active-router-link': routeName === 'Blogs' }"
-            to="/blogs"
+            to="/"
           >
             {{ $t('general.blogs.title') }}
           </router-link>
@@ -79,14 +79,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import ProfileDropdown from '@/components/ProfileDropdown.vue';
 import GuestDropdown from '@/components/GuestDropdown.vue';
 export default {
   name: 'BaseNavbar',
   components: { ProfileDropdown, GuestDropdown },
   computed: {
-    ...mapGetters(['userState']),
     routeName() {
       return this.$route.name;
     },

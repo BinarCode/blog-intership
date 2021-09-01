@@ -1,10 +1,13 @@
 <template>
   <div>
-    <tiptap-menu-bar
-      :editor="editor"
-      class="sticky top-16 border bg-white z-10"
-    />
-    <editor-content :editor="editor" class="border-2 border-black" />
+    <div class=" ">
+      <tiptap-menu-bar :editor="editor" class="sticky border-none" />
+      <editor-content
+        :editor="editor"
+        :class="classes"
+        class="h-80 overflow-y-auto"
+      />
+    </div>
     <span class="float-right">
       {{ $t('tiptap.characterCount') }}: {{ editor.getCharacterCount() }}
     </span>
@@ -12,7 +15,7 @@
 </template>
 
 <script>
-import TiptapMenuBar from '@/components/Tiptap/TiptapMenuBar';
+import TiptapMenuBar from '@/components/TipTap/TiptapMenuBar';
 import { Editor, EditorContent } from '@tiptap/vue-2';
 import StarterKit from '@tiptap/starter-kit';
 import Code from '@tiptap/extension-code';
@@ -33,6 +36,10 @@ export default {
   },
 
   props: {
+    classes: {
+      type: String,
+      default: '',
+    },
     value: {
       type: String,
       default: '',
@@ -85,6 +92,13 @@ export default {
 </script>
 
 <style>
+.ProseMirror {
+  /* border: 1px solid black; */
+  min-height: 320px;
+  padding: 5px;
+  @apply text-sm;
+}
+
 .ProseMirror h1 {
   @apply text-5xl;
 }

@@ -1,6 +1,16 @@
 <template>
-  <div class="max-h-full py-10">
-    <div class="w-5/6 mx-auto grid gap-5 lg:grid-cols-3  print:grid-cols-2">
+  <div class="w-5/6 mx-auto max-h-full py-10">
+    <div class="flex justify-between">
+      <div class="text-6xl">{{ $t('general.blogs.title') }}</div>
+      <router-link to="/create-blog" class="self-end">
+        <base-button size="md" outline>
+          {{ $t('general.createBlog.title') }}
+        </base-button>
+      </router-link>
+    </div>
+    <div
+      class="my-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3  print:grid-cols-2"
+    >
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
 
@@ -27,8 +37,8 @@ export default {
       let data = await getBlogs({
         page: this.page,
         perPage: 9,
-        sort: '-views',
-        related: 'creator'
+        sort: '-id',
+        related: 'creator',
       });
 
       if (data.length) {
