@@ -5,8 +5,7 @@
       <label
         v-show="type === 'password' && inputValue"
         @click="switchType"
-        class="bg-gray-200 flex hover:bg-gray-300 rounded px-2  text-xs text-gray-600 font-mono cursor-pointer"
-        for="toggle"
+        class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-xs text-gray-600 font-mono cursor-pointer"
       >
         <span class="self-center">
           {{ typePassword === 'password' ? 'show' : 'hide' }}
