@@ -2,7 +2,7 @@
   <div style="height:fit-content" class="w-5/6 mx-auto max-h-full py-10">
     <div class="flex justify-between">
       <div class="text-5xl sm:text-6xl">
-        {{ $t('editBlog.page.title') + ` #${blogId}` }}
+        {{ $t('editBlog.page.title') }}
       </div>
       <base-button
         size="md"

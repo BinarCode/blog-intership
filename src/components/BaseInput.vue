@@ -3,7 +3,7 @@
     <label class="text-sm font-medium text-gray-700 flex justify-between">
       <slot>{{ label }}</slot>
       <label
-        v-show="type === 'password' && value.length"
+        v-if="type === 'password' && value.length"
         @click="switchType"
         class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-0.5 text-xs text-gray-600 font-mono cursor-pointer"
       >
