@@ -55,19 +55,9 @@
               :list="getSearchResult"
               :max-suggestions="5"
               :debounce="500"
-              :controls="{
-                selectionUp: [38, 33],
-                selectionDown: [40, 34],
-                select: [13, 36],
-                showList: [40],
-                hideList: [27, 35],
-                autocomplete: [32, 13],
-              }"
+              :controls="searchControls"
               :filter-by-query="true"
             >
-              <div slot="suggestion-item" slot-scope="{ suggestion }">
-                <div>{{ suggestion.attributes.title }}</div>
-              </div>
             </vue-simple-suggest>
           </div>
           <profile-dropdown username="someusername" avatar="" />
@@ -127,7 +117,7 @@ export default {
     },
     goToBlog: function(currentSuggestion) {
       //when clicking a suggestion this function is called; see line 45
-      const path = `/blogs/${currentSuggestion.id}/${currentSuggestion.attributes.slug}`;
+      const path = `/blogs/${currentSuggestion.id}`;
       if (this.$route.path != path) {
         this.$router.push(path);
       }
@@ -137,6 +127,16 @@ export default {
     ...mapGetters(['userState']),
     routeName() {
       return this.$route.name;
+    },
+    searchControls() {
+      return {
+        selectionUp: [38, 33],
+        selectionDown: [40, 34],
+        select: [13, 36],
+        showList: [40],
+        hideList: [27, 35],
+        autocomplete: [32, 13],
+      };
     },
   },
   watch: {

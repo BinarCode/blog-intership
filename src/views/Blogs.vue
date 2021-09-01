@@ -27,7 +27,8 @@ export default {
   },
   methods: {
     async infiniteHandler($state) {
-      let data = await getBlogs(this.searchTerm, {
+      let data = await getBlogs({
+        search: this.searchTerm,
         page: this.page,
         perPage: 9,
         sort: '-views',
@@ -44,7 +45,8 @@ export default {
   watch: {
     searchTerm: async function() {
       this.page = 1;
-      let data = await getBlogs(this.searchTerm, {
+      let data = await getBlogs({
+        search: this.searchTerm,
         page: this.page,
         perPage: 9,
         sort: '-views',

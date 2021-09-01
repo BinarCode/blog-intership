@@ -1,16 +1,14 @@
 import axios from '@/api/axiosConfig';
 
-export async function getBlogs(searchTerm, { page, perPage, sort }) {
+export async function getBlogs({ search, page, perPage, sort }) {
   let params = {
-    page: page,
-    perPage: perPage,
-    sort: sort,
+    search,
+    page,
+    perPage,
+    sort,
   };
   try {
-    let { data } = await axios.get(
-      '/api/restify/blogs?sort=-views&search=' + searchTerm,
-      { params }
-    );
+    let { data } = await axios.get('/api/restify/blogs', { params });
     return data;
   } catch (error) {
     return error;
