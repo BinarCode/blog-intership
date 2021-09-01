@@ -44,11 +44,13 @@ export default {
 
   methods: {
     handleCommand(command) {
-      if (command === 'Login' && this.routeName !== 'Login')
-        this.$router.push({ name: 'Login' });
+      if (command === 'Login' && this.routeName !== 'Login') {
+        this.$router.push({name: 'Login'});
+      }
 
-      else if (command === 'Register' && this.routeName !== 'Register')
-        this.$router.push({ name: 'Register' });
+      else if (command === 'Register' && this.routeName !== 'Register') {
+        this.$router.push({name: 'Register'});
+      }
     },
   },
 }
