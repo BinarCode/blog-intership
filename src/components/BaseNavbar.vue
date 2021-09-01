@@ -81,6 +81,7 @@
 <script>
 import ProfileDropdown from '@/components/ProfileDropdown.vue';
 import GuestDropdown from '@/components/GuestDropdown.vue';
+
 export default {
   name: 'BaseNavbar',
   components: { ProfileDropdown, GuestDropdown },
