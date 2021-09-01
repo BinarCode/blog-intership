@@ -59,8 +59,8 @@ export default {
     return {
       loading: false,
       model: {
-        email: '',
-        token: '',
+        email: get(this.$route, 'query.email', ''),
+        token: get(this.$route, 'query.token', ''),
         password: '',
         password_confirmation: '',
       },
@@ -86,10 +86,6 @@ export default {
         this.loading = false;
       }
     },
-  },
-  mounted() {
-    this.model.email = get(this.$route, 'query.email', '');
-    this.model.token = get(this.$route, 'query.token', '');
   },
 };
 </script>
