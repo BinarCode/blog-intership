@@ -299,7 +299,7 @@
 </template>
 
 <script>
-import TiptapMenuItem from '@/components/Tiptap/TiptapMenuItem';
+import TiptapMenuItem from '@/components/TiptapEditor/TiptapMenuItem';
 
 export default {
   name: 'TiptapMenuBar',

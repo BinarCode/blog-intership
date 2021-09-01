@@ -18,24 +18,36 @@
       <div class="p-4 my-10 bg-white shadow rounded-lg  sm:px-10">
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent>
-            <div class="grid grid-cols-1 sm:grid-cols-2">
-              <base-input
-                v-model="blog.title"
-                :name="$t('createBlog.name.title')"
-                :label="$t('createBlog.name.title')"
-                rules="required"
-                :placeholder="$t('createBlog.placeholder.title')"
-                class="sm:mr-3"
-              />
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+              <div class="md:col-span-2">
+                <base-input
+                  v-model="blog.title"
+                  :name="$t('createBlog.name.title')"
+                  :label="$t('createBlog.name.title')"
+                  rules="required"
+                  :placeholder="$t('createBlog.placeholder.title')"
+                />
 
-              <base-input
-                v-model="blog.tags"
-                :name="$t('createBlog.name.tags')"
-                :label="$t('createBlog.name.tags')"
-                rules="required"
-                :placeholder="$t('createBlog.placeholder.tags')"
-                class="sm:ml-3"
-              />
+                <base-input
+                  v-model="blog.tags"
+                  :name="$t('createBlog.name.tags')"
+                  :label="$t('createBlog.name.tags')"
+                  rules="required"
+                  :placeholder="$t('createBlog.placeholder.tags')"
+                />
+              </div>
+              <div class="sm:w-11/12 sm:ml-auto">
+                <label class="text-sm font-medium text-gray-700">
+                  {{ $t('createBlog.name.coverImage') }}
+                </label>
+                <img :src="previewImage" class="rounded" />
+                <div
+                  v-if="!previewImage"
+                  class="text-indigo-600 ml-2 font-medium"
+                >
+                  {{ $t('blog.noImage.text') }}
+                </div>
+              </div>
             </div>
 
             <div id="tiptap">
@@ -61,7 +73,7 @@
 </template>
 
 <script>
-import TiptapEditor from '@/components/Tiptap/TiptapEditor';
+import TiptapEditor from '@/components/TiptapEditor/TiptapEditor';
 import { getBlog, updateBlog, deleteBlog } from '@/api/blogService.js';
 import { getTagsArray, tagsArrToString } from '@/utility/tags';
 import get from 'lodash/get';
@@ -76,6 +88,7 @@ export default {
       loading: false,
       blogId: null,
       blog: {},
+      previewImage: '',
     };
   },
   methods: {
@@ -129,6 +142,7 @@ export default {
         tags: get(data, 'attributes.tags', []),
         content: get(data, 'attributes.content', ''),
       };
+      this.previewImage = get(data, 'attributes.image', false);
     } finally {
       this.fetched = true;
     }

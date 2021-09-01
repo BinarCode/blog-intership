@@ -45,7 +45,7 @@
 <script>
 import BaseButtonStyles from '@/components/styles/BaseButtonStyles.vue';
 import BaseCard from '@/components/BaseCard';
-import TiptapEditor from '@/components/Tiptap/TiptapEditor';
+import TiptapEditor from '@/components/TiptapEditor/TiptapEditor';
 import InputComp from '@/components/styles/InputComp.vue';
 
 export default {

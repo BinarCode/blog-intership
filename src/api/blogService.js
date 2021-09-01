@@ -69,7 +69,6 @@ export async function updateBlog({ blogId, data }) {
 export async function uploadImage(image) {
     const formData = new FormData();
     formData.append('picture', image);
-
     try {
         let { data } = await axios.post(`/api/blog/image/`, formData);
         return data.path;
