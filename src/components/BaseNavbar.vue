@@ -52,7 +52,7 @@
                 class="block pl-10 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
-          <profile-dropdown :username="user.first_name || user.last_name || name" :avatar="user.avatar" />
+          <profile-dropdown :username="getUsername" :avatar="user.avatar" />
         </div>
         <div v-if="!logged_in">
           <guest-dropdown class="sm:hidden" />
@@ -101,6 +101,10 @@ export default {
       user: 'userState',
       logged_in: 'is_loggedinState'
     }),
+
+    getUsername() {
+      return this.user.first_name || this.user.last_name || name
+    },
 
     routeName() {
       return this.$route.name;

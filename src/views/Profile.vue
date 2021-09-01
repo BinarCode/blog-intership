@@ -132,8 +132,6 @@ export default {
           related: 'comments,blogs,media'
         });
 
-        console.log(userProfile);
-
         this.blogs = get(userProfile, 'data.relationships.blogs', []);
         this.comments = get(userProfile, 'data.relationships.comments', []);
         this.media = get(userProfile, 'data.relationships.media', []);
@@ -215,7 +213,7 @@ export default {
   },
 
   created() {
-    this.getUserProfile();
+    //this.getUserProfile();
     this.profile.first_name = this.user.first_name;
     this.profile.last_name = this.user.last_name;
   }
