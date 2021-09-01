@@ -1,8 +1,13 @@
 {
   "blog.views": "0 views|1 view|{n} views",
   "blog.minutes_read": "0 minutes read|1 minute read|{n} minutes read",
+  "blog.image.alt": "Blog image",
+  "blog.avatar.alt": "Avatar",
 
   "general.blogs.title": "Blogs",
+  "general.createBlog.title": "Create Blog",
+
+  "general.editBlog.title": "Edit",
   "general.menu.label": "Menu",
   "general.styleguide.title": "Styleguide",
   "general.styleguide.section.baseInput": "BaseInput component (email)",
@@ -31,13 +36,13 @@
   "signIn.invalidCredentials.text": "Invalid credentials.",
 
   "profile.avatar.alt": "Avatar",
-  "profile.upload.title:": "Upload",
-  "profile.clear.title:": "Clear",
   "profile.editProfile.title": "Edit profile",
   "profile.editProfile.save": "Save",
   "profile.editProfile.cancel": "Cancel",
   "profile.uploadAvatar.title": "Upload avatar",
   "profile.uploadAvatar.message": "Please select an image from your computer",
+  "profile.upload.title": "Upload",
+  "profile.clear.title": "Clear",
 
   "app.routerTitle.home": "Home",
   "app.routerTitle.styleguide": "Styleguide",
@@ -62,5 +67,22 @@
   "notifyMessage.error.avatarMime": "Only JPG, JPEG, PNG or GIF files are permitted. Please try again",
 
   "tiptap.setLink": "Please insert a valid URL",
-  "tiptap.characterCount": "Character count"
+  "tiptap.characterCount": "Character count",
+
+  "editBlog.page.title": "Edit blog",
+  "createBlog.name.title": "Title",
+  "createBlog.name.tags": "Tags (separated by comma)",
+  "createBlog.name.content": "Content",
+  "createBlog.name.coverImage": "Cover Image",
+  "createBlog.placeholder.title": "What is Lorem Ipsum?",
+  "createBlog.placeholder.tags": "earthship, biotecture, sustainable",
+  "createBlog.button.publish": "Publish",
+  "createBlog.notify.succesMessage": "The blog was successfully created. You can access it by ",
+  "createBlog.notify.clickHere": " clicking here",
+  "editBlog.notify.succesMessage": "The blog was successfully created.",
+  "deleteBlog.notify.succesMessage": "The blog has been deleted.",
+  "general.button.chooseFile": "Choose file ",
+  "general.button.deleteBlog": "Delete Blog",
+  "general.notify.succesTitle": "Succes",
+  "general.notify.errorTitle": "Error"
 }

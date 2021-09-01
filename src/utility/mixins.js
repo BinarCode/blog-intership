@@ -1,5 +1,7 @@
 import authService from '@/api/authService';
 import get from 'lodash/get';
+import { mapGetters } from 'vuex';
+
 
 export default {
     methods: {
@@ -9,9 +11,9 @@ export default {
                 const token = get(data, 'token.plainTextToken', '');
                 const user = get(data, 'user', {});
                 user.avatar = `https://api-internship.binarcode.com/storage/${user.avatar}`;
-
+                console.log(user.avatar);
                 this.$notify({
-                    title: this.$t('notifyMessage.success.title'),
+                    title: this.$t('general.notify.succesTitle'),
                     message: this.$t('notifyMessage.succes.logIn'),
                     type: 'success',
                 });
@@ -29,17 +31,20 @@ export default {
             if (error.errorsArr)
                 error.errorsArr.forEach((el) =>
                     this.$notify({
-                        title: 'Error',
+                        title: this.$t('general.notify.errorTitle'),
                         message: el,
                         type: 'error',
                     })
                 );
             else if (error.message)
                 this.$notify({
-                    title: 'Error',
+                    title: this.$t('general.notify.errorTitle'),
                     message: error.message,
                     type: 'error',
                 });
         }
     },
+    computed: {
+        ...mapGetters(['userState']),
+    }
 }

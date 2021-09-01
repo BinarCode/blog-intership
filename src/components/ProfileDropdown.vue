@@ -3,10 +3,10 @@
     <span class="cursor-pointer flex items-center font-medium">
       <img
           class="h-5 rounded-full bg-black mr-1"
-          :src="getAvatar"
+          :src="avatar"
           :alt="$t('profile.avatar.alt')"
       />
-      @{{ username }}
+      @{{ userState.first_name }}
       <i class="el-icon-arrow-down el-icon--right pt-1"></i>
     </span>
 
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 
 export default {
   name: 'ProfileDropdown',
@@ -53,9 +53,7 @@ export default {
   },
 
   computed: {
-    getAvatar() {
-      return this.avatar ? this.avatar : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
-    },
+    ...mapGetters(['userState']),
 
     routeName() {
       return this.$route.name;

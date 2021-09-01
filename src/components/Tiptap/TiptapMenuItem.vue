@@ -1,8 +1,8 @@
 <template>
   <button
-      class="border-2 rounded-sm bg-gray-50 hover:bg-gray-100 px-3 py-2"
-      :class="{ 'bg-gray-200' : isActive ? isActive() : null }"
-      @click="action"
+    class="border-2 rounded-sm bg-gray-50 hover:bg-gray-100 px-3 py-2"
+    :class="{ 'bg-gray-200': isActive ? isActive() : null }"
+    @click="action"
   >
     <slot></slot>
   </button>
@@ -10,20 +10,18 @@
 
 <script>
 export default {
-  name: "TiptapMenuItem",
+  name: 'TiptapMenuItem',
   props: {
     action: {
       type: Function,
-      required: true
+      required: true,
     },
     isActive: {
       type: Function,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

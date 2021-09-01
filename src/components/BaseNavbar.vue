@@ -11,9 +11,9 @@
         </router-link>
         <div v-if="logged_in" class="hidden md:flex md:space-x-8">
           <router-link
-              class="router-link"
-              :class="{ 'active-router-link': routeName === 'Blogs' }"
-              to="/blogs"
+            class="router-link"
+            :class="{ 'active-router-link': routeName === 'Blogs' }"
+            to="/"
           >
             {{ $t('general.blogs.title') }}
           </router-link>
@@ -79,9 +79,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import ProfileDropdown from '@/components/ProfileDropdown.vue';
 import GuestDropdown from '@/components/GuestDropdown.vue';
+import {mapGetters} from "vuex";
+
 export default {
   name: 'BaseNavbar',
 
@@ -108,8 +109,8 @@ export default {
 
     routeName() {
       return this.$route.name;
-    },
-  },
-};
+    }
+  }
+}
 </script>
 

@@ -14,15 +14,15 @@
           </div>
           <transition name="fade-in-right" mode="out-in">
             <div v-if="!edit" class="sm:min-w-0 self-center" :key="edit">
-                <base-button size="sm" @click="edit = !edit">
+                <base-button size="md" @click="edit = !edit">
                   {{ $t('profile.editProfile.title') }}
                 </base-button>
             </div>
             <div v-else class="sm:min-w-0 self-center" :key="edit">
-                <base-button size="sm" @click="onSave">
+                <base-button size="md" @click="onSave">
                   {{ $t('profile.editProfile.save') }}
                 </base-button>
-                <base-button size="sm" @click="edit = !edit">
+                <base-button size="md" @click="edit = !edit">
                   {{ $t('profile.editProfile.cancel') }}
                 </base-button>
             </div>

@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from "vuex-persistedstate";
-
 Vue.use(Vuex)
 
 const types = {
@@ -23,6 +22,7 @@ const getters = {
 
     is_loggedinState: (state) => {
         return state.is_loggedin;
+
     },
 
     tokenState: (state) => {
