@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import TiptapEditor from '@/components/TipTap/TiptapEditor';
+import TiptapEditor from '@/components/TiptapEditor/TiptapEditor';
 import { getBlog, updateBlog, deleteBlog } from '@/api/blogService.js';
 import { getTagsArray, tagsArrToString } from '@/utility/tags';
 import get from 'lodash/get';
