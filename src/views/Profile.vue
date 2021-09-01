@@ -16,9 +16,7 @@
             <span class="block">Last updated at: {{ getUpdatedAt }}</span>
 
             <div v-if="edit" class="text-3xl min-w-0 mt-5">
-              <!--input type="text" class="nameInput text-2xl w-auto" v-model="profile.first_name" />
-              <input type="text" class="nameInput text-2xl" v-model="profile.last_name" /-->
-              <span class="outline-none border-b-2" contenteditable="true" ref="firstName">{{ user.first_name }}</span> <span class="outline-none border-b-2" contenteditable="true" ref="lastName">{{ user.last_name }}</span>
+              <span class="outline-none border-b-2 border-indigo-600" contenteditable="true" ref="firstName">{{ user.first_name }}</span> <span class="outline-none border-b-2 border-indigo-600" contenteditable="true" ref="lastName">{{ user.last_name }}</span>
             </div>
             <div v-else class="text-3xl min-w-0 mt-5">
               <span>{{ user.first_name }} {{ user.last_name }}</span>
@@ -49,13 +47,10 @@
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <div class="fixed inset-0 bg-gray-500 bg-opacity-75" aria-hidden="true" @click="showModal = false"></div>
           <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-          <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+          <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 my-auto">
             <div class="sm:flex sm:items-start">
-              <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-              </div>
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                <h3 class="text-2xl leading-6 font-medium text-gray-900" id="modal-title">
                   {{ $t('profile.uploadAvatar.title') }}
                 </h3>
                 <div class="mt-2">
@@ -65,12 +60,21 @@
                   <form ref="uploadAvatar">
                     <input
                         type="file"
+                        id="uploadAvatar"
+                        hidden
                         @change="checkImage($event)"
                         accept="image/gif, image/png, image/jpg, image/jpeg"
                     >
+                    <label
+                      class="cursor-pointer flex items-center justify-center mt-2 font-medium text-white rounded-md shadow-sm w-full px-4 py-2 text-sm bg-indigo-600"
+                      for="uploadAvatar"
+                    >
+                      {{ $t('general.button.chooseFile') }}
+                    </label>
                   </form>
-                  <div class="mt-6 flex justify-center hidden" ref="preview">
-                    <img src="#" class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 flex-shrink-0 object-cover" :alt="$t('profile.avatar.alt')" ref="avatarPreview">
+                  <div class="mt-6 flex-col hidden" ref="preview">
+                    <img src="#" class="h-32 w-32 rounded-full flex-shrink-0 object-cover mx-auto" :alt="$t('profile.avatar.alt')" ref="avatarPreview">
+                    <span ref="filenamePreview"></span>
                   </div>
                 </div>
               </div>
@@ -202,6 +206,7 @@ export default {
 
         this.$refs.preview.classList.toggle("hidden");
         this.$refs.avatarPreview.src = URL.createObjectURL(image.target.files[0]);
+        this.$refs.filenamePreview.innerHTML = (image.target.files[0].name);
       } catch (error) {
         this.notifyErrors(error);
       }
@@ -233,7 +238,6 @@ export default {
 
   created() {
     //this.getUserProfile();
-    console.log(this.user);
     this.profile.first_name = this.user.first_name;
     this.profile.last_name = this.user.last_name;
   }
