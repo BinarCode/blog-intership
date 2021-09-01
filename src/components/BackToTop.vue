@@ -2,7 +2,7 @@
   <div>
     <div
       id="pagetop"
-      class="fixed right-1 bottom-1 sm:right-5 sm:bottom-5"
+      class="fixed right-1 bottom-1 sm:right-5 sm:bottom-5 cursor-pointer"
       v-show="scY > 300"
       @click="toTop"
     >
