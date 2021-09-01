@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import TiptapMenuBar from '@/components/TipTap/TiptapMenuBar';
+import TiptapMenuBar from '@/components/TiptapEditor/TiptapMenuBar';
 import { Editor, EditorContent } from '@tiptap/vue-2';
 import StarterKit from '@tiptap/starter-kit';
 import Code from '@tiptap/extension-code';
