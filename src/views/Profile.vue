@@ -9,8 +9,8 @@
 
     <div class="p-4 my-10 bg-white shadow rounded-lg sm:px-10">
       <div class="max-w-5xl mx-auto h-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-5">
-          <div class="w-full col-span-2">
+        <div class="grid grid-cols-1 sm:grid-cols-5 gap-y-5">
+          <div class="w-full col-span-1 sm:col-span-4">
             <span class="block">Email: {{ user.email }}</span>
             <span class="block">Created at: {{ getCreatedAt }}</span>
             <span class="block">Last updated at: {{ getUpdatedAt }}</span>
@@ -49,7 +49,7 @@
           <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
           <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 my-auto">
             <div class="sm:flex sm:items-start">
-              <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <div class="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 class="text-2xl leading-6 font-medium text-gray-900" id="modal-title">
                   {{ $t('profile.uploadAvatar.title') }}
                 </h3>
@@ -157,6 +157,11 @@ export default {
 
     async onSave() {
       try {
+        if (!this.$refs.firstName.innerHTML || !this.$refs.lastName.innerHTML) {
+          this.edit = false;
+          throw new Error(this.$t('notifyMessage.error.requiredNames'));
+        }
+
         this.profile.first_name = this.$refs.firstName.innerHTML;
         this.profile.last_name = this.$refs.lastName.innerHTML;
 
