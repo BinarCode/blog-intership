@@ -128,7 +128,11 @@ export default {
 
     async getUserProfile() {
       try {
-        const userProfile = await userService.getProfile();
+        const userProfile = await userService.getProfile({
+          related: 'comments,blogs,media'
+        });
+
+        console.log(userProfile);
 
         this.blogs = get(userProfile, 'data.relationships.blogs', []);
         this.comments = get(userProfile, 'data.relationships.comments', []);
@@ -211,7 +215,7 @@ export default {
   },
 
   created() {
-    //this.getUserProfile(); this will be used if we will add users' blogs, comments or media on this page
+    this.getUserProfile();
     this.profile.first_name = this.user.first_name;
     this.profile.last_name = this.user.last_name;
   }
