@@ -29,9 +29,9 @@
     :disabled="isDisabled"
   >
     <i v-if="loading" class="text-lg leading-none el-icon-loading" />
-    <div class="mx-2">
+    <span class="mx-2">
       <slot>{{ label }}</slot>
-    </div>
+    </span>
   </button>
 </template>
 
