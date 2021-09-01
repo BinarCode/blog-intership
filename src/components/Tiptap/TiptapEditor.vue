@@ -1,9 +1,15 @@
 <template>
   <div>
-    <tiptap-menu-bar :editor="editor" class="sticky top-16 z-10" />
-    <editor-content :editor="editor" :class="classes" />
+    <div class=" ">
+      <tiptap-menu-bar :editor="editor" class="sticky border-none" />
+      <editor-content
+        :editor="editor"
+        :class="classes"
+        class="h-80 overflow-y-auto"
+      />
+    </div>
     <span class="float-right">
-      Character count: {{ editor.getCharacterCount() }}
+      {{ $t('tiptap.characterCount') }}: {{ editor.getCharacterCount() }}
     </span>
   </div>
 </template>
@@ -86,6 +92,13 @@ export default {
 </script>
 
 <style>
+.ProseMirror {
+  /* border: 1px solid black; */
+  min-height: 320px;
+  padding: 5px;
+  @apply text-sm;
+}
+
 .ProseMirror h1 {
   @apply text-5xl;
 }

@@ -6,7 +6,10 @@
     >
       <img
         class="object-cover w-full my-5 rounded-lg max-h-80"
-        :src="blog.attributes.image || 'https://i.stack.imgur.com/y9DpT.jpg'"
+        :src="
+          get(blog, 'attributes.image', false) ||
+            'https://i.stack.imgur.com/y9DpT.jpg'
+        "
       />
       <div class="tags cursor-pointer flex flex-wrap mx-auto space-x-4">
         <div
@@ -27,6 +30,7 @@
 </template>
 
 <script>
+import { getTagsArray } from '@/utility/tags';
 import get from 'lodash/get';
 import { getBlog } from '@/api/blogService.js';
 
@@ -39,7 +43,9 @@ export default {
   },
   async mounted() {
     try {
-      this.blog = await getBlog(this.$route.params.blogId);
+      let data = await getBlog(this.$route.params.blogId);
+      data.attributes.tags = getTagsArray(get(data, 'attributes.tags', ''));
+      this.blog = data;
     } catch (error) {
       this.notifyErrors(error);
     }

@@ -1,25 +1,28 @@
 <template>
-  <div class="w-5/6 mx-auto max-h-full py-10">
+  <div style="height:fit-content" class="w-5/6 mx-auto max-h-full py-10">
+    <div class="flex justify-between">
+      <div class="text-6xl">{{ $t('general.createBlog.title') }}</div>
+    </div>
     <div class="sm:mx-auto sm:w-full">
-      <div class="px-4 py-8 bg-white shadow rounded-lg  sm:px-10">
+      <div class="p-4 my-10 bg-white shadow rounded-lg  sm:px-10">
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
               <div class="md:col-span-2">
                 <base-input
-                  v-model="blogData.title"
+                  v-model="blog.title"
                   :name="$t('createBlog.name.title')"
                   :label="$t('createBlog.name.title')"
                   rules="required"
-                  placeholder="What is Lorem Ipsum?"
+                  :placeholder="$t('createBlog.placeholder.title')"
                 />
 
                 <base-input
-                  v-model="blogData.tags"
+                  v-model="blog.tags"
                   :name="$t('createBlog.name.tags')"
                   :label="$t('createBlog.name.tags')"
                   rules="required"
-                  placeholder="earthship, biotecture, sustainable"
+                  :placeholder="$t('createBlog.placeholder.tags')"
                 />
               </div>
               <div class="sm:w-11/12 sm:ml-auto">
@@ -39,7 +42,7 @@
                   for="uploadImg"
                 >
                   {{ $t('general.button.chooseFile') }}
-                  <span v-if="blogData.image">({{ blogData.image.name }})</span>
+                  <span v-if="blog.image">&nbsp;({{ blog.image.name }})</span>
                 </label>
               </div>
             </div>
@@ -48,10 +51,7 @@
               <label class="text-sm font-medium text-gray-700">
                 {{ $t('createBlog.name.content') }}
               </label>
-              <tiptap-editor
-                classes="h-40 overflow-y-auto"
-                v-model="blogData.content"
-              />
+              <tiptap-editor v-model="blog.content" />
             </div>
 
             <base-button
@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import TiptapEditor from '@/components/TiptapEditor';
+import TiptapEditor from '@/components/TipTap/TiptapEditor';
 import { createBlog } from '@/api/blogService.js';
 import has from 'lodash/has';
 
@@ -80,7 +80,7 @@ export default {
   components: { TiptapEditor },
   data() {
     return {
-      blogData: {
+      blog: {
         title: '',
         tags: '',
         content: '',
@@ -92,20 +92,25 @@ export default {
   },
   methods: {
     showImage(event) {
-      this.blogData.image = event.target.files[0];
-      this.previewImage = URL.createObjectURL(this.blogData.image);
+      this.blog.image = event.target.files[0];
+      this.previewImage = URL.createObjectURL(this.blog.image);
     },
     async onSubmit() {
       try {
         this.loading = true;
-        let res = await createBlog({ ...this.blogData });
+        let res = await createBlog({ ...this.blog });
         if (has(res, 'errorArr')) this.notifyErrors(res);
         else {
-          this.$router.push(`/blogs/${res.data.id}`);
+          this.$router.push(`/`);
           this.$notify({
             title: this.$t('general.notify.succesTitle'),
-            message: this.$t('createBlog.notify.succesMessage'),
+            message: `${this.$t(
+              'createBlog.notify.succesMessage'
+            )}<a class="text-indigo-600" href="/blogs/${
+              res.data.id
+            }" >${this.$t('createBlog.notify.clickHere')}</a>`,
             type: 'success',
+            dangerouslyUseHTMLString: true,
           });
         }
       } catch (error) {

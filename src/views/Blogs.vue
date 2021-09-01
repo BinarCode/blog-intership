@@ -1,5 +1,5 @@
 <template>
-  <div class="w-5/6 mx-auto max-h-full py-5">
+  <div class="w-5/6 mx-auto max-h-full py-10">
     <div class="flex justify-between">
       <div class="text-6xl">{{ $t('general.blogs.title') }}</div>
       <router-link to="/create-blog" class="self-end">
@@ -8,7 +8,9 @@
         </base-button>
       </router-link>
     </div>
-    <div class="my-7 grid gap-5 lg:grid-cols-3  print:grid-cols-2">
+    <div
+      class="my-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3  print:grid-cols-2"
+    >
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
 
@@ -35,7 +37,8 @@ export default {
       let data = await getBlogs({
         page: this.page,
         perPage: 9,
-        sort: '-views',
+        sort: '-id',
+        related: 'creator',
       });
 
       if (data.length) {
