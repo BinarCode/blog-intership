@@ -11,7 +11,7 @@
         {{ $t('general.forgotPassword.title') }}
       </h2>
     </div>
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="m-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow rounded-lg sm:px-10">
         <ValidationObserver v-slot="{ valid }" ref="form">
           <form @submit.prevent="handleSubmit">
@@ -70,8 +70,13 @@ export default {
       try {
         this.loading = true;
         await authService.forgotPassword(this.model);
+        this.$notify({
+          title: this.$t('general.notify.succesTitle'),
+          message: this.$t('notifyMessage.succes.forgotPassword'),
+          type: 'success',
+        });
       } catch (error) {
-        console.log(error);
+        this.notifyErrors(error);
       } finally {
         this.loading = false;
       }
