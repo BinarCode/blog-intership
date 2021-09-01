@@ -42,7 +42,7 @@
                   for="uploadImg"
                 >
                   {{ $t('general.button.chooseFile') }}
-                  <span v-if="blog.image">({{ blog.image.name }})</span>
+                  <span v-if="blog.image">&nbsp;({{ blog.image.name }})</span>
                 </label>
               </div>
             </div>

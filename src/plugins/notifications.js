@@ -15,6 +15,7 @@ export default {
                     || !notification.position
                 ) ? 64 : 0,
                 dangerouslyUseHTMLString: notification.dangerouslyUseHTMLString || false,
+                iconClass: notification.iconClass || ''
             });
         }
     }

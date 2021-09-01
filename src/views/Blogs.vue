@@ -38,6 +38,7 @@ export default {
         page: this.page,
         perPage: 9,
         sort: '-id',
+        related: 'creator',
       });
 
       if (data.length) {

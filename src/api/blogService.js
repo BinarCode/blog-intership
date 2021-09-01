@@ -10,12 +10,13 @@ function createFormData(data) {
     return formData;
 }
 
-export async function getBlogs({ page, perPage, sort }) {
+export async function getBlogs({ page, perPage, sort, related }) {
     let params = {
         page: page,
         perPage: perPage,
         sort: sort,
-        related: 'creator'
+        related: related
+
     };
     try {
         let { data } = await axios.get('/api/restify/blogs', { params });

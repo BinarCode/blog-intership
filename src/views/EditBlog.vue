@@ -86,6 +86,7 @@ export default {
           title: this.$t('general.notify.succesTitle'),
           message: this.$t('deleteBlog.notify.succesMessage'),
           type: 'info',
+          iconClass: 'el-icon-delete-solid',
         });
         this.$router.push(`/`);
       } catch (error) {

@@ -3,10 +3,8 @@
     <div class="flex-shrink-0">
       <img
         class="object-cover w-full h-48"
-        :src="
-          get(post, 'attributes.image', false) ||
-            'https://i.stack.imgur.com/y9DpT.jpg'
-        "
+        :src="getImage"
+        :alt="$t('blog.image.alt')"
       />
     </div>
     <div class="flex flex-col justify-between flex-1 p-6 bg-white">
@@ -60,24 +58,31 @@ import get from 'lodash/get';
 
 export default {
   name: 'BaseCard',
+
   props: {
     post: {
       type: Object,
       default: () => {},
     },
   },
+
   computed: {
     tagList() {
       const tags = get(this.post, 'attributes.tags', []);
       return typeof tags === 'string' ? JSON.parse(tags) : tags;
     },
-    getAvatar() {
-      if (!this.userState.avatar)
-        return 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
+    getImage() {
       return (
-        'https://api-internship.binarcode.com/storage/' + this.userState.avatar
+        get(this.post, 'attributes.image', false) ||
+        'https://i.stack.imgur.com/y9DpT.jpg'
       );
     },
+    getAvatar() {
+      return this.post.relationships.creator.attributes.avatar
+        ? this.post.relationships.creator.attributes.avatar
+        : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
+    },
+
     getId() {
       return `/blogs/${get(this.post, 'id', 'not-found')}`;
     },
@@ -85,18 +90,11 @@ export default {
       return `/edit-blog/${get(this.post, 'id', 'not-found')}`;
     },
   },
+
   methods: {
     get,
   },
 };
 </script>
 
-<style scoped>
-#content {
-  overflow: hidden;
-  width: 100%;
-  display: -webkit-box;
-  -webkit-line-clamp: 7;
-  -webkit-box-orient: vertical;
-}
-</style>
+<style scoped></style>
