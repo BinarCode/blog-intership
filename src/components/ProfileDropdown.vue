@@ -4,7 +4,7 @@
       <img
           class="h-5 rounded-full bg-black mr-1"
           :src="getAvatar"
-          alt="Avatar"
+          :alt="$t('profile.avatar.alt')"
       />
       @{{ username }}
       <i class="el-icon-arrow-down el-icon--right pt-1"></i>
@@ -54,9 +54,7 @@ export default {
 
   computed: {
     getAvatar() {
-      if (!this.avatar)
-        return 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
-      return this.avatar;
+      return this.avatar ? this.avatar : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
     },
 
     routeName() {
@@ -79,14 +77,17 @@ export default {
     },
 
     handleCommand(command) {
-      if (command === 'Profile' && this.routeName !== 'Profile')
+      if (command === 'Profile' && this.routeName !== 'Profile') {
         this.$router.push({ name: 'Profile' });
+      }
 
-      else if (command === 'Blogs' && this.routeName !== 'Blogs')
+      else if (command === 'Blogs' && this.routeName !== 'Blogs') {
         this.$router.push({ name: 'Blogs' });
+      }
 
-      else if (command === 'Logout' && this.routeName !== 'Logout')
+      else if (command === 'Logout' && this.routeName !== 'Logout') {
         this.logOut();
+      }
     },
   },
 };
