@@ -36,6 +36,16 @@ export async function getBlog(blogId) {
     }
 }
 
+export async function addViewOnBlog(blogId) {
+    try {
+        let { data } = await axios.post(`/api/blogs/${blogId}/view`);
+        return data;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
 export async function deleteBlog(blogId) {
     try {
         let { data } = await axios.delete(`/api/restify/blogs/${blogId}`);

@@ -66,6 +66,8 @@
   "notifyMessage.success.updateAvatar": "Your avatar has successfully been updated!",
   "notifyMessage.succes.logIn": "You have successfully logged in",
   "notifyMessage.succes.register": "You have successfully registered",
+  "notifyMessage.succes.forgotPassword": "We have e-mailed your reset password link!",
+  "notifyMessage.succes.resetPassword": "Your password was successfully changed!",
   "notifyTitle.succes.register": "Congratulations!",
 
   "notifyMessage.error.avatarMime": "Only JPG, JPEG, PNG or GIF files are permitted. Please try again",
