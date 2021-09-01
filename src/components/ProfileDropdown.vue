@@ -68,9 +68,11 @@ export default {
     ...mapActions(['setUserState', 'setLoggedInState', 'setTokenState']),
 
     async logOut() {
-      await this.setUserState({});
-      await this.setLoggedInState(false);
-      await this.setTokenState('');
+      await Promise.all([
+        this.setUserState({}),
+        this.setLoggedInState(false),
+        this.setTokenState(''),
+      ]);
       localStorage.clear();
 
       this.$router.push({ name: 'Login' });
