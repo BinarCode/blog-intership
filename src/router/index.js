@@ -7,6 +7,8 @@ import Register from '@/views/Register';
 import Login from '@/views/Login';
 import Profile from '@/views/Profile';
 import ForgotPassword from '@/views/ForgotPassword';
+import EditBlog from '@/views/EditBlog';
+import CreateBlog from '@/views/CreateBlog';
 import Blog from '@/views/Blog'
 
 
@@ -17,6 +19,24 @@ const routes = [
     path: '/',
     name: 'Blogs',
     component: Blogs,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: '/edit-blog/:blogId',
+    name: 'EditBlog',
+    component: EditBlog,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: '/create-blog',
+    name: 'CreateBlog',
+    component: CreateBlog,
     meta: {
       requiresAuth: true,
     },
@@ -73,8 +93,8 @@ const routes = [
     },
   },
   {
-    path: '/blogs/:id',
-    name: 'SingleBlog',
+    path: '/blogs/:blogId',
+    name: 'Blog',
     component: Blog,
   }
 ]

@@ -13,7 +13,7 @@
           <router-link
             class="router-link"
             :class="{ 'active-router-link': routeName === 'Blogs' }"
-            to="/blogs"
+            to="/"
           >
             {{ $t('general.blogs.title') }}
           </router-link>
@@ -29,7 +29,9 @@
       <div class="flex my-auto">
         <div class="flex" v-if="userState.loggedIn">
           <div id="search" class="hidden sm:flex relative max-w-xs">
-            <label for="search" class="sr-only">Search</label>
+            <label for="search" class="sr-only">{{
+              $t('navbarSearch.placeholder.name')
+            }}</label>
             <div class="absolute inset-y-0 left-0 px-3 flex items-center">
               <svg
                 class="h-5 w-5 text-gray-400"
@@ -124,7 +126,6 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['userState']),
     routeName() {
       return this.$route.name;
     },

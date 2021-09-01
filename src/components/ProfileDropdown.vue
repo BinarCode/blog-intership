@@ -6,7 +6,7 @@
         :src="getAvatar"
         alt="Avatar"
       />
-      @{{ username }}
+      @{{ userState.first_name }}
       <i class="el-icon-arrow-down el-icon--right pt-1"></i>
     </span>
 
@@ -36,10 +36,6 @@ import { mapActions } from 'vuex';
 
 export default {
   name: 'ProfileDropdown',
-  props: {
-    username: String,
-    avatar: String,
-  },
   data() {
     return {
       commands: {
@@ -51,9 +47,11 @@ export default {
   },
   computed: {
     getAvatar() {
-      if (!this.avatar)
+      if (!this.userState.avatar)
         return 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
-      return this.avatar;
+      return (
+        'https://api-internship.binarcode.com/storage/' + this.userState.avatar
+      );
     },
     routeName() {
       return this.$route.name;
