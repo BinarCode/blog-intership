@@ -91,7 +91,6 @@
 <script>
 import { getBlogSearchResults } from '@/api/blogService';
 import ProfileDropdown from '@/components/ProfileDropdown.vue';
-import { mapGetters } from 'vuex';
 import GuestDropdown from '@/components/GuestDropdown.vue';
 import VueSimpleSuggest from 'vue-simple-suggest';
 import eventBus from '@/api/eventBus';
