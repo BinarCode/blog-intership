@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col overflow-hidden rounded-lg shadow-md">
+  <div class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
     <div class="flex-shrink-0">
       <img
         class="object-cover w-full h-48"
