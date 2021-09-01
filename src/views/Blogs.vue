@@ -28,6 +28,7 @@ export default {
         page: this.page,
         perPage: 9,
         sort: '-views',
+        related: 'creator'
       });
 
       if (data.length) {
