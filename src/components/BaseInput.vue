@@ -3,13 +3,12 @@
     <label class="text-sm font-medium text-gray-700 flex justify-between">
       <slot>{{ label }}</slot>
       <label
-        v-show="type === 'password' && inputValue"
+        v-show="type === 'password' && value.length"
         @click="switchType"
-        class="bg-gray-200 flex hover:bg-gray-300 rounded px-2  text-xs text-gray-600 font-mono cursor-pointer"
-        for="toggle"
+        class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-0.5 text-xs text-gray-600 font-mono cursor-pointer"
       >
         <span class="self-center">
-          {{ typePassword === 'password' ? 'show' : 'hide' }}
+          {{ isPassword ? 'show' : 'hide' }}
         </span>
       </label>
     </label>
@@ -19,7 +18,6 @@
           :value="value"
           :type="type === 'password' ? typePassword : type"
           :name="name"
-          v-model="inputValue"
           :placeholder="placeholder"
           autocomplete="new-password"
           v-on="listeners"
@@ -66,9 +64,7 @@ export default {
   inheritAttrs: false,
   data() {
     return {
-      typeCopy: this.type,
       typePassword: this.type,
-      inputValue: null,
     };
   },
   props: {
@@ -96,11 +92,13 @@ export default {
         input: this.onInput,
       };
     },
+    isPassword() {
+      return this.typePassword === 'password';
+    },
   },
   methods: {
     switchType() {
-      this.typePassword =
-        this.typePassword === 'password' ? 'text' : 'password';
+      this.typePassword = this.isPassword ? 'text' : 'password';
     },
     onInput(event) {
       this.$emit('input', event.target.value);
