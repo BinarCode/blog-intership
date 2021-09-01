@@ -29,7 +29,9 @@
       <div class="flex my-auto">
         <div class="flex" v-if="logged_in">
           <div id="search" class="hidden sm:flex relative max-w-xs">
-            <label for="search" class="sr-only">Search</label>
+            <label for="search" class="sr-only">{{
+              $t('navbarSearch.placeholder.name')
+            }}</label>
             <div class="absolute inset-y-0 left-0 px-3 flex items-center">
               <svg
                   class="h-5 w-5 text-gray-400"
