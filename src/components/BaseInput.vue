@@ -3,12 +3,14 @@
     <label class="text-sm font-medium text-gray-700 flex justify-between">
       <slot>{{ label }}</slot>
       <label
-        v-if="type === 'password'"
+        v-show="type === 'password' && inputValue"
         @click="switchType"
-        class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-xs text-gray-600 font-mono cursor-pointer"
+        class="bg-gray-200 flex hover:bg-gray-300 rounded px-2  text-xs text-gray-600 font-mono cursor-pointer"
         for="toggle"
       >
-        {{ typePassword === 'password' ? 'show' : 'hide' }}
+        <span class="self-center">
+          {{ typePassword === 'password' ? 'show' : 'hide' }}
+        </span>
       </label>
     </label>
     <validation-provider v-slot="{ errors }" :name="name" :rules="rules">
@@ -17,7 +19,9 @@
           :value="value"
           :type="type === 'password' ? typePassword : type"
           :name="name"
+          v-model="inputValue"
           :placeholder="placeholder"
+          autocomplete="new-password"
           v-on="listeners"
           class="block w-full rounded-md sm:text-sm"
           :class="
@@ -64,6 +68,7 @@ export default {
     return {
       typeCopy: this.type,
       typePassword: this.type,
+      inputValue: null,
     };
   },
   props: {
