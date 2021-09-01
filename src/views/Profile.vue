@@ -1,42 +1,45 @@
 <template>
-  <div>
-    <div class="mt-20">
-      <div class="max-w-5xl mx-auto px-4 px-8 h-auto">
-        <div class="flex justify-between">
-          <div class="flex flex-col justify-center">
-            <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 flex-shrink-0" :src="getAvatar" :alt="$t('profile.avatar.alt')">
-            <transition name="fade-in-left">
-              <span v-if="edit">
-                <a href="#" class="text-blue-500 hover:underline sm:ml-4" @click="showModal = true">{{ $t('profile.upload.title') }}</a>
-                <a href="#" class="text-red-500 hover:underline ml-1" @click="onClear">{{ $t('profile.clear.title') }}</a>
-              </span>
-            </transition>
+  <div class="w-5/6 mx-auto py-10">
+    <div class="flex justify-between">
+      <h1 class="text-6xl">{{ $t('profile.title') }}</h1>
+      <base-button outline size="md" @click="edit = !edit">
+        {{ $t('profile.editProfile.title') }}
+      </base-button>
+    </div>
+
+    <div class="p-4 my-10 bg-white shadow rounded-lg sm:px-10">
+      <div class="max-w-5xl mx-auto h-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-5">
+          <div class="w-full col-span-2">
+            <span class="block">Email: {{ user.email }}</span>
+            <span class="block">Created at: {{ getCreatedAt }}</span>
+            <span class="block">Last updated at: {{ getUpdatedAt }}</span>
+
+            <div v-if="edit" class="text-3xl min-w-0 mt-5">
+              <!--input type="text" class="nameInput text-2xl w-auto" v-model="profile.first_name" />
+              <input type="text" class="nameInput text-2xl" v-model="profile.last_name" /-->
+              <span class="outline-none border-b-2" contenteditable="true" ref="firstName">{{ user.first_name }}</span> <span class="outline-none border-b-2" contenteditable="true" ref="lastName">{{ user.last_name }}</span>
+            </div>
+            <div v-else class="text-3xl min-w-0 mt-5">
+              <span>{{ user.first_name }} {{ user.last_name }}</span>
+            </div>
           </div>
-          <transition name="fade-in-right" mode="out-in">
-            <div v-if="!edit" class="sm:min-w-0 self-center" :key="edit">
-                <base-button size="md" @click="edit = !edit">
-                  {{ $t('profile.editProfile.title') }}
-                </base-button>
-            </div>
-            <div v-else class="sm:min-w-0 self-center" :key="edit">
-                <base-button size="md" @click="onSave">
-                  {{ $t('profile.editProfile.save') }}
-                </base-button>
-                <base-button size="md" @click="edit = !edit">
-                  {{ $t('profile.editProfile.cancel') }}
-                </base-button>
-            </div>
-          </transition>
+          <div class="flex flex-col">
+            <img class="rounded-full h-32 w-32 object-cover mx-auto" :src="getAvatar" :alt="$t('profile.avatar.alt')">
+            <span v-if="edit" class="flex flex-col justify-center">
+              <base-button outline size="sm" @click="showModal = true">{{ $t('profile.changeAvatar.title') }}</base-button>
+              <base-button outline size="sm" @click="onClear">{{ $t('profile.clearAvatar.title') }}</base-button>
+            </span>
+          </div>
         </div>
-        <transition name="fade-in-top" mode="out-in">
-          <div v-if="edit" class="sm:block mt-6 min-w-0" :key="edit">
-            <base-input type="text" :label="$t('register.name.firstName')" v-model="profile.first_name" />
-            <base-input type="text" :label="$t('register.name.firstName')" v-model="profile.last_name" />
-          </div>
-          <div v-else class="text-2xl mt-6 min-w-0" :key="edit">
-            <span>{{ user.first_name }} {{ user.last_name }}</span>
-          </div>
-        </transition>
+        <div v-if="edit" class="sm:min-w-0 inline-flex w-full">
+          <base-button class="w-1/2 mr-px" size="md" @click="onSave">
+            {{ $t('profile.editProfile.save') }}
+          </base-button>
+          <base-button class="w-1/2 ml-px" size="md" @click="edit = !edit">
+            {{ $t('profile.editProfile.cancel') }}
+          </base-button>
+        </div>
       </div>
     </div>
 
@@ -67,16 +70,16 @@
                     >
                   </form>
                   <div class="mt-6 flex justify-center hidden" ref="preview">
-                    <img src="#" class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 flex-shrink-0" :alt="$t('profile.avatar.alt')" ref="avatarPreview">
+                    <img src="#" class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 flex-shrink-0 object-cover" :alt="$t('profile.avatar.alt')" ref="avatarPreview">
                   </div>
                 </div>
               </div>
             </div>
             <div class="mt-5 flex flex-row-reverse">
-              <base-button size="sm" class="ml-2" @click="uploadAvatar">
+              <base-button outline size="md" class="ml-2" @click="uploadAvatar">
                 {{ $t('profile.editProfile.save') }}
               </base-button>
-              <base-button size="sm" outline @click = "showModal = false">
+              <base-button size="md" @click = "showModal = false">
                 {{ $t('profile.editProfile.cancel') }}
               </base-button>
             </div>
@@ -119,6 +122,14 @@ export default {
           ? this.user.avatar
           : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
     },
+
+    getCreatedAt() {
+      return this.user.created_at.substring(0, 10);
+    },
+
+    getUpdatedAt() {
+      return this.user.updated_at.substring(0, 10);
+    }
   },
 
   methods: {
@@ -142,6 +153,9 @@ export default {
 
     async onSave() {
       try {
+        this.profile.first_name = this.$refs.firstName.innerHTML;
+        this.profile.last_name = this.$refs.lastName.innerHTML;
+
         await userService.updateProfile(this.profile);
 
         this.user.first_name = this.profile.first_name;
@@ -194,26 +208,32 @@ export default {
     },
 
     async uploadAvatar() {
-      const formData = new FormData();
-      formData.append('avatar', this.$refs.uploadAvatar[0].files[0]);
+      try {
+        const formData = new FormData();
+        formData.append('avatar', this.$refs.uploadAvatar[0].files[0]);
 
-      const {data} = await userService.updateAvatar(formData);
+        const {data} = await userService.updateAvatar(formData);
 
-      this.user.avatar = get(data, 'attributes.avatar', '');
-      await this.setUserState(this.user);
+        this.user.avatar = get(data, 'attributes.avatar', '');
+        await this.setUserState(this.user);
 
-      this.showModal = false;
+        this.showModal = false;
+        this.edit = false;
 
-      this.$notify({
-        title: this.$t('notifyMessage.success.title'),
-        message: this.$t('notifyMessage.success.updateAvatar'),
-        type: 'success',
-      });
+        this.$notify({
+          title: this.$t('notifyMessage.success.title'),
+          message: this.$t('notifyMessage.success.updateAvatar'),
+          type: 'success',
+        });
+      } catch (error) {
+        this.notifyErrors(error);
+      }
     }
   },
 
   created() {
     //this.getUserProfile();
+    console.log(this.user);
     this.profile.first_name = this.user.first_name;
     this.profile.last_name = this.user.last_name;
   }
@@ -221,6 +241,19 @@ export default {
 </script>
 
 <style scoped>
+.nameInput {
+  border:none;
+  background-image:none;
+  background-color:transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+}
+
 .fade-in-top-enter-active {
   animation: fadeintop 0.3s;
 }

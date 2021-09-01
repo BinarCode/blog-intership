@@ -36,6 +36,7 @@
   "signIn.button.label": "Sign in",
   "signIn.invalidCredentials.text": "Invalid credentials.",
 
+  "profile.title": "Profile",
   "profile.avatar.alt": "Avatar",
   "profile.editProfile.title": "Edit profile",
   "profile.editProfile.save": "Save",
@@ -43,7 +44,8 @@
   "profile.uploadAvatar.title": "Upload avatar",
   "profile.uploadAvatar.message": "Please select an image from your computer",
   "profile.upload.title": "Upload",
-  "profile.clear.title": "Clear",
+  "profile.changeAvatar.title": "Change avatar",
+  "profile.clearAvatar.title": "Clear avatar",
 
   "app.routerTitle.home": "Home",
   "app.routerTitle.styleguide": "Styleguide",
