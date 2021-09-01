@@ -4,26 +4,26 @@
       <div class="max-w-5xl mx-auto px-4 px-8 h-auto">
         <div class="flex justify-between">
           <div class="flex flex-col justify-center">
-            <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 flex-shrink-0" :src="getAvatar" alt="Avatar">
+            <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 flex-shrink-0" :src="getAvatar" :alt="$t('profile.avatar.alt')">
             <transition name="fade-in-left">
               <span v-if="edit">
-                <a href="#" class="text-blue-500 hover:underline sm:ml-4" @click="showModal = true">Upload</a>
-                <a href="#" class="text-red-500 hover:underline ml-1" @click="onClear">Clear</a>
+                <a href="#" class="text-blue-500 hover:underline sm:ml-4" @click="showModal = true">{{ $t('profile.upload.title') }}</a>
+                <a href="#" class="text-red-500 hover:underline ml-1" @click="onClear">{{ $t('profile.clear.title') }}</a>
               </span>
             </transition>
           </div>
           <transition name="fade-in-right" mode="out-in">
             <div v-if="!edit" class="sm:min-w-0 self-center" :key="edit">
                 <base-button size="sm" @click="edit = !edit">
-                  Edit profile
+                  {{ $t('profile.editProfile.title') }}
                 </base-button>
             </div>
             <div v-else class="sm:min-w-0 self-center" :key="edit">
                 <base-button size="sm" @click="onSave">
-                  Save
+                  {{ $t('profile.editProfile.save') }}
                 </base-button>
                 <base-button size="sm" @click="edit = !edit">
-                  Cancel
+                  {{ $t('profile.editProfile.cancel') }}
                 </base-button>
             </div>
           </transition>
@@ -53,11 +53,11 @@
               </div>
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                  Upload avatar
+                  {{ $t('profile.uploadAvatar.title') }}
                 </h3>
                 <div class="mt-2">
                   <span class="text-sm text-gray-500">
-                    Please select an image from your computer:
+                    {{ $t('profile.uploadAvatar.message') }}:
                   </span>
                   <form ref="uploadAvatar">
                     <input
@@ -67,17 +67,17 @@
                     >
                   </form>
                   <div class="mt-6 flex justify-center hidden" ref="preview">
-                    <img src="#" class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 flex-shrink-0" alt="Avatar preview" ref="avatarPreview">
+                    <img src="#" class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 flex-shrink-0" :alt="$t('profile.avatar.alt')" ref="avatarPreview">
                   </div>
                 </div>
               </div>
             </div>
             <div class="mt-5 flex flex-row-reverse">
               <base-button size="sm" class="ml-2" @click="uploadAvatar">
-                Save
+                {{ $t('profile.editProfile.save') }}
               </base-button>
               <base-button size="sm" outline @click = "showModal = false">
-                Cancel
+                {{ $t('profile.editProfile.cancel') }}
               </base-button>
             </div>
           </div>
@@ -115,9 +115,9 @@ export default {
     }),
 
     getAvatar() {
-      if (!this.user.avatar)
-        return 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
-      return this.user.avatar;
+      return this.user.avatar
+          ? this.user.avatar
+          : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
     },
   },
 
@@ -183,7 +183,7 @@ export default {
       try {
         if(!mimeTypes.includes(image.target.files[0].type)) {
           this.$refs.uploadAvatar.reset();
-          throw new Error('Only JPG, JPEG, PNG or GIF files are permitted. Please try again');
+          throw new Error(this.$t('notifyMessage.error.avatarMime'));
         }
 
         this.$refs.preview.classList.toggle("hidden");
@@ -206,7 +206,7 @@ export default {
 
       this.$notify({
         title: this.$t('notifyMessage.success.title'),
-        message: 'Your avatar has successfully been updated!',
+        message: this.$t('notifyMessage.success.updateAvatar'),
         type: 'success',
       });
     }
