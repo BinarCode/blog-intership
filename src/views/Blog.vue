@@ -33,7 +33,7 @@
 <script>
 import { getTagsArray } from '@/utility/tags';
 import get from 'lodash/get';
-import { getBlog } from '@/api/blogService';
+import { getBlog, addViewOnBlog } from '@/api/blogService';
 
 export default {
   name: 'Blog',
@@ -44,7 +44,7 @@ export default {
   },
   async mounted() {
     this.parseBlogData();
-    // await addViewOnBlog(this.$route.params.blogId);
+    await addViewOnBlog(this.$route.params.blogId);
   },
   methods: {
     get,
