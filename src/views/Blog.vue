@@ -10,6 +10,7 @@
           get(blog, 'attributes.image', false) ||
             'https://i.stack.imgur.com/y9DpT.jpg'
         "
+        :alt="$t('blog.image.alt')"
       />
       <div class="tags cursor-pointer flex flex-wrap mx-auto space-x-4">
         <div

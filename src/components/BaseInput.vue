@@ -6,7 +6,6 @@
         v-if="type === 'password'"
         @click="switchType"
         class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-xs text-gray-600 font-mono cursor-pointer"
-        for="toggle"
       >
         {{ typePassword === 'password' ? 'show' : 'hide' }}
       </label>
