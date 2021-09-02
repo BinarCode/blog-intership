@@ -80,9 +80,11 @@ export default {
     },
 
     getAvatar() {
-      return this.post.relationships.creator.attributes.avatar
-        ? this.post.relationships.creator.attributes.avatar
-        : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
+      return get(
+          this.post,
+          'relationships.creator.attributes.avatar',
+          'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
+      );
     },
 
     getId() {

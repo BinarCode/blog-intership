@@ -41,6 +41,16 @@
       </div>
     </div>
 
+    <div class="mt-10">
+      <h1 class="text-4xl">{{ $t('general.profile.myArticles') }}</h1>
+    </div>
+
+    <div
+        class="my-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      <base-card v-for="blog in blogs" :post="blog" :key="blog.id" />
+    </div>
+
     <transition name="fade">
       <!-- Modal -->
       <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" v-if="showModal">
@@ -99,9 +109,12 @@
 import {mapActions, mapGetters} from 'vuex';
 import userService from '@/api/userService';
 import get from 'lodash/get';
+import BaseCard from '@/components/BaseCard';
 
 export default {
   name: "Profile",
+
+  components: {BaseCard},
 
   data() {
     return {
@@ -150,6 +163,8 @@ export default {
         this.blogs = get(userProfile, 'data.relationships.blogs', []);
         this.comments = get(userProfile, 'data.relationships.comments', []);
         this.media = get(userProfile, 'data.relationships.media', []);
+
+        console.log(this.blogs);
       } catch (error) {
         this.notifyErrors(error);
       }
@@ -242,7 +257,7 @@ export default {
   },
 
   created() {
-    //this.getUserProfile();
+    this.getUserProfile();
     this.profile.first_name = this.user.first_name;
     this.profile.last_name = this.user.last_name;
   }
