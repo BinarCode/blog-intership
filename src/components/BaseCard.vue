@@ -39,7 +39,7 @@
               {{ post.attributes.views || '0' }}
               {{ $t('general.views.text') }}
               <reading-time
-                :text="post.attributes.content"
+                :text="post.attributes.content || ''"
                 class="ml-8"
               ></reading-time>
             </span>
