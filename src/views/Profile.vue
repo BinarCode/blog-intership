@@ -41,14 +41,12 @@
       </div>
     </div>
 
-    <div class="mt-10">
-      <h1 class="text-4xl">{{ $t('general.profile.myArticles') }}</h1>
-    </div>
+    <div class="py-10">
+      <h1 class="text-4xl my-15">{{ $t('general.profile.myArticles') }}</h1>
 
-    <div
-        class="my-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-    >
-      <base-card v-for="blog in blogs" :post="blog" :key="blog.id" />
+      <div class="my-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <base-card v-for="blog in blogs" :post="blog" :key="blog.id" />
+      </div>
     </div>
 
     <transition name="fade">
@@ -163,8 +161,6 @@ export default {
         this.blogs = get(userProfile, 'data.relationships.blogs', []);
         this.comments = get(userProfile, 'data.relationships.comments', []);
         this.media = get(userProfile, 'data.relationships.media', []);
-
-        console.log(this.blogs);
       } catch (error) {
         this.notifyErrors(error);
       }
