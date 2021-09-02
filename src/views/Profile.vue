@@ -4,7 +4,7 @@
       <h1 class="text-6xl">{{ $t('profile.title') }}</h1>
     </div>
 
-    <div class="p-4 my-10 bg-white shadow rounded-lg sm:px-10">
+    <div class="px-4 py-10 my-10 bg-white shadow rounded-lg sm:px-10">
       <div class="max-w-5xl mx-auto h-auto">
         <div class="grid grid-cols-1 sm:grid-cols-5 gap-y-5">
           <div class="relative w-full col-span-1 sm:col-span-4">
@@ -12,10 +12,10 @@
             <span class="block">Created at: {{ getCreatedAt }}</span>
             <span class="block">Last updated at: {{ getUpdatedAt }}</span>
 
-            <div v-if="edit" class="absolute bottom-0 text-3xl min-w-0 mt-5">
+            <div v-if="edit" class="relative sm:absolute bottom-0 text-3xl min-w-0 mt-5">
               <span class="outline-none border-b-2 border-indigo-600" contenteditable="true" ref="firstName">{{ user.first_name }}</span> <span class="outline-none border-b-2 border-indigo-600" contenteditable="true" ref="lastName">{{ user.last_name }}</span>
             </div>
-            <div v-else class="absolute bottom-0 text-3xl min-w-0 mt-5">
+            <div v-else class="relative sm:absolute bottom-0 text-3xl min-w-0 mt-5">
               <span>{{ user.first_name }} {{ user.last_name }}</span>
             </div>
           </div>
