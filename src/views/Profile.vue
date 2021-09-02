@@ -24,9 +24,9 @@
           </div>
           <div class="flex flex-col">
             <img class="rounded-full h-32 w-32 object-cover mx-auto" :src="getAvatar" :alt="$t('profile.avatar.alt')">
-            <span v-if="edit" class="flex flex-col justify-center">
-              <base-button outline size="sm" @click="showModal = true">{{ $t('profile.changeAvatar.title') }}</base-button>
-              <base-button outline size="sm" @click="onClear">{{ $t('profile.clearAvatar.title') }}</base-button>
+            <span v-if="edit" class="flex justify-center">
+              <base-button class="w-1/2 mr-px" outline size="sm" @click="showModal = true">{{ $t('profile.changeAvatar.title') }}</base-button>
+              <base-button class="w-1/2 ml-px" outline size="sm" @click="onClear">{{ $t('profile.clearAvatar.title') }}</base-button>
             </span>
           </div>
         </div>
@@ -72,7 +72,7 @@
                       {{ $t('general.button.chooseFile') }}
                     </label>
                   </form>
-                  <div class="mt-6 flex-col hidden" ref="preview">
+                  <div class="mt-6 flex-col text-center hidden" ref="preview">
                     <img src="#" class="h-32 w-32 rounded-full flex-shrink-0 object-cover mx-auto" :alt="$t('profile.avatar.alt')" ref="avatarPreview">
                     <span ref="filenamePreview"></span>
                   </div>
