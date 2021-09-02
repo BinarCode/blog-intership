@@ -47,7 +47,7 @@
   "navbarHome.name": "Home",
   "navbarEditBlog.name": "Edit blog",
   "navbarCreateBlog.name": "Create new blog",
-  "navbarSearch.placeholder.name":"Search",
+  "navbarSearch.placeholder.name": "Search",
 
   "notifyMessage.succes.logIn": "You have successfully logged in",
   "notifyMessage.succes.register": "You have successfully registered",
@@ -73,5 +73,13 @@
   "general.button.chooseFile": "Choose file ",
   "general.button.deleteBlog": "Delete Blog",
   "general.notify.succesTitle": "Succes",
-  "general.notify.errorTitle": "Error"
+  "general.notify.errorTitle": "Error",
+
+  "addComment.notify.succesMessage": "Your comment has been successfully added.",
+  "deleteComment.notify.succesMessage": "Your comment has been successfully deleted.",
+  "comments.title": "Comments:",
+  "comments.userCommented.text": "commented on this blog:",
+  "comments.deleteBtn.label": "Delete",
+  "addComment.title": "Leave a comment:",
+  "addComment.commentBtn.label": "Comment"
 }

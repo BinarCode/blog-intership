@@ -25,8 +25,17 @@
         {{ get(blog, 'attributes.title', '') }}
       </div>
 
-      <div class="mb-20" v-html="get(blog, 'attributes.content', '')" />
+      <div class="mb-10" v-html="get(blog, 'attributes.content', '')" />
+
+      <div
+        id="comments"
+        class="w-full mb-10 px-8 pb-2 border border-dashed border-gray-400"
+      >
+        <add-comment :blogId="blogId"></add-comment>
+        <comments :comments="comments"></comments>
+      </div>
     </div>
+
     <vue-scroll-progress-bar
       backgroundColor="linear-gradient(to right, #BFDBFE,#4F46E5)"
       height=".3rem"
@@ -39,17 +48,28 @@
 import { getTagsArray } from '@/utility/tags';
 import get from 'lodash/get';
 import { getBlog, addViewOnBlog } from '@/api/blogService';
+import { getBlogComments } from '@/api/commentsService';
 import BackToTop from '@/components/BackToTop';
+import Comments from '@/components/Comments';
+import AddComment from '@/components/AddComment';
 import { VueScrollProgressBar } from '@guillaumebriday/vue-scroll-progress-bar';
 
 export default {
   name: 'Blog',
-  components: { VueScrollProgressBar, BackToTop },
+  components: { VueScrollProgressBar, BackToTop, Comments, AddComment },
   data() {
     return {
       blogId: this.$route.params.blogId,
       blog: null,
+      comments: null,
     };
+  },
+  methods: {
+    get,
+    async getComments() {
+      this.comments = await getBlogComments(this.blogId);
+      this.comments = this.comments.sort((a, b) => b.id - a.id);
+    },
   },
   async mounted() {
     try {
@@ -57,12 +77,10 @@ export default {
       data.attributes.tags = getTagsArray(get(data, 'attributes.tags', ''));
       await addViewOnBlog(this.blogId);
       this.blog = data;
+      await this.getComments();
     } catch (error) {
       this.notifyErrors(error);
     }
-  },
-  methods: {
-    get,
   },
 };
 </script>
