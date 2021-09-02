@@ -59,8 +59,8 @@ export default {
     return {
       loading: false,
       model: {
-        email: '',
-        token: '',
+        email: get(this.$route, 'query.email', ''),
+        token: get(this.$route, 'query.token', ''),
         password: '',
         password_confirmation: '',
       },
@@ -71,16 +71,21 @@ export default {
       try {
         this.loading = true;
         await authServices.resetPassword(this.model);
+        this.$notify({
+          title: this.$t('general.notify.succesTitle'),
+          message: this.$t('notifyMessage.succes.resetPassword'),
+          type: 'success',
+        });
+        await this.logIn({
+          email: this.model.email,
+          password: this.model.password_confirmation,
+        });
       } catch (error) {
-        console.log(error);
+        this.notifyErrors(error);
       } finally {
         this.loading = false;
       }
     },
-  },
-  mounted() {
-    this.model.email = get(this.$route, 'query.email', '');
-    this.model.token = get(this.$route, 'query.token', '');
   },
 };
 </script>
