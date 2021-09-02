@@ -193,6 +193,7 @@ export default {
         );
 
         await this.setUserState(this.user);
+        this.edit = false;
 
         this.$notify({
           title: this.$t('notifyMessage.success.title'),
