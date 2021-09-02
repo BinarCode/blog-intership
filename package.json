@@ -27,6 +27,7 @@
     "tiptap-extensions": "^1.35.2",
     "vee-validate": "^3.4.11",
     "vue": "^2.6.11",
+    "vue-html2pdf": "^1.8.0",
     "vue-i18n": "^8.25.0",
     "vue-infinite-loading": "^2.4.5",
     "vue-router": "^3.2.0",
