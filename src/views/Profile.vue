@@ -41,14 +41,6 @@
       </div>
     </div>
 
-    <div class="py-10">
-      <h1 class="text-4xl my-15">{{ $t('general.profile.myArticles') }}</h1>
-
-      <div class="my-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <base-card v-for="blog in blogs" :post="blog" :key="blog.id" />
-      </div>
-    </div>
-
     <transition name="fade">
       <!-- Modal -->
       <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" v-if="showModal">
