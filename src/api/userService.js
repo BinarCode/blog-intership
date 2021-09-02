@@ -14,6 +14,6 @@ export default {
     },
 
     async clearAvatar() {
-        return await axios.post('/api/user/delete/avatar');
+        return await axios.post('/api/users/delete/avatar');
     },
 }

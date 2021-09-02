@@ -99,12 +99,9 @@
 import {mapActions, mapGetters} from 'vuex';
 import userService from '@/api/userService';
 import get from 'lodash/get';
-import BaseCard from '@/components/BaseCard';
 
 export default {
   name: "Profile",
-
-  components: {BaseCard},
 
   data() {
     return {
@@ -144,20 +141,6 @@ export default {
 
     get,
 
-    async getUserProfile() {
-      try {
-        const userProfile = await userService.getProfile({
-          related: 'comments,blogs,media'
-        });
-
-        this.blogs = get(userProfile, 'data.relationships.blogs', []);
-        this.comments = get(userProfile, 'data.relationships.comments', []);
-        this.media = get(userProfile, 'data.relationships.media', []);
-      } catch (error) {
-        this.notifyErrors(error);
-      }
-    },
-
     async onSave() {
       try {
         if (!this.$refs.firstName.innerHTML || !this.$refs.lastName.innerHTML) {
@@ -190,7 +173,13 @@ export default {
       try {
         await userService.clearAvatar();
 
-        this.user.avatar = null;
+        const userProfile = await userService.getProfile();
+        this.user.avatar = get(
+            userProfile,
+            'data.attributes.avatar',
+            'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
+        );
+
         await this.setUserState(this.user);
 
         this.$notify({
@@ -245,7 +234,6 @@ export default {
   },
 
   created() {
-    this.getUserProfile();
     this.profile.first_name = this.user.first_name;
     this.profile.last_name = this.user.last_name;
   }
