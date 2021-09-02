@@ -1,25 +1,6 @@
 import axios from '@/api/axiosConfig';
 import { createTagsArr } from '@/utility/tags';
 
-export async function getBlogs({ search, page, perPage, sort }) {
-  let params = {
-    search,
-    page,
-    perPage,
-    sort,
-  };
-  try {
-    let { data } = await axios.get('/api/restify/blogs', { params });
-    return data;
-  } catch (error) {
-    return error;
-  }
-}
-
-export async function getBlogSearchResults(searchTerm) {
-  return await axios.get(`/api/blogs/advance-search?search=${searchTerm}`);
-}
-
 function createFormData(data) {
   const formData = new FormData();
   formData.append('title', data.title);
@@ -27,6 +8,22 @@ function createFormData(data) {
   formData.append('content', data.content);
   formData.append('image', data.image);
   return formData;
+}
+
+export async function getBlogs({ search, page, perPage, sort, related }) {
+  let params = {
+    search,
+    page,
+    perPage,
+    sort,
+    related,
+  };
+  try {
+    let { data } = await axios.get('/api/restify/blogs', { params });
+    return data;
+  } catch (error) {
+    return error;
+  }
 }
 
 export async function getBlog(blogId) {
@@ -86,4 +83,8 @@ export async function uploadImage(image) {
   } catch (error) {
     return error;
   }
+}
+
+export async function getBlogSearchResults(searchTerm) {
+  return await axios.get(`/api/blogs/advance-search?search=${searchTerm}`);
 }

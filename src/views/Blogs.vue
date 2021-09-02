@@ -13,9 +13,8 @@
     >
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
-
-    <infinite-loading @infinite="infiniteHandler"></infinite-loading>
     <p class="w-full text-center">{{ searchTermError }}</p>
+    <infinite-loading @infinite="infiniteHandler"></infinite-loading>
   </div>
 </template>
 
@@ -24,6 +23,7 @@ import InfiniteLoading from 'vue-infinite-loading';
 import BaseCard from '@/components/BaseCard';
 import { getBlogs } from '@/api/blogService.js';
 import eventBus from '@/api/eventBus.js';
+
 export default {
   components: { BaseCard, InfiniteLoading },
   name: 'Blogs',
@@ -32,7 +32,7 @@ export default {
       list: [],
       page: 1,
       searchTerm: '',
-      searchTermError: '',
+      searchTermError: 'title',
     };
   },
   methods: {
@@ -60,7 +60,8 @@ export default {
         search: this.searchTerm,
         page: this.page,
         perPage: 9,
-        sort: '-views',
+        sort: '-id',
+        related: 'creator',
       });
       if (data.length == 0) {
         this.list = [];

@@ -34,11 +34,11 @@
 import { getTagsArray } from '@/utility/tags';
 import get from 'lodash/get';
 import { getBlog, addViewOnBlog } from '@/api/blogService';
-
 export default {
   name: 'Blog',
   data() {
     return {
+      blogId: this.$route.params.blogId,
       blog: null,
     };
   },

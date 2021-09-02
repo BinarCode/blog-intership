@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+  <div
+    class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
+  >
     <div class="flex-shrink-0">
       <img
         class="object-cover w-full h-60 sm:h-48"
@@ -23,7 +25,11 @@
       <div class="flex items-center justify-between mt-6">
         <div class="flex">
           <div class="flex-shrink-0">
-            <img class="w-10 h-10 rounded-full" :src="getAvatar" :alt="$t('profile.avatar.alt')" />
+            <img
+              class="w-10 h-10 rounded-full"
+              :src="getAvatar"
+              :alt="$t('profile.avatar.alt')"
+            />
           </div>
           <div class="ml-3">
             <span class="text-sm font-medium text-gray-900">
