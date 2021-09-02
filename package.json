@@ -23,6 +23,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.5",
+    "jspdf": "^2.3.1",
     "lodash": "^4.17.21",
     "tiptap-extensions": "^1.35.2",
     "vee-validate": "^3.4.11",
