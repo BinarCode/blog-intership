@@ -27,6 +27,11 @@
 
       <div class="mb-20" v-html="get(blog, 'attributes.content', '')" />
     </div>
+    <vue-scroll-progress-bar
+      backgroundColor="linear-gradient(to right, #BFDBFE,#4F46E5)"
+      height=".3rem"
+    />
+    <back-to-top />
   </div>
 </template>
 
@@ -34,9 +39,12 @@
 import { getTagsArray } from '@/utility/tags';
 import get from 'lodash/get';
 import { getBlog, addViewOnBlog } from '@/api/blogService';
+import BackToTop from '@/components/BackToTop';
+import { VueScrollProgressBar } from '@guillaumebriday/vue-scroll-progress-bar';
 
 export default {
   name: 'Blog',
+  components: { VueScrollProgressBar, BackToTop },
   data() {
     return {
       blogId: this.$route.params.blogId,
