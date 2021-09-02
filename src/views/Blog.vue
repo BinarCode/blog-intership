@@ -37,57 +37,33 @@ import { getBlog, addViewOnBlog } from '@/api/blogService';
 
 export default {
   name: 'Blog',
+
   data() {
     return {
       blogId: this.$route.params.blogId,
       blog: null,
-      timeToRead: {},
     };
   },
   async mounted() {
-    try {
-      let data = await getBlog(this.blogId);
-      data.attributes.tags = getTagsArray(get(data, 'attributes.tags', ''));
-      await addViewOnBlog(this.blogId);
-      this.blog = data;
-      this.timeToRead = this.getTimeToRead();
-      console.log(this.getTimeToRead());
-    } catch (error) {
-      this.notifyErrors(error);
-    }
+    this.parseBlogData();
+    await addViewOnBlog(this.$route.params.blogId);
   },
   methods: {
     get,
-    getTimeToRead() {
-      let imageCount = 0;
-      let wordCount = 0;
-      let avgWordPerMinutes = 250;
-      let timeToReadSeconds = 0;
-      let timeToReadMinutes = 0;
-      let blogContent = get(this.blog, 'attributes.content', '');
-
-      imageCount = (blogContent.match(/<img/g) || []).length;
-      blogContent = this.extractContent(blogContent, true);
-      wordCount = blogContent.match(/(\w+)/g).length;
-      timeToReadSeconds =
-        Math.floor((wordCount / avgWordPerMinutes) * 60) + imageCount * 12;
-      timeToReadMinutes = Math.floor(timeToReadSeconds / 60);
-
-      return { seconds: timeToReadSeconds, minutes: timeToReadMinutes };
-    },
-    extractContent(s, space) {
-      let span = document.createElement('span');
-      span.innerHTML = s;
-      if (space) {
-        let children = span.querySelectorAll('*');
-        for (var i = 0; i < children.length; i++) {
-          if (children[i].textContent) children[i].textContent += ' ';
-          else children[i].innerText += ' ';
-        }
+    async parseBlogData() {
+      try {
+        this.blog = await getBlog(this.$route.params.blogId);
+        this.blog.attributes.tags = getTagsArray(
+          get(this.blog, 'attributes.tags', '')
+        );
+      } catch (error) {
+        this.notifyErrors(error);
       }
-      return [span.textContent || span.innerText]
-        .toString()
-        .replace(/ +/g, ' ');
+    },
+  },
+  watch: {
+    async $route() {
+      this.parseBlogData();
     },
   },
 };

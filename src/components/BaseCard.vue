@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+  <div
+    class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
+  >
     <div class="flex-shrink-0">
       <img
         class="object-cover w-full h-60 sm:h-48"
@@ -23,7 +25,7 @@
       <div class="flex items-center justify-between mt-6">
         <div class="flex">
           <div class="flex-shrink-0">
-            <img class="w-10 h-10 rounded-full" :src="getAvatar" :alt="$t('profile.avatar.alt')" />
+            <img class="w-10 h-10 rounded-full" :src="getAvatar" />
           </div>
           <div class="ml-3">
             <span class="text-sm font-medium text-gray-900">
@@ -36,7 +38,10 @@
             <span class="flex space-x-1 text-sm text-gray-500">
               {{ post.attributes.views || '0' }}
               {{ $t('general.views.text') }}
-              <!-- &middot; {{ $t('minutes_read') }}-->
+              <reading-time
+                :text="post.attributes.content"
+                class="ml-8"
+              ></reading-time>
             </span>
           </div>
         </div>
@@ -55,9 +60,11 @@
 
 <script>
 import get from 'lodash/get';
+import ReadingTime from '@/components/ReadingTime.vue';
 
 export default {
   name: 'BaseCard',
+  components: { ReadingTime },
 
   props: {
     post: {

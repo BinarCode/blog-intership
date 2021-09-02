@@ -4,6 +4,7 @@
   "blog.image.alt": "Blog image",
   "blog.noImage.text": "This blog has no cover image.",
   "blog.avatar.alt": "Avatar",
+  "reading-time": "minute to read | minutes to read",
 
   "general.blogs.title": "Blogs",
   "general.createBlog.title": "Create Blog",
