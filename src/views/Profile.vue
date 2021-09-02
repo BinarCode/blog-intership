@@ -2,28 +2,30 @@
   <div class="w-5/6 mx-auto py-10">
     <div class="flex justify-between">
       <h1 class="text-6xl">{{ $t('profile.title') }}</h1>
-      <base-button outline size="md" @click="edit = !edit">
-        {{ $t('profile.editProfile.title') }}
-      </base-button>
     </div>
 
     <div class="p-4 my-10 bg-white shadow rounded-lg sm:px-10">
       <div class="max-w-5xl mx-auto h-auto">
         <div class="grid grid-cols-1 sm:grid-cols-5 gap-y-5">
-          <div class="w-full col-span-1 sm:col-span-4">
+          <div class="relative w-full col-span-1 sm:col-span-4">
             <span class="block">Email: {{ user.email }}</span>
             <span class="block">Created at: {{ getCreatedAt }}</span>
             <span class="block">Last updated at: {{ getUpdatedAt }}</span>
 
-            <div v-if="edit" class="text-3xl min-w-0 mt-5">
+            <div v-if="edit" class="absolute bottom-0 text-3xl min-w-0 mt-5">
               <span class="outline-none border-b-2 border-indigo-600" contenteditable="true" ref="firstName">{{ user.first_name }}</span> <span class="outline-none border-b-2 border-indigo-600" contenteditable="true" ref="lastName">{{ user.last_name }}</span>
             </div>
-            <div v-else class="text-3xl min-w-0 mt-5">
+            <div v-else class="absolute bottom-0 text-3xl min-w-0 mt-5">
               <span>{{ user.first_name }} {{ user.last_name }}</span>
             </div>
           </div>
           <div class="flex flex-col">
             <img class="rounded-full h-32 w-32 object-cover mx-auto" :src="getAvatar" :alt="$t('profile.avatar.alt')">
+            <span v-if="!edit" class="flex justify-center">
+              <base-button class="w-1/2" outline size="sm" @click="edit = !edit">
+                {{ $t('profile.editProfile.title') }}
+              </base-button>
+            </span>
             <span v-if="edit" class="flex justify-center">
               <base-button class="w-1/2 mr-px" outline size="sm" @click="showModal = true">{{ $t('profile.changeAvatar.title') }}</base-button>
               <base-button class="w-1/2 ml-px" outline size="sm" @click="onClear">{{ $t('profile.clearAvatar.title') }}</base-button>
@@ -99,6 +101,8 @@
 import {mapActions, mapGetters} from 'vuex';
 import userService from '@/api/userService';
 import get from 'lodash/get';
+import format from 'date-fns/format';
+import formatDistance from 'date-fns/formatDistance'
 
 export default {
   name: "Profile",
@@ -128,18 +132,26 @@ export default {
     },
 
     getCreatedAt() {
-      return this.user.created_at.substring(0, 10);
+      const date = this.user.created_at.substring(0, 10).split('-');
+
+      return format(new Date(date), 'dd MMM yyyy');
     },
 
     getUpdatedAt() {
-      return this.user.updated_at.substring(0, 10);
+      const date = this.user.updated_at.substring(0, 10).split('-');
+
+      return formatDistance(
+          new Date(date),
+          new Date(),
+          { addSuffix: true }
+      );
     }
   },
 
   methods: {
     ...mapActions(['setUserState']),
 
-    get,
+    get, format, formatDistance,
 
     async onSave() {
       try {
