@@ -24,6 +24,13 @@
           >
             {{ $t('general.styleguide.title') }}
           </router-link>
+          <router-link
+            class="router-link"
+            :class="{ 'active-router-link': routeName === 'My Blogs' }"
+            to="/myblogs"
+          >
+            {{ $t('general.myBlogs.title') }}
+          </router-link>
         </div>
       </div>
       <div class="flex my-auto">
