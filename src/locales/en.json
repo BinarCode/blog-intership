@@ -5,6 +5,7 @@
   "blog.image.alt": "Blog image",
   "blog.noImage.text": "This blog has no cover image.",
   "blog.avatar.alt": "Avatar",
+  "profile.avatar.alt": "ProfileAvatar",
 
   "general.blogs.title": "Blogs",
   "general.createBlog.title": "Create Blog",

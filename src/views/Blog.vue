@@ -57,18 +57,21 @@ export default {
     };
   },
   async mounted() {
-    try {
-      let data = await getBlog(this.blogId);
-      data.attributes.tags = getTagsArray(get(data, 'attributes.tags', ''));
-      await addViewOnBlog(this.blogId);
-
-      this.blog = data;
-    } catch (error) {
-      this.notifyErrors(error);
-    }
+    this.parseBlogData();
+    await addViewOnBlog(this.$route.params.blogId);
   },
   methods: {
     get,
+    async parseBlogData() {
+      try {
+        this.blog = await getBlog(this.$route.params.blogId);
+        this.blog.attributes.tags = getTagsArray(
+          get(this.blog, 'attributes.tags', '')
+        );
+      } catch (error) {
+        this.notifyErrors(error);
+      }
+    },
     getFullName(user) {
       return `@${this.get(user, 'first_name', 'Unknown')} ${this.get(
         user,
@@ -85,6 +88,11 @@ export default {
         day: 'numeric',
       };
       return date.toLocaleDateString(this.$t('locales'), options);
+    },
+  },
+  watch: {
+    async $route() {
+      this.parseBlogData();
     },
   },
 };
