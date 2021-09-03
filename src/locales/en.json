@@ -1,9 +1,11 @@
 {
+  "locales": "en-US",
   "blog.views": "0 views|1 view|{n} views",
   "blog.minutes_read": "0 minutes read|1 minute read|{n} minutes read",
   "blog.image.alt": "Blog image",
   "blog.noImage.text": "This blog has no cover image.",
   "blog.avatar.alt": "Avatar",
+  "profile.avatar.alt": "ProfileAvatar",
 
   "general.blogs.title": "Blogs",
   "general.createBlog.title": "Create Blog",
@@ -81,5 +83,10 @@
   "comments.userCommented.text": "commented on this blog:",
   "comments.deleteBtn.label": "Delete",
   "addComment.title": "Leave a comment:",
-  "addComment.commentBtn.label": "Comment"
+  "addComment.commentBtn.label": "Comment",
+
+  "blogPage.postedOn.text": "posted this blog on: ",
+  "footer.rights.text": "Internship team 2021. All Rights Reserved.",
+  "binarCode.title": "BinarCode",
+  "copyright.symbol": "©"
 }

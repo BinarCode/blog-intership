@@ -7,7 +7,7 @@
     <div id="user-area" class="h-full col-span-1">
       <div class="text-center">
         <img class="w-full rounded-full h-full" :src="getAvatar" />
-        <div class="font-medium my-2 text-indigo-500">
+        <div class="font-medium text-indigo-500">
           @{{ userState.first_name }}
         </div>
       </div>

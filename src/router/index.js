@@ -11,6 +11,7 @@ import EditBlog from '@/views/EditBlog';
 import CreateBlog from '@/views/CreateBlog';
 import Blog from '@/views/Blog'
 
+
 Vue.use(VueRouter)
 
 const routes = [

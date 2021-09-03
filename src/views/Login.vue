@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-100">
+  <div class="flex flex-col h-full my-auto justify-center">
     <div class="mx-8 text-center sm:mx-auto">
       <img
         class="h-12 mx-auto"

@@ -50,7 +50,7 @@
             </el-dropdown-menu>
           </el-dropdown>
         </div>
-        <div class="break-words text-sm">
+        <div class="break-words text-sm pr-5">
           {{ get(comment, 'attributes.body', 'No comment') }}
         </div>
       </div>
