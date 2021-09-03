@@ -13,7 +13,7 @@
     >
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
-
+    <p class="w-full text-center">{{ searchTermError }}</p>
     <infinite-loading @infinite="infiniteHandler"></infinite-loading>
   </div>
 </template>
@@ -22,6 +22,7 @@
 import InfiniteLoading from 'vue-infinite-loading';
 import BaseCard from '@/components/BaseCard';
 import { getBlogs } from '@/api/blogService.js';
+import eventBus from '@/api/eventBus.js';
 
 export default {
   components: { BaseCard, InfiniteLoading },
@@ -30,17 +31,19 @@ export default {
     return {
       list: [],
       page: 1,
+      searchTerm: '',
+      searchTermError: 'title',
     };
   },
   methods: {
     async infiniteHandler($state) {
       let data = await getBlogs({
+        search: this.searchTerm,
         page: this.page,
         perPage: 9,
         sort: '-id',
         related: 'creator',
       });
-
       if (data.length) {
         this.page += 1;
         this.list.push(...data);
@@ -49,6 +52,31 @@ export default {
         $state.complete();
       }
     },
+  },
+  watch: {
+    searchTerm: async function() {
+      this.page = 1;
+      let data = await getBlogs({
+        search: this.searchTerm,
+        page: this.page,
+        perPage: 9,
+        sort: '-id',
+        related: 'creator',
+      });
+      if (data.length == 0) {
+        this.list = [];
+        this.searchTermError = `There were 0 search results for "${this.searchTerm}"`;
+      } else {
+        this.searchTermError = '';
+        this.page += 1;
+        this.list = data;
+      }
+    },
+  },
+  created() {
+    eventBus.$on('update:searchTerm', (searchTerm) => {
+      this.searchTerm = searchTerm;
+    });
   },
 };
 </script>
