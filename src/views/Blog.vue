@@ -46,13 +46,13 @@ export default {
   },
   async mounted() {
     this.parseBlogData();
-    await addViewOnBlog(this.$route.params.blogId);
+    await addViewOnBlog(this.blogId);
   },
   methods: {
     get,
     async parseBlogData() {
       try {
-        this.blog = await getBlog(this.$route.params.blogId);
+        this.blog = await getBlog(this.blogId);
         this.blog.attributes.tags = getTagsArray(
           get(this.blog, 'attributes.tags', '')
         );
