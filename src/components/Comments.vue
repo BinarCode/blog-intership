@@ -73,10 +73,8 @@ export default {
   methods: {
     get,
     getFullName(user) {
-      return `@${this.get(user, 'first_name', 'Unknown')} ${this.get(
-        user,
-        'first_name'
-      )}`;
+      return `@${this.get(user, 'first_name', 'Unknown')} 
+      ${this.get(user, 'last_name', '')}`;
     },
     getAvatar(avatar) {
       return (
