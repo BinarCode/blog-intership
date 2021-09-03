@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-100">
+  <div class="flex flex-col justify-center bg-gray-100">
     <div class="mx-8 text-center sm:mx-auto">
       <img
         src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"

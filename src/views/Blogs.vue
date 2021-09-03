@@ -1,5 +1,5 @@
 <template>
-  <div class="w-5/6 mx-auto max-h-full py-10">
+  <div>
     <div class="flex justify-between">
       <div class="text-5xl sm:text-6xl">{{ $t('general.blogs.title') }}</div>
       <router-link to="/create-blog" class="self-end">
@@ -14,7 +14,9 @@
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
 
-    <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+    <infinite-loading @infinite="infiniteHandler">
+      <div slot="no-more"></div>
+    </infinite-loading>
   </div>
 </template>
 

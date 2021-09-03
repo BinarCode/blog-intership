@@ -1,9 +1,12 @@
 <template>
-  <div id="app" class="w-full">
-    <div id="nav" class="flex justify-around w-full fixed top-0 left-0 z-50">
-      <base-navbar/>
+  <div id="app" class="w-full bg-gray-100">
+    <div class="flex justify-around w-full fixed top-0 left-0 z-50">
+      <base-navbar />
     </div>
-    <router-view class="page-content" />
+    <div class="w-3/4 mx-auto page-content max-h-full py-10">
+      <router-view />
+    </div>
+    <page-footer></page-footer>
   </div>
 </template>
 
@@ -20,7 +23,8 @@ export default {
 
 <style scoped>
 .page-content {
-  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px - 80px);
+  position: relative;
   margin-top: 64px;
 }
 </style>

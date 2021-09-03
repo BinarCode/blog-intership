@@ -1,9 +1,6 @@
 <template>
-  <div class="container w-full mx-auto flex justify-center">
-    <div
-      class="content w-3/4 flex flex-col items-start justify-center"
-      style="height:fit-content"
-    >
+  <div class="flex justify-center">
+    <div class="content flex flex-col items-start justify-center">
       <img
         class="object-cover w-full my-5 rounded-lg max-h-80"
         :src="
@@ -25,7 +22,19 @@
         {{ get(blog, 'attributes.title', '') }}
       </div>
 
-      <div class="mb-20" v-html="get(blog, 'attributes.content', '')" />
+      <div v-html="get(blog, 'attributes.content', '')" />
+      <div class="mt-7 w-full text-sm text-right font-medium text-gray-600">
+        <a href="#" class="text-indigo-500">
+          {{
+            `@${get(
+              blog,
+              'relationships.creator.attributes.first_name',
+              'Unknown'
+            )} ${get(blog, 'relationships.creator.attributes.last_name')}`
+          }}
+        </a>
+        <span>{{ $t('blogPage.postedOn.text') }} {{ getDate() }}</span>
+      </div>
     </div>
     <vue-scroll-progress-bar
       backgroundColor="linear-gradient(to right, #BFDBFE,#4F46E5)"
@@ -54,8 +63,10 @@ export default {
   async mounted() {
     try {
       let data = await getBlog(this.blogId);
+      console.log(data);
       data.attributes.tags = getTagsArray(get(data, 'attributes.tags', ''));
       await addViewOnBlog(this.blogId);
+
       this.blog = data;
     } catch (error) {
       this.notifyErrors(error);
@@ -63,6 +74,27 @@ export default {
   },
   methods: {
     get,
+    getDate() {
+      let date = new Date(get(this.blog, 'attributes.created_at'));
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      };
+      // let year = date.getFullYear();
+      // let month = date.getMonth() + 1;
+      // let dt = date.getDate();
+
+      // if (dt < 10) {
+      //   dt = '0' + dt;
+      // }
+      // if (month < 10) {
+      //   month = '0' + month;
+      // }
+      // return year + '-' + month + '-' + dt;
+      return date.toLocaleDateString(this.$t('locales'), options);
+    },
   },
 };
 </script>
