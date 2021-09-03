@@ -29,7 +29,7 @@
         <div class="mb-20" v-html="get(blog, 'attributes.content', '')" />
       </div>
 
-      <base-button @click="getPDF">{{ $t('blog.getAsPDF.text') }}</base-button>
+      <base-button @click="getPDF" class="mb-3">{{ $t('blog.getAsPDF.text') }}</base-button>
     </div>
 
     <div class="hidden">
