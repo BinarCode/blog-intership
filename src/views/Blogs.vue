@@ -13,10 +13,10 @@
     >
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
+    <p class="w-full text-center">{{ searchTermError }}</p>
     <infinite-loading @infinite="infiniteHandler">
       <div slot="no-more"></div>
     </infinite-loading>
-    <p class="w-full text-center">{{ searchTermError }}</p>
   </div>
 </template>
 
@@ -34,7 +34,7 @@ export default {
       list: [],
       page: 1,
       searchTerm: '',
-      searchTermError: 'title',
+      searchTermError: '',
     };
   },
   methods: {

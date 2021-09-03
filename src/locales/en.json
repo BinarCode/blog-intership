@@ -77,6 +77,14 @@
   "general.notify.succesTitle": "Succes",
   "general.notify.errorTitle": "Error",
 
+  "addComment.notify.succesMessage": "Your comment has been successfully added.",
+  "deleteComment.notify.succesMessage": "Your comment has been successfully deleted.",
+  "comments.title": "Comments:",
+  "comments.userCommented.text": "commented on this blog:",
+  "comments.deleteBtn.label": "Delete",
+  "addComment.title": "Leave a comment:",
+  "addComment.commentBtn.label": "Comment",
+
   "blogPage.postedOn.text": "posted this blog on: ",
   "footer.rights.text": "Internship team 2021. All Rights Reserved.",
   "binarCode.title": "BinarCode",
