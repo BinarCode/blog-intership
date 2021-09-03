@@ -78,6 +78,7 @@ export default {
     async getPDF() {
       this.$refs.pdfContent.innerHTML = this.$refs.blog.innerHTML;
       const page = this.$refs.pdfContent;
+      const filename = get(this.blog, 'attributes.title', 'blog');
 
       var doc = new jsPDF({
         orientation: "p",
@@ -90,7 +91,7 @@ export default {
           scale: 0.54
         },
         callback: function (doc) {
-          doc.save(`${get(this.blog, 'attributes.title', 'blog')}.pdf`);
+          doc.save(`${filename}.pdf`);
         },
         x: 15,
         y: 20
