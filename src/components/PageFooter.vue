@@ -1,6 +1,5 @@
 <template>
   <div class="absolute bottotm-0 w-full">
-    <!-- <div class="h-16 bg-gradient-to-b from-white to-gray-100" /> -->
     <div class="bg-gray-100">
       <div
         class="flex m-auto text-sm justify-between w-3/4 h-20 items-center
