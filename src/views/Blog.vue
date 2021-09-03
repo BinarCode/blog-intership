@@ -63,7 +63,6 @@ export default {
   async mounted() {
     try {
       let data = await getBlog(this.blogId);
-      console.log(data);
       data.attributes.tags = getTagsArray(get(data, 'attributes.tags', ''));
       await addViewOnBlog(this.blogId);
 
