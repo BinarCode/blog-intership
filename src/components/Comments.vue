@@ -6,12 +6,15 @@
     </div>
     <div
       v-for="(comment, index) in comments"
-      :key="comment.id"
+      :key="index"
       class="py-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 border-b"
       :class="index === comments.length - 1 ? 'border-none pb-0' : ''"
     >
       <div id="user-area" class="h-full col-span-1">
-        <img class="w-full rounded-full" :src="getAvatar(comment)" />
+        <img
+          class="w-full rounded-full"
+          :src="getAvatar(get(comment, 'relationships.creator[0].avatar'))"
+        />
       </div>
       <div
         id="comment-area"
@@ -19,10 +22,7 @@
       >
         <div class="font-medium text-indigo-500 flex justify-between">
           <span>
-            @{{
-              get(comment, 'relationships.creator[0].first_name', 'No name')
-            }}
-            {{ get(comment, 'relationships.creator[0].last_name', 'No name') }}
+            {{ getFullName(get(comment, 'relationships.creator[0]')) }}
             <span class="text-gray-500">
               {{ $t('comments.userCommented.text') }}
             </span>
@@ -72,10 +72,17 @@ export default {
   },
   methods: {
     get,
-    getAvatar(comment) {
-      return comment.relationships.creator[0].avatar
-        ? comment.relationships.creator[0].avatar
-        : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
+    getFullName(user) {
+      return `@${this.get(user, 'first_name', 'Unknown')} ${this.get(
+        user,
+        'first_name'
+      )}`;
+    },
+    getAvatar(avatar) {
+      return (
+        avatar ||
+        'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
+      );
     },
     async deleteComm(commId) {
       try {

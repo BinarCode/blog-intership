@@ -9,8 +9,11 @@ export async function createComment(data) {
 }
 
 export async function getBlogComments(blogId) {
+    let params = {
+        related: 'comments,creator'
+    };
     try {
-        let { data } = await axios.get(`/api/restify/blogs/${blogId}?related=comments,creator`);
+        let { data } = await axios.get(`/api/restify/blogs/${blogId}`, { params });
         return data.relationships.comments;
     } catch (error) {
         return error;

@@ -6,15 +6,7 @@
     </div>
     <div id="user-area" class="h-full col-span-1">
       <div class="text-center">
-        <img
-          class="w-full rounded-full h-full"
-          :src="
-            userState.avatar
-              ? 'https://api-internship.binarcode.com/storage/' +
-                userState.avatar
-              : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
-          "
-        />
+        <img class="w-full rounded-full h-full" :src="getAvatar" />
         <div class="font-medium my-2 text-indigo-500">
           @{{ userState.first_name }}
         </div>
@@ -49,6 +41,14 @@ export default {
       userComment: '',
     };
   },
+  computed: {
+    getAvatar() {
+      return this.userState.avatar
+        ? 'https://api-internship.binarcode.com/storage/' +
+            this.userState.avatar
+        : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
+    },
+  },
   methods: {
     async addComment() {
       try {
@@ -64,7 +64,6 @@ export default {
         });
         await this.$parent.getComments();
       } catch (error) {
-        console.log(error);
         this.notifyErrors(error);
       }
     },
