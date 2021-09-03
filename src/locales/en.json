@@ -1,4 +1,5 @@
 {
+  "locales": "en-US",
   "blog.views": "0 views|1 view|{n} views",
   "blog.minutes_read": "0 minutes read|1 minute read|{n} minutes read",
   "blog.image.alt": "Blog image",
@@ -48,7 +49,7 @@
   "navbarHome.name": "Home",
   "navbarEditBlog.name": "Edit blog",
   "navbarCreateBlog.name": "Create new blog",
-  "navbarSearch.placeholder.name":"Search",
+  "navbarSearch.placeholder.name": "Search",
 
   "notifyMessage.succes.logIn": "You have successfully logged in",
   "notifyMessage.succes.register": "You have successfully registered",
@@ -74,5 +75,10 @@
   "general.button.chooseFile": "Choose file ",
   "general.button.deleteBlog": "Delete Blog",
   "general.notify.succesTitle": "Succes",
-  "general.notify.errorTitle": "Error"
+  "general.notify.errorTitle": "Error",
+
+  "blogPage.postedOn.text": "posted this blog on: ",
+  "footer.rights.text": "Internship team 2021. All Rights Reserved.",
+  "binarCode.title": "BinarCode",
+  "copyright.symbol": "©"
 }

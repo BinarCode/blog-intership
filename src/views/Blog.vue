@@ -1,11 +1,10 @@
 <template>
-  <div class="container w-full mx-auto flex justify-center">
-    <div
-      class="content w-3/4 flex flex-col items-start justify-center"
-      style="height:fit-content"
-    >
+  <div
+    class="flex justify-center px-4 py-8 bg-white shadow rounded-lg sm:px-10"
+  >
+    <div class="content flex flex-col items-start justify-center">
       <img
-        class="object-cover w-full my-5 rounded-lg max-h-80"
+        class="object-cover mx-auto my-5 rounded-lg max-h-80"
         :src="
           get(blog, 'attributes.image', false) ||
             'https://i.stack.imgur.com/y9DpT.jpg'
@@ -25,7 +24,13 @@
         {{ get(blog, 'attributes.title', '') }}
       </div>
 
-      <div class="mb-20" v-html="get(blog, 'attributes.content', '')" />
+      <div v-html="get(blog, 'attributes.content', '')" />
+      <div class="mt-7 w-full text-sm text-right font-medium text-gray-600">
+        <span class="text-indigo-500">
+          {{ getFullName(get(blog, 'relationships.creator.attributes')) }}
+        </span>
+        <span>{{ $t('blogPage.postedOn.text') }} {{ getDate() }}</span>
+      </div>
     </div>
     <vue-scroll-progress-bar
       backgroundColor="linear-gradient(to right, #BFDBFE,#4F46E5)"
@@ -66,6 +71,23 @@ export default {
       } catch (error) {
         this.notifyErrors(error);
       }
+    },
+    getFullName(user) {
+      return `@${this.get(user, 'first_name', 'Unknown')} ${this.get(
+        user,
+        'last_name',
+        ''
+      )}`;
+    },
+    getDate() {
+      let date = new Date(get(this.blog, 'attributes.created_at'));
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      };
+      return date.toLocaleDateString(this.$t('locales'), options);
     },
   },
   watch: {

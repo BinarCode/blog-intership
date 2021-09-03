@@ -4,8 +4,8 @@
       <div class="flex">
         <router-link to="/" class="flex-shrink-0 mr-8 flex items-center">
           <img
-            class="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
+            class=" h-7"
+            src="https://www.binarcode.com/img/brand/logo-dark.png"
             alt="Workflow"
           />
         </router-link>
@@ -29,9 +29,9 @@
       <div class="flex my-auto">
         <div class="flex" v-if="userState.loggedIn">
           <div id="search" class="hidden sm:flex relative max-w-xs">
-            <label for="search" class="sr-only">{{
-              $t('navbarSearch.placeholder.name')
-            }}</label>
+            <label for="search" class="sr-only">
+              {{ $t('navbarSearch.placeholder.name') }}
+            </label>
             <div class="absolute inset-y-0 left-0 px-3 flex items-center">
               <svg
                 class="h-5 w-5 text-gray-400"

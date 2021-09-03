@@ -1,5 +1,5 @@
 <template>
-  <div class="p-20">
+  <div>
     <div class="buttonstyle">
       <h1 class="text-5xl font-bold my-4">BaseButtonStyles</h1>
       <base-button-styles></base-button-styles>
