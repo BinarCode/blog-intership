@@ -9,7 +9,7 @@
       </router-link>
     </div>
     <div
-      class="my-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3  print:grid-cols-2"
+      class="mt-10 mb-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3  print:grid-cols-2"
     >
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>

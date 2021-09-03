@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex justify-between">
+    <div class="flex mb-10 justify-between">
       <div class="text-5xl sm:text-6xl">
         {{ $t('editBlog.page.title') }}
       </div>
@@ -15,7 +15,7 @@
       </base-button>
     </div>
     <div class="sm:mx-auto sm:w-full">
-      <div class="p-4 my-10 bg-white shadow rounded-lg  sm:px-10">
+      <div class="p-4 bg-white shadow rounded-lg  sm:px-10">
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">

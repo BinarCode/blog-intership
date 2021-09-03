@@ -1,8 +1,10 @@
 <template>
-  <div class="flex justify-center">
+  <div
+    class="flex justify-center px-4 py-8 bg-white shadow rounded-lg sm:px-10"
+  >
     <div class="content flex flex-col items-start justify-center">
       <img
-        class="object-cover w-full my-5 rounded-lg max-h-80"
+        class="object-cover mx-auto my-5 rounded-lg max-h-80"
         :src="
           get(blog, 'attributes.image', false) ||
             'https://i.stack.imgur.com/y9DpT.jpg'
@@ -24,15 +26,9 @@
 
       <div v-html="get(blog, 'attributes.content', '')" />
       <div class="mt-7 w-full text-sm text-right font-medium text-gray-600">
-        <a href="#" class="text-indigo-500">
-          {{
-            `@${get(
-              blog,
-              'relationships.creator.attributes.first_name',
-              'Unknown'
-            )} ${get(blog, 'relationships.creator.attributes.last_name')}`
-          }}
-        </a>
+        <span class="text-indigo-500">
+          {{ getFullName(get(blog, 'relationships.creator.attributes')) }}
+        </span>
         <span>{{ $t('blogPage.postedOn.text') }} {{ getDate() }}</span>
       </div>
     </div>
@@ -73,6 +69,13 @@ export default {
   },
   methods: {
     get,
+    getFullName(user) {
+      return `@${this.get(user, 'first_name', 'Unknown')} ${this.get(
+        user,
+        'last_name',
+        ''
+      )}`;
+    },
     getDate() {
       let date = new Date(get(this.blog, 'attributes.created_at'));
       const options = {
