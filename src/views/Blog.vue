@@ -1,7 +1,7 @@
 <template>
   <div class="container w-full mx-auto flex justify-center">
     <div
-      class="content w-3/4 flex flex-col items-start justify-center"
+      class="content w-5/6 flex flex-col items-start justify-center"
       style="height:fit-content"
     >
       <img

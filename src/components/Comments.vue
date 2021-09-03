@@ -27,13 +27,28 @@
               {{ $t('comments.userCommented.text') }}
             </span>
           </span>
-          <span
-            class="text-red-600 cursor-pointer text-sm"
-            @click="deleteComm(comment.id)"
+          <el-dropdown
+            v-if="
+              get(comment, 'relationships.creator[0].id', null) === userState.id
+            "
           >
-            <i class="el-icon-delete-solid text-lg"></i>
-            {{ $t('comments.deleteBtn.label') }}
-          </span>
+            <span>
+              <i
+                class="el-icon-more text-indigo-500 text-lg transform rotate-90"
+              ></i>
+            </span>
+            <el-dropdown-menu slot="dropdown" class="p-0">
+              <el-dropdown-item>
+                <span
+                  class="text-red-600 cursor-pointer text-sm"
+                  @click="deleteComm(comment.id)"
+                >
+                  <i class="el-icon-delete-solid text-lg"></i>
+                  {{ $t('comments.deleteBtn.label') }}
+                </span>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </div>
         <div class="break-words text-sm">
           {{ get(comment, 'attributes.body', 'No comment') }}
