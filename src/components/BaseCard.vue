@@ -38,7 +38,10 @@
             <span class="flex space-x-1 text-sm text-gray-500">
               {{ post.attributes.views || '0' }}
               {{ $t('general.views.text') }}
-              <!-- &middot; {{ $t('minutes_read') }}-->
+              <reading-time
+                :text="get(post, 'attributes.content', '')"
+                class="ml-3"
+              ></reading-time>
             </span>
           </div>
         </div>
@@ -57,9 +60,11 @@
 
 <script>
 import get from 'lodash/get';
+import ReadingTime from '@/components/ReadingTime.vue';
 
 export default {
   name: 'BaseCard',
+  components: { ReadingTime },
 
   props: {
     post: {

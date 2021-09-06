@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="w-full bg-gray-100">
-    <div class="flex justify-around w-full fixed top-0 left-0 z-50">
+    <div id="nav" class="flex justify-around w-full fixed top-0 left-0 z-50">
       <base-navbar />
     </div>
     <div class="w-11/12 md:w-3/4 mx-auto page-content max-h-full py-10">
