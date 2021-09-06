@@ -1,7 +1,9 @@
 <template>
-  <div class="w-5/6 mx-auto max-h-full py-10">
+  <div class="w-full">
     <div class="flex justify-between">
-      <div class="text-5xl sm:text-6xl">{{ $t('general.myBlogs.title') }}</div>
+      <div class="text-5xl sm:text-6xl mb-5">
+        {{ $t('general.myBlogs.title') }}
+      </div>
       <router-link to="/create-blog" class="self-end">
         <base-button size="md" outline>
           {{ $t('general.createBlog.title') }}
