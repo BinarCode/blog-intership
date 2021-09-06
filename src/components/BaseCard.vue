@@ -45,13 +45,7 @@
             </span>
           </div>
         </div>
-        <router-link
-          v-if="
-            +get(post, 'relationships.creator.id', null) === +userState.id ||
-              $route.path == '/myblogs'
-          "
-          :to="getEditBlogLink"
-        >
+        <router-link v-if="goToEdit" :to="getEditBlogLink">
           <base-button size="sm" outline>
             {{ $t('general.editBlog.title') }}
           </base-button>
@@ -107,6 +101,12 @@ export default {
     },
     getEditBlogLink() {
       return `/edit-blog/${get(this.post, 'id', 'not-found')}`;
+    },
+    goToEdit() {
+      return (
+        +get(this.post, 'relationships.creator.id', null) ===
+          +this.userState.id || this.$route.path == '/myblogs'
+      );
     },
   },
 

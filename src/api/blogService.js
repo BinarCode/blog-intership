@@ -33,7 +33,7 @@ export async function getBlog(blogId) {
     );
     return data;
   } catch (error) {
-    return error;
+    this.notifyErrors(error);
   }
 }
 
@@ -91,7 +91,7 @@ export async function getMyBlogs() {
       '/api/restify/profile?related=blogs,comments,media,creator'
     );
   } catch (error) {
-    return error;
+    this.notifyErrors(error);
   }
 }
 
