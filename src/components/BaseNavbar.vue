@@ -6,7 +6,7 @@
           <img
             class=" h-7"
             src="https://www.binarcode.com/img/brand/logo-dark.png"
-            alt="Workflow"
+            alt="logo"
           />
         </router-link>
         <div v-if="userState.loggedIn" class="hidden md:flex md:space-x-8">
