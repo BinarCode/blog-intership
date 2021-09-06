@@ -49,7 +49,7 @@
           v-if="+get(post, 'relationships.creator.id', null) === +userState.id"
           :to="getEditBlogLink"
         >
-          <base-button size="sm" class="self-center" outline>
+          <base-button size="sm" outline>
             {{ $t('general.editBlog.title') }}
           </base-button>
         </router-link>

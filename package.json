@@ -18,7 +18,7 @@
     "@tiptap/extension-text-align": "^2.0.0-beta.22",
     "@tiptap/extension-typography": "^2.0.0-beta.14",
     "@tiptap/extension-underline": "^2.0.0-beta.16",
-    "@tiptap/starter-kit": "^2.0.0-beta.98",
+    "@tiptap/starter-kit": "^2.0.0-beta.101",
     "@tiptap/vue-2": "^2.0.0-beta.48",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
@@ -30,6 +30,7 @@
     "vue-i18n": "^8.25.0",
     "vue-infinite-loading": "^2.4.5",
     "vue-router": "^3.2.0",
+    "vue-simple-suggest": "^1.11.1",
     "vuex": "^3.6.2",
     "vuex-persistedstate": "^4.0.0"
   },
