@@ -1,11 +1,7 @@
 <template>
   <div class="flex flex-col h-full my-auto justify-center">
     <div class="mx-8 text-center sm:mx-auto">
-      <img
-        class="h-10 mx-auto"
-        src="https://www.binarcode.com/img/brand/logo-dark.png"
-        alt="BinarCode"
-      />
+      <bc-logo class="h-10" />
       <h2 class="mt-6 text-3xl font-extrabold text-gray-800">
         {{ $t('register.button.label.signIn') }}
       </h2>

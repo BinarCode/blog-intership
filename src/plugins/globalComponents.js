@@ -4,6 +4,7 @@ import BaseInput from '@/components/BaseInput.vue';
 import BaseButton from '@/components/BaseButton.vue';
 import BackToTop from '@/components/BackToTop';
 import PageFooter from '@/components/PageFooter';
+import BCLogo from '@/components/BCLogo'
 
 export default {
     install(Vue) {
@@ -16,6 +17,7 @@ export default {
         Vue.component('base-button', BaseButton);
         Vue.component('back-to-top', BackToTop);
         Vue.component('page-footer', PageFooter);
+        Vue.component('bc-logo', BCLogo);
     },
 }
 

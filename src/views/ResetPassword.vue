@@ -3,11 +3,7 @@
     class="flex flex-col justify-center min-h-screen py-12 bg-gray-100 sm:px-6 lg:px-8"
   >
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <img
-        class="h-10 mx-auto"
-        src="https://www.binarcode.com/img/brand/logo-dark.png"
-        alt="BinarCode"
-      />
+      <bc-logo class="h-10" />
       <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
         {{ $t('general.resetPassword.title') }}
       </h2>
