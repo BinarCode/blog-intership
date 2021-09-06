@@ -1,11 +1,7 @@
 <template>
   <el-dropdown trigger="click" class="p-2" @command="handleCommand">
     <span class="cursor-pointer flex items-center font-medium">
-      <img
-        class="h-5 rounded-full bg-black mr-1"
-        :src="getAvatar"
-        alt="Avatar"
-      />
+      <img class="h-6 rounded-full w-6 mr-1" :src="getAvatar" alt="Avatar" />
       @{{ userState.first_name }}
       <i class="el-icon-arrow-down el-icon--right pt-1"></i>
     </span>

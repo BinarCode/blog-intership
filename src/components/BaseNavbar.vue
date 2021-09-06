@@ -4,8 +4,8 @@
       <div class="flex">
         <router-link to="/" class="flex-shrink-0 mr-8 flex items-center">
           <img
-            class="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
+            class=" h-7"
+            src="https://www.binarcode.com/img/brand/logo-dark.png"
             alt="Workflow"
           />
         </router-link>
@@ -36,9 +36,9 @@
       <div class="flex my-auto">
         <div class="flex" v-if="userState.loggedIn">
           <div id="search" class="hidden sm:flex relative max-w-xs">
-            <label for="search" class="sr-only">{{
-              $t('navbarSearch.placeholder.name')
-            }}</label>
+            <label for="search" class="sr-only">
+              {{ $t('navbarSearch.placeholder.name') }}
+            </label>
             <div class="absolute inset-y-0 left-0 px-3 flex items-center">
               <svg
                 class="h-5 w-5 text-gray-400"
@@ -54,12 +54,20 @@
                 />
               </svg>
             </div>
-            <input
-              type="search"
-              name="search"
+            <vue-simple-suggest
+              class="block pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               placeholder="Search"
-              class="block pl-10 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
-            />
+              v-model="search"
+              display-attribute="title"
+              value-attribute="id"
+              @suggestion-click="goToBlog"
+              :list="getSearchResult"
+              :max-suggestions="5"
+              :debounce="500"
+              :controls="searchControls"
+              :filter-by-query="true"
+            >
+            </vue-simple-suggest>
           </div>
           <profile-dropdown username="someusername" avatar="" />
         </div>
@@ -88,15 +96,91 @@
 </template>
 
 <script>
+import { getBlogSearchResults } from '@/api/blogService';
 import ProfileDropdown from '@/components/ProfileDropdown.vue';
 import GuestDropdown from '@/components/GuestDropdown.vue';
+import VueSimpleSuggest from 'vue-simple-suggest';
+import eventBus from '@/api/eventBus';
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'BaseNavbar',
-  components: { ProfileDropdown, GuestDropdown },
+  components: {
+    ProfileDropdown,
+    GuestDropdown,
+    VueSimpleSuggest,
+  },
+  data() {
+    return {
+      search: '',
+    };
+  },
+  methods: {
+    getSearchResult: async function() {
+      try {
+        let blogs = await getBlogSearchResults(this.search);
+        return blogs.data;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    goToBlog: function(currentSuggestion) {
+      //when clicking a suggestion this function is called; see line 45
+      const path = `/blogs/${currentSuggestion.id}`;
+      if (this.$route.path != path) {
+        this.$router.push(path);
+      }
+    },
+  },
   computed: {
+    ...mapGetters(['userState']),
     routeName() {
       return this.$route.name;
+    },
+    searchControls() {
+      return {
+        selectionUp: [38, 33],
+        selectionDown: [40, 34],
+        select: [13, 36],
+        showList: [40],
+        hideList: [27, 35],
+        autocomplete: [32, 13],
+      };
+    },
+  },
+  watch: {
+    search: function() {
+      if (this.$route.path == '/') {
+        eventBus.$emit('update:searchTerm', this.search);
+      }
     },
   },
 };
 </script>
+
+<style lang="css">
+/*suggestion list modification - start */
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 0 0;
+  background: #fff;
+  width: 100%;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+.suggestions li {
+  padding: 5px 10px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+.suggestions li:hover {
+  background: rgba(99, 102, 241, var(--tw-border-opacity));
+  color: rgba(255, 255, 255, 0.8);
+}
+.input-wrapper .default-input:focus-visible {
+  outline: none;
+}
+/*suggestion list modification - end */
+</style>

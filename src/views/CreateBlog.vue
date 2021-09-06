@@ -1,12 +1,12 @@
 <template>
-  <div style="height:fit-content" class="w-5/6 mx-auto max-h-full py-10">
+  <div>
     <div class="flex justify-between">
-      <div class="text-5xl sm:text-6xl">
+      <div class="text-5xl mb-10 sm:text-6xl">
         {{ $t('general.createBlog.title') }}
       </div>
     </div>
     <div class="sm:mx-auto sm:w-full">
-      <div class="p-4 my-10 bg-white shadow rounded-lg  sm:px-10">
+      <div class="p-4 bg-white shadow rounded-lg  sm:px-10">
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">

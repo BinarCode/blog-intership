@@ -10,12 +10,13 @@ function createFormData(data) {
   return formData;
 }
 
-export async function getBlogs({ page, perPage, sort, related }) {
+export async function getBlogs({ search, page, perPage, sort, related }) {
   let params = {
-    page: page,
-    perPage: perPage,
-    sort: sort,
-    related: related,
+    search,
+    page,
+    perPage,
+    sort,
+    related,
   };
   try {
     let { data } = await axios.get('/api/restify/blogs', { params });
@@ -92,4 +93,8 @@ export async function getMyBlogs() {
   } catch (error) {
     return error;
   }
+}
+
+export async function getBlogSearchResults(searchTerm) {
+  return await axios.get(`/api/blogs/advance-search?search=${searchTerm}`);
 }

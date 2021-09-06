@@ -20,6 +20,7 @@
 <script>
 import BaseCard from '@/components/BaseCard';
 import { getMyBlogs } from '@/api/blogService.js';
+import get from 'lodash/get';
 
 export default {
   components: { BaseCard },
@@ -32,12 +33,15 @@ export default {
   },
   async created() {
     let blogs = await getMyBlogs();
-    let data = blogs.data.relationships.blogs;
+    let data = get(blogs, 'data.relationships.blogs', []);
     if (data.length) {
       this.list = data;
     } else {
       this.noBlogs = "You didn't publish anything yet";
     }
+  },
+  methods: {
+    get,
   },
 };
 </script>
