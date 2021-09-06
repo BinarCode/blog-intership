@@ -2,7 +2,7 @@
   <el-dropdown trigger="click" class="p-2" @command="handleCommand">
     <span class="cursor-pointer flex items-center font-medium">
       <img class="h-6 rounded-full w-6 mr-1" :src="getAvatar" alt="Avatar" />
-      @{{ userState.first_name }}
+      {{ userState.first_name }}
       <i class="el-icon-arrow-down el-icon--right pt-1"></i>
     </span>
 
@@ -43,11 +43,9 @@ export default {
   },
   computed: {
     getAvatar() {
-      if (!this.userState.avatar)
-        return 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
-      return (
-        'https://api-internship.binarcode.com/storage/' + this.userState.avatar
-      );
+      return this.userState.avatar
+        ? this.userState.avatar
+        : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
     },
     routeName() {
       return this.$route.name;

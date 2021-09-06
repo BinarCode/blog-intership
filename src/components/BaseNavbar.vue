@@ -62,7 +62,7 @@
             >
             </vue-simple-suggest>
           </div>
-          <profile-dropdown username="someusername" avatar="" />
+          <profile-dropdown username="someusername" />
         </div>
         <div v-if="!userState.loggedIn">
           <guest-dropdown class="sm:hidden" />

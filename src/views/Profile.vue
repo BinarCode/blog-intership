@@ -6,8 +6,8 @@
 
     <div class="px-4 py-10 my-10 bg-white shadow rounded-lg sm:px-10">
       <div class="max-w-5xl mx-auto h-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-5 gap-y-5">
-          <div class="relative w-full col-span-1 sm:col-span-4">
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-y-5">
+          <div class="relative w-full col-span-1 sm:col-span-3">
             <span class="block">Email: {{ user.email }}</span>
             <span class="block">Created at: {{ getCreatedAt }}</span>
             <span class="block">Last updated at: {{ getUpdatedAt }}</span>
@@ -27,8 +27,8 @@
               </base-button>
             </span>
             <span v-if="edit" class="flex justify-center">
-              <base-button class="w-1/2 mr-px" outline size="sm" @click="showModal = true">{{ $t('profile.changeAvatar.title') }}</base-button>
-              <base-button class="w-1/2 ml-px" outline size="sm" @click="onClear">{{ $t('profile.clearAvatar.title') }}</base-button>
+              <base-button class="w-1/2 mr-1" color="secondary" outline size="sm" @click="showModal = true">{{ $t('profile.changeAvatar.title') }}</base-button>
+              <base-button class="w-1/2" color="danger" size="sm" @click="onClear">{{ $t('profile.clearAvatar.title') }}</base-button>
             </span>
           </div>
         </div>

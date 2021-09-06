@@ -62,6 +62,17 @@
   "tiptap.setLink": "Please insert a valid URL",
   "tiptap.characterCount": "Character count",
 
+  "profile.title": "Profile",
+  "profile.avatar.alt": "Avatar",
+  "profile.editProfile.title": "Edit profile",
+  "profile.editProfile.save": "Save",
+  "profile.editProfile.cancel": "Cancel",
+  "profile.uploadAvatar.title": "Upload avatar",
+  "profile.uploadAvatar.message": "Please select an image from your computer",
+  "profile.upload.title": "Upload",
+  "profile.changeAvatar.title": "Change avatar",
+  "profile.clearAvatar.title": "Clear avatar",
+
   "editBlog.page.title": "Edit blog",
   "createBlog.name.title": "Title",
   "createBlog.name.tags": "Tags (separated by comma)",
