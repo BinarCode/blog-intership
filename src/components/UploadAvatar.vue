@@ -60,6 +60,7 @@ export default {
 
   data() {
     return {
+      file: null,
       filename: '',
       src: '',
       preview: false
@@ -78,17 +79,18 @@ export default {
     get,
 
     checkImage(image) {
+      this.file = image.target.files[0];
       const mimeTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
 
       try {
-        if(!mimeTypes.includes(image.target.files[0].type)) {
+        if(!mimeTypes.includes(this.file.type)) {
           this.$refs.uploadAvatar.reset();
           throw new Error(this.$t('notifyMessage.error.avatarMime'));
         }
 
         this.preview = true;
-        this.src = URL.createObjectURL(image.target.files[0]);
-        this.filename = image.target.files[0].name;
+        this.src = URL.createObjectURL(this.file);
+        this.filename = this.file.name;
       } catch (error) {
         this.notifyErrors(error);
       }
@@ -97,7 +99,7 @@ export default {
     async uploadAvatar() {
       try {
         const formData = new FormData();
-        formData.append('avatar', this.$refs.uploadAvatar[0].files[0]);
+        formData.append('avatar', this.file);
 
         const {data} = await userService.updateAvatar(formData);
 
