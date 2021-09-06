@@ -14,9 +14,9 @@
                     {{ $t('profile.uploadAvatar.message') }}:
                   </span>
 
-              <div class="my-4 flex-col text-center hidden" ref="preview">
-                <img src="#" class="h-32 w-32 rounded-full flex-shrink-0 object-cover mx-auto" :alt="$t('profile.avatar.alt')" ref="avatarPreview">
-                <span ref="filenamePreview"></span>
+              <div v-show="preview" class="my-4 flex-col text-center" ref="preview">
+                <img :src="src" class="h-32 w-32 rounded-full flex-shrink-0 object-cover mx-auto" :alt="$t('profile.avatar.alt')" ref="avatarPreview">
+                <span>{{ filename }}</span>
               </div>
 
               <form ref="uploadAvatar">
@@ -58,10 +58,11 @@ import {mapActions, mapGetters} from 'vuex';
 export default {
   name: "UploadAvatar",
 
-  props: {
-    showModal: {
-      type: Boolean,
-      default: false
+  data() {
+    return {
+      filename: '',
+      src: '',
+      preview: false
     }
   },
 
@@ -85,9 +86,9 @@ export default {
           throw new Error(this.$t('notifyMessage.error.avatarMime'));
         }
 
-        this.$refs.preview.classList.toggle("hidden");
-        this.$refs.avatarPreview.src = URL.createObjectURL(image.target.files[0]);
-        this.$refs.filenamePreview.innerHTML = (image.target.files[0].name);
+        this.preview = true;
+        this.src = URL.createObjectURL(image.target.files[0]);
+        this.filename = image.target.files[0].name;
       } catch (error) {
         this.notifyErrors(error);
       }
