@@ -29,11 +29,9 @@
           </div>
           <div class="ml-3">
             <span class="text-sm font-medium text-gray-900">
-              <a href="#" class="hover:underline">
-                {{
-                  get(post, 'relationships.creator.attributes.first_name', '')
-                }}
-              </a>
+              <div class="hover:underline">
+                {{ getFullName(get(post, 'relationships.creator.attributes')) }}
+              </div>
             </span>
             <span class="flex space-x-1 text-sm text-gray-500">
               {{ post.attributes.views || '0' }}
@@ -100,6 +98,10 @@ export default {
 
   methods: {
     get,
+    getFullName(user) {
+      return `${this.get(user, 'first_name', 'Unknown')} 
+      ${this.get(user, 'last_name', '')}`;
+    },
   },
 };
 </script>
