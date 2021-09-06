@@ -10,9 +10,7 @@
           "
           :alt="$t('blog.image.alt')"
         />
-        <div
-          class="tags cursor-pointer flex justify-center flex-wrap mx-auto space-x-4"
-        >
+        <div class="tags flex justify-center flex-wrap mx-auto space-x-4">
           <div
             class="inline-flex px-4 py-2.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-2"
             v-for="(tag, index) in get(blog, 'attributes.tags', [])"
