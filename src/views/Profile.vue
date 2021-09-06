@@ -8,10 +8,10 @@
       <div class="max-w-5xl mx-auto h-auto">
         <div class="grid grid-cols-1 sm:grid-cols-4 gap-y-8">
           <div class="relative w-full col-span-1 sm:col-span-3 font-light">
-            <span class="block">
+            <span class="block mb-1">
               <span class="font-medium">Email</span>: {{ user.email }}
             </span>
-            <span class="block">
+            <span class="block mb-1">
               <span class="font-medium">Created at</span>: {{ getCreatedAt }}
             </span>
             <span class="block">
