@@ -25,7 +25,7 @@ export default {
 
 <style scoped>
 .page-content {
-  min-height: calc(100vh - 64px - 81px);
+  min-height: calc(100vh - var(--navbarHeight) - var(--footerHeight));
   position: relative;
   margin-top: 64px;
 }

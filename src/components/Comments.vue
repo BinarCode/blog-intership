@@ -4,18 +4,14 @@
       <i class="el-icon-s-comment"></i>
       {{ $t('comments.title') }}
     </div>
-    <transition-group name="fade" tag="div">
+    <transition-group name="fade" mode="out-in" tag="div">
       <div
-        v-for="(comment, index) in comments"
+        v-for="comment in comments"
         :key="comment.id"
-        class="py-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 border-b"
-        :class="index === comments.length - 1 ? 'border-none pb-0' : ''"
+        class="py-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 border-b last:pb-0 last:border-b-0"
       >
         <div id="user-area" class="h-full col-span-1">
-          <img
-            class="w-full rounded-full"
-            :src="getAvatar(get(comment, 'relationships.creator[0].avatar'))"
-          />
+          <avatar :path="get(comment, 'relationships.creator[0]')" />
         </div>
         <div
           id="comment-area"
@@ -23,7 +19,7 @@
         >
           <div class="font-medium text-indigo-500 flex justify-between">
             <span>
-              {{ getFullName(get(comment, 'relationships.creator[0]')) }}
+              @{{ getFullName(get(comment, 'relationships.creator[0]')) }}
               <span class="text-gray-500">
                 {{ $t('comments.userCommented.text') }}
               </span>
@@ -62,10 +58,11 @@
 </template>
 
 <script>
-import get from 'lodash/get';
 import { deleteComment } from '@/api/commentsService';
+import Avatar from './Avatar.vue';
 
 export default {
+  components: { Avatar },
   name: 'Comments',
   props: {
     comments: {
@@ -74,17 +71,6 @@ export default {
     },
   },
   methods: {
-    get,
-    getFullName(user) {
-      return `@${this.get(user, 'first_name', 'Unknown')} 
-      ${this.get(user, 'last_name', '')}`;
-    },
-    getAvatar(avatar) {
-      return (
-        avatar ||
-        'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
-      );
-    },
     async deleteComm(commId) {
       try {
         await deleteComment(commId);

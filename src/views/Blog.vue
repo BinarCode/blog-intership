@@ -3,11 +3,9 @@
     <div class="content flex flex-col items-start justify-center">
       <div class="p-8 bg-white shadow rounded-lg sm:p-12 lg:px-20">
         <img
+          v-if="get(blog, 'attributes.image', '')"
           class="object-cover mx-auto my-5 rounded-lg max-h-80"
-          :src="
-            get(blog, 'attributes.image', false) ||
-              'https://i.stack.imgur.com/y9DpT.jpg'
-          "
+          :src="get(blog, 'attributes.image', '')"
           :alt="$t('blog.image.alt')"
         />
         <div
@@ -28,7 +26,7 @@
         <div class="text-sm" v-html="get(blog, 'attributes.content', '')" />
         <div class="mt-7 w-full text-sm text-right font-medium text-gray-600">
           <span class="text-indigo-500">
-            {{ getFullName(get(blog, 'relationships.creator.attributes')) }}
+            @{{ getFullName(get(blog, 'relationships.creator.attributes')) }}
           </span>
           <span>{{ $t('blogPage.postedOn.text') }} {{ getDate() }}</span>
         </div>
@@ -87,13 +85,6 @@ export default {
       } catch (error) {
         this.notifyErrors(error);
       }
-    },
-    getFullName(user) {
-      return `@${this.get(user, 'first_name', 'Unknown')} ${this.get(
-        user,
-        'last_name',
-        ''
-      )}`;
     },
     getDate() {
       let date = new Date(get(this.blog, 'attributes.created_at'));

@@ -4,8 +4,8 @@
   >
     <div class="flex-shrink-0">
       <img
-        class="object-cover w-full h-60 sm:h-48"
-        :src="getImage"
+        class="object-cover w-full h-60"
+        :src="getCover"
         :alt="$t('blog.image.alt')"
       />
     </div>
@@ -24,9 +24,10 @@
       </div>
       <div class="flex items-center justify-between mt-6">
         <div class="flex">
-          <div class="flex-shrink-0">
-            <img class="w-10 h-10 rounded-full" :src="getAvatar" />
-          </div>
+          <avatar
+            class="w-10 h-10"
+            :path="get(post, 'relationships.creator.attributes')"
+          />
           <div class="ml-3">
             <span class="text-sm font-medium text-gray-900">
               <div class="hover:underline">
@@ -63,44 +64,25 @@ import ReadingTime from '@/components/ReadingTime.vue';
 export default {
   name: 'BaseCard',
   components: { ReadingTime },
-
   props: {
     post: {
       type: Object,
       default: () => {},
     },
   },
-
   computed: {
     tagList() {
       const tags = get(this.post, 'attributes.tags', []);
       return typeof tags === 'string' ? JSON.parse(tags) : tags;
     },
-    getImage() {
-      return (
-        get(this.post, 'attributes.image', false) ||
-        'https://i.stack.imgur.com/y9DpT.jpg'
-      );
+    getCover() {
+      return get(this.post, 'attributes.image', false) || '/no-blog-cover.jpg';
     },
-    getAvatar() {
-      return this.post.relationships.creator.attributes.avatar
-        ? this.post.relationships.creator.attributes.avatar
-        : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
-    },
-
     getId() {
       return `/blogs/${get(this.post, 'id', 'not-found')}`;
     },
     getEditBlogLink() {
       return `/edit-blog/${get(this.post, 'id', 'not-found')}`;
-    },
-  },
-
-  methods: {
-    get,
-    getFullName(user) {
-      return `${this.get(user, 'first_name', 'Unknown')} 
-      ${this.get(user, 'last_name', '')}`;
     },
   },
 };

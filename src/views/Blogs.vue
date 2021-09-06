@@ -57,10 +57,9 @@ export default {
   },
   watch: {
     async searchTerm() {
-      this.page = 1;
       let data = await getBlogs({
         search: this.searchTerm,
-        page: this.page,
+        page: 1,
         perPage: 9,
         sort: '-id',
         related: 'creator',
@@ -79,9 +78,6 @@ export default {
     eventBus.$on('update:searchTerm', (searchTerm) => {
       this.searchTerm = searchTerm;
     });
-  },
-  mounted() {
-    this.infiniteHandler();
   },
 };
 </script>
