@@ -7,10 +7,16 @@
     <div class="px-4 py-12 sm:py-16 my-10 bg-white shadow rounded-lg sm:px-10">
       <div class="max-w-5xl mx-auto h-auto">
         <div class="grid grid-cols-1 sm:grid-cols-4 gap-y-8">
-          <div class="relative w-full col-span-1 sm:col-span-3">
-            <span class="block">Email: {{ user.email }}</span>
-            <span class="block">Created at: {{ getCreatedAt }}</span>
-            <span class="block">Last updated: {{ getUpdatedAt }}</span>
+          <div class="relative w-full col-span-1 sm:col-span-3 font-light">
+            <span class="block">
+              <span class="font-medium">Email</span>: {{ user.email }}
+            </span>
+            <span class="block">
+              <span class="font-medium">Created at</span>: {{ getCreatedAt }}
+            </span>
+            <span class="block">
+              <span class="font-medium">Last updated</span>: {{ getUpdatedAt }}
+            </span>
 
             <div v-if="edit" class="relative flex sm:absolute -bottom-4 text-3xl mt-0 sm:mt-5 w-full sm:w-5/6">
               <base-input class="w-full sm:w-1/2 mr-1" v-model="profile.first_name" :label="$t('register.name.firstName')" />
@@ -28,16 +34,16 @@
               </base-button>
             </span>
             <span v-else class="flex justify-center mt-2 sm:mt-0">
-              <base-button class="w-1/2 mr-1" color="secondary" outline size="sm" @click="showModal = true">{{ $t('profile.changeAvatar.title') }}</base-button>
-              <base-button class="w-1/2" color="danger" outline size="sm" @click="onClear">{{ $t('profile.clearAvatar.title') }}</base-button>
+              <base-button class="mr-1" color="secondary" outline size="sm" @click="showModal = true">{{ $t('profile.changeAvatar.title') }}</base-button>
+              <base-button color="danger" outline size="sm" @click="onClear">{{ $t('profile.clearAvatar.title') }}</base-button>
             </span>
           </div>
         </div>
         <div v-if="edit" class="sm:min-w-0 mt-6 inline-flex flex-row-reverse w-full">
-          <base-button outline class="mr ml-1" size="md" @click="onSave">
+          <base-button class="ml-1" size="md" @click="onSave">
             {{ $t('profile.editProfile.save') }}
           </base-button>
-          <base-button class="" size="md" @click="edit = !edit">
+          <base-button outline size="md" @click="edit = !edit">
             {{ $t('profile.editProfile.cancel') }}
           </base-button>
         </div>
@@ -85,10 +91,10 @@
               </div>
             </div>
             <div class="mt-8 flex flex-row-reverse">
-              <base-button outline size="md" class="ml-1" @click="uploadAvatar">
+              <base-button size="md" class="ml-1" @click="uploadAvatar">
                 {{ $t('profile.editProfile.save') }}
               </base-button>
-              <base-button size="md" @click = "showModal = false">
+              <base-button outline size="md" @click = "showModal = false">
                 {{ $t('profile.editProfile.cancel') }}
               </base-button>
             </div>
