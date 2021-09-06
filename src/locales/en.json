@@ -70,8 +70,8 @@
   "profile.uploadAvatar.title": "Upload avatar",
   "profile.uploadAvatar.message": "Please select an image from your computer",
   "profile.upload.title": "Upload",
-  "profile.changeAvatar.title": "Change avatar",
-  "profile.clearAvatar.title": "Clear avatar",
+  "profile.changeAvatar.title": "Change",
+  "profile.clearAvatar.title": "Clear",
 
   "editBlog.page.title": "Edit blog",
   "createBlog.name.title": "Title",
