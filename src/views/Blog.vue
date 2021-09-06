@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="content flex flex-col items-start justify-center">
-      <div class="p-8 bg-white shadow rounded-lg sm:p-12 lg:px-20">
+      <div class="p-8 bg-white shadow rounded-lg sm:p-12 lg:px-20 w-full">
         <img
           class="object-cover mx-auto my-5 rounded-lg max-h-80"
           :src="
@@ -33,8 +33,8 @@
           <span>{{ $t('blogPage.postedOn.text') }} {{ getDate() }}</span>
         </div>
       </div>
-      <div class="p-8 bg-white shadow rounded-lg sm:p-12 lg:px-20 mt-10">
-        <add-comment :blogId="blogId" class="mb-8"></add-comment>
+      <div class="p-8 bg-white shadow rounded-lg sm:p-12 lg:px-20 mt-10 w-full">
+        <add-comment :blogId="blogId"></add-comment>
         <comments :comments="comments"></comments>
       </div>
     </div>
