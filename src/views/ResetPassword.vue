@@ -4,9 +4,9 @@
   >
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img
-        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-        alt="Workflow"
-        class="w-auto h-12 mx-auto"
+        class="h-10 mx-auto"
+        src="https://www.binarcode.com/img/brand/logo-dark.png"
+        alt="BinarCode"
       />
       <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
         {{ $t('general.resetPassword.title') }}
