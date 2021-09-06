@@ -26,6 +26,7 @@
               <span>{{ user.first_name }} {{ user.last_name }}</span>
             </div>
           </div>
+
           <div class="flex flex-col">
             <img class="rounded-full h-32 w-32 object-cover mx-auto" :src="getAvatar" :alt="$t('profile.avatar.alt')">
             <span v-if="!edit" class="flex justify-center mt-2 sm:mt-0">
@@ -39,6 +40,7 @@
             </span>
           </div>
         </div>
+
         <div v-if="edit" class="sm:min-w-0 mt-6 inline-flex flex-row-reverse w-full">
           <base-button class="ml-1" size="md" @click="onSave">
             {{ $t('profile.editProfile.save') }}
@@ -206,78 +208,6 @@ export default {
 </script>
 
 <style scoped>
-.nameInput {
-  border:none;
-  background-image:none;
-  background-color:transparent;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  -o-box-shadow: none;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
-  width: auto;
-}
-
-.fade-in-top-enter-active {
-  animation: fadeintop 0.3s;
-}
-
-.fade-in-top-leave-active {
-  animation: fadeintop 0.3s reverse;
-}
-
-@keyframes fadeintop {
-  from {
-    transform: translateY(-20px);
-    opacity: 0%;
-  }
-  to {
-    transform: translateY(0px);
-    opacity: 100%;
-  }
-}
-
-
-.fade-in-left-enter-active {
-  animation: fadeinleft 0.2s;
-}
-
-.fade-in-left-leave-active {
-  animation: fadeinleft 0.2s reverse;
-}
-
-@keyframes fadeinleft {
-  from {
-    transform: translateX(-20px);
-    opacity: 0%;
-  }
-  to {
-    transform: translateX(0px);
-    opacity: 100%;
-  }
-}
-
-
-.fade-in-right-enter-active {
-  animation: fadeinright 0.2s;
-}
-
-.fade-in-right-leave-active {
-  animation: fadeinright 0.2s reverse;
-}
-
-@keyframes fadeinright {
-  from {
-    transform: translateX(20px);
-    opacity: 0%;
-  }
-  to {
-    transform: translateX(0px);
-    opacity: 100%;
-  }
-}
-
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.3s;
 }
