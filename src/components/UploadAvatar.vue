@@ -3,7 +3,7 @@
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
       <div class="fixed inset-0 bg-gray-500 bg-opacity-75" aria-hidden="true" @click="closeModal"></div>
       <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-      <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+      <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 my-auto">
         <div class="sm:flex sm:items-start">
           <div class="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
             <h3 class="text-2xl leading-6 font-medium text-gray-900" id="modal-title">
@@ -114,6 +114,8 @@ export default {
           message: this.$t('notifyMessage.success.updateAvatar'),
           type: 'success',
         });
+
+        this.closeModal();
       } catch (error) {
         this.notifyErrors(error);
       }

@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto py-10">
+  <div>
     <div class="flex justify-between">
       <h1 class="text-6xl">{{ $t('profile.title') }}</h1>
     </div>
