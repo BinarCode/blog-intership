@@ -33,7 +33,7 @@
     </div>
 
     <div class="hidden">
-      <div ref="pdfContent" style="width: 768px"></div>
+      <div ref="pdfContent" style="width: 768px; transform: translateY(-1rem);"></div>
     </div>
 
     <vue-scroll-progress-bar
@@ -88,13 +88,13 @@ export default {
 
       await doc.html(page, {
         html2canvas: {
-          scale: 0.54
+          scale: 0.38
         },
         callback: function (doc) {
           doc.save(`${filename}.pdf`);
         },
-        x: 15,
-        y: 20
+        x: 76.8,
+        y: 25
       });
 
       this.$refs.pdfContent.innerHTML = "";
