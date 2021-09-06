@@ -6,28 +6,28 @@
 
     <div class="px-4 py-12 sm:py-16 my-10 bg-white shadow rounded-lg sm:px-10">
       <div class="max-w-5xl mx-auto h-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-4 gap-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-y-8">
           <div class="relative w-full col-span-1 sm:col-span-3">
             <span class="block">Email: {{ user.email }}</span>
             <span class="block">Created at: {{ getCreatedAt }}</span>
             <span class="block">Last updated: {{ getUpdatedAt }}</span>
 
-            <div v-if="edit" class="relative sm:absolute -bottom-4 text-3xl min-w-0 mt-5">
-              <base-input class="inline-block mr-1" v-model="profile.first_name" :label="$t('register.name.firstName')" />
-              <base-input class="inline-block ml-1" v-model="profile.last_name" :label="$t('register.name.lastName')" />
+            <div v-if="edit" class="relative flex sm:absolute -bottom-4 text-3xl mt-0 sm:mt-5 w-full sm:w-5/6">
+              <base-input class="w-full sm:w-1/2 mr-1" v-model="profile.first_name" :label="$t('register.name.firstName')" />
+              <base-input class="w-full sm:w-1/2" v-model="profile.last_name" :label="$t('register.name.lastName')" />
             </div>
-            <div v-else class="relative sm:absolute bottom-0 text-3xl min-w-0 mt-5">
+            <div v-else class="relative sm:absolute bottom-0 text-3xl mt-5">
               <span>{{ user.first_name }} {{ user.last_name }}</span>
             </div>
           </div>
           <div class="flex flex-col">
             <img class="rounded-full h-32 w-32 object-cover mx-auto" :src="getAvatar" :alt="$t('profile.avatar.alt')">
-            <span v-if="!edit" class="flex justify-center">
-              <base-button class="w-2/3" outline size="sm" @click="edit = !edit">
+            <span v-if="!edit" class="flex justify-center mt-2 sm:mt-0">
+              <base-button outline size="sm" @click="edit = !edit">
                 {{ $t('profile.editProfile.title') }}
               </base-button>
             </span>
-            <span v-else class="flex justify-center">
+            <span v-else class="flex justify-center mt-2 sm:mt-0">
               <base-button class="w-1/2 mr-1" color="secondary" outline size="sm" @click="showModal = true">{{ $t('profile.changeAvatar.title') }}</base-button>
               <base-button class="w-1/2" color="danger" outline size="sm" @click="onClear">{{ $t('profile.clearAvatar.title') }}</base-button>
             </span>
@@ -50,16 +50,22 @@
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <div class="fixed inset-0 bg-gray-500 bg-opacity-75" aria-hidden="true" @click="showModal = false"></div>
           <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-          <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 my-auto">
+          <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
             <div class="sm:flex sm:items-start">
               <div class="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 class="text-2xl leading-6 font-medium text-gray-900" id="modal-title">
                   {{ $t('profile.uploadAvatar.title') }}
                 </h3>
-                <div class="mt-2">
+                <div class="mt-8">
                   <span class="text-sm text-gray-500">
                     {{ $t('profile.uploadAvatar.message') }}:
                   </span>
+
+                  <div class="my-4 flex-col text-center hidden" ref="preview">
+                    <img src="#" class="h-32 w-32 rounded-full flex-shrink-0 object-cover mx-auto" :alt="$t('profile.avatar.alt')" ref="avatarPreview">
+                    <span ref="filenamePreview"></span>
+                  </div>
+
                   <form ref="uploadAvatar">
                     <input
                         type="file"
@@ -75,15 +81,11 @@
                       {{ $t('general.button.chooseFile') }}
                     </label>
                   </form>
-                  <div class="mt-6 flex-col text-center hidden" ref="preview">
-                    <img src="#" class="h-32 w-32 rounded-full flex-shrink-0 object-cover mx-auto" :alt="$t('profile.avatar.alt')" ref="avatarPreview">
-                    <span ref="filenamePreview"></span>
-                  </div>
                 </div>
               </div>
             </div>
-            <div class="mt-5 flex flex-row-reverse">
-              <base-button outline size="md" class="ml-2" @click="uploadAvatar">
+            <div class="mt-8 flex flex-row-reverse">
+              <base-button outline size="md" class="ml-1" @click="uploadAvatar">
                 {{ $t('profile.editProfile.save') }}
               </base-button>
               <base-button size="md" @click = "showModal = false">
@@ -150,7 +152,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['setUserState']),
+    ...mapActions(['setUserState', 'setProfileState']),
 
     get, format, formatDistance,
 
@@ -158,14 +160,33 @@ export default {
       try {
         if (!this.profile.first_name || !this.profile.last_name) {
           this.edit = false;
+
+          this.profile.first_name = this.user.first_name;
+          this.profile.last_name = this.user.last_name;
+
           throw new Error(this.$t('notifyMessage.error.requiredNames'));
         }
 
         await userService.updateProfile(this.profile);
+        const profile = await userService.getProfile();
 
-        this.user.first_name = this.profile.first_name;
-        this.user.last_name = this.profile.last_name;
-        await this.setUserState(this.user);
+        let tempUser = {};
+        tempUser.first_name = get(
+            profile,
+            'data.attributes.first_name',
+            this.user.first_name
+        );
+        tempUser.last_name = get(
+            profile,
+            'data.attributes.last_name',
+            this.user.last_name
+        );
+        tempUser.avatar = get(
+            profile,
+            'data.attributes.avatar',
+            'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
+        );
+        this.setProfileState(tempUser);
 
         this.$notify({
           title: this.$t('notifyMessage.success.title'),
@@ -182,17 +203,26 @@ export default {
     async onClear() {
       try {
         await userService.clearAvatar();
-
         const profile = await userService.getProfile();
 
-        const tempUser = this.user;
+        let tempUser = {};
+        tempUser.first_name = get(
+            profile,
+            'data.attributes.first_name',
+            this.user.first_name
+        );
+        tempUser.last_name = get(
+            profile,
+            'data.attributes.last_name',
+            this.user.last_name
+        );
         tempUser.avatar = get(
             profile,
             'data.attributes.avatar',
             'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
         );
+        await this.setProfileState(tempUser);
 
-        await this.setUserState(tempUser);
         this.edit = false;
 
         this.$notify({
@@ -229,8 +259,11 @@ export default {
 
         const {data} = await userService.updateAvatar(formData);
 
-        this.user.avatar = get(data, 'attributes.avatar', '');
-        await this.setUserState(this.user);
+        let tempUser = {};
+        tempUser.first_name = this.user.first_name;
+        tempUser.last_name = this.user.last_name;
+        tempUser.avatar = get(data, 'attributes.avatar', '');
+        await this.setProfileState(tempUser);
 
         this.showModal = false;
         this.edit = false;
