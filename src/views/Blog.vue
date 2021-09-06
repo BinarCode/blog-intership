@@ -86,28 +86,38 @@ export default {
     jsPDF,
 
     async getPDF() {
-      this.$refs.pdfContent.innerHTML = this.$refs.blog.innerHTML;
-      const page = this.$refs.pdfContent;
-      const filename = get(this.blog, 'attributes.title', 'blog');
+      try {
+        this.$refs.pdfContent.innerHTML = this.$refs.blog.innerHTML;
+        const page = this.$refs.pdfContent;
+        const filename = get(this.blog, 'attributes.title', 'blog');
 
-      var doc = new jsPDF({
-        orientation: "p",
-        format: "a4",
-        unit: "px"
-      });
+        const doc = new jsPDF({
+          orientation: "p",
+          format: "a4",
+          unit: "px"
+        });
 
-      await doc.html(page, {
-        html2canvas: {
-          scale: 0.38
-        },
-        callback: function (doc) {
-          doc.save(`${filename}.pdf`);
-        },
-        x: 76.8,
-        y: 25
-      });
+        const options = {
+          htmlScale: 0.38,
+          xOffset: 76.8,
+          yOffset: 25
+        }
 
-      this.$refs.pdfContent.innerHTML = "";
+        await doc.html(page, {
+          html2canvas: {
+            scale: options.htmlScale
+          },
+          callback: (doc) => {
+            doc.save(`${filename}.pdf`);
+          },
+          x: options.xOffset,
+          y: options.yOffset
+        });
+
+        this.$refs.pdfContent.innerHTML = "";
+      } catch (error) {
+        this.notifyErrors(error);
+      }
     },
 
     async getComments() {
