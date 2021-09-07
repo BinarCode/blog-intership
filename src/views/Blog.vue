@@ -59,6 +59,11 @@ import { VueScrollProgressBar } from '@guillaumebriday/vue-scroll-progress-bar';
 
 export default {
   name: 'Blog',
+  metaInfo() {
+    return {
+      title: get(this.blog, 'attributes.title', ''),
+    };
+  },
   components: { VueScrollProgressBar, BackToTop, Comments, AddComment },
   data() {
     return {
