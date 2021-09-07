@@ -30,7 +30,7 @@ export default {
   name: 'Blogs',
   data() {
     return {
-      list: [],
+      list: ['placeholder'],
       noBlogs: 'You did not publish anything yet',
     };
   },

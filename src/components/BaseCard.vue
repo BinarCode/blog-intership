@@ -97,7 +97,7 @@ export default {
     },
     goToEdit() {
       return (
-        get(this.post, 'relationships.creator.id', null) ===
+        String(get(this.post, 'relationships.creator.id', null)) ===
           this.userState.id || this.$route.path == '/myblogs'
       );
     },
