@@ -122,17 +122,21 @@ export default {
     getCreatedAt() {
       const date = this.user.created_at.substring(0, 10).split('-');
 
-      return format(new Date(date), 'dd MMM yyyy');
+      return date[0]
+          ? format(new Date(date), 'dd MMM yyyy')
+          : "";
     },
 
     getUpdatedAt() {
       const date = this.user.updated_at.substring(0, 10).split('-');
 
-      return formatDistance(
-          new Date(date),
-          new Date(),
-          { addSuffix: true }
-      );
+      return date[0]
+          ? formatDistance(
+            new Date(date),
+            new Date(),
+            { addSuffix: true }
+          )
+          : ""
     }
   },
 
