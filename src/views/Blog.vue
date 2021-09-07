@@ -10,25 +10,40 @@
           "
           :alt="$t('blog.image.alt')"
         />
-        <div class="tags flex justify-center flex-wrap mx-auto space-x-4">
+        <div ref="blog">
           <div
-            class="inline-flex px-4 py-2.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-2"
-            v-for="(tag, index) in get(blog, 'attributes.tags', [])"
-            :key="index"
+            class="tags cursor-pointer flex justify-center flex-wrap mx-auto space-x-4"
           >
-            {{ get(tag, 'value', '') }}
+            <div
+              class="inline-flex px-4 py-2.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-2"
+              v-for="(tag, index) in get(blog, 'attributes.tags', [])"
+              :key="index"
+            >
+              {{ get(tag, 'value', '') }}
+            </div>
+          </div>
+          <div class="title text-5xl my-5 text-center w-full">
+            {{ get(blog, 'attributes.title', '') }}
+          </div>
+          <div class="text-sm" v-html="get(blog, 'attributes.content', '')" />
+
+          <div class="mt-7 w-full text-sm text-right font-medium text-gray-600">
+            <span class="text-indigo-500">
+              {{ getFullName(get(blog, 'relationships.creator.attributes')) }}
+            </span>
+            <span>{{ $t('blogPage.postedOn.text') }} {{ getDate() }}</span>
           </div>
         </div>
-        <div class="title text-5xl my-5 text-center w-full">
-          {{ get(blog, 'attributes.title', '') }}
-        </div>
 
-        <div class="text-sm" v-html="get(blog, 'attributes.content', '')" />
-        <div class="mt-7 w-full text-sm text-right font-medium text-gray-600">
-          <span class="text-indigo-500">
-            {{ getFullName(get(blog, 'relationships.creator.attributes')) }}
-          </span>
-          <span>{{ $t('blogPage.postedOn.text') }} {{ getDate() }}</span>
+        <base-button @click="getPDF" class="mt-7">
+          {{ $t('blog.getAsPDF.title') }}
+        </base-button>
+
+        <div class="hidden">
+          <div
+            ref="pdfContent"
+            style="width: 768px; transform: translateY(-1rem);"
+          ></div>
         </div>
       </div>
       <div class="p-8 bg-white shadow rounded-lg sm:p-12 lg:px-20 mt-10">
@@ -54,6 +69,7 @@ import BackToTop from '@/components/BackToTop';
 import Comments from '@/components/Comments';
 import AddComment from '@/components/AddComment';
 import { VueScrollProgressBar } from '@guillaumebriday/vue-scroll-progress-bar';
+import jsPDF from 'jspdf';
 
 export default {
   name: 'Blog',
@@ -72,6 +88,43 @@ export default {
   },
   methods: {
     get,
+    jsPDF,
+
+    async getPDF() {
+      try {
+        this.$refs.pdfContent.innerHTML = this.$refs.blog.innerHTML;
+        const page = this.$refs.pdfContent;
+        const filename = get(this.blog, 'attributes.title', 'blog');
+
+        const doc = new jsPDF({
+          orientation: 'p',
+          format: 'a4',
+          unit: 'px',
+        });
+
+        const options = {
+          htmlScale: 0.38,
+          xOffset: 76.8,
+          yOffset: 25,
+        };
+
+        await doc.html(page, {
+          html2canvas: {
+            scale: options.htmlScale,
+          },
+          callback: (doc) => {
+            doc.save(`${filename}.pdf`);
+          },
+          x: options.xOffset,
+          y: options.yOffset,
+        });
+
+        this.$refs.pdfContent.innerHTML = '';
+      } catch (error) {
+        this.notifyErrors(error);
+      }
+    },
+
     async getComments() {
       this.comments = await getBlogComments(this.blogId);
       this.comments = this.comments.sort((a, b) => b.id - a.id);
