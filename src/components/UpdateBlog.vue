@@ -83,8 +83,8 @@ export default {
   name: 'UpdateBlog',
   components: { TiptapEditor },
   props: {
-    blog: [Object],
-    loading: [Boolean],
+    blog: Object,
+    loading: Boolean,
   },
   data() {
     return {
