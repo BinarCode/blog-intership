@@ -19,7 +19,6 @@ export default {
   computed: {
     time() {
       const words = this.text.split(/\s/g).length;
-      console.log(words);
       return Math.ceil(words / this.WORDS_PER_MINUTE);
     },
   },
