@@ -5,6 +5,7 @@
   "blog.image.alt": "Blog image",
   "blog.noImage.text": "This blog has no cover image.",
   "blog.avatar.alt": "Avatar",
+  "blog.getAsPDF.title": "Get this blog as PDF",
   "reading-time": "minute read | minutes read",
 
   "general.blogs.title": "Blogs",
@@ -79,6 +80,9 @@
   "profile.upload.title": "Upload",
   "profile.changeAvatar.title": "Change",
   "profile.clearAvatar.title": "Clear",
+  "profile.email.text": "Email",
+  "profile.createdAt.text": "Created at",
+  "profile.updatedAt.text": "Updated at",
 
   "editBlog.page.title": "Edit blog",
   "createBlog.name.title": "Title",

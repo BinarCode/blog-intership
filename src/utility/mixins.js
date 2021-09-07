@@ -14,6 +14,8 @@ export default {
 
                 authService.setToken(token);
 
+                console.log(data);
+
                 let profile = await userService.getProfile();
                 user.avatar = get(profile, 'data.attributes.avatar', '');
 

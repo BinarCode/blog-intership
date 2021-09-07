@@ -1,21 +1,19 @@
 <template>
   <div>
-    <div class="flex justify-between">
-      <h1 class="text-6xl">{{ $t('profile.title') }}</h1>
-    </div>
+    <h1 class="text-6xl">{{ $t('profile.title') }}</h1>
 
     <div class="px-4 py-12 sm:py-16 my-10 bg-white shadow rounded-lg sm:px-10">
       <div class="max-w-5xl mx-auto h-auto">
         <div class="grid grid-cols-1 sm:grid-cols-4 gap-y-8">
           <div class="relative w-full col-span-1 sm:col-span-3 font-light">
             <span class="block mb-1">
-              <span class="font-medium">Email</span>: {{ user.email }}
+              <span class="font-medium">{{ $t('profile.email.text') }}</span>: {{ user.email }}
             </span>
             <span class="block mb-1">
-              <span class="font-medium">Created at</span>: {{ getCreatedAt }}
+              <span class="font-medium">{{ $t('profile.createdAt.text') }}</span>: {{ getCreatedAt }}
             </span>
             <span class="block">
-              <span class="font-medium">Last updated</span>: {{ getUpdatedAt }}
+              <span class="font-medium">{{ $t('profile.updatedAt.text') }}</span>: {{ getUpdatedAt }}
             </span>
 
             <div v-if="edit" class="relative flex sm:absolute -bottom-4 text-3xl mt-0 sm:mt-5 w-full sm:w-5/6">
@@ -30,13 +28,32 @@
           <div class="flex flex-col">
             <img class="rounded-full h-32 w-32 object-cover mx-auto" :src="getAvatar" :alt="$t('profile.avatar.alt')">
             <span v-if="!edit" class="flex justify-center mt-2 sm:mt-0">
-              <base-button outline size="sm" @click="edit = !edit">
+              <base-button
+                  outline
+                  size="sm"
+                  @click="edit = !edit"
+              >
                 {{ $t('profile.editProfile.title') }}
               </base-button>
             </span>
             <span v-else class="flex justify-center mt-2 sm:mt-0">
-              <base-button class="mr-1" color="secondary" outline size="sm" @click="showModal = true">{{ $t('profile.changeAvatar.title') }}</base-button>
-              <base-button color="danger" outline size="sm" @click="onClear">{{ $t('profile.clearAvatar.title') }}</base-button>
+              <base-button
+                  class="mr-1"
+                  outline
+                  size="sm"
+                  color="secondary"
+                  @click="showModal = true"
+              >
+                {{ $t('profile.changeAvatar.title') }}
+              </base-button>
+              <base-button
+                  outline
+                  size="sm"
+                  color="danger"
+                  @click="onClear"
+              >
+                {{ $t('profile.clearAvatar.title') }}
+              </base-button>
             </span>
           </div>
         </div>
@@ -45,7 +62,11 @@
           <base-button class="ml-1" size="md" @click="onSave">
             {{ $t('profile.editProfile.save') }}
           </base-button>
-          <base-button outline size="md" @click="edit = !edit">
+          <base-button
+              outline
+              size="md"
+              @click="edit = !edit"
+          >
             {{ $t('profile.editProfile.cancel') }}
           </base-button>
         </div>
