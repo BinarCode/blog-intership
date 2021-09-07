@@ -11,11 +11,12 @@
       </router-link>
     </div>
     <div
+      v-if="list.length > 0"
       class="my-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3  print:grid-cols-2"
     >
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
-    <div class="w-full text-center" v-if="noBlogs != ''">{{ noBlogs }}</div>
+    <div class="w-full text-center" v-else>{{ noBlogs }}</div>
   </div>
 </template>
 
@@ -30,17 +31,12 @@ export default {
   data() {
     return {
       list: [],
-      noBlogs: '',
+      noBlogs: 'You did not publish anything yet',
     };
   },
   async created() {
     let blogs = await getMyBlogs();
-    let data = get(blogs, 'data.relationships.blogs', []);
-    if (data.length) {
-      this.list = data;
-    } else {
-      this.noBlogs = "You didn't publish anything yet";
-    }
+    this.list = get(blogs, 'data.relationships.blogs', []);
   },
   methods: {
     get,

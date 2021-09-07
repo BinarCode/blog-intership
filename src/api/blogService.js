@@ -27,13 +27,14 @@ export async function getBlogs({ search, page, perPage, sort, related }) {
 }
 
 export async function getBlog(blogId) {
+  let params = {
+    related: 'creator',
+  };
   try {
-    let { data } = await axios.get(
-      `/api/restify/blogs/${blogId}?realated=creator`
-    );
+    let { data } = await axios.get(`/api/restify/blogs/${blogId}`, { params });
     return data;
   } catch (error) {
-    this.notifyErrors(error);
+    return error;
   }
 }
 
@@ -86,10 +87,11 @@ export async function uploadImage(image) {
 }
 
 export async function getMyBlogs() {
+  let params = {
+    related: 'blogs,comments,media,creator',
+  };
   try {
-    return await axios.get(
-      '/api/restify/profile?related=blogs,comments,media,creator'
-    );
+    return await axios.get('/api/restify/profile', { params });
   } catch (error) {
     this.notifyErrors(error);
   }
