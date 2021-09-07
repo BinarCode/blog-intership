@@ -18,8 +18,8 @@
           <base-text-area
             rules="required"
             v-model="userComment"
-            name="Comment"
-            label="Comment"
+            :name="$t('addComment.commentBtn.label')"
+            :label="$t('addComment.commentBtn.label')"
           ></base-text-area>
           <base-button
             type="submit"
