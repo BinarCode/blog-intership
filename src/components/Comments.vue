@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-5" v-if="get(comments, 'length', 0)">
+  <div class="mt-8" v-if="get(comments, 'length', 0)">
     <div id="title" class=" font-medium text-indigo-600 pb-2">
       <i class="el-icon-s-comment"></i>
       {{ $t('comments.title') }}

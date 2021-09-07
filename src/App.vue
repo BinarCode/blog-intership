@@ -20,6 +20,25 @@ export default {
   components: {
     BaseNavbar,
   },
+  metaInfo() {
+    return {
+      title: 'Vue - Blog internship project',
+      meta: [
+        {
+          name: 'description',
+          content:
+            'This blog project was created by Lesan Alexandru, Alexandru Stefan and Lucian Popp',
+        },
+        {
+          property: 'og:title',
+          content: 'Vue - Blog internship project',
+        },
+        { property: 'og:site_name', content: 'Vue' },
+        { property: 'og:type', content: 'website' },
+        { name: 'robots', content: 'index,follow' },
+      ],
+    };
+  },
 };
 </script>
 
