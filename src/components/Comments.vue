@@ -25,10 +25,7 @@
               </span>
             </span>
             <el-dropdown
-              v-if="
-                get(comment, 'relationships.creator[0].id', null) ===
-                  userState.id
-              "
+              v-if="isAuthor(get(comment, 'relationships.creator[0].id', null))"
             >
               <span>
                 <i
@@ -71,6 +68,9 @@ export default {
     },
   },
   methods: {
+    isAuthor(commentAuthorId) {
+      return commentAuthorId === this.userState.id;
+    },
     async deleteComm(commId) {
       try {
         await deleteComment(commId);

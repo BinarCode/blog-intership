@@ -5,7 +5,9 @@
 <script>
 export default {
   name: 'Avatar',
-  props: ['path'],
+  props: {
+    path: Object,
+  },
   methods: {
     getAvatar(path) {
       return path.avatar || '/no-avatar.jpg';
