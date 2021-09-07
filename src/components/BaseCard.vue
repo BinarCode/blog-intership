@@ -15,9 +15,9 @@
       <div class="flex flex-col justify-between flex-1 p-6 bg-white">
         <div class="flex-1">
           <p class="text-sm font-medium text-indigo-600">
-            <span v-for="(tag, index) in tagList" :key="index" class="inline-flex px-3 py-1.5 rounded-full bg-blue-100 text-blue-800 mb-2 mr-1">
+            <base-tag v-for="(tag, index) in tagList" :key="index" size="sm" class="mb-2 mr-1">
               {{ tag.value }}
-            </span>
+            </base-tag>
           </p>
             <p class="text-xl font-semibold hover:underline text-gray-900">
               {{ get(post, 'attributes.title', '') }}
@@ -60,10 +60,11 @@
 <script>
 import get from 'lodash/get';
 import ReadingTime from '@/components/ReadingTime.vue';
+import BaseTag from '@/components/BaseTag';
 
 export default {
   name: 'BaseCard',
-  components: { ReadingTime },
+  components: { ReadingTime, BaseTag },
 
   props: {
     post: {
