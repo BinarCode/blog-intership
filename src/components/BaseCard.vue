@@ -3,7 +3,7 @@
       :to="getId"
   >
     <div
-      class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
+      class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow h-full"
     >
       <div class="flex-shrink-0">
         <img
