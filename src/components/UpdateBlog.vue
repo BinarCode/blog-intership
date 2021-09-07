@@ -33,15 +33,23 @@
                 accept="image/*"
                 @change="showImage($event)"
               />
-              <label
-                class=" cursor-pointer flex items-center justify-center mt-2 font-medium text-white rounded-md shadow-sm w-full px-4 py-2 text-sm bg-indigo-600"
-                for="uploadImg"
-              >
-                {{ $t('general.button.chooseFile') }}
-                <span v-if="get(blog, 'image.name', false)">
-                  &nbsp;({{ blog.image.name }})
-                </span>
-              </label>
+              <div class="flex justify-between mt-1">
+                <label
+                  class="flex items-center mt-1 font-medium text-white rounded-md shadow-sm px-4 py-2 text-xs cursor-pointer bg-indigo-600"
+                  for="uploadImg"
+                >
+                  <span>{{ $t('general.button.chooseFile') }}</span>
+                </label>
+                <base-button
+                  v-if="blog.image && $route.name === 'CreateBlog'"
+                  @click="deleteCoverImg"
+                  size="sm"
+                  color="danger"
+                  outline
+                >
+                  Delete
+                </base-button>
+              </div>
             </div>
           </div>
 
@@ -74,7 +82,10 @@ import get from 'lodash/get';
 export default {
   name: 'UpdateBlog',
   components: { TiptapEditor },
-  props: ['blog', 'loading'],
+  props: {
+    blog: [Object],
+    loading: [Boolean],
+  },
   data() {
     return {
       previewImage: this.blog.image,
@@ -87,6 +98,10 @@ export default {
   },
   methods: {
     get,
+    deleteCoverImg() {
+      this.blog.image = '';
+      this.previewImage = this.blog.image;
+    },
     showImage(event) {
       this.blog.image = event.target.files[0];
       this.previewImage = URL.createObjectURL(this.blog.image);
@@ -94,3 +109,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#coverImgName {
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>

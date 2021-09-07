@@ -7,6 +7,8 @@ function createFormData(data) {
   formData.append('tags', data.tags);
   formData.append('content', data.content);
   formData.append('image', data.image);
+  console.log(data);
+
   return formData;
 }
 
@@ -68,6 +70,7 @@ export async function createBlog(data) {
 }
 
 export async function updateBlog({ blogId, data }) {
+  console.log(data);
   data.tags = JSON.stringify(createTagsArr(data.tags));
   data = createFormData(data);
   try {
