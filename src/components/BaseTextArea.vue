@@ -10,7 +10,7 @@
           :name="name"
           :placeholder="placeholder"
           v-on="listeners"
-          class="block w-full rounded-md sm:text-sm"
+          class="block w-full rounded-md sm:text-sm md:h-28"
           :class="
             errors.length
               ? 'pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
@@ -18,7 +18,7 @@
           "
           v-bind="$attrs"
         />
-        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+        <div class="absolute inset-y-0 right-0 flex items-baseline p-3">
           <svg
             v-show="errors.length"
             fill="currentColor"
