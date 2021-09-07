@@ -16,7 +16,7 @@
       <textarea
         name="comment"
         v-model="userComment"
-        class="border-gray-400 text-sm h-28 mb-1"
+        class="block w-full rounded-md sm:text-sm shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 h-28 mb-1"
       ></textarea>
       <base-button
         size="sm"
