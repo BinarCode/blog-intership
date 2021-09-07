@@ -21,8 +21,9 @@
       <base-button
         size="sm"
         class="h-9 my-2 justify-self-end"
+        :disabled="!userComment.length"
+        :loading="loading"
         @click="addComment"
-        outline
       >
         {{ $t('addComment.commentBtn.label') }}
       </base-button>
@@ -39,6 +40,7 @@ export default {
   data() {
     return {
       userComment: '',
+      loading: false,
     };
   },
   computed: {
@@ -52,6 +54,7 @@ export default {
   methods: {
     async addComment() {
       try {
+        this.loading = true;
         await createComment({
           blog_id: this.blogId,
           body: this.userComment,
@@ -65,6 +68,8 @@ export default {
         await this.$parent.getComments();
       } catch (error) {
         this.notifyErrors(error);
+      } finally {
+        this.loading = false;
       }
     },
   },
