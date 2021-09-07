@@ -2,7 +2,7 @@ import axios from '@/api/axiosConfig';
 
 export default {
     async getProfile(params) {
-        return await axios.get('/api/restify/profile', { params: params });
+        return await axios.get('/api/restify/profile', { params });
     },
 
     async updateProfile(data) {
