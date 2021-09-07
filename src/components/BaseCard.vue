@@ -1,61 +1,59 @@
 <template>
-  <div
-    class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
+  <router-link
+      v-if="+get(post, 'relationships.creator.id', null) === +userState.id"
+      :to="getEditBlogLink"
   >
-    <div class="flex-shrink-0">
-      <img
-        class="object-cover w-full h-60 sm:h-48"
-        :src="getImage"
-        :alt="$t('blog.image.alt')"
-      />
-    </div>
-    <div class="flex flex-col justify-between flex-1 p-6 bg-white">
-      <div class="flex-1">
-        <p class="text-sm font-medium text-indigo-600">
-          <span v-for="(tag, index) in tagList" :key="index" class="mr-2 ">
-            {{ tag.value }}
-          </span>
-        </p>
-        <router-link :to="getId" class="block mt-2">
-          <p class="text-xl font-semibold hover:underline text-gray-900">
-            {{ get(post, 'attributes.title', '') }}
+    <div
+      class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
+    >
+      <div class="flex-shrink-0">
+        <img
+          class="object-cover w-full h-60 sm:h-48"
+          :src="getImage"
+          :alt="$t('blog.image.alt')"
+        />
+      </div>
+      <div class="flex flex-col justify-between flex-1 p-6 bg-white">
+        <div class="flex-1">
+          <p class="text-sm font-medium text-indigo-600">
+            <span v-for="(tag, index) in tagList" :key="index" class="mr-2 ">
+              {{ tag.value }}
+            </span>
           </p>
-        </router-link>
-      </div>
-      <div class="flex items-center justify-between mt-6">
-        <div class="flex">
-          <div class="flex-shrink-0">
-            <img class="w-10 h-10 rounded-full" :src="getAvatar" />
-          </div>
-          <div class="ml-3">
-            <span class="text-sm font-medium text-gray-900">
-              <a href="#" class="hover:underline">
-                {{
-                  get(post, 'relationships.creator.attributes.first_name', '')
-                }}
-              </a>
-            </span>
-            <span class="flex space-x-1 text-sm text-gray-500">
-              {{ post.attributes.views || '0' }}
-              {{ $t('general.views.text') }}
-              <reading-time
-                :text="get(post, 'attributes.content', '')"
-                class="ml-3"
-              ></reading-time>
-            </span>
-          </div>
+            <p class="text-xl font-semibold hover:underline text-gray-900">
+              {{ get(post, 'attributes.title', '') }}
+            </p>
         </div>
-        <router-link
-          v-if="+get(post, 'relationships.creator.id', null) === +userState.id"
-          :to="getEditBlogLink"
-        >
-          <base-button size="sm" outline>
-            {{ $t('general.editBlog.title') }}
-          </base-button>
-        </router-link>
+        <div class="flex items-center justify-between mt-6">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <img class="w-10 h-10 rounded-full" :src="getAvatar" />
+            </div>
+            <div class="ml-3">
+              <span class="text-sm font-medium text-gray-900">
+                <a href="#" class="hover:underline">
+                  {{
+                    get(post, 'relationships.creator.attributes.first_name', '')
+                  }}
+                </a>
+              </span>
+              <span class="flex space-x-1 text-sm text-gray-500">
+                {{ post.attributes.views || '0' }}
+                {{ $t('general.views.text') }}
+                <reading-time
+                  :text="get(post, 'attributes.content', '')"
+                  class="ml-3"
+                ></reading-time>
+              </span>
+            </div>
+          </div>
+            <base-button size="sm" outline>
+              {{ $t('general.editBlog.title') }}
+            </base-button>
+        </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
