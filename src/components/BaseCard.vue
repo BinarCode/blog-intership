@@ -1,7 +1,6 @@
 <template>
   <router-link
-      v-if="+get(post, 'relationships.creator.id', null) === +userState.id"
-      :to="getEditBlogLink"
+      :to="getId"
   >
     <div
       class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
@@ -16,7 +15,7 @@
       <div class="flex flex-col justify-between flex-1 p-6 bg-white">
         <div class="flex-1">
           <p class="text-sm font-medium text-indigo-600">
-            <span v-for="(tag, index) in tagList" :key="index" class="mr-2 ">
+            <span v-for="(tag, index) in tagList" :key="index" class="inline-flex px-3 py-1.5 rounded-full bg-blue-100 text-blue-800 mb-2 mr-1">
               {{ tag.value }}
             </span>
           </p>
@@ -31,15 +30,12 @@
             </div>
             <div class="ml-3">
               <span class="text-sm font-medium text-gray-900">
-                <a href="#" class="hover:underline">
                   {{
                     get(post, 'relationships.creator.attributes.first_name', '')
                   }}
-                </a>
               </span>
               <span class="flex space-x-1 text-sm text-gray-500">
-                {{ post.attributes.views || '0' }}
-                {{ $t('general.views.text') }}
+                {{ $tc('blog.views', post.attributes.views) }}
                 <reading-time
                   :text="get(post, 'attributes.content', '')"
                   class="ml-3"
@@ -47,9 +43,14 @@
               </span>
             </div>
           </div>
+          <router-link
+              v-if="isCreator"
+              :to="getEditBlogLink"
+          >
             <base-button size="sm" outline>
               {{ $t('general.editBlog.title') }}
             </base-button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -72,6 +73,9 @@ export default {
   },
 
   computed: {
+    isCreator() {
+      return get(this.post, 'relationships.creator.id', null).toString() === this.userState.id.toString();
+    },
     tagList() {
       const tags = get(this.post, 'attributes.tags', []);
       return typeof tags === 'string' ? JSON.parse(tags) : tags;
