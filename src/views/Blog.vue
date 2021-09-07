@@ -35,10 +35,15 @@
           </div>
         </div>
 
-        <base-button @click="getPDF" class="mt-7">{{ $t('blog.getAsPDF.title') }}</base-button>
+        <base-button @click="getPDF" class="mt-7">
+          {{ $t('blog.getAsPDF.title') }}
+        </base-button>
 
         <div class="hidden">
-          <div ref="pdfContent" style="width: 768px; transform: translateY(-1rem);"></div>
+          <div
+            ref="pdfContent"
+            style="width: 768px; transform: translateY(-1rem);"
+          ></div>
         </div>
       </div>
       <div class="p-8 bg-white shadow rounded-lg sm:p-12 lg:px-20 mt-10">
@@ -92,29 +97,29 @@ export default {
         const filename = get(this.blog, 'attributes.title', 'blog');
 
         const doc = new jsPDF({
-          orientation: "p",
-          format: "a4",
-          unit: "px"
+          orientation: 'p',
+          format: 'a4',
+          unit: 'px',
         });
 
         const options = {
           htmlScale: 0.38,
           xOffset: 76.8,
-          yOffset: 25
-        }
+          yOffset: 25,
+        };
 
         await doc.html(page, {
           html2canvas: {
-            scale: options.htmlScale
+            scale: options.htmlScale,
           },
           callback: (doc) => {
             doc.save(`${filename}.pdf`);
           },
           x: options.xOffset,
-          y: options.yOffset
+          y: options.yOffset,
         });
 
-        this.$refs.pdfContent.innerHTML = "";
+        this.$refs.pdfContent.innerHTML = '';
       } catch (error) {
         this.notifyErrors(error);
       }
