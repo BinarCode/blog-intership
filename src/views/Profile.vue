@@ -27,7 +27,7 @@
 
           <div class="flex flex-col">
 
-            <avatar class="h-32 w-32 object-cover mx-auto" :path="user" />
+            <avatar class="h-32 w-32 mx-auto" :path="user" />
             <span v-if="!edit" class="flex justify-center mt-2 sm:mt-0">
               <base-button
                   outline
@@ -113,12 +113,6 @@ export default {
     ...mapGetters({
       user: 'userState'
     }),
-
-    getAvatar() {
-      return this.user.avatar
-          ? this.user.avatar
-          : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
-    },
 
     getCreatedAt() {
       const date = this.user.created_at.substring(0, 10).split('-');
