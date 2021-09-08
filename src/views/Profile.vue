@@ -17,8 +17,16 @@
             </span>
 
             <div v-if="edit" class="relative flex sm:absolute -bottom-4 text-3xl mt-0 sm:mt-5 w-full sm:w-5/6">
-              <base-input class="w-full sm:w-1/2 mr-1" v-model="profile.first_name" :label="$t('register.name.firstName')" />
-              <base-input class="w-full sm:w-1/2" v-model="profile.last_name" :label="$t('register.name.lastName')" />
+              <base-input
+                  class="w-full sm:w-1/2 mr-1"
+                  v-model="profile.first_name"
+                  :label="$t('register.name.firstName')"
+              />
+              <base-input
+                  class="w-full sm:w-1/2"
+                  v-model="profile.last_name"
+                  :label="$t('register.name.lastName')"
+              />
             </div>
             <div v-else class="relative sm:absolute bottom-0 text-3xl mt-5">
               <span>{{ user.first_name }} {{ user.last_name }}</span>
@@ -206,8 +214,6 @@ export default {
             'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
         );
         await this.setProfileState(tempUser);
-
-        this.edit = false;
 
         this.$notify({
           title: this.$t('notifyMessage.success.title'),
