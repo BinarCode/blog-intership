@@ -84,6 +84,7 @@
   "comments.title": "Comments:",
   "comments.userCommented.text": "commented on this blog:",
   "comments.deleteBtn.label": "Delete",
+  "comments.noComment.text": "No comment",
   "addComment.title": "Leave a comment:",
   "addComment.commentBtn.label": "Comment",
 
