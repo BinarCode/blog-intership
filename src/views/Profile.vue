@@ -26,7 +26,8 @@
           </div>
 
           <div class="flex flex-col">
-            <img class="rounded-full h-32 w-32 object-cover mx-auto" :src="getAvatar" :alt="$t('profile.avatar.alt')">
+
+            <avatar class="h-32 w-32 object-cover mx-auto" :path="user" />
             <span v-if="!edit" class="flex justify-center mt-2 sm:mt-0">
               <base-button
                   outline
