@@ -28,7 +28,8 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
+import get from 'lodash/get';
 
 export default {
   name: 'ProfileDropdown',
@@ -42,10 +43,9 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(['userState']),
     getAvatar() {
-      return this.userState.avatar
-        ? this.userState.avatar
-        : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
+      return get(this.userState, 'avatar', 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg');
     },
     routeName() {
       return this.$route.name;
@@ -53,6 +53,7 @@ export default {
   },
   methods: {
     ...mapActions(['setUserState']),
+    get,
     async logOut() {
       await this.setUserState();
       localStorage.clear();
