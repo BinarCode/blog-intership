@@ -6,6 +6,7 @@ import userService from "../api/userService";
 
 export default {
     methods: {
+        get,
         async logIn(model) {
             try {
                 let { data } = await authService.login(model);
@@ -43,7 +44,11 @@ export default {
                     message: error.message,
                     type: 'error',
                 });
-        }
+        },
+        getFullName(userPath) {
+            return `${this.get(userPath, 'first_name', 'Unknown')} 
+            ${this.get(userPath, 'last_name', '')}`;
+        },
     },
     computed: {
         ...mapGetters(['userState']),
