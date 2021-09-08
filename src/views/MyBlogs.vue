@@ -16,7 +16,9 @@
     >
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
-    <div class="w-full text-center" v-else>{{ noBlogs }}</div>
+    <div v-else class="w-full text-center">
+      {{ $t('general.noBlogAdded') }}
+    </div>
   </div>
 </template>
 
@@ -31,7 +33,6 @@ export default {
   data() {
     return {
       list: ['placeholder'],
-      noBlogs: 'You did not publish anything yet',
     };
   },
   async created() {
