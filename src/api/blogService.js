@@ -68,8 +68,9 @@ export async function createBlog(data) {
 
 export async function updateBlog({ blogId, data }) {
   data.tags = JSON.stringify(createTagsArr(data.tags));
+  data = createFormData(data);
   try {
-    return await axios.put(`/api/restify/blogs/${blogId}`, data);
+    return await axios.post(`/api/restify/blogs/${blogId}`, data);
   } catch (error) {
     return error;
   }
