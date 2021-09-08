@@ -14,81 +14,26 @@
         {{ $t('general.button.deleteBlog') }}
       </base-button>
     </div>
-    <div class="sm:mx-auto sm:w-full">
-      <div class="p-4 bg-white shadow rounded-lg  sm:px-10">
-        <ValidationObserver v-slot="{ valid }">
-          <form @submit.prevent>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-              <div class="md:col-span-2">
-                <base-input
-                  v-model="blog.title"
-                  :name="$t('createBlog.name.title')"
-                  :label="$t('createBlog.name.title')"
-                  rules="required"
-                  :placeholder="$t('createBlog.placeholder.title')"
-                />
-
-                <base-input
-                  v-model="blog.tags"
-                  :name="$t('createBlog.name.tags')"
-                  :label="$t('createBlog.name.tags')"
-                  rules="required"
-                  :placeholder="$t('createBlog.placeholder.tags')"
-                />
-              </div>
-              <div class="sm:w-11/12 sm:ml-auto">
-                <label class="text-sm font-medium text-gray-700">
-                  {{ $t('createBlog.name.coverImage') }}
-                </label>
-                <img :src="previewImage" class="rounded" />
-                <div
-                  v-if="!previewImage"
-                  class="text-indigo-600 ml-2 font-medium"
-                >
-                  {{ $t('blog.noImage.text') }}
-                </div>
-              </div>
-            </div>
-
-            <div id="tiptap">
-              <label class="text-sm font-medium text-gray-700">
-                {{ $t('createBlog.name.content') }}
-              </label>
-              <tiptap-editor v-if="fetched" v-model="blog.content" />
-            </div>
-            <base-button
-              @click="onSubmit"
-              type="submit"
-              :disabled="!valid"
-              :loading="loading"
-              class="mt-3"
-            >
-              {{ $t('createBlog.button.publish') }}
-            </base-button>
-          </form>
-        </ValidationObserver>
-      </div>
-    </div>
+    <update-blog v-if="fetched" :loading="loading" :blog="blog"></update-blog>
   </div>
 </template>
 
 <script>
-import TiptapEditor from '@/components/TiptapEditor/TiptapEditor';
 import { getBlog, updateBlog, deleteBlog } from '@/api/blogService.js';
 import { getTagsArray, tagsArrToString } from '@/utility/tags';
 import get from 'lodash/get';
 import has from 'lodash/has';
+import UpdateBlog from '@/components/UpdateBlog';
 
 export default {
   name: 'EditBlog',
-  components: { TiptapEditor },
+  components: { UpdateBlog },
   data() {
     return {
       fetched: false,
       loading: false,
       blogId: null,
       blog: {},
-      previewImage: '',
     };
   },
   methods: {
@@ -106,12 +51,12 @@ export default {
         this.notifyErrors(error);
       }
     },
-    async onSubmit() {
+    async onSubmit(blog) {
       try {
         this.loading = true;
         let res = await updateBlog({
           blogId: this.blogId,
-          data: { ...this.blog },
+          data: { ...blog },
         });
         if (has(res, 'errorArr')) {
           this.notifyErrors(res);
@@ -141,8 +86,8 @@ export default {
         title: get(data, 'attributes.title', ''),
         tags: get(data, 'attributes.tags', []),
         content: get(data, 'attributes.content', ''),
+        image: get(data, 'attributes.image', false),
       };
-      this.previewImage = get(data, 'attributes.image', false);
     } finally {
       this.fetched = true;
     }

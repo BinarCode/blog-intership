@@ -13,7 +13,7 @@
       'bg-indigo-600': color === 'primary' && !disabled && !outline,
 
       'bg-red-600 bg-opacity-80': color === 'danger' && isDisabled,
-      'text-red-600 border border-red-600 bg-transparent hover:bg-red-600 font-semibold hover:text-white py-2 px-4 hover:border-transparent rounded':
+      'text-red-600 border border-red-600 bg-transparent hover:bg-red-600 font-semibold hover:text-white hover:border-transparent rounded':
         color === 'danger' && outline,
       'bg-red-600': color === 'danger' && !disabled && !outline,
 
