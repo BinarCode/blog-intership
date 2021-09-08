@@ -110,7 +110,7 @@ export default {
     debounce,
     debouncedSearch: debounce(
         function() { eventBus.$emit('update:searchTerm', this.search) },
-        1000
+        500
     ),
     getSearchResult: async function() {
       try {
