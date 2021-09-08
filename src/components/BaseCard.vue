@@ -14,7 +14,7 @@
       <div class="flex flex-col justify-between flex-1 p-6 bg-white">
         <div class="flex-1">
           <p>
-            <base-tag v-for="(tag, index) in tagList" :key="index" size="sm" class="mb-2 mr-1">
+            <base-tag v-for="(tag, index) in tagList" :key="index" size="sm" class="text-sm mb-2 mr-1">
               {{ tag.value }}
             </base-tag>
           </p>
