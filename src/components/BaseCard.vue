@@ -62,7 +62,6 @@ import ReadingTime from '@/components/ReadingTime.vue';
 export default {
   name: 'BaseCard',
   components: { ReadingTime },
-
   props: {
     post: {
       type: Object,
@@ -96,10 +95,8 @@ export default {
       return `/edit-blog/${get(this.post, 'id', 'not-found')}`;
     },
     goToEdit() {
-      return (
-        String(get(this.post, 'relationships.creator.id', null)) ===
-          this.userState.id || this.$route.path == '/myblogs'
-      );
+      const userId = get(this.post, 'relationships.creator.id', null);
+      return userId == this.userState.id || this.$route.path == '/myblogs';
     },
   },
 
