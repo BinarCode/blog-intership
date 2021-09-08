@@ -56,7 +56,7 @@
 
 <script>
 import { deleteComment } from '@/api/commentsService';
-import Avatar from './Avatar.vue';
+import Avatar from '@/components/Avatar.vue';
 
 export default {
   components: { Avatar },
