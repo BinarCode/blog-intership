@@ -3,11 +3,9 @@
     <div class="content flex flex-col items-start justify-center">
       <div class="p-8 bg-white shadow rounded-lg sm:p-12 lg:px-20 w-full">
         <img
+          v-if="get(blog, 'attributes.image', '')"
           class="object-cover mx-auto my-5 rounded-lg max-h-80"
-          :src="
-            get(blog, 'attributes.image', false) ||
-              'https://i.stack.imgur.com/y9DpT.jpg'
-          "
+          :src="get(blog, 'attributes.image', '')"
           :alt="$t('blog.image.alt')"
         />
         <div ref="blog">
@@ -143,13 +141,6 @@ export default {
       } catch (error) {
         this.notifyErrors(error);
       }
-    },
-    getFullName(user) {
-      return `@${this.get(user, 'first_name', 'Unknown')} ${this.get(
-        user,
-        'last_name',
-        ''
-      )}`;
     },
     getDate() {
       let date = new Date(get(this.blog, 'attributes.created_at'));
