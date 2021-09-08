@@ -7,8 +7,6 @@ function createFormData(data) {
   formData.append('tags', data.tags);
   formData.append('content', data.content);
   formData.append('image', data.image);
-  console.log(data);
-
   return formData;
 }
 

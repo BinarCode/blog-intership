@@ -44,7 +44,7 @@
                   @click="deleteComm(comment.id)"
                 >
                   <i class="el-icon-delete-solid text-lg"></i>
-                  {{ $t('comments.deleteBtn.label') }}
+                  {{ $t('general.deleteBtn.label') }}
                 </span>
               </el-dropdown-item>
             </el-dropdown-menu>

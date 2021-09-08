@@ -47,7 +47,7 @@
                   color="danger"
                   outline
                 >
-                  Delete
+                  {{ $t('general.deleteBtn.label') }}
                 </base-button>
               </div>
             </div>
@@ -89,12 +89,12 @@ export default {
   data() {
     return {
       previewImage: this.blog.image,
-      pTagLength: 7,
+      contentCharCount: 7,
     };
   },
   computed: {
     isContent() {
-      return this.blog.content.length - this.pTagLength > 0;
+      return this.blog.content.length - this.contentCharCount > 0;
     },
   },
   methods: {
@@ -110,12 +110,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-#coverImgName {
-  width: 100px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-</style>
