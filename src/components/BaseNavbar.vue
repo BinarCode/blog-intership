@@ -59,7 +59,7 @@
             >
             </vue-simple-suggest>
           </div>
-          <profile-dropdown username="someusername" avatar="" />
+          <profile-dropdown />
         </div>
         <div v-if="!userState.loggedIn">
           <guest-dropdown class="sm:hidden" />
@@ -109,7 +109,7 @@ export default {
   methods: {
     debounce,
     debouncedSearch: debounce(
-        function() {eventBus.$emit('update:searchTerm', this.search)},
+        function() { eventBus.$emit('update:searchTerm', this.search) },
         1000
     ),
     getSearchResult: async function() {
