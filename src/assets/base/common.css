@@ -1,3 +1,8 @@
+:root {
+  --navbarHeight: 64px;
+  --footerHeight: 81px;
+}
+
 .router-link {
   @apply whitespace-nowrap border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium;
 }
@@ -8,4 +13,14 @@
 
 .active-dropdown {
   @apply text-indigo-800 font-medium;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
