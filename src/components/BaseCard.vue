@@ -29,19 +29,20 @@
             :path="get(post, 'relationships.creator.attributes')"
           />
           <div class="ml-3">
-            <span class="text-sm font-medium text-gray-900">
-              <div class="hover:underline">
-                {{ getFullName(get(post, 'relationships.creator.attributes')) }}
+            <div class="text-sm font-medium text-gray-900">
+              {{ getFullName(get(post, 'relationships.creator.attributes')) }}
+            </div>
+            <div
+              class="flex flex-col xl:flex-row xl:space-x-3 text-sm text-gray-500"
+            >
+              <div>
+                {{ post.attributes.views || '0' }}
+                {{ $t('general.views.text') }}
               </div>
-            </span>
-            <span class="flex space-x-1 text-sm text-gray-500">
-              {{ post.attributes.views || '0' }}
-              {{ $t('general.views.text') }}
               <reading-time
                 :text="get(post, 'attributes.content', '')"
-                class="ml-3"
               ></reading-time>
-            </span>
+            </div>
           </div>
         </div>
         <router-link

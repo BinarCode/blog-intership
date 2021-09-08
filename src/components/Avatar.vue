@@ -26,6 +26,7 @@ export default {
   },
   methods: {
     getAvatar() {
+      console.log(this.getFullName(this.path) || 'none');
       if (this.isAvatar) {
         return this.path.avatar.slice(0, 5) !== 'https'
           ? 'https://api-internship.binarcode.com/storage/' + this.path.avatar
