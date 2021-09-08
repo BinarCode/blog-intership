@@ -27,7 +27,7 @@
 
           <div class="mt-7 w-full text-sm text-right font-medium text-gray-600">
             <span class="text-indigo-500">
-              {{ getFullName(get(blog, 'relationships.creator.attributes')) }}
+              @{{ getFullName(get(blog, 'relationships.creator.attributes')) }}
             </span>
             <span>{{ $t('blogPage.postedOn.text') }} {{ getDate() }}</span>
           </div>

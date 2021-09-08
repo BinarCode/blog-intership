@@ -80,6 +80,7 @@
   "general.notify.errorTitle": "Error",
 
   "addComment.notify.succesMessage": "Your comment has been successfully added.",
+  "addComment.notify.longError": "Your comment is too long",
   "deleteComment.notify.succesMessage": "Your comment has been successfully deleted.",
   "comments.title": "Comments:",
   "comments.userCommented.text": "commented on this blog:",
