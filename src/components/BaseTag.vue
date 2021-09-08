@@ -2,7 +2,7 @@
   <span
     class="inline-flex rounded-full bg-blue-100 text-blue-800"
     :class="{
-      'px-3 py-1.5': size === 'sm',
+      'px-2.5 py-1': size === 'sm',
       'px-4 py-2.5': size === 'md'
     }"
   >

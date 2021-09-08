@@ -1,6 +1,6 @@
 <template>
   <router-link
-      :to="getId"
+      :to="blogRoute"
   >
     <div
       class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow h-full"
@@ -13,15 +13,20 @@
       </div>
       <div class="flex flex-col justify-between flex-1 p-6 bg-white">
         <div class="flex-1">
-          <p>
-            <base-tag v-for="(tag, index) in tagList" :key="index" size="sm" class="mb-2 mr-1">
+          <div>
+            <base-tag
+                v-for="(tag, index) in tagList"
+                :key="index"
+                size="sm"
+                class="mb-2 mr-1"
+            >
               {{ tag.value }}
             </base-tag>
-          </p>
-          <router-link :to="getId" class="block mt-2">
-            <p class="text-xl font-semibold hover:underline text-gray-900">
+          </div>
+          <router-link :to="blogRoute" class="block mt-2">
+            <span class="text-xl font-semibold hover:underline text-gray-900">
               {{ get(post, 'attributes.title', '') }}
-            </p>
+            </span>
           </router-link>
         </div>
         <div class="flex items-center justify-between mt-6">
@@ -84,7 +89,7 @@ export default {
     getCover() {
       return get(this.post, 'attributes.image', false) || '/no-blog-cover.jpg';
     },
-    getId() {
+    blogRoute() {
       return `/blogs/${get(this.post, 'id', 'not-found')}`;
     },
     getEditBlogLink() {
