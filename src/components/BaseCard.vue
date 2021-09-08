@@ -1,20 +1,20 @@
 <template>
-  <router-link
-      :to="getId"
-  >
+  <router-link :to="getId">
     <div
       class="flex flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow h-full"
     >
       <div class="flex-shrink-0">
-        <img
-          class="object-cover w-full h-60"
-          :src="getCover"
-        />
+        <img class="object-cover w-full h-60" :src="getCover" />
       </div>
       <div class="flex flex-col justify-between flex-1 p-6 bg-white">
         <div class="flex-1">
           <p>
-            <base-tag v-for="(tag, index) in tagList" :key="index" size="sm" class="mb-2 mr-1">
+            <base-tag
+              v-for="(tag, index) in tagList"
+              :key="index"
+              size="sm"
+              class="mb-2 mr-1"
+            >
               {{ tag.value }}
             </base-tag>
           </p>
@@ -33,7 +33,9 @@
             <div class="ml-3">
               <span class="text-sm font-medium text-gray-900">
                 <div class="hover:underline">
-                  {{ getFullName(get(post, 'relationships.creator.attributes')) }}
+                  {{
+                    getFullName(get(post, 'relationships.creator.attributes'))
+                  }}
                 </div>
               </span>
               <span class="flex space-x-1 text-sm text-gray-500">
@@ -44,21 +46,13 @@
                 ></reading-time>
               </span>
             </div>
-            <router-link
-                v-if="isCreator"
-                :to="getEditBlogLink"
-            >
+            <router-link class="ml-20" v-if="goToEdit" :to="getEditBlogLink">
               <base-button size="sm" outline>
                 {{ $t('general.editBlog.title') }}
               </base-button>
             </router-link>
           </div>
         </div>
-        <router-link v-if="goToEdit" :to="getEditBlogLink">
-          <base-button size="sm" outline>
-            {{ $t('general.editBlog.title') }}
-          </base-button>
-        </router-link>
       </div>
     </div>
   </router-link>
@@ -80,7 +74,10 @@ export default {
   },
   computed: {
     isCreator() {
-      return get(this.post, 'relationships.creator.id', null).toString() === this.userState.id.toString();
+      return (
+        get(this.post, 'relationships.creator.id', null).toString() ===
+        this.userState.id.toString()
+      );
     },
     tagList() {
       const tags = get(this.post, 'attributes.tags', []);
