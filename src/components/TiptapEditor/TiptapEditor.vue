@@ -18,6 +18,7 @@
 import TiptapMenuBar from '@/components/TiptapEditor/TiptapMenuBar';
 import { Editor, EditorContent } from '@tiptap/vue-2';
 import StarterKit from '@tiptap/starter-kit';
+import Paragraph from '@tiptap/extension-paragraph';
 import Code from '@tiptap/extension-code';
 import CharacterCount from '@tiptap/extension-character-count';
 import Underline from '@tiptap/extension-underline';
@@ -58,6 +59,9 @@ export default {
       content: this.value,
       extensions: [
         StarterKit,
+        Paragraph.configure({
+          HTMLAttributes: { class: 'my-2' }
+        }),
         Code.configure({
           HTMLAttributes: { class: 'rounded px-1 text-gray-900 bg-gray-300' },
         }),
