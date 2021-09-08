@@ -46,7 +46,7 @@
             </el-dropdown>
           </div>
           <div class="break-words text-sm pr-5">
-            {{ get(comment, 'attributes.body', 'No comment') }}
+            {{ get(comment, 'attributes.body', $t('comments.noComment.text')) }}
           </div>
         </div>
       </div>
