@@ -39,7 +39,7 @@
                     class="text-red-600 cursor-pointer text-sm py-1 px-3"
                   >
                     <i class="el-icon-delete-solid text-lg"></i>
-                    {{ $t('comments.deleteBtn.label') }}
+                    {{ $t('general.deleteBtn.label') }}
                   </div>
                 </el-dropdown-item>
               </el-dropdown-menu>

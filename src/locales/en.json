@@ -26,7 +26,6 @@
   "general.profile.myArticles": "My articles",
   "general.profile.logout": "Log out",
   "general.name.passwordConfirmation": "Password confirmation",
-  "general.views.text": "views",
   "general.forgotPassword.title": "Forgot password",
   "general.forgotPassword.text": "Forgot your password?",
 
@@ -84,7 +83,7 @@
   "deleteComment.notify.succesMessage": "Your comment has been successfully deleted.",
   "comments.title": "Comments:",
   "comments.userCommented.text": "commented on this blog:",
-  "comments.deleteBtn.label": "Delete",
+  "general.deleteBtn.label": "Delete",
   "comments.noComment.text": "No comment",
   "addComment.title": "Leave a comment:",
   "addComment.commentBtn.label": "Comment",

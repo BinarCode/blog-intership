@@ -24,7 +24,10 @@
       </div>
       <div class="flex my-auto">
         <div class="flex" v-if="userState.loggedIn">
-          <div id="search" class="hidden sm:flex relative max-w-xs">
+          <div
+            id="search"
+            class="hidden sm:flex relative max-w-xs max-h-10 self-center"
+          >
             <label for="search" class="sr-only">
               {{ $t('navbarSearch.placeholder.name') }}
             </label>
