@@ -6,7 +6,7 @@
     </div>
     <div id="user-area" class="h-full col-span-1 flex items-center">
       <div class="text-center">
-        <img class="w-full rounded-full" :src="getAvatar" />
+        <avatar :path="userState" />
         <div class="font-medium text-indigo-500">
           @{{ userState.first_name }}
         </div>
@@ -49,14 +49,6 @@ export default {
       userComment: '',
       loading: false,
     };
-  },
-  computed: {
-    getAvatar() {
-      return this.userState.avatar
-        ? 'https://api-internship.binarcode.com/storage/' +
-            this.userState.avatar
-        : 'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg';
-    },
   },
   methods: {
     async addComment() {
