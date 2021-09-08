@@ -18,8 +18,9 @@ export default {
   },
   computed: {
     time() {
-      const words = this.text.split(/\s/g).length;
-      return Math.ceil(words / this.WORDS_PER_MINUTE);
+      return this.text
+        ? Math.ceil(this.text.split(/\s/g).length / this.WORDS_PER_MINUTE)
+        : 1;
     },
   },
 };
