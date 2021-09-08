@@ -8,11 +8,11 @@
         </base-button>
       </router-link>
     </div>
-    <div
-      class="mt-10 mb-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3  print:grid-cols-2"
-    >
+
+    <div class="mt-10 mb-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
+
     <p class="w-full text-center">{{ searchTermError }}</p>
     <infinite-loading @infinite="infiniteHandler">
       <div slot="no-more"></div>
@@ -56,11 +56,10 @@ export default {
     },
   },
   watch: {
-    searchTerm: async function() {
-      this.page = 1;
+    async searchTerm() {
       let data = await getBlogs({
         search: this.searchTerm,
-        page: this.page,
+        page: 1,
         perPage: 9,
         sort: '-id',
         related: 'creator',

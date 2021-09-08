@@ -7,8 +7,12 @@ module.exports = {
   theme: {
   },
   variants: {
-    extend: { opacity: ['disabled'],
-    backgroundColor: ['active'],},
+    extend: {
+      opacity: ['disabled'],
+      backgroundColor: ['active'],
+      borderWidth: ['last'],
+      padding: ['last']
+    },
   },
   plugins: [require('@tailwindcss/forms'),],
 }
