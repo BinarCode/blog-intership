@@ -89,11 +89,12 @@ export default {
   data() {
     return {
       previewImage: this.blog.image,
+      pTagLength: 7,
     };
   },
   computed: {
     isContent() {
-      return this.blog.content.length - 7 > 0;
+      return this.blog.content.length - this.pTagLength > 0;
     },
   },
   methods: {

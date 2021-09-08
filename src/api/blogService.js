@@ -70,7 +70,6 @@ export async function createBlog(data) {
 }
 
 export async function updateBlog({ blogId, data }) {
-  console.log(data);
   data.tags = JSON.stringify(createTagsArr(data.tags));
   data = createFormData(data);
   try {
