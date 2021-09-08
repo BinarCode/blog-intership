@@ -1,5 +1,5 @@
 <template>
-  <img class="rounded-full" :src="getAvatar(path)" alt="Avatar" />
+  <img class="rounded-full object-cover" :src="getAvatar(path)" :alt="$t('profile.avatar.alt')" />
 </template>
 
 <script>
