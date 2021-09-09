@@ -1,12 +1,12 @@
 <template>
-  <div class="rounded-full">
+  <div>
     <img
       v-if="isAvatar"
-      class="rounded-full w-full h-full object-cover object-center"
+      class="w-full h-full rounded-full object-cover object-center"
       :src="getAvatar()"
       :alt="$t('blog.avatar.alt')"
     />
-    <div v-if="!isAvatar" class="rounded-full" v-html="getAvatar()"></div>
+    <div v-if="!isAvatar" v-html="getAvatar()"></div>
   </div>
 </template>
 
