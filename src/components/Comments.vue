@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-8" v-if="get(comments, 'length', 0)">
+  <div class="mt-8 w-full" v-if="get(comments, 'length', 0)">
     <div id="title" class=" font-medium text-indigo-600 pb-2">
       <i class="el-icon-s-comment"></i>
       {{ $t('comments.title') }}
@@ -8,15 +8,15 @@
       <div
         v-for="comment in comments"
         :key="comment.id"
-        class="py-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 border-b last:pb-0 last:border-b-0"
+        class="py-5 flex border-b last:pb-0 last:border-b-0"
       >
-        <div id="user-area" class="h-full col-span-1">
-          <avatar :path="get(comment, 'relationships.creator[0]')" />
+        <div id="user-area" class=" w-24 flex justify-center">
+          <avatar
+            class="w-12 h-12"
+            :path="get(comment, 'relationships.creator[0]')"
+          />
         </div>
-        <div
-          id="comment-area"
-          class="pl-4 col-span-full col-start-2 place-content-start"
-        >
+        <div id="comment-area" class="pl-4 w-full place-content-start">
           <div class="font-medium text-indigo-500 flex justify-between">
             <span>
               @{{ getFullName(get(comment, 'relationships.creator[0]')) }}

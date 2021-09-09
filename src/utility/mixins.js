@@ -38,8 +38,7 @@ export default {
                 });
         },
         getFullName(userPath) {
-            return `${this.get(userPath, 'first_name', 'Unknown')} 
-            ${this.get(userPath, 'last_name', '')}`;
+            return `${this.get(userPath, 'first_name', 'Unknown')} ${this.get(userPath, 'last_name', '')}`;
         },
     },
     computed: {
