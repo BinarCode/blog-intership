@@ -34,28 +34,28 @@
         </div>
 
         <div class="mt-10">
-          <div class="flex flex-wrap justify-between">
-            <div class="flex w-full sm:w-3/4">
-              <div v-if="edit" class="w-full flex -mt-4 sm:-mt-7">
+          <div class="flex flex-wrap">
+            <div class="flex w-full sm:w-2/3">
+              <div v-if="edit" class="w-full flex -mt-4 sm:-mt-5">
                 <base-input
-                    class="w-full sm:w-1/3 mr-1"
+                    class="w-full sm:w-1/2 mr-1"
                     v-model="profile.first_name"
                     :label="$t('register.name.firstName')"
                 />
                 <base-input
-                    class="w-full sm:w-1/3"
+                    class="w-full sm:w-1/2"
                     v-model="profile.last_name"
                     :label="$t('register.name.lastName')"
                 />
               </div>
               <span v-else class="text-3xl self-center">{{ user.first_name }} {{ user.last_name }}</span>
             </div>
-            <div>
+            <div class="ml-auto">
               <span v-if="!edit">
                 <base-button
                     class="mb-1"
                     outline
-                    size="sm"
+                    size="md"
                     @click="edit = !edit"
                 >
                   {{ $t('profile.editProfile.title') }}
@@ -64,12 +64,12 @@
               <span v-else class="sm:min-w-0 inline-flex">
                 <base-button
                     outline
-                    size="sm"
+                    size="md"
                     @click="edit = !edit"
                 >
                   {{ $t('profile.editProfile.cancel') }}
                 </base-button>
-                <base-button class="ml-1" size="sm" @click="onSave">
+                <base-button class="ml-1" size="md" @click="onSave">
                   {{ $t('profile.editProfile.save') }}
                 </base-button>
               </span>
