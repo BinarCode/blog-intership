@@ -11,6 +11,8 @@
 
   "general.blogs.title": "Blogs",
   "general.createBlog.title": "Create Blog",
+  "general.myBlogs.title": "My Blogs",
+  "general.noBlogAdded": "You did not publish anything yet",
 
   "general.editBlog.title": "Edit",
   "general.menu.label": "Menu",
