@@ -2,7 +2,7 @@
   <div>
     <h1 class="text-6xl">{{ $t('profile.title') }}</h1>
 
-    <div class="px-4 py-12 sm:py-16 my-10 bg-white shadow rounded-lg sm:px-10">
+    <div class="px-6 sm:px-10 py-12 sm:py-16 my-10 bg-white shadow rounded-lg">
       <div class="max-w-5xl mx-auto h-auto">
         <div class="flex justify-center sm:justify-end w-full">
           <div class="flex flex-col flex-shrink-0 mt-0 sm:-mt-32">
@@ -12,10 +12,12 @@
                   class="mr-1"
                   outline
                   size="sm"
-                  color="secondary"
+                  color="primary"
                   @click="showModal = true"
               >
-                {{ $t('profile.changeAvatar.title') }}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
               </base-button>
               <base-button
                   outline
@@ -23,26 +25,25 @@
                   color="danger"
                   @click="onClear"
               >
-                {{ $t('profile.clearAvatar.title') }}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
               </base-button>
             </span>
           </div>
         </div>
 
-
-
-        <!-- Description list with inline editing -->
         <div class="mt-10">
           <div class="flex flex-wrap justify-between">
             <div class="flex w-full sm:w-3/4">
               <div v-if="edit" class="w-full flex -mt-4 sm:-mt-7">
                 <base-input
-                    class="w-full sm:w-1/2 mr-1"
+                    class="w-full sm:w-1/3 mr-1"
                     v-model="profile.first_name"
                     :label="$t('register.name.firstName')"
                 />
                 <base-input
-                    class="w-full sm:w-1/2"
+                    class="w-full sm:w-1/3"
                     v-model="profile.last_name"
                     :label="$t('register.name.lastName')"
                 />
@@ -74,47 +75,41 @@
               </span>
             </div>
           </div>
-          <div class="mt-6 px-10">
-            <dl class="divide-y divide-gray-200">
+          <div class="mt-6 px-6 sm:px-10">
+            <div class="divide-y divide-gray-200">
               <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt class="text-sm font-medium text-gray-500">
+                <span class="text-sm font-medium text-gray-500">
                   {{ $t('profile.email.text') }}
-                </dt>
-                <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  <span class="flex-grow">{{ user.email }}</span>
-                </dd>
+                </span>
+                <span class="flex-grow mt-1 ml-auto flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {{ user.email }}
+                </span>
               </div>
               <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:pt-5">
-                <dt class="text-sm font-medium text-gray-500">
+                <span class="text-sm font-medium text-gray-500">
                   {{ $t('profile.createdAt.text') }}
-                </dt>
-                <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  <span class="flex-grow">{{ getCreatedAt }}</span>
-                </dd>
+                </span>
+                <span class="mt-1 ml-auto flex text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex-grow">
+                  {{ getCreatedAt }}
+                </span>
               </div>
               <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-b sm:border-gray-200">
-                <dt class="text-sm font-medium text-gray-500">
+                <span class="text-sm font-medium text-gray-500">
                   {{ $t('profile.updatedAt.text') }}
-                </dt>
-                <dd class="mt-1 ml-auto flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  <span class="flex-grow">{{ getUpdatedAt }}</span>
-                </dd>
+                </span>
+                <span class="flex-grow mt-1 ml-auto flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {{ getUpdatedAt }}
+                </span>
               </div>
-            </dl>
+            </div>
           </div>
         </div>
-
-
       </div>
     </div>
-
-
-
 
     <transition name="fade">
       <upload-avatar v-if="showModal" @closeModal="showModal = false" />
     </transition>
-
   </div>
 </template>
 
