@@ -4,48 +4,10 @@
 
     <div class="px-4 py-12 sm:py-16 my-10 bg-white shadow rounded-lg sm:px-10">
       <div class="max-w-5xl mx-auto h-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-4 gap-y-8">
-          <div class="relative w-full col-span-1 sm:col-span-3 font-light">
-            <span class="block mb-1">
-              <span class="font-medium">{{ $t('profile.email.text') }}</span>: {{ user.email }}
-            </span>
-            <span class="block mb-1">
-              <span class="font-medium">{{ $t('profile.createdAt.text') }}</span>: {{ getCreatedAt }}
-            </span>
-            <span class="block">
-              <span class="font-medium">{{ $t('profile.updatedAt.text') }}</span>: {{ getUpdatedAt }}
-            </span>
-
-            <div v-if="edit" class="relative flex sm:absolute -bottom-4 text-3xl mt-0 sm:mt-5 w-full sm:w-5/6">
-              <base-input
-                  class="w-full sm:w-1/2 mr-1"
-                  v-model="profile.first_name"
-                  :label="$t('register.name.firstName')"
-              />
-              <base-input
-                  class="w-full sm:w-1/2"
-                  v-model="profile.last_name"
-                  :label="$t('register.name.lastName')"
-              />
-            </div>
-            <div v-else class="relative sm:absolute bottom-0 text-3xl mt-5">
-              <span>{{ user.first_name }} {{ user.last_name }}</span>
-            </div>
-          </div>
-
-          <div class="flex flex-col">
-
+        <div class="flex justify-center sm:justify-end w-full">
+          <div class="flex flex-col flex-shrink-0 mt-0 sm:-mt-32">
             <avatar class="h-32 w-32 mx-auto" :path="user" />
-            <span v-if="!edit" class="flex justify-center mt-2 sm:mt-0">
-              <base-button
-                  outline
-                  size="sm"
-                  @click="edit = !edit"
-              >
-                {{ $t('profile.editProfile.title') }}
-              </base-button>
-            </span>
-            <span v-else class="flex justify-center mt-2 sm:mt-0">
+            <span v-if="edit" class="flex justify-center mt-2">
               <base-button
                   class="mr-1"
                   outline
@@ -67,20 +29,87 @@
           </div>
         </div>
 
-        <div v-if="edit" class="sm:min-w-0 mt-6 inline-flex flex-row-reverse w-full">
-          <base-button class="ml-1" size="md" @click="onSave">
-            {{ $t('profile.editProfile.save') }}
-          </base-button>
-          <base-button
-              outline
-              size="md"
-              @click="edit = !edit"
-          >
-            {{ $t('profile.editProfile.cancel') }}
-          </base-button>
+
+
+        <!-- Description list with inline editing -->
+        <div class="mt-10">
+          <div class="flex flex-wrap justify-between">
+            <div class="flex w-full sm:w-3/4">
+              <div v-if="edit" class="w-full flex -mt-4 sm:-mt-7">
+                <base-input
+                    class="w-full sm:w-1/2 mr-1"
+                    v-model="profile.first_name"
+                    :label="$t('register.name.firstName')"
+                />
+                <base-input
+                    class="w-full sm:w-1/2"
+                    v-model="profile.last_name"
+                    :label="$t('register.name.lastName')"
+                />
+              </div>
+              <span v-else class="text-3xl self-center">{{ user.first_name }} {{ user.last_name }}</span>
+            </div>
+            <div>
+              <span v-if="!edit">
+                <base-button
+                    class="mb-1"
+                    outline
+                    size="sm"
+                    @click="edit = !edit"
+                >
+                  {{ $t('profile.editProfile.title') }}
+                </base-button>
+              </span>
+              <span v-else class="sm:min-w-0 inline-flex">
+                <base-button
+                    outline
+                    size="sm"
+                    @click="edit = !edit"
+                >
+                  {{ $t('profile.editProfile.cancel') }}
+                </base-button>
+                <base-button class="ml-1" size="sm" @click="onSave">
+                  {{ $t('profile.editProfile.save') }}
+                </base-button>
+              </span>
+            </div>
+          </div>
+          <div class="mt-6 px-10">
+            <dl class="divide-y divide-gray-200">
+              <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                <dt class="text-sm font-medium text-gray-500">
+                  {{ $t('profile.email.text') }}
+                </dt>
+                <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <span class="flex-grow">{{ user.email }}</span>
+                </dd>
+              </div>
+              <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:pt-5">
+                <dt class="text-sm font-medium text-gray-500">
+                  {{ $t('profile.createdAt.text') }}
+                </dt>
+                <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <span class="flex-grow">{{ getCreatedAt }}</span>
+                </dd>
+              </div>
+              <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-b sm:border-gray-200">
+                <dt class="text-sm font-medium text-gray-500">
+                  {{ $t('profile.updatedAt.text') }}
+                </dt>
+                <dd class="mt-1 ml-auto flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <span class="flex-grow">{{ getUpdatedAt }}</span>
+                </dd>
+              </div>
+            </dl>
+          </div>
         </div>
+
+
       </div>
     </div>
+
+
+
 
     <transition name="fade">
       <upload-avatar v-if="showModal" @closeModal="showModal = false" />
@@ -135,9 +164,9 @@ export default {
 
       return date[0]
           ? formatDistance(
-            new Date(date),
-            new Date(),
-            { addSuffix: true }
+              new Date(date),
+              new Date(),
+              { addSuffix: true }
           )
           : ""
     }
