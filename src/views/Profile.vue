@@ -162,23 +162,23 @@ export default {
         await userService.updateProfile(this.profile);
         const profile = await userService.getProfile();
 
-        let tempUser = {};
-        tempUser.first_name = get(
+        let tempProfile = {};
+        tempProfile.first_name = get(
             profile,
             'data.attributes.first_name',
             this.user.first_name
         );
-        tempUser.last_name = get(
+        tempProfile.last_name = get(
             profile,
             'data.attributes.last_name',
             this.user.last_name
         );
-        tempUser.avatar = get(
+        tempProfile.avatar = get(
             profile,
             'data.attributes.avatar',
             'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
         );
-        this.setProfileState(tempUser);
+        this.setProfileState(tempProfile);
 
         this.$notify({
           title: this.$t('notifyMessage.success.title'),
@@ -197,23 +197,23 @@ export default {
         await userService.clearAvatar();
         const profile = await userService.getProfile();
 
-        let tempUser = {};
-        tempUser.first_name = get(
+        let tempProfile = {};
+        tempProfile.first_name = get(
             profile,
             'data.attributes.first_name',
             this.user.first_name
         );
-        tempUser.last_name = get(
+        tempProfile.last_name = get(
             profile,
             'data.attributes.last_name',
             this.user.last_name
         );
-        tempUser.avatar = get(
+        tempProfile.avatar = get(
             profile,
             'data.attributes.avatar',
             'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
         );
-        await this.setProfileState(tempUser);
+        await this.setProfileState(tempProfile);
 
         this.$notify({
           title: this.$t('notifyMessage.success.title'),
