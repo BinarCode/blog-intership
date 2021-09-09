@@ -13,6 +13,7 @@
 <script>
 import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/avatars-initials-sprites';
+import config from '@/api/config';
 
 export default {
   name: 'Avatar',
@@ -21,18 +22,21 @@ export default {
   },
   computed: {
     isAvatar() {
-      return this.path.avatar && this.path.avatar.slice(0, 4) !== 'data';
+      return this.path.avatar && this.first4Charachters !== 'data';
+    },
+    first4Charachters() {
+      return this.path.avatar.slice(0, 4);
     },
   },
   methods: {
     getAvatar() {
       if (this.isAvatar) {
-        return this.path.avatar.slice(0, 5) !== 'https'
-          ? 'https://api-internship.binarcode.com/storage/' + this.path.avatar
+        return this.first4Charachters !== 'http'
+          ? `${config.API_HOST}/storage/${this.path.avatar}`
           : this.path.avatar;
       }
       let svg = createAvatar(style, {
-        seed: this.path.email,
+        seed: this.getFullName(this.path),
         radius: 50,
       });
       return svg;
