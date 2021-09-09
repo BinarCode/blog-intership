@@ -73,10 +73,9 @@ export default {
   },
   computed: {
     isCreator() {
-      return (
-        get(this.post, 'relationships.creator.id', null).toString() ===
-        this.userState.id.toString()
-      );
+      const creatorId = get(this.post, 'relationships.creator.id', null);
+
+      return creatorId.toString() === this.userState.id.toString();
     },
     tagList() {
       const tags = get(this.post, 'attributes.tags', []);

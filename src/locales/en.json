@@ -7,7 +7,6 @@
   "blog.avatar.alt": "Avatar",
   "blog.getAsPDF.title": "Get this blog as PDF",
   "reading-time": "minute to read | minutes to read",
-  "profile.avatar.alt": "ProfileAvatar",
 
   "general.blogs.title": "Blogs",
   "general.createBlog.title": "Create Blog",
@@ -59,9 +58,32 @@
   "notifyMessage.succes.forgotPassword": "We have e-mailed your reset password link!",
   "notifyMessage.succes.resetPassword": "Your password was successfully changed!",
   "notifyTitle.succes.register": "Congratulations!",
+  "notifyMessage.success.title": "Success",
+  "notifyMessage.success.updateProfile": "Your profile has successfully been updated!",
+  "notifyMessage.success.clearAvatar": "Your avatar has successfully been cleared!",
+  "notifyMessage.success.updateAvatar": "Your avatar has successfully been updated!",
+
+  "notifyMessage.error.avatarMime": "Only JPG, JPEG, PNG or GIF files are permitted. Please try again",
+  "notifyMessage.error.requiredNames": "You must fill both your first and your last names!",
+
+
 
   "tiptap.setLink": "Please insert a valid URL",
   "tiptap.characterCount": "Character count",
+
+  "profile.title": "Profile",
+  "profile.avatar.alt": "Avatar",
+  "profile.editProfile.title": "Edit profile",
+  "profile.editProfile.save": "Save",
+  "profile.editProfile.cancel": "Cancel",
+  "profile.uploadAvatar.title": "Upload avatar",
+  "profile.uploadAvatar.message": "Please select an image from your computer",
+  "profile.upload.title": "Upload",
+  "profile.changeAvatar.title": "Change",
+  "profile.clearAvatar.title": "Clear",
+  "profile.email.text": "Email",
+  "profile.createdAt.text": "Created at",
+  "profile.updatedAt.text": "Updated at",
 
   "editBlog.page.title": "Edit blog",
   "createBlog.name.title": "Title",

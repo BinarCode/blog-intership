@@ -14,6 +14,8 @@ export default new Vuex.Store({
       last_name: '',
       avatar: '',
       email: '',
+      created_at: '',
+      updated_at: ''
     },
   },
 
@@ -32,12 +34,24 @@ export default new Vuex.Store({
       state.user.last_name = get(data, 'user.last_name', '');
       state.user.avatar = get(data, 'user.avatar', '');
       state.user.email = get(data, 'user.email', '');
+      state.user.created_at = get(data, 'user.created_at', '');
+      state.user.updated_at = get(data, 'user.updated_at', '');
     },
+
+    setProfileState(state, data) {
+      state.user.first_name = data.first_name;
+      state.user.last_name = data.last_name;
+      state.user.avatar = data.avatar;
+    }
   },
   actions: {
     setUserState(context, data) {
       context.commit('setUserState', data);
     },
+
+    setProfileState(context, data) {
+      context.commit('setProfileState', data);
+    }
   },
   plugins: [createPersistedState()],
 });

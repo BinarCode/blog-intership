@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="click" class="p-2" @command="handleCommand">
     <span class="cursor-pointer flex items-center font-medium">
-      <avatar class="w-6 h-6 mr-1" :path="user" />
+      <avatar class="w-6 h-6 mr-1 flex-shrink" :path="user" />
       {{ getFullName(user) }}
       <i class="el-icon-arrow-down el-icon--right pt-1"></i>
     </span>
@@ -28,7 +28,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
+import get from 'lodash/get';
 
 export default {
   name: 'ProfileDropdown',
@@ -51,6 +52,7 @@ export default {
   },
   methods: {
     ...mapActions(['setUserState']),
+    get,
     async logOut() {
       await this.setUserState();
       localStorage.clear();
