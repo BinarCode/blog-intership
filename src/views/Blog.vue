@@ -4,7 +4,7 @@
       <div class="p-8 bg-white shadow rounded-lg sm:p-12 lg:px-20 w-full">
         <img
           v-if="get(blog, 'attributes.image', '')"
-          class="object-cover mx-auto my-5 rounded-lg max-h-80"
+          class="object-cover mx-auto mb-5 rounded-lg max-h-80"
           :src="get(blog, 'attributes.image', '')"
           :alt="$t('blog.image.alt')"
         />
@@ -49,7 +49,6 @@
         <comments :comments="comments"></comments>
       </div>
     </div>
-
     <vue-scroll-progress-bar
       backgroundColor="linear-gradient(to right, #BFDBFE,#4F46E5)"
       height=".3rem"
