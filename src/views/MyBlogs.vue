@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full">
+  <div>
     <div class="flex justify-between">
-      <div class="text-5xl sm:text-6xl mb-5">
+      <div class="text-5xl sm:text-6xl">
         {{ $t('general.myBlogs.title') }}
       </div>
       <router-link to="/create-blog" class="self-end">
@@ -12,7 +12,7 @@
     </div>
     <div
       v-if="list.length > 0"
-      class="my-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3  print:grid-cols-2"
+      class="mt-10 mb-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3  print:grid-cols-2"
     >
       <base-card v-for="blog in list" :post="blog" :key="blog.id" />
     </div>
