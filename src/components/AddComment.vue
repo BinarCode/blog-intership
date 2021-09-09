@@ -39,7 +39,6 @@
 <script>
 import { createComment } from '@/api/commentsService';
 import BaseTextArea from '@/components/BaseTextArea';
-import has from 'lodash/has';
 
 export default {
   name: 'AddComent',
@@ -59,8 +58,7 @@ export default {
           blog_id: this.blogId,
           body: this.userComment,
         });
-
-        if (has(res, 'message'))
+        if (res.message)
           this.$notify({
             title: this.$t('general.notify.errorTitle'),
             message: this.$t('addComment.notify.longError'),

@@ -22,7 +22,6 @@
 import { getBlog, updateBlog, deleteBlog } from '@/api/blogService.js';
 import { getTagsArray, tagsArrToString } from '@/utility/tags';
 import get from 'lodash/get';
-import has from 'lodash/has';
 import UpdateBlog from '@/components/UpdateBlog';
 
 export default {
@@ -40,7 +39,7 @@ export default {
     async deleteBlog() {
       try {
         let res = await deleteBlog(this.blogId);
-        if (has(res, 'message')) {
+        if (res.message) {
           this.notifyErrors(res);
         } else {
           this.$notify({
@@ -62,7 +61,7 @@ export default {
           blogId: this.blogId,
           data: { ...blog },
         });
-        if (has(res, 'message')) {
+        if (res.message) {
           this.notifyErrors(res);
         } else {
           this.$router.push(`/blogs/${res.data.id}`);

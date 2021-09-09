@@ -12,7 +12,6 @@
 <script>
 import { createBlog } from '@/api/blogService.js';
 import UpdateBlog from '@/components/UpdateBlog';
-import has from 'lodash/has';
 
 export default {
   name: 'CreateBlog',
@@ -38,7 +37,7 @@ export default {
       try {
         this.loading = true;
         let res = await createBlog({ ...blog });
-        if (has(res, 'message')) this.notifyErrors(res);
+        if (res.message) this.notifyErrors(res);
         else {
           this.$router.push(`/`);
           this.$notify({
