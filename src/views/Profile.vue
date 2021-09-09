@@ -122,7 +122,7 @@ import formatDistance from 'date-fns/formatDistance'
 import UploadAvatar from '@/components/UploadAvatar';
 
 export default {
-  name: "Profile",
+  name: 'Profile',
 
   components: {
     UploadAvatar

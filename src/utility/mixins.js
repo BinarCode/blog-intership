@@ -1,7 +1,7 @@
 import authService from '@/api/authService';
 import get from 'lodash/get';
 import { mapGetters } from 'vuex';
-import userService from "../api/userService";
+import userService from '@/api/userService';
 
 
 export default {

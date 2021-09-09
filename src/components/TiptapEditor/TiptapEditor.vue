@@ -81,7 +81,7 @@ export default {
             class: 'ml-2 pl-1 py-3 border-l-2 border-gray-300',
           },
         }),
-        Heading.configure({ HTMLAttributes: { class: 'font-extralight' } }),
+        Heading.configure({ HTMLAttributes: { class: 'font-extralight my-2' } }),
       ],
       onUpdate: () => {
         this.$emit('input', this.editor.getHTML());
