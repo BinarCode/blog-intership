@@ -26,10 +26,10 @@
         </div>
         <div class="flex items-center justify-between">
           <div class="flex">
-            <avatar class="w-10 h-10" :path="getPath" />
+            <avatar class="w-10 h-10" :path="postCreator" />
             <div class="ml-3">
               <div class="text-sm font-medium text-gray-900">
-                {{ getFullName(getPath) }}
+                {{ getFullName(postCreator) }}
               </div>
               <div
                 class="flex flex-col xl:flex-row xl:space-x-3 text-sm text-gray-500"
@@ -70,7 +70,7 @@ export default {
   props: {
     post: {
       type: [Object, String],
-      default: () => {},
+      default: () => ({}),
     },
   },
   computed: {
@@ -104,7 +104,7 @@ export default {
       const userId = get(this.post, 'relationships.creator.id', null);
       return userId == this.userState.id || this.$route.path == '/myblogs';
     },
-    getPath() {
+    postCreator() {
       return (
         this.get(this.post, 'relationships.creator.attributes', false) ||
         this.userState
