@@ -79,7 +79,6 @@ export default {
           password: this.model.password_confirmation,
         });
       } catch (error) {
-        console.log(error);
         this.notifyErrors(error);
       } finally {
         this.loading = false;
