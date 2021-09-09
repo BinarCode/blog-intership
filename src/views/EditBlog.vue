@@ -38,18 +38,14 @@ export default {
   methods: {
     async deleteBlog() {
       try {
-        let res = await deleteBlog(this.blogId);
-        if (res.message) {
-          this.notifyErrors(res);
-        } else {
-          this.$notify({
-            title: this.$t('general.notify.succesTitle'),
-            message: this.$t('deleteBlog.notify.succesMessage'),
-            type: 'info',
-            iconClass: 'el-icon-delete-solid',
-          });
-          this.$router.push(`/`);
-        }
+        await deleteBlog(this.blogId);
+        this.$notify({
+          title: this.$t('general.notify.succesTitle'),
+          message: this.$t('deleteBlog.notify.succesMessage'),
+          type: 'info',
+          iconClass: 'el-icon-delete-solid',
+        });
+        this.$router.push(`/`);
       } catch (error) {
         this.notifyErrors(error);
       }

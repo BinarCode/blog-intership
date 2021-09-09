@@ -53,7 +53,7 @@ const routes = [
     name: 'Register',
     component: Register,
     meta: {
-      requiresAuth: true,
+      requiresNonLogged: true,
     },
   },
 
