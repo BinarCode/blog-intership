@@ -65,9 +65,11 @@
               :debounce="500"
               :controls="searchControls"
               :filter-by-query="true"
-            ></vue-simple-suggest>
+              @input="debouncedSearch"
+            >
+            </vue-simple-suggest>
           </div>
-          <profile-dropdown username="someusername" avatar="" />
+          <profile-dropdown />
         </div>
         <div v-if="!userState.loggedIn">
           <guest-dropdown class="sm:hidden" />
@@ -100,6 +102,7 @@ import GuestDropdown from '@/components/GuestDropdown.vue';
 import VueSimpleSuggest from 'vue-simple-suggest';
 import eventBus from '@/api/eventBus';
 import { mapGetters } from 'vuex';
+import debounce from 'lodash/debounce';
 
 export default {
   name: 'BaseNavbar',
@@ -114,6 +117,11 @@ export default {
     };
   },
   methods: {
+    debounce,
+    debouncedSearch: debounce(
+        function() { eventBus.$emit('update:searchTerm', this.search) },
+        500
+    ),
     getSearchResult: async function() {
       try {
         let blogs = await getBlogSearchResults(this.search);
@@ -144,13 +152,6 @@ export default {
         hideList: [27, 35],
         autocomplete: [32, 13],
       };
-    },
-  },
-  watch: {
-    search: function() {
-      if (this.$route.path == '/') {
-        eventBus.$emit('update:searchTerm', this.search);
-      }
     },
   },
 };
