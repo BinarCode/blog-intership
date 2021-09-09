@@ -72,6 +72,7 @@
   "createBlog.notify.succesMessage": "The blog was successfully created. You can access it by ",
   "createBlog.notify.clickHere": " clicking here",
   "editBlog.notify.succesMessage": "The blog was successfully created.",
+  "editBlog.notify.unauthorizedEditError": "In order to edit a blog you must be its author.",
   "deleteBlog.notify.succesMessage": "The blog has been deleted.",
   "general.button.chooseFile": "Choose file ",
   "general.button.deleteBlog": "Delete Blog",

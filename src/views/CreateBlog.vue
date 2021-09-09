@@ -38,7 +38,7 @@ export default {
       try {
         this.loading = true;
         let res = await createBlog({ ...blog });
-        if (has(res, 'errorArr')) this.notifyErrors(res);
+        if (has(res, 'message')) this.notifyErrors(res);
         else {
           this.$router.push(`/`);
           this.$notify({

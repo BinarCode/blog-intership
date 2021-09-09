@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="fetched">
     <div class="flex mb-10 justify-between">
       <div class="text-5xl sm:text-6xl">
         {{ $t('editBlog.page.title') }}
@@ -14,7 +14,7 @@
         {{ $t('general.button.deleteBlog') }}
       </base-button>
     </div>
-    <update-blog v-if="fetched" :loading="loading" :blog="blog"></update-blog>
+    <update-blog :loading="loading" :blog="blog"></update-blog>
   </div>
 </template>
 
@@ -39,14 +39,18 @@ export default {
   methods: {
     async deleteBlog() {
       try {
-        await deleteBlog(this.blogId);
-        this.$notify({
-          title: this.$t('general.notify.succesTitle'),
-          message: this.$t('deleteBlog.notify.succesMessage'),
-          type: 'info',
-          iconClass: 'el-icon-delete-solid',
-        });
-        this.$router.push(`/`);
+        let res = await deleteBlog(this.blogId);
+        if (has(res, 'message')) {
+          this.notifyErrors(res);
+        } else {
+          this.$notify({
+            title: this.$t('general.notify.succesTitle'),
+            message: this.$t('deleteBlog.notify.succesMessage'),
+            type: 'info',
+            iconClass: 'el-icon-delete-solid',
+          });
+          this.$router.push(`/`);
+        }
       } catch (error) {
         this.notifyErrors(error);
       }
@@ -58,7 +62,7 @@ export default {
           blogId: this.blogId,
           data: { ...blog },
         });
-        if (has(res, 'errorArr')) {
+        if (has(res, 'message')) {
           this.notifyErrors(res);
         } else {
           this.$router.push(`/blogs/${res.data.id}`);
@@ -79,6 +83,11 @@ export default {
     this.blogId = get(this.$route, 'params.blogId', '');
     try {
       let data = await getBlog(this.blogId);
+      if (
+        this.userState.id.toString() !== get(data, 'relationships.creator.id')
+      ) {
+        throw new Error(this.$t('editBlog.notify.unauthorizedEditError'));
+      }
       data.attributes.tags = tagsArrToString(
         getTagsArray(get(data, 'attributes.tags', ''))
       );
@@ -88,8 +97,10 @@ export default {
         content: get(data, 'attributes.content', ''),
         image: get(data, 'attributes.image', false),
       };
-    } finally {
       this.fetched = true;
+    } catch (error) {
+      this.$router.push(`/`);
+      this.notifyErrors(error);
     }
   },
 };
