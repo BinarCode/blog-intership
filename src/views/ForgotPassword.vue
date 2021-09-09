@@ -6,7 +6,7 @@
         {{ $t('general.forgotPassword.title') }}
       </h2>
     </div>
-    <div class="m-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="m-2 mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow rounded-lg sm:px-10">
         <ValidationObserver v-slot="{ valid }" ref="form">
           <form @submit.prevent="handleSubmit">

@@ -6,10 +6,12 @@
   "blog.noImage.text": "This blog has no cover image.",
   "blog.avatar.alt": "Avatar",
   "blog.getAsPDF.title": "Get this blog as PDF",
-  "reading-time": "minute read | minutes read",
+  "reading-time": "minute to read | minutes to read",
 
   "general.blogs.title": "Blogs",
   "general.createBlog.title": "Create Blog",
+  "general.myBlogs.title": "My Blogs",
+  "general.noBlogAdded": "You did not publish anything yet",
 
   "general.editBlog.title": "Edit",
   "general.menu.label": "Menu",
@@ -94,6 +96,7 @@
   "createBlog.notify.succesMessage": "The blog was successfully created. You can access it by ",
   "createBlog.notify.clickHere": " clicking here",
   "editBlog.notify.succesMessage": "The blog was successfully created.",
+  "editBlog.notify.unauthorizedEditError": "In order to edit a blog you must be its author.",
   "deleteBlog.notify.succesMessage": "The blog has been deleted.",
   "general.button.chooseFile": "Choose file ",
   "general.button.deleteBlog": "Delete Blog",
@@ -101,6 +104,7 @@
   "general.notify.errorTitle": "Error",
 
   "addComment.notify.succesMessage": "Your comment has been successfully added.",
+  "addComment.notify.longError": "Your comment is too long",
   "deleteComment.notify.succesMessage": "Your comment has been successfully deleted.",
   "comments.title": "Comments:",
   "comments.userCommented.text": "commented on this blog:",

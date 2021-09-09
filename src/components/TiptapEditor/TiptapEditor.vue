@@ -60,7 +60,7 @@ export default {
       extensions: [
         StarterKit,
         Paragraph.configure({
-          HTMLAttributes: { class: 'my-5' },
+          HTMLAttributes: { class: 'my-4' },
         }),
         Code.configure({
           HTMLAttributes: { class: 'rounded px-1 text-gray-900 bg-gray-300' },

@@ -1,9 +1,9 @@
 <template>
   <span
-    class="inline-flex rounded-full bg-blue-100 text-blue-800"
+    class="inline-flex rounded-full font-medium bg-blue-100 text-blue-800"
     :class="{
-      'px-3 py-1.5': size === 'sm',
-      'px-4 py-2.5': size === 'md'
+      'px-3 py-1 text-sm': size === 'sm',
+      'px-4 py-2.5': size === 'md',
     }"
   >
     <slot></slot>
@@ -12,16 +12,14 @@
 
 <script>
 export default {
-  name: "BaseTag",
+  name: 'BaseTag',
   props: {
     size: {
       type: String,
-      default: 'md' // | sm
-    }
-  }
-}
+      default: 'md', // | sm
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

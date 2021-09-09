@@ -6,8 +6,8 @@
         {{ $t('register.button.label.signIn') }}
       </h2>
     </div>
-    <div class="m-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <div class="px-4 py-8 bg-white shadow rounded-lg sm:px-10">
+    <div class="m-2 mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="py-8 px-4 bg-white shadow rounded-lg sm:px-10">
         <ValidationObserver v-slot="{ valid }">
           <form @submit.prevent="handleSubmit">
             <base-input

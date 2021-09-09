@@ -25,13 +25,14 @@
               <label class="text-sm font-medium text-gray-700">
                 {{ $t('createBlog.name.coverImage') }}
               </label>
-              <img :src="previewImage" class="rounded" />
+              <img :src="previewImage" class="rounded mx-auto" />
               <input
                 id="uploadImg"
                 hidden
                 type="file"
                 accept="image/*"
-                @change="showImage($event)"
+                @change="showImage($event.target.files)"
+                ref="fileInput"
               />
               <div class="flex justify-between mt-1">
                 <label
@@ -65,7 +66,7 @@
             type="submit"
             :disabled="!(valid && isContent)"
             :loading="loading"
-            class="w-full mt-3"
+            class="mt-3"
           >
             {{ $t('createBlog.button.publish') }}
           </base-button>
@@ -100,12 +101,17 @@ export default {
   methods: {
     get,
     deleteCoverImg() {
-      this.blog.image = '';
-      this.previewImage = this.blog.image;
+      this.$refs.fileInput.value = null;
+      this.showImage([]);
     },
-    showImage(event) {
-      this.blog.image = event.target.files[0];
-      this.previewImage = URL.createObjectURL(this.blog.image);
+    showImage(files) {
+      if (files.length) {
+        this.blog.image = files[0];
+        this.previewImage = URL.createObjectURL(this.blog.image);
+      } else {
+        this.blog.image = '';
+        this.previewImage = this.blog.image;
+      }
     },
   },
 };

@@ -1,8 +1,8 @@
 <template>
   <el-dropdown trigger="click" class="p-2" @command="handleCommand">
     <span class="cursor-pointer flex items-center font-medium">
-      <avatar class="w-6 h-6 mr-1" :path="userState" />
-      {{ getFullName(userState) }}
+      <avatar class="w-6 h-6 mr-1" :path="user" />
+      {{ getFullName(user) }}
       <i class="el-icon-arrow-down el-icon--right pt-1"></i>
     </span>
 
@@ -43,7 +43,9 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['userState']),
+    ...mapGetters({
+      user: 'userState'
+    }),
     getAvatar() {
       return get(
           this.userState,
