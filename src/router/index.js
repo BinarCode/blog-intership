@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Blogs from '@/views/Blogs'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Blogs from '@/views/Blogs';
 import ResetPassword from '@/views/ResetPassword';
 import Styleguide from '@/views/Styleguide';
 import Register from '@/views/Register';
@@ -9,10 +9,10 @@ import Profile from '@/views/Profile';
 import ForgotPassword from '@/views/ForgotPassword';
 import EditBlog from '@/views/EditBlog';
 import CreateBlog from '@/views/CreateBlog';
-import Blog from '@/views/Blog'
+import Blog from '@/views/Blog';
+import MyBlogs from '@/views/MyBlogs';
 
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -53,8 +53,8 @@ const routes = [
     name: 'Register',
     component: Register,
     meta: {
-      requiresNonLogged: true
-    }
+      requiresAuth: true,
+    },
   },
 
   {
@@ -62,8 +62,8 @@ const routes = [
     name: 'Login',
     component: Login,
     meta: {
-      requiresNonLogged: true
-    }
+      requiresNonLogged: true,
+    },
   },
 
   {
@@ -71,8 +71,8 @@ const routes = [
     name: 'Reset Password',
     component: ResetPassword,
     meta: {
-      requiresNonLogged: true
-    }
+      requiresNonLogged: true,
+    },
   },
 
   {
@@ -80,8 +80,8 @@ const routes = [
     name: 'Forgot Password',
     component: ForgotPassword,
     meta: {
-      requiresNonLogged: true
-    }
+      requiresNonLogged: true,
+    },
   },
 
   {
@@ -96,13 +96,18 @@ const routes = [
     path: '/blogs/:blogId',
     name: 'Blog',
     component: Blog,
-  }
-]
+  },
+  {
+    path: '/myblogs',
+    name: 'My Blogs',
+    component: MyBlogs,
+  },
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
