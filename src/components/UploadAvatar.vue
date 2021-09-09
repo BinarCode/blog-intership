@@ -76,17 +76,9 @@ export default {
   methods: {
     ...mapActions(['setProfileState']),
 
-    get,
-
     checkImage(image) {
-      this.file = image.target.files[0];
-      const mimeTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
-
       try {
-        if(!mimeTypes.includes(this.file.type)) {
-          this.$refs.uploadAvatar.reset();
-          throw new Error(this.$t('notifyMessage.error.avatarMime'));
-        }
+        this.file = image.target.files[0];
 
         this.preview = true;
         this.src = URL.createObjectURL(this.file);

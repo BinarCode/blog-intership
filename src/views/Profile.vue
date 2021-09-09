@@ -148,7 +148,6 @@ export default {
 
     getCreatedAt() {
       const date = this.user.created_at.substring(0, 10).split('-');
-
       return date[0]
           ? format(new Date(date), 'dd MMM yyyy')
           : "";
@@ -156,7 +155,6 @@ export default {
 
     getUpdatedAt() {
       const date = this.user.updated_at.substring(0, 10).split('-');
-
       return date[0]
           ? formatDistance(
               new Date(date),
@@ -169,8 +167,6 @@ export default {
 
   methods: {
     ...mapActions(['setUserState', 'setProfileState']),
-
-    get, format, formatDistance,
 
     async onSave() {
       try {
@@ -200,7 +196,7 @@ export default {
         tempProfile.avatar = get(
             profile,
             'data.attributes.avatar',
-            'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
+            ''
         );
         this.setProfileState(tempProfile);
 
@@ -235,7 +231,7 @@ export default {
         tempProfile.avatar = get(
             profile,
             'data.attributes.avatar',
-            'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
+            ''
         );
         await this.setProfileState(tempProfile);
 

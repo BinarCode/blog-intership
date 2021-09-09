@@ -1,7 +1,7 @@
 <template>
   <el-dropdown trigger="click" class="p-2" @command="handleCommand">
     <span class="cursor-pointer flex items-center font-medium">
-      <avatar class="w-6 h-6 mr-1" :path="user" />
+      <avatar class="w-6 h-6 mr-1 flex-shrink" :path="user" />
       {{ getFullName(user) }}
       <i class="el-icon-arrow-down el-icon--right pt-1"></i>
     </span>
@@ -46,13 +46,6 @@ export default {
     ...mapGetters({
       user: 'userState'
     }),
-    getAvatar() {
-      return get(
-          this.userState,
-          'avatar',
-          'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg'
-      );
-    },
     routeName() {
       return this.$route.name;
     },
