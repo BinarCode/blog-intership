@@ -46,6 +46,7 @@
                 ></reading-time>
               </span>
             </div>
+
             <router-link class="ml-20" v-if="goToEdit" :to="getEditBlogLink">
               <base-button size="sm" outline>
                 {{ $t('general.editBlog.title') }}

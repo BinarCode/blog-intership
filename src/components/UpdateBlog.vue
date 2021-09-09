@@ -65,7 +65,7 @@
             type="submit"
             :disabled="!(valid && isContent)"
             :loading="loading"
-            class="w-full mt-3"
+            class="mt-3"
           >
             {{ $t('createBlog.button.publish') }}
           </base-button>
