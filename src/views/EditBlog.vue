@@ -23,6 +23,7 @@ import { getBlog, updateBlog, deleteBlog } from '@/api/blogService.js';
 import { getTagsArray, tagsArrToString } from '@/utility/tags';
 import get from 'lodash/get';
 import UpdateBlog from '@/components/UpdateBlog';
+import has from 'lodash/has';
 
 export default {
   name: 'EditBlog',
@@ -38,14 +39,18 @@ export default {
   methods: {
     async deleteBlog() {
       try {
-        await deleteBlog(this.blogId);
-        this.$notify({
-          title: this.$t('general.notify.succesTitle'),
-          message: this.$t('deleteBlog.notify.succesMessage'),
-          type: 'info',
-          iconClass: 'el-icon-delete-solid',
-        });
-        this.$router.push(`/`);
+        const res = await deleteBlog(this.blogId);
+        if (has(res, 'message')) {
+          this.notifyErrors(res);
+        } else {
+          this.$notify({
+            title: this.$t('general.notify.succesTitle'),
+            message: this.$t('deleteBlog.notify.succesMessage'),
+            type: 'info',
+            iconClass: 'el-icon-delete-solid',
+          });
+          this.$router.push(`/`);
+        }
       } catch (error) {
         this.notifyErrors(error);
       }
@@ -57,7 +62,7 @@ export default {
           blogId: this.blogId,
           data: { ...blog },
         });
-        if (res.message) {
+        if (has(res, 'message')) {
           this.notifyErrors(res);
         } else {
           this.$router.push(`/blogs/${res.data.id}`);
