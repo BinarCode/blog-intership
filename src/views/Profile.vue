@@ -35,7 +35,7 @@
 
         <div class="mt-10">
           <div class="flex flex-wrap">
-            <div class="flex w-full sm:w-2/3">
+            <div class="flex w-full lg:w-2/3">
               <div v-if="edit" class="w-full flex -mt-4 sm:-mt-5">
                 <base-input
                     class="w-full sm:w-1/2 mr-1"
@@ -48,9 +48,9 @@
                     :label="$t('register.name.lastName')"
                 />
               </div>
-              <span v-else class="text-3xl self-center">{{ user.first_name }} {{ user.last_name }}</span>
+              <span v-else class="text-3xl mx-auto sm:mx-0">{{ user.first_name }} {{ user.last_name }}</span>
             </div>
-            <div class="ml-auto">
+            <div class="mx-auto sm:mx-0 sm:ml-auto">
               <span v-if="!edit">
                 <base-button
                     class="mb-1"

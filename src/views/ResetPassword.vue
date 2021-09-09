@@ -48,6 +48,7 @@
 <script>
 import authServices from '@/api/authService';
 import get from 'lodash/get';
+import {mapActions} from "vuex";
 
 export default {
   name: 'ResetPassword',
@@ -63,6 +64,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['setUserState']),
     async onSubmit() {
       try {
         this.loading = true;
